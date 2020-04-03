@@ -1,0 +1,1 @@
+GameGenerator.createGame(chosenXMLFile);
