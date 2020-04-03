@@ -1,7 +1,7 @@
 /**
  * Interface handling all Card distribution via a Dealer object. Card and Deck objects are interacted with internally.
  */
-public interface CardDistributionAPI {
+public interface CardDistributionInterface {
 
     /**
      * Shuffles the deck to reset it back to its original starting value, essentially reverting the Deck back to its original state.

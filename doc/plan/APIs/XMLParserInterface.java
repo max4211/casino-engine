@@ -2,7 +2,7 @@
  * Module that translates XML-defined preferences into Java-friendly structures such as Maps and Lists.
  * Also saves preferences of a game including color scheme, XML rules, and number of players.
  */
-public interface XMLParsing {
+public interface XMLParsingInterface {
 
     /**
      * Method that translates the XML Deck tag to a List of Pair objects holding the Suit (String) and Value (Integer) for each Card.
@@ -35,12 +35,23 @@ public interface XMLParsing {
 
     /**
      * Translates the XML tag for possible Actions in a game into a Map
-     * The String keys are EntryBet, DealerAction, and MidGameAction which correspond to Actions taken to get in the game, dealer actions in a turh, and actions a user can take in the middle of a turn.
-     * Reflection is used
-     * @return
+     * The String keys are EntryBet, DealerAction, and MidGameAction which correspond to Actions taken to get in the game, dealer actions in a turn, and actions a user can take in the middle of a turn.
+     * Reflection is used in the ActionGenerator and Table to create these actions and execute them on Bet and Dealer Objects.
+     * @return a Map listing all Actions that can be taken to enter a game with a bet, that the dealer can take, and that a player can take in a turn
      */
-    public Map<String, List> getActions()
+    public Map<String, List> getActions();
 
-    public Map<String, Double> getPlayers()
+    /**
+     * Translates the XML tag for players in a game into a Map
+     * The String keys are the names for the players, and the Doubles are their initial bankroll
+     * @return a Map containing all the information for players mapping their names to their bankrolls
+     */
+    public Map<String, Double> getPlayers();
 
-    public Map<String, Double> savePreferences();
+    /**
+     * Takes the current settings in a game and saves it to an XML file.
+     * Properties saved include color scheme for the game, number of players, and current deck.
+     * Basic implementation will not support changing in-game actions or bet heirarchy, but extensions past basic visual customizations can be implemented later.
+     * @param fileName is the name of the XML file to save the preferences to
+     */
+    public void savePreferences(String fileName);

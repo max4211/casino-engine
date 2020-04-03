@@ -2,7 +2,7 @@
  * Module that handles game initalization, but little more. The sole method works with the XML and Table modules to construct a MVC model
  * with user inputted preferences via the XML.
  */
-public interface GameGeneration {
+public interface GameGenerationInterface {
 
     /**
      * GameGeneration only has one method, to create a new game in a new window.
