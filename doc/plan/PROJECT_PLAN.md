@@ -81,6 +81,7 @@ Further the frontend development with additions of Lobby and Dark Mode.
 Iron out the controller/model separation, and determine more abstractions to improve data driven design and minimze the evil *hard coding*.
 
 *Features:*
+
 Eric:
 1. Implement Dark Mode settings in the UI.
 2. Add a LobbyView with UI access to XML.
