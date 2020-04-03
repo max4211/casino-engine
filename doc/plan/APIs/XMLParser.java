@@ -32,7 +32,13 @@ public interface XMLParsing {
      * @return a List of Strings containing the names of all Hands that can lose in a given game
      */
     public List<String> getLosingHands();
-    
+
+    /**
+     * Translates the XML tag for possible Actions in a game into a Map
+     * The String keys are EntryBet, DealerAction, and MidGameAction which correspond to Actions taken to get in the game, dealer actions in a turh, and actions a user can take in the middle of a turn.
+     * Reflection is used
+     * @return
+     */
     public Map<String, List> getActions()
 
     public Map<String, Double> getPlayers()
