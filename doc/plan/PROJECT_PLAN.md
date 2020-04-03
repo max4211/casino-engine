@@ -27,6 +27,7 @@ Secondary:
 
 
 Max will focus primarily on APIs associated with backend/model and controller logic, plus support for frontend/data parsing.
+
 Primary
 * `Table`
 * `Bet Evaluator`
