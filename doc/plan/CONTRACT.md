@@ -1,4 +1,4 @@
-##Final Team Contract
+## Final Team Contract
 ### Goals
 - Leverage many of the concepts learned through class and readings to create a casino game engine that is extensible beyond the current games implemented.
 - Successfully complete agile sprints, with realistic expectations for each interval.
