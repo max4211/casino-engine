@@ -34,14 +34,12 @@ The general structure is that of an MVC (Model - View - Controller). The View it
 
 When a user wants to join a game, they select an XML file which is then parsed by an XML reader (plus additional writing capabilities for user selected preferences @ run time) and then a GameConstructor generates the remaining objects in the ecosystem. They are designed to work in their own universe, so multiple games can be constructed and run independently of eachother.
 
-Within an individual game, the Controller manifets itself in a `Table` which controls the game flow (e.g. prompts players for actions). Upon action selection, it is then assembled and processed via a HandEvaluator and referenced against preconfigured (via XML file) hands (e.g. `StraightFlush`).
+Within an individual game, the Controller manifets itself in a `Table` which controls the game flow (e.g. prompts players for actions). Upon action selection, a Hand is then assembled and processed via a HandEvaluator and referenced against preconfigured (via XML file) hands (e.g. `StraightFlush`).
 
-At the end of a Game cycle, all `Bet`s (which have a `Hand` and `Wager`) in the same competitive circle are evaluated against eachother using a `compareTo` method inside of the `HandComparator`, resulting in one (or more in the case of ties) winners who split their shared prize pool (the pot).
+At the end of a Game cycle, all `Bets` (which have a `Hand` and `Wager`) in the same competitive circle are evaluated against eachother using a `compareTo` method inside of the `HandComparator`, resulting in one (or more in the case of ties) winners who split their shared prize pool (the pot).
 
 ### Design Details
 >This section describes each module introduced in the Overview in detail (as well as any other sub-modules that may be needed but are not significant to include in a high-level description of the program). Describe how each module's API handles specific features given in the assignment specification, what resources it might use, how it collaborates with other modules, and how each could be extended to include additional requirements (from the assignment specification or discussed by your team). Finally, justify the decision to create each module with respect to the design's key goals, principles, and abstractions.
-
-*Justification:*
 
 #### Game Generation
 
@@ -116,7 +114,7 @@ To identify a generic Hand as a specific type (e.g. Full House, Pair). A Hand Cl
 *Classes and Objects:*
 There will be a variety of classes that all check for a specific card pattern. The ones that we identify as relevant for card-based games are `HighCard`, `Pair`, `Triple` `TwoPair`, `Straight`, `Flush`, `FullHouse`, `Four of a Kind`, `StraightFlush`, `RoyalStraightFlush`, `UnderX` (checks if the sum of cards is under a number X), `OverX` (checks if the sum of cards is over a number X) `TwoCardSumX`, (checks if two cards add to a number X).
 
-Additionally, there will be a hierarchy of `ClassifiedHands` that are instance variables
+Additionally, there will be a hierarchy of `ClassifiedHands` that are instance variables.
 
 *External API Contract:*
 ```java3
@@ -142,7 +140,7 @@ To compare two classified hands based on the hierarchy given via XML. This is do
 There is one class, `HandComparator` that only implements one relevant method: compare(Hand one, Hand two). This takes in two hands and returns 1 if the former is the winner, -1 if the latter is the winner, and 0 if it a push.
 
 *External API Contract:*
-The single method call
+The single method call:
 ```java3
 public int compare(Hand h1, Hand h2)
 ```
