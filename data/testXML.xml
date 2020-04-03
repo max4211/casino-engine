@@ -1,0 +1,11 @@
+<GameType>Blackjack</GameType>
+<Payoffs>
+    <Blackjack>1.5</Blackjack>
+    <Win>1</Win>
+</Payoffs>
+<Preferences>
+    <View>
+        <Theme>Autumn</Theme>
+    </View>
+    <Deck>Standard</Deck>
+</Preferences>
