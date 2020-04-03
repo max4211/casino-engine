@@ -1,4 +1,4 @@
-[GameView](ErrorWagerView.JPG)
+[GameView](GameView.JPG)
 
 [LobbyView](LobbyView.JPG)
 
