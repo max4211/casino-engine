@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Deck>
+    <Title>Standard</Title>
+    <Authors>Eric Doppelt and Max Smith</Authors>
+    <Card>
+        <Value>1</Value>
+        <Suit>Club</Suit>
+    </Card>
+</Deck>
