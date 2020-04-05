@@ -1,6 +1,7 @@
 package ooga;
 
 import data.xmlreader.XMLReader;
+import engine.table.Table;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -12,6 +13,7 @@ public class GameConstructor {
 
     public static void main (String[] args) throws ParserConfigurationException, SAXException, IOException {
         XMLReader myReader = new XMLReader(testFile);
+        myReader.getDeck();
         System.out.println("HELLO DOPP!!");
     }
 }
