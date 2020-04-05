@@ -18,6 +18,10 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
         myDocument = XMLGeneratorInterface.createDocument(file);
     }
 
+    public XMLReader(String file) throws IOException, SAXException, ParserConfigurationException {
+        myDocument = XMLGeneratorInterface.createDocument(new File(file));
+    }
+
     @Override
     public List<Card> getDeck() {
         return null;
