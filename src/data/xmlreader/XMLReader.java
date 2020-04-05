@@ -1,6 +1,6 @@
 package data.xmlreader;
 
-import javafx.util.Pair;
+import engine.dealer.Card;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -19,7 +19,7 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
     }
 
     @Override
-    public List<Pair> getDeck() {
+    public List<Card> getDeck() {
         return null;
     }
 

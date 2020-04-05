@@ -1,6 +1,6 @@
 package data.xmlreader;
 
-import javafx.util.Pair;
+import engine.dealer.Card;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +17,7 @@ public interface XMLParseInterface {
      *
      * @return a List with each Pair entry containing the suit and value of a card in the deck.
      */
-    List<Pair> getDeck();
+    List<Card> getDeck();
 
     /**
      * Method that translates the XML Payout Odds tag to a Map
