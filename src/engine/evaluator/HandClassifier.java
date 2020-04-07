@@ -1,8 +1,11 @@
 package engine.evaluator;
 
+import engine.dealer.Card;
 import engine.hand.Hand;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class HandClassifier implements HandClassifierInterface {
 
@@ -34,6 +37,15 @@ public class HandClassifier implements HandClassifierInterface {
             ;
         }
         return true;
+    }
+
+    private boolean isFlush(Hand h) {
+        List<Card> handCards = h.getCards();
+        Set<String> suits = new HashSet<>();
+        for (Card card: handCards) {
+            suits.add(card.getSuit());
+        }
+        return suits.size() == 1;
     }
 
     /** Max's team code for reflection example within their execution (shows how to invoke a method)

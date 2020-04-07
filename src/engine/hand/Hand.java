@@ -23,4 +23,9 @@ public class Hand implements HandInterface {
     public void acceptCard(Card c) {
         this.myCards.add(c);
     }
+
+    @Override
+    public List<Card> getCards() {
+        return this.myCards;
+    }
 }
