@@ -32,7 +32,7 @@ public class CardView implements ViewInterface {
 
     public CardView(Card modelCard) {
         myCard = new VBox();
-        myFormatter.formatVBox(myCard, CARD_HEIGHT, CARD_WIDTH);
+        myFormatter.formatFixedVBox(myCard, CARD_HEIGHT, CARD_WIDTH);
 
         createCardNodes(modelCard.getValue(), modelCard.getSuit());
         hideCard();

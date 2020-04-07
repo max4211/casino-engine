@@ -28,18 +28,31 @@ public class WagerView implements ViewInterface {
 
     public WagerView(double wager) {
         myWager = new VBox();
+        myFormatter.formatFixedVBox(myWager, WAGER_HEIGHT, WAGER_WIDTH);
+
         myWager.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(5), null)));
         Label wagerHeaderLabel = new Label(myResources.getString(HEADER_KEY));
-        Label valueLabel = new Label(String.valueOf(wager));
-        myWager.getChildren().addAll(wagerHeaderLabel, valueLabel);
-        myFormatter.formatVBox(myWager, WAGER_HEIGHT, WAGER_WIDTH);
+        myWager.getChildren().add(wagerHeaderLabel);
+        updateWager(wager);
     }
 
     public void updateWager(double newWager) {
-        myWager.getChildren().remove(VALUE_INDEX);
-        myWager.getChildren().add(VALUE_INDEX, new Label(String.valueOf(newWager)));
+        if (checkWager(newWager)) {
+            if (myWager.getChildren().size() == 2) {
+                myWager.getChildren().remove(VALUE_INDEX);
+            }
+            myWager.getChildren().add(VALUE_INDEX, new Label(String.valueOf(newWager)));
+        } else {
+            //TODO: throw an error popup
+        }
     }
 
     public VBox getView() {
-        return myWager; }
+        return myWager;
     }
+
+    private boolean checkWager(double amount) {
+        return amount > 0;
+    }
+}
+

@@ -3,6 +3,7 @@ package engine.hand;
 import engine.dealer.Card;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Hand implements HandInterface {
@@ -22,5 +23,9 @@ public class Hand implements HandInterface {
     @Override
     public void acceptCard(Card c) {
         this.myCards.add(c);
+    }
+
+    public List getCards() {
+        return Collections.unmodifiableList(myCards);
     }
 }
