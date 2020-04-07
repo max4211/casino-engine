@@ -1,5 +1,7 @@
 package engine.dealer;
 
+import data.xmlreader.Pair;
+
 public class Card implements CardInterface {
 
     private final String mySuit;
@@ -10,6 +12,11 @@ public class Card implements CardInterface {
     public Card(String suit, double value) {
         this.mySuit = suit;
         this.myValue = value;
+    }
+
+    public Card(Pair pair) {
+        this.mySuit = pair.getKey();
+        this.myValue = Double.parseDouble(pair.getValue());
     }
 
     @Override
