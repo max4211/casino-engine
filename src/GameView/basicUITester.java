@@ -22,6 +22,7 @@ public class basicUITester extends Application {
 
         WagerView wv = new WagerView(12);
         root.setLeft(wv.getView());
+        wv.updateWager(13);
 
 
         primaryStage.setScene(new Scene(root, 300, 250));
