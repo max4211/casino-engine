@@ -17,7 +17,7 @@ public interface XMLParseInterface {
      *
      * @return a List with each Pair entry containing the suit and value of a card in the deck.
      */
-    List<Card> getDeck();
+    List<Pair> getDeck();
 
     /**
      * Method that translates the XML Payout Odds tag to a Map
