@@ -52,19 +52,11 @@
             <Type>Individual</Type>
             <Quantity>2</Quantity>
         </DealerAction>
-        <MidGame>
-            <Action>
-                <Name>Stay</Name>
-            </Action>
-            <Action>
-                <Name>Hit</Name>
-            </Action>
-            <Action>
-                <Name>DoubleDown</Name>
-            </Action>
-            <Action>
-                <Name>Split</Name>
-            </Action>
-        </MidGame>
+        <PlayerAction>
+            <Action>Stay</Action>
+            <Action>Hit</Action>
+            <Action>DoubleDown</Action>
+            <Action>Split</Action>
+        </PlayerAction>
     </Actions>
 </Game>
