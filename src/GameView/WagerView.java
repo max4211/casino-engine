@@ -1,21 +1,18 @@
 package GameView;
 
 import Formatting.Formatter;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 
 import java.util.ResourceBundle;
 
 public class WagerView implements ViewInterface {
 
-    private VBox myWager;
-    private static final int VALUE_INDEX = 1;
-    private static final double WAGER_HEIGHT = 40;
-    private static final double WAGER_WIDTH = 100;
+    private HBox myWager;
+
     private static final double CORNER_RADIUS = 5;
     private static final Color backgroundColor = Color.web("2FC436");
 
@@ -27,27 +24,26 @@ public class WagerView implements ViewInterface {
     private ResourceBundle myResources = ResourceBundle.getBundle(RESOURCE_LANGUAGE);
 
     public WagerView(double wager) {
-        myWager = new VBox();
-        myFormatter.formatFixedVBox(myWager, WAGER_HEIGHT, WAGER_WIDTH);
-
-        myWager.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(5), null)));
-        Label wagerHeaderLabel = new Label(myResources.getString(HEADER_KEY));
-        myWager.getChildren().add(wagerHeaderLabel);
+        myWager = new HBox();
+        myFormatter.formatUnfixedHBox(myWager);
+        myWager.setAlignment(Pos.CENTER);
+        myWager.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(CORNER_RADIUS), null)));
         updateWager(wager);
     }
 
     public void updateWager(double newWager) {
         if (checkWager(newWager)) {
-            if (myWager.getChildren().size() == 2) {
-                myWager.getChildren().remove(VALUE_INDEX);
-            }
-            myWager.getChildren().add(VALUE_INDEX, new Label(String.valueOf(newWager)));
+            myWager.getChildren().clear();
+            Label updatedWager = new Label(myResources.getString(HEADER_KEY) + String.valueOf(newWager));
+            updatedWager.setTextAlignment(TextAlignment.CENTER);
+            myWager.getChildren().add(updatedWager);
+            myWager.setHgrow(updatedWager, Priority.ALWAYS);
         } else {
             //TODO: throw an error popup
         }
     }
 
-    public VBox getView() {
+    public HBox getView() {
         return myWager;
     }
 

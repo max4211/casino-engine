@@ -13,4 +13,9 @@ public interface CardInterface {
      * @return the numerical value of the card
      */
     double getValue();
+
+    /**
+     * Assign a card to be communal for all members
+     */
+    void assignCommunal();
 }

@@ -1,10 +1,15 @@
 package GameView;
 
 import engine.dealer.Card;
+import engine.hand.Hand;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class basicUITester extends Application {
 
@@ -15,15 +20,22 @@ public class basicUITester extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("UI Tester");
         BorderPane root = new BorderPane();
-        Card tempCard1 = new Card("hearts", 11);
-        CardView tempCardView1 = new CardView(tempCard1);
-        root.setCenter(tempCardView1.getView());
-        tempCardView1.showCard();
+        Pair<Double, String> tempCard = new Pair(11., "heart");
+        CardView tempCV = new CardView(tempCard);
 
-        WagerView wv = new WagerView(12);
-        root.setLeft(wv.getView());
-        wv.updateWager(13);
+        Pair<Double, String> tempCard1 = new Pair(12., "spades");
+        CardView tempCV1 = new CardView(tempCard);
 
+        List tempList = new ArrayList();
+        tempList.add(tempCard1);
+        tempList.add(tempCard);
+
+        double wagerAmount = 5.;
+
+        BetView tempBetView = new BetView(tempList, wagerAmount);
+        root.setCenter(tempBetView.getView());
+        tempBetView.addCard(new Pair<Double, String>(11., "string"));
+        tempBetView.showCard(1);
 
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();

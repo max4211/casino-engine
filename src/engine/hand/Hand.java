@@ -25,7 +25,8 @@ public class Hand implements HandInterface {
         this.myCards.add(c);
     }
 
-    public List getCards() {
-        return Collections.unmodifiableList(myCards);
+    @Override
+    public List<Card> getCards() {
+        return Collections.unmodifiableList(this.myCards);
     }
 }
