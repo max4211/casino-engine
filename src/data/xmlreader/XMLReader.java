@@ -72,14 +72,23 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
         return getHand(WINNINGHAND_TAG);
     }
 
-    // TODO - refactor, may need modification from hand method, very similar
     @Override
     public List<String> getLosingHands() {
         return getHand(LOSINGHAND_TAG);
     }
 
     @Override
-    public Map<String, List> getActions() {
+    public String getEntryBet() {
+        return null;
+    }
+
+    @Override
+    public Map<String, String> getDealerAction() {
+        return null;
+    }
+
+    @Override
+    public List<String> getPlayerAction() {
         return null;
     }
 

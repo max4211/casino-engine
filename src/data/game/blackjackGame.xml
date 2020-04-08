@@ -42,7 +42,6 @@
         <Name>SumOver21</Name>
     </LosingHand>
     <Actions>
-        <Iterations>1</Iterations>
         <EntryBet>Generic</EntryBet>
         <DealerAction>
             <Type>Individual</Type>
