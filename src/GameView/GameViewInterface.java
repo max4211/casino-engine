@@ -1,5 +1,6 @@
 package GameView;
 
+import Utility.CardTriplet;
 import javafx.util.Pair;
 
 import java.util.List;
@@ -19,9 +20,9 @@ public interface GameViewInterface {
      * @param wager
      * @param id
      */
-    public void renderBet(List<Pair<Double, String>> deckInfo, double wager, int id);
+    public void renderBet(List<CardTriplet> deckInfo, double wager, int id);
 
-    public void addCard(int betId, Pair<Double, String> cardInfo);
+    public void addCard(CardTriplet cardInfo);
 
     public void showCard(int betId, int cardId);
 
@@ -30,7 +31,7 @@ public interface GameViewInterface {
     /**
      * optional call needed for blackjack
      */
-    public void renderAdversary(List<String> actions);
+    public void renderAdversary(List<CardTriplet> actions);
 
     public void showAdversaryCard(int cardId);
 
