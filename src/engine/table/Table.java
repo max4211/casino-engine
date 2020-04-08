@@ -21,4 +21,11 @@ public class Table {
         this.myBetEvaluator = betEvaluator;
         this.myHandClassifier = handClassifier;
     }
+
+    /**
+     * SHELL
+     */
+    public void acceptString(String s) {
+        System.out.println(s);
+    }
 }
