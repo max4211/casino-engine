@@ -2,6 +2,8 @@ package data.xmlreader;
 
 public class Pair {
 
+    private static final String SEPARATOR = " : ";
+
     private final String myKey;
     private final String myValue;
 
@@ -16,5 +18,10 @@ public class Pair {
 
     public String getValue() {
         return this.myValue;
+    }
+
+    @Override
+    public String toString() {
+        return this.myKey + SEPARATOR + this.myValue;
     }
 }

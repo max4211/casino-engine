@@ -33,6 +33,17 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
     private static final String SUIT_TAG = "Suit";
     private static final String VALUE_TAG = "Value";
 
+    private static final String WINNINGHAND_TAG = "WinningHand";
+    private static final String LOSINGHAND_TAG = "LosingHand";
+    private static final String HAND_TAG = "Hand";
+
+    private static final String ENTRY_TAG = "EntryBet";
+    private static final String DEALERACTION_TAG = "DealerAction";
+    private static final String PLAYERACTION_TAG = "PlayerAction";
+    private static final String ACTION_TAG = "Action";
+    private static final String TYPE_TAG = "Type";
+
+
 
     public XMLReader(File file) throws IOException, SAXException, ParserConfigurationException {
         myDocument = XMLGeneratorInterface.createDocument(file);
@@ -44,7 +55,7 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
 
     @Override
     public List<Pair> getDeck() {
-        NodeList deckNodeList = myDocument.getElementsByTagName(DECK_TAG);
+        NodeList deckNodeList = getNodeList(DECK_TAG);
         Element deckElement = (Element) deckNodeList.item(ZERO);
         String type = getElement(deckElement, DECK_TYPE);
         int quantity = Integer.parseInt(getElement(deckElement, QUANTITY_TAG));
@@ -65,23 +76,37 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
 
     @Override
     public List<String> getWinningHands() {
-        return null;
+        return getXMLList(WINNINGHAND_TAG, NAME_TAG);
     }
 
     @Override
     public List<String> getLosingHands() {
-        return null;
+        return getXMLList(LOSINGHAND_TAG, NAME_TAG);
     }
 
     @Override
-    public Map<String, List> getActions() {
-        return null;
+    public String getEntryBet() {
+        return myDocument.getElementsByTagName(ENTRY_TAG).item(ZERO).getTextContent();
+    }
+
+    @Override
+    public Pair getDealerAction() {
+        Node dealerActionNodeList = getNodeList(DEALERACTION_TAG).item(ZERO);
+        Element dealerActionElement = (Element) dealerActionNodeList;
+        String type = getElement(dealerActionElement, TYPE_TAG);
+        String quantity = getElement(dealerActionElement, QUANTITY_TAG);
+        return new Pair(type, quantity);
+    }
+
+    @Override
+    public List<String> getPlayerAction() {
+        return getXMLList(PLAYERACTION_TAG, NAME_TAG);
     }
 
     @Override
     public Map<String, Double> getPlayers() {
         Map<String, Double> map = new HashMap<>();
-        NodeList playersNodeList = myDocument.getElementsByTagName(PLAYER_TAG);
+        NodeList playersNodeList = getNodeList(PLAYER_TAG);
         for (int index = 0; index < playersNodeList.getLength(); index ++) {
             Node playerNode = playersNodeList.item(index);
             Element playerElement = (Element) playerNode;
@@ -95,6 +120,10 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
     @Override
     public void savePreferences(String fileName) {
 
+    }
+
+    private NodeList getNodeList(String tag) {
+        return myDocument.getElementsByTagName(tag);
     }
 
     private String getElement(Element e, String tag) {
@@ -119,4 +148,17 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
         }
         return list;
     }
+
+    private List<String> getXMLList(String metatag, String subtag) {
+        List<String> list = new ArrayList<>();
+        NodeList handNodeList = myDocument.getElementsByTagName(metatag);
+        for (int index = 0; index < handNodeList.getLength(); index ++) {
+            Node handNode = handNodeList.item(index);
+            Element handElement = (Element) handNode;
+            String name = getElement(handElement, subtag);
+            list.add(name);
+        }
+        return list;
+    }
+
 }

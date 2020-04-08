@@ -45,13 +45,22 @@ public interface XMLParseInterface {
     List<String> getLosingHands();
 
     /**
-     * Translates the XML tag for possible Actions in a game into a Map
-     * The String keys are EntryBet, DealerAction, and MidGameAction which correspond to Actions taken to get in the game, dealer actions in a turn, and actions a user can take in the middle of a turn.
-     * Reflection is used in the ActionGenerator and Table to create these actions and execute them on Bet and Dealer Objects.
-     *
-     * @return a Map listing all Actions that can be taken to enter a game with a bet, that the dealer can take, and that a player can take in a turn
+     * Fetch entry bet, all casino games start with such a bet and this is a differentiating factor driven by data
+     * @return a string containing the entry bet type (e.g. Generic or Specific)
      */
-    Map<String, List> getActions();
+    String getEntryBet();
+
+    /**
+     * Fetch dealer opening action, all casino games start with dealer action
+     * @return a pair containing action type and quantity
+     */
+    Pair getDealerAction();
+
+    /**
+     * Fetch ingame player actions possible
+     * @return a List of strings containing all possible player actions
+     */
+    List<String> getPlayerAction();
 
     /**
      * Translates the XML tag for players in a game into a Map

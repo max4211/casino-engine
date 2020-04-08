@@ -30,41 +30,34 @@
             <Bankroll>600</Bankroll>
         </Player>
     </Players>
-    <WinningHands>
-        <Hand>
-            <Name>Blackjack</Name>
-            <Multiplier>1.5</Multiplier>
-        </Hand>
-        <Hand>
-            <Name>Sum</Name>
-            <Multiplier>1.0</Multiplier>
-        </Hand>
-    </WinningHands>
-    <LosingHands>
-        <Hand>
-            <Name>SumOver21</Name>
-        </Hand>
-    </LosingHands>
+    <WinningHand>
+        <Name>Blackjack</Name>
+        <Multiplier>1.5</Multiplier>
+    </WinningHand>
+    <WinningHand>
+        <Name>Sum</Name>
+        <Multiplier>1.0</Multiplier>
+    </WinningHand>
+    <LosingHand>
+        <Name>SumOver21</Name>
+    </LosingHand>
     <Actions>
-        <Iterations>1</Iterations>
         <EntryBet>Generic</EntryBet>
         <DealerAction>
             <Type>Individual</Type>
             <Quantity>2</Quantity>
         </DealerAction>
-        <MidGame>
-            <Action>
-                <Name>Stay</Name>
-            </Action>
-            <Action>
-                <Name>Hit</Name>
-            </Action>
-            <Action>
-                <Name>DoubleDown</Name>
-            </Action>
-            <Action>
-                <Name>Split</Name>
-            </Action>
-        </MidGame>
+        <PlayerAction>
+            <Name>Stay</Name>
+        </PlayerAction>
+        <PlayerAction>
+            <Name>Hit</Name>
+        </PlayerAction>
+        <PlayerAction>
+            <Name>DoubleDown</Name>
+        </PlayerAction>
+        <PlayerAction>
+            <Name>Split</Name>
+        </PlayerAction>
     </Actions>
 </Game>
