@@ -4,6 +4,9 @@ import data.xmlreader.Pair;
 import data.xmlreader.XMLReader;
 import engine.dealer.Dealer;
 import engine.dealer.Deck;
+import engine.evaluator.BetEvaluator;
+import engine.evaluator.HandClassifier;
+import engine.evaluator.HandEvaluator;
 import engine.player.Player;
 import engine.player.PlayerList;
 import engine.table.Table;
@@ -29,17 +32,27 @@ public class GameConstructor {
         }
     }
 
-    // TODO - refactor game code into non static objects, currently running through main must be static
-    public static void main (String[] args) throws ParserConfigurationException, SAXException, IOException {
-        XMLReader myReader = new XMLReader(testFile);
+    private static Table constructTable(XMLReader myReader) {
         Map<String, Double> playerMap = myReader.getPlayers();
         List<Player> playerList = createPlayerList(playerMap);
         List<Pair> deckList = myReader.getDeck();
         Deck myDeck = new Deck(deckList);
         Dealer myDealer = new Dealer(myDeck);
-        Table myTable = new Table(playerList, myDealer);
+
         List<String> myWinningHands = myReader.getWinningHands();
         List<String> myLosingHands = myReader.getLosingHands();
+        HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);
+        HandEvaluator myHandEvaluator = new HandEvaluator();
+        BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
+        Table myTable = new Table(playerList, myDealer, myBetEvaluator, myHandClassifier);
+        return myTable;
+    }
+
+    // TODO - refactor game code into non static objects, currently running through main must be static
+    public static void main (String[] args) throws ParserConfigurationException, SAXException, IOException {
+        XMLReader myReader = new XMLReader(testFile);
+        Table myTable = constructTable(myReader);
+
         String myEntryBet = myReader.getEntryBet();
         List<String> myPlayerActions = myReader.getPlayerAction();
         Pair myDealerAction = myReader.getDealerAction();

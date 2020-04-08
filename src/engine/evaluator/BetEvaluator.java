@@ -4,7 +4,10 @@ import java.util.Collection;
 
 public class BetEvaluator implements BetEvaluatorInterface {
 
-    public BetEvaluator() {
+    private final HandEvaluator myHandEvaluator;
+
+    public BetEvaluator(HandEvaluator handEvaluator) {
+        this.myHandEvaluator = handEvaluator;
 
     }
 
