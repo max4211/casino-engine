@@ -30,7 +30,7 @@ public class basicUITester extends Application {
 
         double wagerAmount = 5.;
 
-        BetView tempBetView = new BetView(tempList, wagerAmount);
+        BetView tempBetView = new BetView(tempList, wagerAmount, 1);
         root.setCenter(tempBetView.getView());
         tempBetView.addCard(new Pair<Double, String>(11., "string"));
         tempBetView.showCard(1);

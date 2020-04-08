@@ -20,7 +20,7 @@ public class BetView implements ViewInterface {
 
     private Formatter myFormatter;
 
-    public BetView(List<Pair<Double, String>> hand, double wager) {
+    public BetView(List<Pair<Double, String>> hand, double wager, int id) {
         myView = new VBox();
         myFormatter = new Formatter();
         numberOfCards = hand.size();
