@@ -22,4 +22,10 @@ public class Table {
         this.myHandClassifier = handClassifier;
     }
 
+    /**
+     * SHELL
+     */
+    public void acceptString(String s) {
+        System.out.println(s);
+    }
 }
