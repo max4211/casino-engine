@@ -40,6 +40,8 @@ public class GameConstructor {
         Table myTable = new Table(playerList, myDealer);
         List<String> myWinningHands = myReader.getWinningHands();
         List<String> myLosingHands = myReader.getLosingHands();
-        System.out.println("HELLO DOPP!!\nWE CREATED THE TABLE :)");
+        String myEntryBet = myReader.getEntryBet();
+        List<String> myPlayerActions = myReader.getPlayerAction();
+        Pair myDealerAction = myReader.getDealerAction();
     }
 }

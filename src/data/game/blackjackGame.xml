@@ -48,10 +48,16 @@
             <Quantity>2</Quantity>
         </DealerAction>
         <PlayerAction>
-            <Action>Stay</Action>
-            <Action>Hit</Action>
-            <Action>DoubleDown</Action>
-            <Action>Split</Action>
+            <Name>Stay</Name>
+        </PlayerAction>
+        <PlayerAction>
+            <Name>Hit</Name>
+        </PlayerAction>
+        <PlayerAction>
+            <Name>DoubleDown</Name>
+        </PlayerAction>
+        <PlayerAction>
+            <Name>Split</Name>
         </PlayerAction>
     </Actions>
 </Game>

@@ -52,9 +52,9 @@ public interface XMLParseInterface {
 
     /**
      * Fetch dealer opening action, all casino games start with dealer action
-     * @return a map of strings containing dealer actions
+     * @return a pair containing action type and quantity
      */
-    Map<String, String> getDealerAction();
+    Pair getDealerAction();
 
     /**
      * Fetch ingame player actions possible
