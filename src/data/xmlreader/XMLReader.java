@@ -33,6 +33,10 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
     private static final String SUIT_TAG = "Suit";
     private static final String VALUE_TAG = "Value";
 
+    private static final String WINNINGHAND_TAG = "WinningHand";
+    private static final String LOSINGHAND_TAG = "LosingHand";
+    private static final String HAND_TAG = "Hand";
+
 
     public XMLReader(File file) throws IOException, SAXException, ParserConfigurationException {
         myDocument = XMLGeneratorInterface.createDocument(file);
@@ -65,12 +69,13 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
 
     @Override
     public List<String> getWinningHands() {
-        return null;
+        return getHand(WINNINGHAND_TAG);
     }
 
+    // TODO - refactor, may need modification from hand method, very similar
     @Override
     public List<String> getLosingHands() {
-        return null;
+        return getHand(LOSINGHAND_TAG);
     }
 
     @Override
@@ -116,6 +121,18 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
             String suit = getElement(cardElement, SUIT_TAG);
             String value = getElement(cardElement, VALUE_TAG);
             list.add(new Pair(suit, value));
+        }
+        return list;
+    }
+
+    private List<String> getHand(String tag) {
+        List<String> list = new ArrayList<>();
+        NodeList handNodeList = myDocument.getElementsByTagName(tag);
+        for (int index = 0; index < handNodeList.getLength(); index ++) {
+            Node handNode = handNodeList.item(index);
+            Element handElement = (Element) handNode;
+            String name = getElement(handElement, NAME_TAG);
+            list.add(name);
         }
         return list;
     }

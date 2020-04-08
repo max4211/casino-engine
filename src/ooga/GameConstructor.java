@@ -23,6 +23,12 @@ public class GameConstructor {
         return myPlayers.getPlayers();
     }
 
+    private static void traverseList(List<String> list) {
+        for (String s: list) {
+            System.out.println(s);
+        }
+    }
+
     // TODO - refactor game code into non static objects, currently running through main must be static
     public static void main (String[] args) throws ParserConfigurationException, SAXException, IOException {
         XMLReader myReader = new XMLReader(testFile);
@@ -32,6 +38,8 @@ public class GameConstructor {
         Deck myDeck = new Deck(deckList);
         Dealer myDealer = new Dealer(myDeck);
         Table myTable = new Table(playerList, myDealer);
+        List<String> myWinningHands = myReader.getWinningHands();
+        List<String> myLosingHands = myReader.getLosingHands();
         System.out.println("HELLO DOPP!!\nWE CREATED THE TABLE :)");
     }
 }
