@@ -21,6 +21,7 @@ public class Formatter {
     public void formatUnfixedHBox(HBox rawHBox) {
         rawHBox.setMaxWidth(Double.MAX_VALUE);
         rawHBox.setMaxHeight(Double.MAX_VALUE);
+        rawHBox.setAlignment(Pos.CENTER);
     }
 
     public void updateVBoxWidth(VBox rawVBox, double newWidth) {

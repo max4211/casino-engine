@@ -1,7 +1,5 @@
 package GameView;
 
-import engine.dealer.Card;
-import engine.hand.Hand;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -37,8 +35,15 @@ public class basicUITester extends Application {
         tempBetView.addCard(new Pair<Double, String>(11., "string"));
         tempBetView.showCard(1);
 
+        List<String> allActions = new ArrayList<>();
+        allActions.add("MAX");
+        allActions.add("SMITH");
+        allActions.add("HELLO");
+
+        TableView tableView = new TableView("StandardBJTable.jpeg");
+        root.setBottom(tableView.getView());
+
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
     }
-
 }
