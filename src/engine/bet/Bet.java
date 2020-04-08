@@ -4,6 +4,7 @@ import engine.hand.Hand;
 
 public class Bet {
 
+    private int myID;
     private Hand myHand;
     private double myWager;
 
@@ -15,4 +16,5 @@ public class Bet {
         this.myWager = wager;
         this.myHand = hand;
     }
+
 }

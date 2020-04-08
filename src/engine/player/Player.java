@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Player {
 
+    private final int myID;
     private final String myName;
     private double myBankroll;
     private List<Bet> myActiveBets;
@@ -15,5 +16,6 @@ public class Player {
         this.myName = name;
         this.myBankroll = bankroll;
         this.myActiveBets = new ArrayList<Bet>();
+        this.myID = 0;
     }
 }
