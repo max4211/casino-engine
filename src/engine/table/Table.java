@@ -21,5 +21,4 @@ public class Table {
         this.myBetEvaluator = betEvaluator;
         this.myHandClassifier = handClassifier;
     }
-
 }
