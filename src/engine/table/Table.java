@@ -112,12 +112,15 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public void updateBets(Player p) {
+    public Card updateBets(Player p) {
         for (Bet b: p.getBets()) {
             if (b.needsCard()) {
-                b.acceptCard(this.myDealer.getCard());
+                Card c = this.myDealer.getCard();
+                b.acceptCard(c);
+                return c;
             }
         }
+        return null;
     }
 
     // TODO - slower individual card dealing with animation (Sprint 3 task)
