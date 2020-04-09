@@ -1,11 +1,13 @@
 package engine.table;
 
+import engine.bet.Bet;
 import engine.dealer.Dealer;
 import engine.evaluator.BetEvaluator;
 import engine.evaluator.HandClassifier;
 import engine.player.Player;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class Table implements TableInterface {
 
@@ -30,6 +32,14 @@ public class Table implements TableInterface {
         System.out.println(s);
     }
 
+    @Override
+    public void placeEntryBet(String s, Consumer<Bet> betConsumer) {
+        reflectOnMethod(s);
+    }
+
+    private void reflectOnMethod(String s) {
+
+    }
 
 
 }
