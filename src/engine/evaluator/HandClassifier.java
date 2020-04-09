@@ -39,6 +39,14 @@ public class HandClassifier implements HandClassifierInterface {
         return true;
     }
 
+    private boolean isSumUnder22(Hand h) {
+        return sumCards(h) < 22;
+    }
+
+    private boolean isSumOver21(Hand h) {
+        return sumCards(h) > 21;
+    }
+
     private boolean isFlush(Hand h) {
         List<Card> handCards = h.getCards();
         Set<String> suits = new HashSet<>();
@@ -46,6 +54,15 @@ public class HandClassifier implements HandClassifierInterface {
             suits.add(card.getSuit());
         }
         return suits.size() == 1;
+    }
+
+    private double sumCards(Hand h) {
+        List<Card> handCards = h.getCards();
+        double sum = 0;
+        for (Card card: handCards) {
+            sum += card.getValue();
+        }
+        return sum;
     }
 
     /** Max's team code for reflection example within their execution (shows how to invoke a method)
