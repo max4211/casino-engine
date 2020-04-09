@@ -43,7 +43,11 @@ public class BetView implements NodeViewInterface, TaggableInterface {
     public void addCard(CardTriplet newCard) {
         numberOfCards++;
         myFormatter.updateVBoxWidth(myView, CARD_WIDTH * numberOfCards);
-        myHand.addCardView(newCard);
+        myHand.addCard(newCard);
+    }
+
+    public void removeCard(int cardID) {
+        myHand.removeCard(cardID);
     }
 
     // TODO: this checks index twice (again in handview): good or bad?

@@ -55,6 +55,14 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
         getBet(betID).addCard(cardInfo);
     }
 
+    public void removeCard(int betID, int cardID) {
+        for (BetView tempBetView : myBets) {
+            if (tempBetView.hasSameID(betID)) {
+                tempBetView.removeCard(cardID);
+            }
+        }
+    }
+
     private BetView getBet(int ID) {
         for (BetView tempBetView : myBets) {
             if (tempBetView.hasSameID(ID)) return tempBetView;

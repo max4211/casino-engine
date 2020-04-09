@@ -49,12 +49,17 @@ public class HandView implements NodeViewInterface {
      *
      * @param newCard
      */
-    public void addCardView(CardTriplet newCard) {
+    public void addCard(CardTriplet newCard) {
         CardView addedCardView = new CardView(newCard);
         myHand.getChildren().add(addedCardView.getView());
     }
 
-    public void removeCardView(int cardID) {
-
+    public void removeCard(int cardID) {
+        for (CardView tempCardView : myCards) {
+            if (tempCardView.hasSameID(cardID)) {
+                myHand.getChildren().remove(tempCardView);
+                return;
+            }
+        }
     }
  }

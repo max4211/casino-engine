@@ -10,7 +10,7 @@ public interface GameViewInterface {
 
     public void addCard(CardTriplet cardInfo, int playerID, int betID);
 
-    public void removeCard(int playerID, int betID);
+    public void removeCard(int playerID, int betID, int cardID);
 
     public void showCard(int betId, int cardId);
 
