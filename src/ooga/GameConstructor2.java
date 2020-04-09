@@ -1,6 +1,6 @@
 package ooga;
 
-import GameView.GameView;
+import GameView.NodeViews.GameView;
 import controller.Controller;
 import data.xmlreader.Pair;
 import data.xmlreader.XMLReader;
@@ -14,11 +14,7 @@ import engine.player.PlayerList;
 import engine.table.Table;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.xml.sax.SAXException;
-import GameView.Lobby;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
