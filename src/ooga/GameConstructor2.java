@@ -77,7 +77,7 @@ public class GameConstructor2 extends Application {
         XMLReader myReader = new XMLReader(testFile);
         Table myTable = constructTable(myReader);
         GameView myGameView = constructGameView();
-        primaryStage.setScene(new Scene(myGameView.getView(), 500, 500));
+        primaryStage.setScene(new Scene(myGameView.getView(), 800, 800));
         primaryStage.show();
 
         Controller myController = constructController(myReader, myTable, myGameView);

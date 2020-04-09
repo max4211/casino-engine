@@ -40,6 +40,7 @@ public class Controller implements ControllerInterface {
         this.myCompetition = competition;
     }
 
+    @Override
     public void startGame() {
         renderPlayers();
         promptForEntryBet();
@@ -111,12 +112,12 @@ public class Controller implements ControllerInterface {
     private void updatePlayerHands() {
         for (Player p: this.myTable.getPlayers()) {
             int playerID = p.getID();
-            this.myGameView.updateMainPlayer(playerID);
             for (Bet b: p.getBets()) {
                 int betID = b.getID();
                 for (Card c: b.getHand().getCards()) {
                     CardTriplet cardTriplet = createCardTriplet(c);
                     this.myGameView.addCard(cardTriplet, playerID, betID);
+                    this.myGameView.showCard(betID, c.getID(), playerID);
                 }
             }
         }
