@@ -12,7 +12,7 @@ public interface GameViewInterface {
 
     public void removeCard(int playerID, int betID, int cardID);
 
-    public void showCard(int betId, int cardId);
+    public void showCard(int betId, int cardID, int playerID);
 
     public void renderAdversary(List<CardTriplet> hand);
 
