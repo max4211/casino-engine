@@ -6,6 +6,7 @@ public class Check extends Action {
 
     public Check() {
         super();
+        this.takesCard = false;
     }
 
     @Override

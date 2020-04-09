@@ -24,4 +24,16 @@ public interface TableInterface {
      * @param dealerAction dictates what type of action is conducted
      */
     void performDealerAction(Pair dealerAction);
+
+    /**
+     * called by controller to perform player action (as selected)
+     * @param action to perform
+     */
+    void performPlayerAction(String action);
+
+    /**
+     * called by the controller to determine total players currently sitting at table
+     * @return number of players (length of list)
+     */
+    int totalPlayers();
 }

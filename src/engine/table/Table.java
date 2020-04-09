@@ -63,6 +63,16 @@ public class Table implements TableInterface {
 
     }
 
+    @Override
+    public void performPlayerAction(String action) {
+
+    }
+
+    @Override
+    public int totalPlayers() {
+        return this.myPlayers.size();
+    }
+
     private void dealIndividualCard(int quantity) {
         for (int i = 1; i <= quantity; i ++) {
             for (Player p: this.myPlayers) {

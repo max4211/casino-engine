@@ -6,6 +6,7 @@ public class Hit extends Action {
 
     public Hit() {
         super();
+        this.takesCard = true;
     }
 
     // TODO have a setter for all methods with what they need

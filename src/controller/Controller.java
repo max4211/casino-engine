@@ -22,14 +22,28 @@ public class Controller implements ControllerInterface {
         this.myDealerAction = dealerAction;
     }
 
-    // TODO - place entry bet inside of the view, register inside the model
+    // TODO - place entry bet and perform player action inside of the view, register inside the model
     public void startGame() {
-        this.myTable.placeEntryBet(myEntryBet, (bet) -> this.acceptBet(bet));
-        this.myTable.performDealerAction(myDealerAction);
+        this.myTable.placeEntryBet(this.myEntryBet, (bet) -> this.acceptBet(bet));
+        this.myTable.performDealerAction(this.myDealerAction);
+        loopPlayerActions();
+
+    }
+
+    private void loopPlayerActions() {
+        for (int i = 0; i < this.myTable.totalPlayers(); i ++) {
+            // TODO - prompt action to be performed on front end
+            // this.myTable.performPlayerAction(this.myPlayerActions, (action) -> this.acceptAction(action));
+        }
     }
 
     @Override
     public void acceptBet(Bet bet) {
+
+    }
+
+    @Override
+    public void acceptAction(String action) {
 
     }
 
