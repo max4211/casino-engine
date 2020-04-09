@@ -22,4 +22,10 @@ public interface BetInterface {
      * @param c card to accept to the bet
      */
     void acceptCard(Card c);
+
+    /**
+     * get hashcode of bet
+     * @return id of bet
+     */
+    int getID();
 }

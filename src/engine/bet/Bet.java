@@ -10,12 +10,15 @@ public class Bet implements BetInterface {
     private double myWager;
 
     public Bet(double wager) {
+        this.myHand = new Hand();
         this.myWager = wager;
+        this.myID = this.hashCode();
     }
 
     public Bet(double wager, Hand hand) {
         this.myWager = wager;
         this.myHand = hand;
+        this.myID = this.hashCode();
     }
 
     @Override
@@ -31,5 +34,10 @@ public class Bet implements BetInterface {
     @Override
     public void acceptCard(Card c) {
         this.myHand.acceptCard(c);
+    }
+
+    @Override
+    public int getID() {
+        return this.myID;
     }
 }

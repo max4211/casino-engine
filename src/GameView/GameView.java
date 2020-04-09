@@ -12,6 +12,8 @@ import java.util.ResourceBundle;
 
 public class GameView implements GameViewInterface {
 
+
+
     private BorderPane myPane;
     private int DEFAULT_ACTION_INDEX = 0;
 
@@ -22,6 +24,7 @@ public class GameView implements GameViewInterface {
     private static final String MAX_STRING = "MAX";
     private static final String ACTION_PROMPT_KEY = "ActionPrompt";
 
+    public GameView() {}
 
     @Override
     public void renderTable(String file) {
@@ -84,6 +87,8 @@ public class GameView implements GameViewInterface {
     }
 
     @Override
+    public double promptPlayerBet(int minBet, int maxBet) {
+        return 0.0;
     public double promptPlayerBet(double minBet, double maxBet) {
         TextInputDialog betAmount = new TextInputDialog(String.valueOf(minBet));
         String actionPrompt = myResources.getString(BET_PROMPT_KEY);
@@ -100,4 +105,3 @@ public class GameView implements GameViewInterface {
         return promptPlayerBet(minBet, maxBet);
     }
 }
-

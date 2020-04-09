@@ -16,7 +16,7 @@ public class Player implements PlayerInterface {
         this.myName = name;
         this.myBankroll = bankroll;
         this.myActiveBets = new ArrayList<Bet>();
-        this.myID = 0;
+        this.myID = this.hashCode();
     }
 
     @Override
@@ -37,5 +37,10 @@ public class Player implements PlayerInterface {
     @Override
     public List<Bet> getBets() {
         return this.myActiveBets;
+    }
+
+    @Override
+    public void placeBet(double wager) {
+        this.myActiveBets.add(new Bet(wager));
     }
 }
