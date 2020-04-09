@@ -125,6 +125,7 @@ public class Table implements TableInterface {
         for (Bet b: p.getBets()) {
             if (b.needsCard()) {
                 b.acceptCard(this.myDealer.getCard());
+                this.myHandClassifier.classifyHand(b.getHand());
             }
         }
     }

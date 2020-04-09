@@ -15,6 +15,7 @@ import engine.table.Table;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -56,6 +57,12 @@ public class GameConstructor2 extends Application {
         return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction);
     }
 
+    private static GameView constructGameView() {
+        GameView gameView = new GameView();
+        gameView.renderTable("tableImages/StandardBJTable.jpeg");
+        return gameView;
+    }
+
     // TODO - refactor game code into non static objects, currently running through main must be static
     public static void main (String[] args) {
         launch(args);
@@ -65,7 +72,8 @@ public class GameConstructor2 extends Application {
     public void start(Stage primaryStage) throws Exception {
         XMLReader myReader = new XMLReader(testFile);
         Table myTable = constructTable(myReader);
-        Controller myController = constructController(myReader, myTable, new GameView());
+        GameView myGameView = constructGameView();
+        Controller myController = constructController(myReader, myTable, myGameView);
         myController.startGame();
     }
 }
