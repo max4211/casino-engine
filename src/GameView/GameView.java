@@ -1,13 +1,31 @@
 package GameView;
 
+import GameView.Actions.ActionBoxView;
 import Utility.CardTriplet;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.BorderPane;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class GameView implements GameViewInterface {
+
+    private BorderPane myPane;
+    private int DEFAULT_ACTION_INDEX = 0;
+
+    private static final String RESOURCE_LANGUAGE = "English";
+    private ResourceBundle myResources = ResourceBundle.getBundle(RESOURCE_LANGUAGE);
+    private static final String BET_PROMPT_KEY = "BetPrompt";
+    private static final String MIN_STRING = "MIN";
+    private static final String MAX_STRING = "MAX";
+    private static final String ACTION_PROMPT_KEY = "ActionPrompt";
+
+
     @Override
     public void renderTable(String file) {
-        
+
     }
 
     @Override
@@ -27,7 +45,12 @@ public class GameView implements GameViewInterface {
 
     @Override
     public String getAction(List<String> actions) {
-        return null;
+        ChoiceDialog<String> actionOptions = new ChoiceDialog(actions.get(0), actions);
+        actionOptions.setContentText(myResources.getString(ACTION_PROMPT_KEY));
+        Optional<String> result = actionOptions.showAndWait();
+        if (result.isPresent()) return result.get();
+        // TODO: handle not picking an action
+        return getAction(actions);
     }
 
     @Override
@@ -61,7 +84,20 @@ public class GameView implements GameViewInterface {
     }
 
     @Override
-    public Double promptPlayerBet(int minBet, int maxBet) {
-        return null;
+    public double promptPlayerBet(double minBet, double maxBet) {
+        TextInputDialog betAmount = new TextInputDialog(String.valueOf(minBet));
+        String actionPrompt = myResources.getString(BET_PROMPT_KEY);
+        actionPrompt.replaceAll(MIN_STRING, String.valueOf(minBet));
+        actionPrompt.replaceAll(MAX_STRING, String.valueOf(maxBet));
+        betAmount.setContentText(actionPrompt);
+
+        Optional<String> suggestedBetText = betAmount.showAndWait();
+        if (suggestedBetText.isPresent()) {
+            double suggestedBet = Double.parseDouble(suggestedBetText.get());
+            if (suggestedBet >= minBet && suggestedBet <= maxBet) return suggestedBet;
+            // TODO: proper convention for one line else statements?
+        }
+        return promptPlayerBet(minBet, maxBet);
     }
 }
+

@@ -16,7 +16,6 @@ public class PlayerInfoView implements ViewInterface {
     private static final double CORNER_RADIUS = 5;
     private static final Color backgroundColor = Color.web("F3B6FF");
 
-    private static final String RESOURCE_LANGUAGE = "English";
     private static final String NAME_KEY = "Name";
     private static final String BANK_KEY = "Bank";
     private static final int BANK_INDEX = 1;
@@ -26,6 +25,7 @@ public class PlayerInfoView implements ViewInterface {
     private static final double WAGER_HEIGHT = 20;
     private static final double VIEW_WIDTH = 100;
 
+    private static final String RESOURCE_LANGUAGE = "English";
     private ResourceBundle myResources = ResourceBundle.getBundle(RESOURCE_LANGUAGE);
 
     // TODO: noticing some similarities with WagerView, overlap

@@ -48,7 +48,5 @@ public interface GameViewInterface {
      * @param minBet
      * @param maxBet
      */
-    public Double promptPlayerBet(int minBet, int maxBet);
-
-
+    double promptPlayerBet(double minBet, double maxBet);
 }
