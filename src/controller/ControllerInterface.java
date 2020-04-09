@@ -9,4 +9,10 @@ public interface ControllerInterface {
      * @param bet is the bet placed by the player
      */
     void acceptBet(Bet bet);
+
+    /**
+     * Signal from the game constructor to enter the game loop
+     * Called once all objects have successfully been created
+     */
+    void startGame();
 }

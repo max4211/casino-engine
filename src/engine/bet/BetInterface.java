@@ -1,5 +1,6 @@
 package engine.bet;
 
+import engine.dealer.Card;
 import engine.hand.Hand;
 
 public interface BetInterface {
@@ -15,4 +16,10 @@ public interface BetInterface {
      * @return
      */
     double getWager();
+
+    /**
+     * Accept a card from the dealer through the table
+     * @param c card to accept to the bet
+     */
+    void acceptCard(Card c);
 }

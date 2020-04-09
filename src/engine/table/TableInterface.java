@@ -1,5 +1,6 @@
 package engine.table;
 
+import data.xmlreader.Pair;
 import engine.bet.Bet;
 
 import java.util.function.Consumer;
@@ -17,4 +18,10 @@ public interface TableInterface {
      * @param s is the type of bet for all players to place
      */
     void placeEntryBet(String s, Consumer<Bet> betConsumer);
+
+    /**
+     * called by controller for dealer to distribute cards to players
+     * @param dealerAction dictates what type of action is conducted
+     */
+    void performDealerAction(Pair dealerAction);
 }

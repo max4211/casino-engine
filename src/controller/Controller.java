@@ -14,16 +14,18 @@ public class Controller implements ControllerInterface {
     private final List<String> myPlayerActions;
     private final Pair myDealerAction;
 
+    // TODO - construct controller with a view object
     public Controller(Table table, String entryBet, List<String> playerActions, Pair dealerAction) {
         this.myTable = table;
         this.myEntryBet = entryBet;
         this.myPlayerActions = playerActions;
         this.myDealerAction = dealerAction;
-        gameLoop();
     }
 
-    private void gameLoop() {
+    // TODO - place entry bet inside of the view, register inside the model
+    public void startGame() {
         this.myTable.placeEntryBet(myEntryBet, (bet) -> this.acceptBet(bet));
+        this.myTable.performDealerAction(myDealerAction);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package engine.bet;
 
+import engine.dealer.Card;
 import engine.hand.Hand;
 
 public class Bet implements BetInterface {
@@ -25,5 +26,10 @@ public class Bet implements BetInterface {
     @Override
     public double getWager() {
         return this.myWager;
+    }
+
+    @Override
+    public void acceptCard(Card c) {
+        this.myHand.acceptCard(c);
     }
 }

@@ -62,6 +62,6 @@ public class GameConstructor {
         XMLReader myReader = new XMLReader(testFile);
         Table myTable = constructTable(myReader);
         Controller myController = constructController(myReader, myTable);
-
+        myController.startGame();
     }
 }
