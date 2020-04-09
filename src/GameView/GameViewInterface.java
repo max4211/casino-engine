@@ -43,5 +43,7 @@ public interface GameViewInterface {
 
     public void updateMainPlayer(int playerId);
 
+    public void promptPlayerBet(int playerID, int minBet, int maxBet);
+
 
 }

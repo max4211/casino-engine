@@ -12,7 +12,7 @@ import java.util.List;
 public class PlayerView implements ViewInterface, TaggableInterface {
 
     private List<BetView> myBets;
-    private PlayerDetailView myInfo;
+    private PlayerInfoView myInfo;
 
     private HBox myView;
     private Formatter myFormatter;
@@ -26,7 +26,7 @@ public class PlayerView implements ViewInterface, TaggableInterface {
 
         myID = ID;
         myBets = new ArrayList<BetView>();
-        myInfo = new PlayerDetailView(name, bankRoll);
+        myInfo = new PlayerInfoView(name, bankRoll);
         myView.getChildren().add(myInfo.getView());
     }
 

@@ -1,5 +1,6 @@
-package GameView;
+package GameView.Actions;
 
+import GameView.ViewInterface;
 import Utility.Formatter;
 import javafx.scene.Node;
 import javafx.scene.control.Button;

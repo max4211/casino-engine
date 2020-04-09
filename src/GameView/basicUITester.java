@@ -1,26 +1,14 @@
 package GameView;
 
-import GameView.Players.BetView;
-import GameView.Players.PlayerDetailView;
 import GameView.Players.PlayerView;
 import Utility.CardTriplet;
-import data.xmlreader.Pair;
-import engine.dealer.Dealer;
-import engine.dealer.Deck;
-import engine.evaluator.BetEvaluator;
-import engine.evaluator.HandClassifier;
-import engine.evaluator.HandEvaluator;
-import engine.player.Player;
-import engine.table.Table;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class basicUITester extends Application {
 

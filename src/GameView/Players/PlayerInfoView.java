@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 
 import java.util.ResourceBundle;
 
-public class PlayerDetailView implements ViewInterface {
+public class PlayerInfoView implements ViewInterface {
 
     private VBox myDetails;
     private Formatter myFormatter;
@@ -29,7 +29,7 @@ public class PlayerDetailView implements ViewInterface {
     private ResourceBundle myResources = ResourceBundle.getBundle(RESOURCE_LANGUAGE);
 
     // TODO: noticing some similarities with WagerView, overlap
-    public PlayerDetailView(String name, double bankroll) {
+    public PlayerInfoView(String name, double bankroll) {
         myDetails = new VBox();
         myFormatter = new Formatter();
         myFormatter.formatFixedVBox(myDetails, CARD_HEIGHT + WAGER_HEIGHT, VIEW_WIDTH);
