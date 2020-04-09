@@ -68,7 +68,7 @@ public class basicUITester extends Application {
         BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
         Table myTable = new Table(playerList, myDealer, myBetEvaluator, myHandClassifier);
 
-        ActionBoxView abv = new ActionBoxView(allActions, (e -> myTable.acceptString(e)));
+        ActionBoxView abv = new ActionBoxView(allActions, (e -> myTable.acceptString(e)), root);
         root.setBottom(abv.getView());
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
