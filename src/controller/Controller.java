@@ -88,9 +88,13 @@ public class Controller implements ControllerInterface {
             System.out.printf("prompting player (%s) for an action --> ", p.getName());
             this.myGameView.updateMainPlayer(p.getID());
             Action a = this.myFactory.createAction(this.myGameView.selectAction(this.myPlayerActions));
-            a.execute(p, p.getNextBet());
-            // TODO - call frontend to show new cards
-            this.myTable.updateBets(p);
+            Bet b = p.getNextBet();
+            a.execute(p, b);
+            Card c = this.myTable.updateBets(p);
+            if (c != null) {
+                this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
+                this.myGameView.showCard(p.getID(), b.getID(), c.getID());
+            }
             garbageCollect(p);
         }
     }
@@ -117,7 +121,7 @@ public class Controller implements ControllerInterface {
                 for (Card c: b.getHand().getCards()) {
                     CardTriplet cardTriplet = createCardTriplet(c);
                     this.myGameView.addCard(cardTriplet, playerID, betID);
-                    this.myGameView.showCard(betID, c.getID(), playerID);
+                    this.myGameView.showCard(playerID, betID, c.getID());
                 }
             }
         }

@@ -3,6 +3,7 @@ package engine.table;
 import Utility.CardTriplet;
 import data.xmlreader.Pair;
 import engine.bet.Bet;
+import engine.dealer.Card;
 import engine.player.Player;
 
 import java.util.List;
@@ -65,6 +66,7 @@ public interface TableInterface {
     /**
      * After a player performs an action, update their bets in the table
      * @param p player to update
+     * @return card that was added to the bet (for hit/double down)
      */
-    void updateBets(Player p);
+    Card updateBets(Player p);
 }
