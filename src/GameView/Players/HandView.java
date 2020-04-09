@@ -1,9 +1,9 @@
-package GameView;
+package GameView.Players;
 
+import GameView.ViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.HBox;
-import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,5 +52,4 @@ public class HandView implements ViewInterface {
         CardView addedCardView = new CardView(newCard);
         myHand.getChildren().add(addedCardView.getView());
     }
-
 }
