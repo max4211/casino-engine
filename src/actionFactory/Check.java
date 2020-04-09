@@ -1,6 +1,7 @@
 package actionFactory;
 
 import engine.bet.Bet;
+import engine.player.Player;
 
 public class Check extends Action {
 
@@ -10,7 +11,7 @@ public class Check extends Action {
     }
 
     @Override
-    public void execute(Bet target) {
+    public void execute(Player player, Bet target) {
         target.setActive(false);
     }
 }

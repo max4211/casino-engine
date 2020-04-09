@@ -26,7 +26,6 @@ public class Controller implements ControllerInterface {
     private final HandClassifier myHandClassifier;
     private final BetEvaluator myBetEvaluator;
 
-    // TODO - construct controller with a view object
     public Controller(Table table, GameView gameView, String entryBet, List<String> playerActions, Pair dealerAction,
                       HandClassifier handClassifier, BetEvaluator betEvaluator) {
         this.myTable = table;
@@ -39,7 +38,6 @@ public class Controller implements ControllerInterface {
         this.myBetEvaluator = betEvaluator;
     }
 
-    // TODO - place entry bet and perform player action inside of the view, register inside the model
     public void startGame() {
         renderPlayers();
         promptForEntryBet();
@@ -72,21 +70,18 @@ public class Controller implements ControllerInterface {
         updatePlayerHands();
     }
 
-    // TODO - refactor a accepts card to be generic to bets and flag bets that need a card
-    // TODO - refactor action to execute on player? (in cases of split)
     private void promptForActions() {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
             System.out.printf("prompting player (%s) for an action --> ", p.getName());
             this.myGameView.updateMainPlayer(p.getID());
             Action a = this.myFactory.createAction(this.myGameView.selectAction(this.myPlayerActions));
-            a.execute(p.getNextBet());
+            a.execute(p, p.getNextBet());
             this.myTable.updateBets(p);
             garbageCollect(p);
         }
     }
 
-    // TODO garbage collect bets after hand
     private void garbageCollect(Player p) {
         for (Bet b: p.getBets()) {
             this.myHandClassifier.classifyHand(b.getHand());

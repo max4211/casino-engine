@@ -68,5 +68,10 @@ public class Bet implements BetInterface {
         this.needsCard = state;
     }
 
+    @Override
+    public void setWager(double wager) {
+        this.myWager = wager;
+    }
+
 
 }

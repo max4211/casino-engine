@@ -1,6 +1,7 @@
 package actionFactory;
 
 import engine.bet.Bet;
+import engine.player.Player;
 
 public class DoubleDown extends Action {
 
@@ -9,9 +10,10 @@ public class DoubleDown extends Action {
         System.out.println("Created a double down action");
     }
 
-    // TODO implement double down execute (right now does nothing)
     @Override
-    public void execute(Bet target) {
+    public void execute(Player player, Bet target) {
         target.setActive(false);
+        target.setNeedsCard(true);
+        target.setWager(2*target.getWager());
     }
 }

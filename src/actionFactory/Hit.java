@@ -1,6 +1,7 @@
 package actionFactory;
 
 import engine.bet.Bet;
+import engine.player.Player;
 
 public class Hit extends Action {
 
@@ -9,9 +10,8 @@ public class Hit extends Action {
         System.out.println("Created a hit action");
     }
 
-    // TODO have a setter for all methods with what they need
     @Override
-    public void execute(Bet target) {
+    public void execute(Player player, Bet target) {
         target.setNeedsCard(true);
     }
 }

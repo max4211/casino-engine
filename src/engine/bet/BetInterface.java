@@ -52,4 +52,10 @@ public interface BetInterface {
      * @param state
      */
     void setNeedsCard(boolean state);
+
+    /**
+     * Set the wager to a new amount
+     * @param wager new wgaer amount
+     */
+    void setWager(double wager);
 }
