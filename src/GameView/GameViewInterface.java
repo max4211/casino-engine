@@ -20,7 +20,6 @@ public interface GameViewInterface {
      * @param wager
      * @param id
      */
-    public void renderBet(List<CardTriplet> deckInfo, double wager, int id);
 
     public void addCard(CardTriplet cardInfo);
 
@@ -34,6 +33,8 @@ public interface GameViewInterface {
     public void renderAdversary(List<CardTriplet> actions);
 
     public void showAdversaryCard(int cardId);
+
+    public void addBet(List<CardTriplet> deckInfo, double wager, int betID, int playerID);
 
     public void deleteBet(int betId);
 

@@ -86,9 +86,7 @@ public class GameView implements GameViewInterface {
 
     }
 
-    @Override
-    public double promptPlayerBet(int minBet, int maxBet) {
-        return 0.0;
+
     public double promptPlayerBet(double minBet, double maxBet) {
         TextInputDialog betAmount = new TextInputDialog(String.valueOf(minBet));
         String actionPrompt = myResources.getString(BET_PROMPT_KEY);
