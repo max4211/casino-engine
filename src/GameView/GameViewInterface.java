@@ -26,7 +26,7 @@ public interface GameViewInterface {
 
     public void showCard(int betId, int cardId);
 
-    public void renderActionBox(List<String> actions, Consumer<String> actionReciever);
+    public String getAction(List<String> actions);
 
     /**
      * optional call needed for blackjack
@@ -43,7 +43,12 @@ public interface GameViewInterface {
 
     public void updateMainPlayer(int playerId);
 
-    public void promptPlayerBet(int playerID, int minBet, int maxBet);
+    /**
+     * only works on main player
+     * @param minBet
+     * @param maxBet
+     */
+    public Double promptPlayerBet(int minBet, int maxBet);
 
 
 }
