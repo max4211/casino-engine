@@ -28,9 +28,8 @@ public interface TableInterface {
     /**
      * called by controller for dealer to distribute cards to players
      * @param dealerAction dictates what type of action is conducted
-     * @param cardinfo is the card information to be accepted and executed
      */
-    void performDealerAction(Pair dealerAction, Consumer<CardTriplet> cardinfo);
+    void performDealerAction(Pair dealerAction);
 
     /**
      * called by controller to perform player action (as selected)

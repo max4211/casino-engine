@@ -55,7 +55,7 @@ public class Controller implements ControllerInterface {
 
     // TODO - alert front end cards have all been dealt (consumer design pattern?)
     private void performDealerAction() {
-        this.myTable.performDealerAction(this.myDealerAction, cardinfo -> this.myGameView.addCard(cardinfo));
+        this.myTable.performDealerAction(this.myDealerAction);
         // player number, bet number, card number (addCard in CardTriplet form)
         // Send a consumer to the back end to tell the front end a card has been distributed
         // this.myGameView.addCard(p.hash, b.hash, card.value)

@@ -63,7 +63,7 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public void performDealerAction(Pair dealerAction, Consumer<CardTriplet> cardinfo) {
+    public void performDealerAction(Pair dealerAction) {
         String actionType = dealerAction.getKey();
         int actionQuantity = Integer.parseInt(dealerAction.getValue());
         Class clazz = int.class;
