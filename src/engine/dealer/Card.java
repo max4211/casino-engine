@@ -39,6 +39,11 @@ public class Card implements CardInterface {
     }
 
     @Override
+    public int getID() {
+        return this.myID;
+    }
+
+    @Override
     public String toString() {
         return myValue + SEPARATOR + mySuit;
     }
