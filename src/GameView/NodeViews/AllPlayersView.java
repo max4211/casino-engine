@@ -26,10 +26,15 @@ public class AllPlayersView implements NodeViewInterface {
         allPlayers = new ArrayList<>();
     }
 
+    // TODO: duplication here
     public void addPlayer(String name, int playerID, double bankroll) {
         PlayerView addedPlayerView = new PlayerView(name, playerID, bankroll);
-        myPlayers.getChildren().add(addedPlayerView.getView());
-        allPlayers.add(addedPlayerView);
+        addPlayer(addedPlayerView);
+    }
+
+    public void addPlayer(PlayerView addedPlayer) {
+        myPlayers.getChildren().add(addedPlayer.getView());
+        allPlayers.add(addedPlayer);
     }
 
     public void removePlayer(int playerID) {
@@ -43,6 +48,10 @@ public class AllPlayersView implements NodeViewInterface {
             if (tempPlayerView.hasSameID(playerID)) return tempPlayerView;
             }
         return null;
+    }
+
+    public boolean hasPlayerView(int playerID) {
+        return getPlayerView(playerID) == null;
     }
 
     @Override

@@ -18,11 +18,9 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private PlayerView myMainPlayer;
     private AllPlayersView myOtherPlayers;
     private HandView myAdversary;
-    private Formatter myFormatter;
 
     public GameView() {
         myBorderPane = new BorderPane();
-        myFormatter = new Formatter();
         myOtherPlayers = new AllPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
     }
@@ -68,12 +66,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void showAdversaryCard(int cardID) {
-
+        myAdversary.showCard(cardID);
     }
 
     @Override
     public void addAdversaryCard(CardTriplet cardInfo) {
-
+        myAdversary.addCard(cardInfo);
     }
 
 
@@ -101,11 +99,19 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void updateMainPlayer(int playerID) {
+        if (!myOtherPlayers.hasPlayerView(playerID)) return;
+
+        if (myMainPlayer != null) {
+            myBorderPane.setBottom(myMainPlayer.getView());
+            myOtherPlayers.addPlayer(myMainPlayer);
+        }
+
         myMainPlayer = myOtherPlayers.getPlayerView(playerID);
+        myOtherPlayers.removePlayer(playerID);
     }
 
     private PlayerView getPlayerView(int playerID) {
-        if (myMainPlayer.hasSameID(playerID)) return myMainPlayer;
+        if (myMainPlayer != null && myMainPlayer.hasSameID(playerID)) return myMainPlayer;
         return myOtherPlayers.getPlayerView(playerID);
     }
 }
