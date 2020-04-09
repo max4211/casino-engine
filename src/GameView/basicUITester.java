@@ -48,8 +48,8 @@ public class basicUITester extends Application {
         double min = .1;
         double max = 100.5;
 
-        System.out.println(gv.getAction(myList));
-        System.out.println(gv.getWager(0.1, max));
+        System.out.println(gv.selectAction((myList)));
+        System.out.println(gv.selectWager(0.1, max));
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
     }

@@ -10,17 +10,17 @@ public interface GameViewInterface {
 
     public void addCard(CardTriplet cardInfo, int playerID, int betID);
 
-    public void removeCard(int playerID, int betID);
+    public void removeCard(int playerID, int betID, int cardID);
 
     public void showCard(int betId, int cardId);
 
-    public void renderAdversary(List<CardTriplet> actions);
+    public void renderAdversary(List<CardTriplet> hand);
 
     public void showAdversaryCard(int cardId);
 
-    public void addAdversaryCard(int cardID);
+    public void addAdversaryCard(CardTriplet cardID);
 
-    public void addBet(List<CardTriplet> handInfo, double wager, int betID, int playerID);
+    public void addBet(List<CardTriplet> handInfo, double wager, int playerID, int betID);
 
     public void removeBet(int playerId, int betId);
 
@@ -35,7 +35,7 @@ public interface GameViewInterface {
      * @param minBet
      * @param maxBet
      */
-    double getWager(double minBet, double maxBet);
+    public double selectWager(double minBet, double maxBet);
 
-    public String getAction(List<String> actions);
+    public String selectAction(List<String> actions);
 }

@@ -54,9 +54,9 @@ public class Controller implements ControllerInterface {
             double min = this.myTable.getTableMin();
             double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
             System.out.printf("min: %.1f, max: %.1f\n", min, max);
-            double wager = this.myGameView.getWager(min, max);
+            double wager = this.myGameView.selectWager(min, max);
             int betID = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
-            this.myGameView.addBet(new ArrayList<>(), wager, betID, playerHash);
+            this.myGameView.addBet(new ArrayList<>(), wager, playerHash, betID);
         }
     }
 
@@ -72,7 +72,7 @@ public class Controller implements ControllerInterface {
             Player p = this.myTable.getNextPlayer();
             System.out.printf("prompting player (%s) for an action --> ", p.getName());
             this.myGameView.updateMainPlayer(p.getID());
-            Action a = this.myFactory.createAction(this.myGameView.getAction(this.myPlayerActions));
+            Action a = this.myFactory.createAction(this.myGameView.selectAction(this.myPlayerActions));
             a.execute(p.getNextBet());
             this.myTable.updateBets(p);
             garbageCollect(p);
