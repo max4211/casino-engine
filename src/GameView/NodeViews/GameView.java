@@ -15,12 +15,16 @@ import java.util.List;
 public class GameView implements GameViewInterface, NodeViewInterface {
 
     private BorderPane myBorderPane;
-    private List<PlayerView> allPlayers;
+    private PlayerView myMainPlayer;
+    private AllPlayersView myOtherPlayers;
+    private HandView myAdversary;
     private Formatter myFormatter;
 
     public GameView() {
         myBorderPane = new BorderPane();
-        allPlayers = new ArrayList<>();
+        myFormatter = new Formatter();
+        myOtherPlayers = new AllPlayersView();
+        myBorderPane.setLeft(myOtherPlayers.getView());
     }
 
     public BorderPane getView() {
@@ -74,19 +78,20 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
 
     @Override
-    public void renderAdversary(List<CardTriplet> actions) {
-
+    public void renderAdversary(List<CardTriplet> hand) {
+        myAdversary = new HandView(hand);
+        myBorderPane.setTop(myAdversary.getView());
     }
 
     @Override
     public void renderTable(String file) {
-
+        TableView table = new TableView(file);
+        myBorderPane.setCenter(table.getView());
     }
 
     @Override
     public void addPlayer(String name, int playerId, double bankroll) {
-        PlayerView addedPlayer = new PlayerView(name, playerId, bankroll);
-        allPlayers.add(addedPlayer);
+        myOtherPlayers.addPlayer(name, playerId, bankroll);
     }
 
     @Override
@@ -95,15 +100,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public void updateMainPlayer(int playerId) {
-
+    public void updateMainPlayer(int playerID) {
+        myMainPlayer = myOtherPlayers.getPlayerView(playerID);
     }
 
-    private PlayerView getPlayerView(int ID) {
-        for (PlayerView tempPlayerView : allPlayers) {
-            if (tempPlayerView.hasSameID(ID)) return tempPlayerView;
-        }
-        // TODO: fix this error
-        return null;
+    private PlayerView getPlayerView(int playerID) {
+        if (myMainPlayer.hasSameID(playerID)) return myMainPlayer;
+        return myOtherPlayers.getPlayerView(playerID);
     }
 }

@@ -13,7 +13,6 @@ public class WagerView implements NodeViewInterface {
 
     private HBox myWager;
 
-    private static final double CORNER_RADIUS = 5;
     //TODO: BIND THIS?
     private static final double VIEW_HEIGHT = 20;
     private static final Color backgroundColor = Color.web("2FC436");
@@ -28,7 +27,7 @@ public class WagerView implements NodeViewInterface {
     public WagerView(double wager) {
         myWager = new HBox();
         myFormatter.formatWideHBox(myWager, VIEW_HEIGHT);
-        myWager.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(CORNER_RADIUS), null)));
+        myFormatter.updateBackground(myWager, backgroundColor);
         updateWager(wager);
     }
 

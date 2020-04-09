@@ -13,6 +13,7 @@ import engine.player.Player;
 import engine.player.PlayerList;
 import engine.table.Table;
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -60,7 +61,7 @@ public class GameConstructor2 extends Application {
 
     private static GameView constructGameView() {
         GameView gameView = new GameView();
-        gameView.renderTable("tableImages/StandardBJTable.jpeg");
+        gameView.renderTable("StandardBJTable.jpeg");
         return gameView;
     }
 
@@ -71,9 +72,13 @@ public class GameConstructor2 extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         XMLReader myReader = new XMLReader(testFile);
         Table myTable = constructTable(myReader);
         GameView myGameView = constructGameView();
+        primaryStage.setScene(new Scene(myGameView.getView(), 500, 500));
+        primaryStage.show();
+
         Controller myController = constructController(myReader, myTable, myGameView);
         myController.startGame();
     }
