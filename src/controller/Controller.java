@@ -44,6 +44,7 @@ public class Controller implements ControllerInterface {
         renderPlayers();
         promptForEntryBet();
         performDealerAction();
+        renderAdversary();
         promptForActions();
         invokeCompetition();
     }
@@ -71,6 +72,10 @@ public class Controller implements ControllerInterface {
     private void performDealerAction() {
         this.myTable.performDealerAction(this.myDealerAction);
         updatePlayerHands();
+    }
+
+    private void renderAdversary() {
+
     }
 
     private void promptForActions() {
