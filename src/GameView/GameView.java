@@ -31,12 +31,12 @@ public class GameView implements GameViewInterface {
 
     }
 
-    public void renderBet(List<CardTriplet> deckInfo, double wager, int id) {
+    @Override
+    public void addCard(CardTriplet cardInfo, int playerID, int betID) {
 
     }
 
-    @Override
-    public void addCard(CardTriplet cardInfo) {
+    public void renderBet(List<CardTriplet> deckInfo, double wager, int id) {
 
     }
 
@@ -71,7 +71,7 @@ public class GameView implements GameViewInterface {
     }
 
     @Override
-    public void deleteBet(int betId) {
+    public void deleteBet(int playerId, int betId) {
 
     }
 
