@@ -1,13 +1,14 @@
-package GameView;
+package GameView.Players;
 
+import GameView.TaggableInterface;
+import GameView.ViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.VBox;
-import javafx.util.Pair;
 
 import java.util.List;
 
-public class BetView implements ViewInterface {
+public class BetView implements ViewInterface, TaggableInterface {
 
     private VBox myView;
     private HandView myHand;
@@ -36,7 +37,7 @@ public class BetView implements ViewInterface {
     }
 
     public void updateWager(double amount) {
-        if (amount > 0) myWager.updateWager(amount);
+        myWager.updateWager(amount);
     }
 
     public void addCard(CardTriplet newCard) {
@@ -52,5 +53,9 @@ public class BetView implements ViewInterface {
 
     public VBox getView() {
         return myView;
+    }
+
+    public boolean hasSameID(int ID) {
+        return myID == ID;
     }
 }

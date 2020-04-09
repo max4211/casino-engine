@@ -1,8 +1,10 @@
 package GameView;
 
+import GameView.Players.BetView;
+import GameView.Players.PlayerDetailView;
+import GameView.Players.PlayerView;
 import Utility.CardTriplet;
 import data.xmlreader.Pair;
-import engine.dealer.Card;
 import engine.dealer.Dealer;
 import engine.dealer.Deck;
 import engine.evaluator.BetEvaluator;
@@ -29,47 +31,22 @@ public class basicUITester extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("UI Tester");
         BorderPane root = new BorderPane();
-        CardTriplet tempCard = new CardTriplet(11., "heart",1);
 
-        CardTriplet tempCard1 = new CardTriplet(12., "spades", 2);
+        PlayerView PV = new PlayerView("Eric", 100., 1);
+        root.setCenter(PV.getView());
 
-        List tempList = new ArrayList();
-        tempList.add(tempCard);
-        tempList.add(tempCard1);
+        CardTriplet a = new CardTriplet(1., "hearts", 1);
+        CardTriplet b = new CardTriplet(2., "spades", 2);
 
-        double wagerAmount = 5.;
+        List<CardTriplet> ab = new ArrayList<>();
+        ab.add(a);
+        ab.add(b);
 
-        BetView tempBetView = new BetView(tempList, wagerAmount, 1);
-        root.setCenter(tempBetView.getView());
-        tempBetView.addCard(new CardTriplet(2., "clubs", 3));
-        tempBetView.showCard(1);
+        PV.addBet(ab, 10., 50);
+        PV.addBet(ab, 20., 20);
 
-        List<String> allActions = new ArrayList<>();
-        allActions.add("MAX");
-        allActions.add("SMITH");
-        allActions.add("HELLO");
+        PV.addCard(a, 50);
 
-        List<Pair> deckConstructor = new ArrayList<>();
-        deckConstructor.add(new Pair("string", "10"));
-        Map<String, Double> playerMap = new HashMap<>();
-        playerMap.put("Eric", 10.);
-
-        List<Player> playerList = new ArrayList<>();
-        playerList.add(new Player("Eric", 10.));
-
-        List<Pair> deckList = null;
-        Deck myDeck = new Deck(deckConstructor);
-        Dealer myDealer = new Dealer(myDeck);
-
-        List<String> myWinningHands = null;
-        List<String> myLosingHands = null;
-        HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);
-        HandEvaluator myHandEvaluator = new HandEvaluator();
-        BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
-        Table myTable = new Table(playerList, myDealer, myBetEvaluator, myHandClassifier);
-
-        ActionBoxView abv = new ActionBoxView(allActions, (e -> myTable.acceptString(e)), root);
-        root.setBottom(abv.getView());
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
     }

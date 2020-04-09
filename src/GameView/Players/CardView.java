@@ -1,5 +1,7 @@
-package GameView;
+package GameView.Players;
 
+import GameView.TaggableInterface;
+import GameView.ViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.control.Label;
