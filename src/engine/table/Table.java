@@ -53,10 +53,10 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public void placeEntryBet(int playerHash, String betType, double wager) {
+    public int placeEntryBet(int playerHash, String betType, double wager) {
         Player p = findPlayer(playerHash);
         System.out.printf("player: %s \n", p.getName());
-        p.placeBet(wager);
+        return p.placeBet(wager);
 //        String methodName = BET_ACTION + betType + BET_SUFFIX;
 //        System.out.printf("reflection on method: %s\n", methodName);
     }

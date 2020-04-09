@@ -44,12 +44,14 @@ public class Controller implements ControllerInterface {
         for (Player p: this.myTable.getPlayers()) {
             int playerHash = p.getID();
             this.myGameView.updateMainPlayer(playerHash);
-            double wager = this.myGameView.promptPlayerBet(this.myTable.getTableMin(), (int)(Math.min(this.myTable.getTableMax(), p.getBankroll())));
-            this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
+            // double wager = this.myGameView.promptPlayerBet(this.myTable.getTableMin(), (int)(Math.min(this.myTable.getTableMax(), p.getBankroll())));
+            double wager = 10;
+            int betID = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
+            this.myGameView.addBet(null, wager, betID, playerHash);
         }
     }
 
-    // TODO - alert front end cards have all been dealt
+    // TODO - alert front end cards have all been dealt (consumer design pattern?)
     private void performDealerAction() {
         this.myTable.performDealerAction(this.myDealerAction);
         // player number, bet number, card number (addCard in CardTriplet form)
