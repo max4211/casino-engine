@@ -7,6 +7,8 @@ import actionFactory.ActionFactory;
 import data.xmlreader.Pair;
 import engine.bet.Bet;
 import engine.dealer.Card;
+import engine.evaluator.BetEvaluator;
+import engine.evaluator.HandClassifier;
 import engine.player.Player;
 import engine.table.Table;
 
@@ -21,15 +23,20 @@ public class Controller implements ControllerInterface {
     private final List<String> myPlayerActions;
     private final Pair myDealerAction;
     private final ActionFactory myFactory;
+    private final HandClassifier myHandClassifier;
+    private final BetEvaluator myBetEvaluator;
 
     // TODO - construct controller with a view object
-    public Controller(Table table, GameView gameView, String entryBet, List<String> playerActions, Pair dealerAction) {
+    public Controller(Table table, GameView gameView, String entryBet, List<String> playerActions, Pair dealerAction,
+                      HandClassifier handClassifier, BetEvaluator betEvaluator) {
         this.myTable = table;
         this.myGameView = gameView;
         this.myEntryBet = entryBet;
         this.myPlayerActions = playerActions;
         this.myDealerAction = dealerAction;
         this.myFactory = new ActionFactory(playerActions);
+        this.myHandClassifier=  handClassifier;
+        this.myBetEvaluator = betEvaluator;
     }
 
     // TODO - place entry bet and perform player action inside of the view, register inside the model
@@ -82,7 +89,11 @@ public class Controller implements ControllerInterface {
     // TODO garbage collect bets after hand
     private void garbageCollect(Player p) {
         for (Bet b: p.getBets()) {
-            // if (b.getHand())
+            this.myHandClassifier.classifyHand(b.getHand());
+            if (b.getHand().isLoser()) {
+                b.setActive(false);
+                this.myGameView.removeBet(p.getID(), b.getID());
+            }
         }
     }
 

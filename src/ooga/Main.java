@@ -11,7 +11,7 @@ public class Main {
             try {
                 Lobby myLobby = new Lobby();
                 myLobby.start(new Stage());
-                GameConstructor myGameConstructor = new GameConstructor(myLobby);
+                // TODO - create game constructor
             } catch (Exception e) {
                 ;
             }

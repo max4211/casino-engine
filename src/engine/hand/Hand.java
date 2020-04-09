@@ -9,6 +9,8 @@ import java.util.List;
 public class Hand implements HandInterface {
 
     private List<Card> myCards;
+    private String myClassification;
+    private boolean isLoser = false;
 
     public Hand(List<Card> cards) {
         this.myCards = new ArrayList<Card>();
@@ -32,5 +34,21 @@ public class Hand implements HandInterface {
     @Override
     public List<Card> getCards() {
         return Collections.unmodifiableList(this.myCards);
+    }
+
+    @Override
+    public void classifyHand(String type, boolean loser) {
+        this.myClassification = type;
+        this.isLoser = loser;
+    }
+
+    @Override
+    public String getClassification() {
+        return this.myClassification;
+    }
+
+    @Override
+    public boolean isLoser() {
+        return this.isLoser;
     }
 }

@@ -26,17 +26,13 @@ public class Table implements TableInterface {
     private List<Player> myPlayers;
     private List<Integer> myPlayerHashCodes;
     private Dealer myDealer;
-    private BetEvaluator myBetEvaluator;
-    private HandClassifier myHandClassifier;
 
     private double myTableMin = 5;
     private double myTableMax = 100;
 
-    public Table(List<Player> players, Dealer dealer, BetEvaluator betEvaluator, HandClassifier handClassifier) {
+    public Table(List<Player> players, Dealer dealer) {
         this.myPlayers = players;
         this.myDealer = dealer;
-        this.myBetEvaluator = betEvaluator;
-        this.myHandClassifier = handClassifier;
         this.myPlayerHashCodes = recordPlayerHashCodes();
     }
 
@@ -125,7 +121,6 @@ public class Table implements TableInterface {
         for (Bet b: p.getBets()) {
             if (b.needsCard()) {
                 b.acceptCard(this.myDealer.getCard());
-                this.myHandClassifier.classifyHand(b.getHand());
             }
         }
     }
