@@ -29,12 +29,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void addCard(CardTriplet cardInfo, int playerID, int betID) {
-        getPlayerView(playerID).addCard(cardInfo, betID);
+        // getPlayerView(playerID).addCard(cardInfo, betID);
     }
 
     @Override
     public void removeCard(int playerID, int betID, int cardID) {
-        getPlayerView(betID).removeCard(betID, cardID);
+        // getPlayerView(betID).removeCard(betID, cardID);
     }
 
     @Override
@@ -44,12 +44,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void addBet(List<CardTriplet> handInfo, double wager, int playerID, int betID) {
-        getPlayerView(playerID).addBet(handInfo, wager, betID);
+        // getPlayerView(playerID).addBet(handInfo, wager, betID);
     }
 
     @Override
     public void removeBet(int playerId, int betId) {
-        getPlayerView(playerId).removeBet(betId);
+        // getPlayerView(playerId).removeBet(betId);
     }
 
     @Override
