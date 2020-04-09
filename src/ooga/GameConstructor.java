@@ -24,6 +24,8 @@ public class GameConstructor {
 
     private static final String testFile = "src/data/game/blackjackGame.xml";
 
+    // DOPP WAKE UP WAKE UP WAKE UP
+
     public GameConstructor(Lobby myLobby) {
         try {
             XMLReader myReader = new XMLReader(testFile);

@@ -4,8 +4,6 @@ import GameView.Lobby;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class Main {
 
     public static void main (String[] args) {
@@ -15,7 +13,7 @@ public class Main {
                 myLobby.start(new Stage());
                 GameConstructor myGameConstructor = new GameConstructor(myLobby);
             } catch (Exception e) {
-
+                ;
             }
         });
     }

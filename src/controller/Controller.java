@@ -49,8 +49,8 @@ public class Controller implements ControllerInterface {
             double min = this.myTable.getTableMin();
             double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
             System.out.printf("min: %.1f, max: %.1f\n", min, max);
-            // double wager = this.myGameView.promptPlayerBet(min, max);
-            double wager = 10;
+            double wager = this.myGameView.promptPlayerBet(min, max);
+            // double wager = 10;
             int betID = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
             this.myGameView.addBet(null, wager, betID, playerHash);
         }
