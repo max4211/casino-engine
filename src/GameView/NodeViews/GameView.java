@@ -29,12 +29,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void addCard(CardTriplet cardInfo, int playerID, int betID) {
-        getPlayerView(playerID).addCard(cardInfo, betID);
+        // getPlayerView(playerID).addCard(cardInfo, betID);
     }
 
     @Override
     public void removeCard(int playerID, int betID, int cardID) {
-        getPlayerView(betID).removeCard();
+        //  getPlayerView(betID).removeCard(betID, cardID);
     }
 
     @Override
