@@ -25,6 +25,7 @@ public class GameConstructor {
     private static final String testFile = "src/data/game/blackjackGame.xml";
 
     // DOPP WAKE UP WAKE UP WAKE UP
+    // HAZEN IS SO FUCKED (jk its hazen)
 
     public GameConstructor(Lobby myLobby) {
         try {
