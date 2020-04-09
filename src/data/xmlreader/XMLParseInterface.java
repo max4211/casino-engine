@@ -79,4 +79,10 @@ public interface XMLParseInterface {
      */
     void savePreferences(String fileName);
 
+    /**
+     * Get the type of competition for the game in raw string format
+     * @return
+     */
+    String getCompetition();
+
 }

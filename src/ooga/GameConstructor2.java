@@ -55,8 +55,9 @@ public class GameConstructor2 extends Application {
         HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);
         HandEvaluator myHandEvaluator = new HandEvaluator();
         BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
+        String myCompetition = myReader.getCompetition();
 
-        return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction, myHandClassifier, myBetEvaluator);
+        return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction, myHandClassifier, myBetEvaluator, myCompetition);
     }
 
     private static GameView constructGameView() {

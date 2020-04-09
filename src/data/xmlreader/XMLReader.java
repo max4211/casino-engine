@@ -43,7 +43,7 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
     private static final String ACTION_TAG = "Action";
     private static final String TYPE_TAG = "Type";
 
-
+    private static final String COMPETITION_TAG = "Competition";
 
     public XMLReader(File file) throws IOException, SAXException, ParserConfigurationException {
         myDocument = XMLGeneratorInterface.createDocument(file);
@@ -120,6 +120,11 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
     @Override
     public void savePreferences(String fileName) {
 
+    }
+
+    @Override
+    public String getCompetition() {
+        return myDocument.getElementsByTagName(COMPETITION_TAG).item(ZERO).getTextContent();
     }
 
     private NodeList getNodeList(String tag) {

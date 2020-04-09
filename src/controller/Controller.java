@@ -25,9 +25,10 @@ public class Controller implements ControllerInterface {
     private final ActionFactory myFactory;
     private final HandClassifier myHandClassifier;
     private final BetEvaluator myBetEvaluator;
+    private final String myCompetition;
 
     public Controller(Table table, GameView gameView, String entryBet, List<String> playerActions, Pair dealerAction,
-                      HandClassifier handClassifier, BetEvaluator betEvaluator) {
+                      HandClassifier handClassifier, BetEvaluator betEvaluator, String competition) {
         this.myTable = table;
         this.myGameView = gameView;
         this.myEntryBet = entryBet;
@@ -36,6 +37,8 @@ public class Controller implements ControllerInterface {
         this.myFactory = new ActionFactory(playerActions);
         this.myHandClassifier=  handClassifier;
         this.myBetEvaluator = betEvaluator;
+        this.myCompetition = competition;
+        System.out.println("competition: " + competition);
     }
 
     public void startGame() {
