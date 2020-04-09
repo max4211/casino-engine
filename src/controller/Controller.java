@@ -38,7 +38,6 @@ public class Controller implements ControllerInterface {
         this.myHandClassifier=  handClassifier;
         this.myBetEvaluator = betEvaluator;
         this.myCompetition = competition;
-        System.out.println("competition: " + competition);
     }
 
     public void startGame() {
@@ -46,6 +45,7 @@ public class Controller implements ControllerInterface {
         promptForEntryBet();
         performDealerAction();
         promptForActions();
+        invokeCompetition();
     }
 
     private void renderPlayers() {
@@ -85,6 +85,10 @@ public class Controller implements ControllerInterface {
         }
     }
 
+    private void invokeCompetition() {
+
+    }
+
     private void garbageCollect(Player p) {
         for (Bet b: p.getBets()) {
             this.myHandClassifier.classifyHand(b.getHand());
@@ -112,14 +116,6 @@ public class Controller implements ControllerInterface {
     private CardTriplet createCardTriplet(Card c) {
         return new CardTriplet(c.getValue(), c.getSuit(), c.getID());
     }
-
-
-
-    @Override
-    public void acceptAction(String action) {
-
-    }
-
 
     /** Max's team code for reflection example within their execution (shows how to invoke a method)
      *

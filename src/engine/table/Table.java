@@ -75,11 +75,6 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public void performPlayerAction(String action) {
-
-    }
-
-    @Override
     public List<Integer> getPlayerHashCodes() {
         return this.myPlayerHashCodes;
     }

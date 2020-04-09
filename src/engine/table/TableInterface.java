@@ -32,12 +32,6 @@ public interface TableInterface {
     void performDealerAction(Pair dealerAction);
 
     /**
-     * called by controller to perform player action (as selected)
-     * @param action to perform
-     */
-    void performPlayerAction(String action);
-
-    /**
      * called by the controller to identify players
      * @return all players unique hash codes
      */
