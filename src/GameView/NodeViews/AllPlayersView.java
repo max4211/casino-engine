@@ -3,6 +3,7 @@ package GameView.NodeViews;
 import GameView.NodeViews.Interfaces.NodeViewInterface;
 import Utility.Formatter;
 import engine.player.Player;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -51,7 +52,7 @@ public class AllPlayersView implements NodeViewInterface {
     }
 
     public boolean hasPlayerView(int playerID) {
-        return getPlayerView(playerID) == null;
+        return getPlayerView(playerID) != null;
     }
 
     @Override

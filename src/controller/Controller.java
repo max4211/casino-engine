@@ -117,7 +117,7 @@ public class Controller implements ControllerInterface {
                 for (Card c: b.getHand().getCards()) {
                     CardTriplet cardTriplet = createCardTriplet(c);
                     this.myGameView.addCard(cardTriplet, playerID, betID);
-                    this.myGameView.showCard(betID, c.getID(), playerID);
+                    this.myGameView.showCard(playerID, betID, c.getID());
                 }
             }
         }

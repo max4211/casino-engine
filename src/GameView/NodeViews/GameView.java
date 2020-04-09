@@ -41,7 +41,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void showCard(int playerID, int betID, int cardID) {
-        getPlayerView(betID).showCard(betID, cardID);
+        getPlayerView(playerID).showCard(betID, cardID);
     }
 
     @Override
@@ -101,13 +101,11 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     public void updateMainPlayer(int playerID) {
         if (!myOtherPlayers.hasPlayerView(playerID)) return;
 
-        if (myMainPlayer != null) {
-            myBorderPane.setBottom(myMainPlayer.getView());
-            myOtherPlayers.addPlayer(myMainPlayer);
-        }
-
         myMainPlayer = myOtherPlayers.getPlayerView(playerID);
         myOtherPlayers.removePlayer(playerID);
+
+        myBorderPane.setBottom(myMainPlayer.getView());
+        myOtherPlayers.addPlayer(myMainPlayer);
     }
 
     private PlayerView getPlayerView(int playerID) {
