@@ -110,10 +110,10 @@ public class Table implements TableInterface {
     private void dealIndividualCard(int quantity) {
         for (int i = 1; i <= quantity; i ++) {
             for (Player p: this.myPlayers) {
-                System.out.printf("dealing individual card #%d to player %s\n", i, p.getName());
                 List<Bet> activeBets = p.getBets();
                 for (Bet b: activeBets) {
                     Card c = this.myDealer.getCard();
+                    System.out.printf("generating individual card #%d to player %s (%s)\n", i, p.getName(), c);
                     b.acceptCard(c);
                 }
             }

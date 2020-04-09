@@ -20,6 +20,10 @@ public class Hand implements HandInterface {
         this.myCards.add(card);
     }
 
+    public Hand() {
+        this.myCards = new ArrayList<Card>();
+    }
+
     @Override
     public void acceptCard(Card c) {
         this.myCards.add(c);

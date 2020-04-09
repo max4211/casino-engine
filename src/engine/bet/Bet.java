@@ -10,6 +10,7 @@ public class Bet implements BetInterface {
     private double myWager;
 
     public Bet(double wager) {
+        this.myHand = new Hand();
         this.myWager = wager;
         this.myID = this.hashCode();
     }

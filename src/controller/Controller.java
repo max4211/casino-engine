@@ -36,7 +36,6 @@ public class Controller implements ControllerInterface {
         System.out.printf("prompting players for entry bet...\n");
         for (Player p: this.myTable.getPlayers()) {
             int playerHash = p.getID();
-            System.out.printf("hashCode: %d  ", playerHash);
             this.myGameView.updateMainPlayer(playerHash);
             double wager = this.myGameView.promptPlayerBet(this.myTable.getTableMin(), (int)(Math.min(this.myTable.getTableMax(), p.getBankroll())));
             this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
