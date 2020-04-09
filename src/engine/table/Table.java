@@ -1,5 +1,6 @@
 package engine.table;
 
+import Utility.CardTriplet;
 import data.xmlreader.Pair;
 import engine.bet.Bet;
 import engine.dealer.Card;
@@ -28,8 +29,8 @@ public class Table implements TableInterface {
     private BetEvaluator myBetEvaluator;
     private HandClassifier myHandClassifier;
 
-    private int myTableMin = 5;
-    private int myTableMax = 100;
+    private double myTableMin = 5;
+    private double myTableMax = 100;
 
     public Table(List<Player> players, Dealer dealer, BetEvaluator betEvaluator, HandClassifier handClassifier) {
         this.myPlayers = players;
@@ -98,12 +99,12 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public int getTableMin() {
+    public double getTableMin() {
         return this.myTableMin;
     }
 
     @Override
-    public int getTableMax() {
+    public double getTableMax() {
         return this.myTableMax;
     }
 

@@ -6,6 +6,7 @@ public class Card implements CardInterface {
 
     private final String mySuit;
     private final double myValue;
+    private final int myID;
     private boolean isCommunal = false;
 
     private static final String SEPARATOR = " of ";
@@ -13,11 +14,13 @@ public class Card implements CardInterface {
     public Card(String suit, double value) {
         this.mySuit = suit;
         this.myValue = value;
+        this.myID = this.hashCode();
     }
 
     public Card(Pair pair) {
         this.mySuit = pair.getKey();
         this.myValue = Double.parseDouble(pair.getValue());
+        this.myID = this.hashCode();
     }
 
     @Override
@@ -33,6 +36,11 @@ public class Card implements CardInterface {
     @Override
     public void assignCommunal() {
         this.isCommunal = true;
+    }
+
+    @Override
+    public int getID() {
+        return this.myID;
     }
 
     @Override

@@ -20,8 +20,8 @@ public class GameView implements GameViewInterface {
     private static final String RESOURCE_LANGUAGE = "English";
     private ResourceBundle myResources = ResourceBundle.getBundle(RESOURCE_LANGUAGE);
     private static final String BET_PROMPT_KEY = "BetPrompt";
-    private static final String MIN_STRING = "MIN";
-    private static final String MAX_STRING = "MAX";
+    private static final CharSequence MIN_STRING = "MIN";
+    private static final CharSequence MAX_STRING = "MAX";
     private static final String ACTION_PROMPT_KEY = "ActionPrompt";
 
     public GameView() {}
@@ -47,12 +47,12 @@ public class GameView implements GameViewInterface {
 
     @Override
     public String getAction(List<String> actions) {
-        ChoiceDialog<String> actionOptions = new ChoiceDialog(actions.get(0), actions);
+        ChoiceDialog<String> actionOptions = new ChoiceDialog(actions.get(DEFAULT_ACTION_INDEX), actions);
         actionOptions.setContentText(myResources.getString(ACTION_PROMPT_KEY));
         Optional<String> result = actionOptions.showAndWait();
-        if (result.isPresent()) return result.get();
-        // TODO: handle not picking an action
-        return getAction(actions);
+        // TODO: this makes cancelling rerun, find a better way in Sprint 2
+        if (result.isEmpty()) return getAction(actions);
+        return result.get();
     }
 
     @Override
@@ -92,18 +92,23 @@ public class GameView implements GameViewInterface {
 
 
     public double promptPlayerBet(double minBet, double maxBet) {
-        TextInputDialog betAmount = new TextInputDialog(String.valueOf(minBet));
+        TextInputDialog betAmount = new TextInputDialog();
         String actionPrompt = myResources.getString(BET_PROMPT_KEY);
-        actionPrompt.replaceAll(MIN_STRING, String.valueOf(minBet));
-        actionPrompt.replaceAll(MAX_STRING, String.valueOf(maxBet));
+        actionPrompt = actionPrompt.replace(MIN_STRING, String.valueOf(minBet));
+        actionPrompt = actionPrompt.replace(MAX_STRING, String.valueOf(maxBet));
         betAmount.setContentText(actionPrompt);
 
         Optional<String> suggestedBetText = betAmount.showAndWait();
-        if (suggestedBetText.isPresent()) {
-            double suggestedBet = Double.parseDouble(suggestedBetText.get());
-            if (suggestedBet >= minBet && suggestedBet <= maxBet) return suggestedBet;
-            // TODO: proper convention for one line else statements?
+        if (suggestedBetText.isEmpty()) return promptPlayerBet(minBet, maxBet);
+        double suggestedBet;
+        try {
+            suggestedBet = Double.parseDouble(suggestedBetText.get());
+        } catch (NumberFormatException ex) {
+            // TODO: throw a pop up
+            return promptPlayerBet(minBet, maxBet);
         }
+
+        if (suggestedBet >= minBet && suggestedBet <= maxBet) return suggestedBet;
         return promptPlayerBet(minBet, maxBet);
     }
 }
