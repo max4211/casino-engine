@@ -35,7 +35,7 @@ public class Controller implements ControllerInterface {
         this.myPlayerActions = playerActions;
         this.myDealerAction = dealerAction;
         this.myFactory = new ActionFactory(playerActions);
-        this.myHandClassifier=  handClassifier;
+        this.myHandClassifier =  handClassifier;
         this.myBetEvaluator = betEvaluator;
         this.myCompetition = competition;
     }
@@ -74,8 +74,11 @@ public class Controller implements ControllerInterface {
         updatePlayerHands();
     }
 
+    // TODO - render adversary
     private void renderAdversary() {
-
+        if(this.myCompetition.equals(Competition.ADVERSARY)) {
+            System.out.println("Rendering adversary ...");
+        }
     }
 
     private void promptForActions() {
@@ -85,6 +88,7 @@ public class Controller implements ControllerInterface {
             this.myGameView.updateMainPlayer(p.getID());
             Action a = this.myFactory.createAction(this.myGameView.selectAction(this.myPlayerActions));
             a.execute(p, p.getNextBet());
+            // TODO - call frontend to show new cards
             this.myTable.updateBets(p);
             garbageCollect(p);
         }
