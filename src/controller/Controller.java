@@ -42,7 +42,7 @@ public class Controller implements ControllerInterface {
 
     private void renderPlayers() {
         for (Player p: this.myTable.getPlayers()) {
-            this.myGameView.addPlayer(p.getID(), p.getBankroll());
+            this.myGameView.addPlayer(p.getName(), p.getID(), p.getBankroll());
         }
     }
 

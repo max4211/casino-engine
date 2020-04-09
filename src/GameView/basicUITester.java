@@ -22,7 +22,7 @@ public class basicUITester extends Application {
         primaryStage.setTitle("UI Tester");
         BorderPane root = new BorderPane();
 
-        PlayerView PV = new PlayerView("Eric", 100., 1);
+        PlayerView PV = new PlayerView("Eric", 100, 1.);
         //root.setCenter(PV.getView());
 
         CardTriplet a = new CardTriplet(1., "hearts", 1);

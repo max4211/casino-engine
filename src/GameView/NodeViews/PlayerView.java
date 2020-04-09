@@ -19,14 +19,14 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
 
     private int myID;
 
-    public PlayerView(String name, double bankRoll, int ID) {
+    public PlayerView(String name, int ID, double bankroll) {
         myView = new HBox();
         myFormatter = new Formatter();
         myFormatter.formatUnfixedHBox(myView);
 
         myID = ID;
         myBets = new ArrayList<BetView>();
-        myInfo = new PlayerInfoView(name, bankRoll);
+        myInfo = new PlayerInfoView(name, bankroll);
         myView.getChildren().add(myInfo.getView());
     }
 
@@ -42,6 +42,9 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
         myView.getChildren().remove(removedBet.getView());
     }
 
+    public void showCard(int betID, int cardID) {
+        getBet(betID).showCard(cardID);
+    }
 
     public HBox getView() {
         return myView;
