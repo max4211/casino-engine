@@ -43,7 +43,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public void addBet(List<CardTriplet> handInfo, double wager, int betID, int playerID) {
+    public void addBet(List<CardTriplet> handInfo, double wager, int playerID, int betID) {
         // getPlayerView(playerID).addBet(handInfo, wager, betID);
     }
 
@@ -53,12 +53,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public String getAction(List<String> actions) {
+    public String selectAction(List<String> actions) {
         return ActionSelector.selectAction(actions);
     }
 
     @Override
-    public double getWager(double minBet, double maxBet) {
+    public double selectWager(double minBet, double maxBet) {
         return WagerSelector.selectWager(minBet, maxBet);
     }
 
@@ -68,7 +68,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public void addAdversaryCard(int cardID) {
+    public void addAdversaryCard(CardTriplet cardInfo) {
 
     }
 
