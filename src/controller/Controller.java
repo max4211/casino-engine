@@ -1,6 +1,6 @@
 package controller;
 
-import GameView.GameView;
+import GameView.NodeViews.GameView;
 import Utility.CardTriplet;
 import actionFactory.Action;
 import actionFactory.ActionFactory;
@@ -10,6 +10,7 @@ import engine.dealer.Card;
 import engine.player.Player;
 import engine.table.Table;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller implements ControllerInterface {
@@ -53,9 +54,9 @@ public class Controller implements ControllerInterface {
             double min = this.myTable.getTableMin();
             double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
             System.out.printf("min: %.1f, max: %.1f\n", min, max);
-            double wager = this.myGameView.promptPlayerBet(min, max);
+            double wager = this.myGameView.getWager(min, max);
             int betID = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
-            this.myGameView.addBet(null, wager, betID, playerHash);
+            this.myGameView.addBet(new ArrayList<>(), wager, betID, playerHash);
         }
     }
 

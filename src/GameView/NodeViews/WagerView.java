@@ -1,8 +1,7 @@
-package GameView.Players;
+package GameView.NodeViews;
 
-import GameView.ViewInterface;
+import GameView.NodeViews.Interfaces.NodeViewInterface;
 import Utility.Formatter;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -10,7 +9,7 @@ import javafx.scene.text.TextAlignment;
 
 import java.util.ResourceBundle;
 
-public class WagerView implements ViewInterface {
+public class WagerView implements NodeViewInterface {
 
     private HBox myWager;
 

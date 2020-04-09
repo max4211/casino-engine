@@ -1,19 +1,18 @@
-package GameView.Players;
+package GameView.NodeViews;
 
-import GameView.TaggableInterface;
-import GameView.ViewInterface;
+import GameView.NodeViews.Interfaces.TaggableInterface;
+import GameView.NodeViews.Interfaces.NodeViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class CardView implements ViewInterface, TaggableInterface {
+public class CardView implements NodeViewInterface, TaggableInterface {
 
     private VBox myCard;
     private Collection myCardNodes;

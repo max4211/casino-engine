@@ -1,6 +1,6 @@
-package GameView.Players;
+package GameView.NodeViews;
 
-import GameView.ViewInterface;
+import GameView.NodeViews.Interfaces.NodeViewInterface;
 import Utility.Formatter;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 
 import java.util.ResourceBundle;
 
-public class PlayerInfoView implements ViewInterface {
+public class PlayerInfoView implements NodeViewInterface {
 
     private VBox myDetails;
     private Formatter myFormatter;

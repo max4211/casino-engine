@@ -1,14 +1,14 @@
-package GameView.Players;
+package GameView.NodeViews;
 
-import GameView.TaggableInterface;
-import GameView.ViewInterface;
+import GameView.NodeViews.Interfaces.TaggableInterface;
+import GameView.NodeViews.Interfaces.NodeViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-public class BetView implements ViewInterface, TaggableInterface {
+public class BetView implements NodeViewInterface, TaggableInterface {
 
     private VBox myView;
     private HandView myHand;
