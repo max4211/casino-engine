@@ -2,7 +2,6 @@ package controller;
 
 import data.xmlreader.Pair;
 import engine.bet.Bet;
-import engine.player.Player;
 import engine.table.Table;
 
 import java.util.List;
@@ -24,15 +23,30 @@ public class Controller implements ControllerInterface {
 
     // TODO - place entry bet and perform player action inside of the view, register inside the model
     public void startGame() {
-        this.myTable.placeEntryBet(this.myEntryBet, (bet) -> this.acceptBet(bet));
-        this.myTable.performDealerAction(this.myDealerAction);
-        loopPlayerActions();
-
+        promptForEntryBet();
+        performDealerAction();
+        promptForActions();
     }
 
-    private void loopPlayerActions() {
+    private void performDealerAction() {
+        this.myTable.performDealerAction(this.myDealerAction);
+        // this.myGameView.showNewCards();
+    }
+
+    private void promptForActions() {
         for (int i = 0; i < this.myTable.totalPlayers(); i ++) {
             // TODO - prompt action to be performed on front end
+            // this.myTable.performPlayerAction(this.myPlayerActions, (action) -> this.acceptAction(action));
+        }
+    }
+
+    private void promptForEntryBet() {
+        // this.myTable.placeEntryBet(this.myEntryBet, (bet) -> this.acceptBet(bet));
+        for (int i = 0; i < this.myTable.totalPlayers(); i ++) {
+            // TODO - prompt frontend for bet
+            // this.myGameView.promptPlayerBet(int playerId, int betMin, int betMax);
+            // How do I recieve this result? Lambda? Pause until another method is called?
+            // this.myTable.placeEntryBet(this.myEntryBet, (bet) -> this.acceptBet(bet));
             // this.myTable.performPlayerAction(this.myPlayerActions, (action) -> this.acceptAction(action));
         }
     }
