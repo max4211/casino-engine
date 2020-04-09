@@ -5,6 +5,11 @@ import Utility.CardTriplet;
 import java.util.List;
 
 public class GameView implements GameViewInterface {
+
+    public GameView() {
+        ;
+    }
+
     @Override
     public void renderTable(String file) {
         

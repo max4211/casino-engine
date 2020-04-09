@@ -1,5 +1,6 @@
 package controller;
 
+import GameView.GameView;
 import data.xmlreader.Pair;
 import engine.bet.Bet;
 import engine.table.Table;
@@ -9,13 +10,15 @@ import java.util.List;
 public class Controller implements ControllerInterface {
 
     private Table myTable;
+    private GameView myGameView;
     private final String myEntryBet;
     private final List<String> myPlayerActions;
     private final Pair myDealerAction;
 
     // TODO - construct controller with a view object
-    public Controller(Table table, String entryBet, List<String> playerActions, Pair dealerAction) {
+    public Controller(Table table, GameView gameView, String entryBet, List<String> playerActions, Pair dealerAction) {
         this.myTable = table;
+        this.myGameView = gameView;
         this.myEntryBet = entryBet;
         this.myPlayerActions = playerActions;
         this.myDealerAction = dealerAction;

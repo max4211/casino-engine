@@ -1,5 +1,6 @@
 package ooga;
 
+import GameView.GameView;
 import controller.Controller;
 import data.xmlreader.Pair;
 import data.xmlreader.XMLReader;
@@ -53,8 +54,8 @@ public class GameConstructor {
         String myEntryBet = myReader.getEntryBet();
         List<String> myPlayerActions = myReader.getPlayerAction();
         Pair myDealerAction = myReader.getDealerAction();
-
-        return new Controller(myTable, myEntryBet, myPlayerActions, myDealerAction);
+        GameView myGameView = new GameView();
+        return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction);
     }
 
     // TODO - refactor game code into non static objects, currently running through main must be static
