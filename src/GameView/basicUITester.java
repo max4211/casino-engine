@@ -40,8 +40,11 @@ public class basicUITester extends Application {
         myList.add("max");
         myList.add("smith");
 
+        double min = .1;
+        double max = 100.5;
+
         System.out.println(gv.getAction(myList));
-        System.out.println(gv.promptPlayerBet(0, 100));
+        System.out.println(gv.promptPlayerBet(0.1, max));
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
     }

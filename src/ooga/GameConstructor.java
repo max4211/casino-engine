@@ -12,6 +12,8 @@ import engine.evaluator.HandEvaluator;
 import engine.player.Player;
 import engine.player.PlayerList;
 import engine.table.Table;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,7 +21,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-public class GameConstructor {
+public class GameConstructor extends Application {
 
     private static final String testFile = "src/data/game/blackjackGame.xml";
 
@@ -59,10 +61,16 @@ public class GameConstructor {
     }
 
     // TODO - refactor game code into non static objects, currently running through main must be static
-    public static void main (String[] args) throws ParserConfigurationException, SAXException, IOException {
-        XMLReader myReader = new XMLReader(testFile);
-        Table myTable = constructTable(myReader);
-        Controller myController = constructController(myReader, myTable);
-        myController.startGame();
+    public static void main (String[] args) {
+        launch(args);
+    }
+
+    public void start(Stage initStage) throws ParserConfigurationException, SAXException, IOException {
+        {
+            XMLReader myReader = new XMLReader(testFile);
+            Table myTable = constructTable(myReader);
+            Controller myController = constructController(myReader, myTable);
+            myController.startGame();
+        }
     }
 }
