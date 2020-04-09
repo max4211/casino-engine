@@ -18,4 +18,10 @@ public interface CardInterface {
      * Assign a card to be communal for all members
      */
     void assignCommunal();
+
+    /**
+     * Get hashcode (ID) of card
+     * @return
+     */
+    int getID();
 }
