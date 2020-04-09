@@ -66,7 +66,7 @@ public class GameView implements GameViewInterface {
     }
 
     @Override
-    public Double promptPlayerBet(int minBet, int maxBet) {
-        return null;
+    public double promptPlayerBet(int minBet, int maxBet) {
+        return 0.0;
     }
 }

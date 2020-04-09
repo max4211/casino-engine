@@ -29,4 +29,10 @@ public interface PlayerInterface {
      * @return
      */
     List<Bet> getBets();
+
+    /**
+     * Place bet (of size wager)
+     * @param wager size of bet
+     */
+    void placeBet(double wager);
 }

@@ -3,6 +3,7 @@ package controller;
 import GameView.GameView;
 import data.xmlreader.Pair;
 import engine.bet.Bet;
+import engine.player.Player;
 import engine.table.Table;
 
 import java.util.List;
@@ -31,6 +32,17 @@ public class Controller implements ControllerInterface {
         promptForActions();
     }
 
+    private void promptForEntryBet() {
+        System.out.printf("prompting players for entry bet...\n");
+        for (Player p: this.myTable.getPlayers()) {
+            int playerHash = p.getID();
+            System.out.printf("hashCode: %d  ", playerHash);
+            this.myGameView.updateMainPlayer(playerHash);
+            double wager = this.myGameView.promptPlayerBet(this.myTable.getTableMin(), (int)(Math.min(this.myTable.getTableMax(), p.getBankroll())));
+            this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
+        }
+    }
+
     private void performDealerAction() {
         this.myTable.performDealerAction(this.myDealerAction);
         // player number, bet number, card number (addCard in CardTriplet form)
@@ -40,27 +52,13 @@ public class Controller implements ControllerInterface {
     }
 
     private void promptForActions() {
-        for (int i = 0; i < this.myTable.totalPlayers(); i ++) {
+        while (this.myTable.hasActivePlayers()) {
             // TODO - prompt action to be performed on front end
             // 0: Get next active Player from table (implement tags for bets of active in round)
             // 1: Controller tells front end who is up (player ID)
             // 2. Present view with action box and get string of action type
             // 3. Perform player action (getAction (List<String> s) - always called on main player
             // 4. Tell backend to do action
-            // this.myTable.performPlayerAction(this.myPlayerActions, (action) -> this.acceptAction(action));
-        }
-    }
-
-    private void promptForEntryBet() {
-        // this.myTable.placeEntryBet(this.myEntryBet, (bet) -> this.acceptBet(bet));
-        for (int i = 0; i < this.myTable.totalPlayers(); i ++) {
-            // TODO - prompt frontend for bet
-            // this.myGameView.promptPlayerBet(int playerId, int betMin, int betMax);
-            // Player hashcode (general object hashcode is the id number)
-            // 1. Set main with player ID
-            // 2. Prompt for bet
-            // How do I recieve this result? Lambda? Pause until another method is called?
-            // this.myTable.placeEntryBet(this.myEntryBet, (bet) -> this.acceptBet(bet));
             // this.myTable.performPlayerAction(this.myPlayerActions, (action) -> this.acceptAction(action));
         }
     }

@@ -2,7 +2,9 @@ package engine.table;
 
 import data.xmlreader.Pair;
 import engine.bet.Bet;
+import engine.player.Player;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public interface TableInterface {
@@ -14,10 +16,12 @@ public interface TableInterface {
     void acceptString(String s);
 
     /**
-     * prompt the table to prompt all players to place entry bet
-     * @param s is the type of bet for all players to place
+     * Place the bet accordingly with the front end selection
+     * @param playerHash is the identification number of the appropriate player
+     * @param s is the bet type that was placed
+     * @param wager is the wager size for that bet
      */
-    void placeEntryBet(String s, Consumer<Bet> betConsumer);
+    void placeEntryBet(int playerHash, String s, double wager);
 
     /**
      * called by controller for dealer to distribute cards to players
@@ -32,8 +36,28 @@ public interface TableInterface {
     void performPlayerAction(String action);
 
     /**
-     * called by the controller to determine total players currently sitting at table
-     * @return number of players (length of list)
+     * called by the controller to identify players
+     * @return all players unique hash codes
      */
-    int totalPlayers();
+    List<Integer> getPlayerHashCodes();
+
+    /**
+     * Get all of the current players at the table
+     * @return list of players
+     */
+    List<Player> getPlayers();
+
+    /**
+     * Determine if any players are still active in the round/game
+     * @return true if any players are still alive
+     */
+    boolean hasActivePlayers();
+
+    /**
+     * fetch table limits of betting to determine slider ranges for user display
+     * @return table min/max as specified in data file
+     */
+    int getTableMin();
+    int getTableMax();
+
 }
