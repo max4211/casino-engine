@@ -107,6 +107,7 @@ public class Table implements TableInterface {
         return this.myTableMax;
     }
 
+    // TODO - slower individual card dealing with animation (Sprint 3 task)
     private void dealIndividualCard(int quantity) {
         for (int i = 1; i <= quantity; i ++) {
             for (Player p: this.myPlayers) {

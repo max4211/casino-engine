@@ -27,9 +27,16 @@ public class Controller implements ControllerInterface {
 
     // TODO - place entry bet and perform player action inside of the view, register inside the model
     public void startGame() {
+        renderPlayers();
         promptForEntryBet();
         performDealerAction();
         promptForActions();
+    }
+
+    private void renderPlayers() {
+        for (Player p: this.myTable.getPlayers()) {
+            this.myGameView.addPlayer(p.getID(), p.getBankroll());
+        }
     }
 
     private void promptForEntryBet() {
@@ -42,6 +49,7 @@ public class Controller implements ControllerInterface {
         }
     }
 
+    // TODO - alert front end cards have all been dealt
     private void performDealerAction() {
         this.myTable.performDealerAction(this.myDealerAction);
         // player number, bet number, card number (addCard in CardTriplet form)
@@ -60,11 +68,6 @@ public class Controller implements ControllerInterface {
             // 4. Tell backend to do action
             // this.myTable.performPlayerAction(this.myPlayerActions, (action) -> this.acceptAction(action));
         }
-    }
-
-    @Override
-    public void acceptBet(Bet bet) {
-
     }
 
     @Override
