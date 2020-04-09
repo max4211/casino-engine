@@ -24,7 +24,7 @@ public interface GameViewInterface {
 
     public void removeBet(int playerId, int betId);
 
-    public void addPlayer(int playerId, double bankroll);
+    public void addPlayer(String name, int playerId, double bankroll);
 
     public void removePlayer(int playerId);
 
