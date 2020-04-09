@@ -66,7 +66,7 @@ public class Controller implements ControllerInterface {
     }
 
     // TODO - refactor a accepts card to be generic to bets and flag bets that need a card
-    // WIll be more suitable to split and double down
+    // TODO - refactor action to execute on player? (in cases of split)
     private void promptForActions() {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
@@ -74,6 +74,7 @@ public class Controller implements ControllerInterface {
             this.myGameView.updateMainPlayer(p.getID());
             Action a = this.myFactory.createAction(this.myGameView.getAction(this.myPlayerActions));
             a.execute(p.getNextBet());
+            this.myTable.updateBets(p);
         }
     }
 

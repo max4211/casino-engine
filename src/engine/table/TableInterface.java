@@ -67,4 +67,10 @@ public interface TableInterface {
      * @return the appopriate player whose action it is
      */
     Player getNextPlayer();
+
+    /**
+     * After a player performs an action, update their bets in the table
+     * @param p player to update
+     */
+    void updateBets(Player p);
 }
