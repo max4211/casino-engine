@@ -9,4 +9,5 @@ public interface ActionInterface {
      * @param target bet that the action executes on
      */
     void execute(Bet target);
+
 }

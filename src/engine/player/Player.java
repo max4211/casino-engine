@@ -45,4 +45,14 @@ public class Player implements PlayerInterface {
         this.myActiveBets.add(bet);
         return bet.getID();
     }
+
+    @Override
+    public Bet getNextBet() {
+        for (Bet b: this.myActiveBets) {
+            if (b.isActive()) {
+                return b;
+            }
+        }
+        return null;
+    }
 }

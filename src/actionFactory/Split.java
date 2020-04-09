@@ -2,16 +2,16 @@ package actionFactory;
 
 import engine.bet.Bet;
 
-public class Hit extends Action {
+public class Split extends Action {
 
-    public Hit() {
+    public Split() {
         super();
         System.out.println("Created a hit action");
     }
 
-    // TODO have a setter for all methods with what they need
+    // TODO implement split method
     @Override
     public void execute(Bet target) {
-        target.setNeedsCard(true);
+        target.setActive(false);
     }
 }

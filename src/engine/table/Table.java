@@ -95,7 +95,7 @@ public class Table implements TableInterface {
 
     @Override
     public boolean hasActivePlayers() {
-        return false;
+        return getNextPlayer() != null;
     }
 
     @Override
@@ -106,6 +106,18 @@ public class Table implements TableInterface {
     @Override
     public double getTableMax() {
         return this.myTableMax;
+    }
+
+    @Override
+    public Player getNextPlayer() {
+        for (Player p: this.myPlayers) {
+            for (Bet b: p.getBets()) {
+                if (b.isActive()) {
+                    return p;
+                }
+            }
+        }
+        return null;
     }
 
     // TODO - slower individual card dealing with animation (Sprint 3 task)

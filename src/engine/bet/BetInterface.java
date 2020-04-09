@@ -28,4 +28,28 @@ public interface BetInterface {
      * @return id of bet
      */
     int getID();
+
+    /**
+     * Determines if bet is active
+     * @return
+     */
+    boolean isActive();
+
+    /**
+     * Tells the controller if the bet needs a card
+     * @return
+     */
+    boolean needsCard();
+
+    /**
+     * Called by action to modify active state
+     * @param state
+     */
+    void setActive(boolean state);
+
+    /**
+     * Called by action to modify need card state
+     * @param state
+     */
+    void setNeedsCard(boolean state);
 }

@@ -62,4 +62,9 @@ public interface TableInterface {
     double getTableMin();
     double getTableMax();
 
+    /**
+     * Finds next active player in the list who has the action
+     * @return the appopriate player whose action it is
+     */
+    Player getNextPlayer();
 }

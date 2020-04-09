@@ -2,6 +2,8 @@ package controller;
 
 import GameView.GameView;
 import Utility.CardTriplet;
+import actionFactory.Action;
+import actionFactory.ActionFactory;
 import data.xmlreader.Pair;
 import engine.bet.Bet;
 import engine.dealer.Card;
@@ -17,6 +19,7 @@ public class Controller implements ControllerInterface {
     private final String myEntryBet;
     private final List<String> myPlayerActions;
     private final Pair myDealerAction;
+    private final ActionFactory myFactory;
 
     // TODO - construct controller with a view object
     public Controller(Table table, GameView gameView, String entryBet, List<String> playerActions, Pair dealerAction) {
@@ -25,6 +28,7 @@ public class Controller implements ControllerInterface {
         this.myEntryBet = entryBet;
         this.myPlayerActions = playerActions;
         this.myDealerAction = dealerAction;
+        this.myFactory = new ActionFactory(playerActions);
     }
 
     // TODO - place entry bet and perform player action inside of the view, register inside the model
@@ -50,7 +54,6 @@ public class Controller implements ControllerInterface {
             double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
             System.out.printf("min: %.1f, max: %.1f\n", min, max);
             double wager = this.myGameView.promptPlayerBet(min, max);
-            // double wager = 10;
             int betID = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
             this.myGameView.addBet(null, wager, betID, playerHash);
         }
@@ -61,18 +64,16 @@ public class Controller implements ControllerInterface {
         updatePlayerHands();
     }
 
+    // TODO - refactor a accepts card to be generic to bets and flag bets that need a card
+    // WIll be more suitable to split and double down
     private void promptForActions() {
-        this.myGameView.getAction(this.myPlayerActions);
-//        while (this.myTable.hasActivePlayers()) {
-//
-//            // TODO - prompt action to be performed on front end
-//            // 0: Get next active Player from table (implement tags for bets of active in round)
-//            // 1: Controller tells front end who is up (player ID)
-//            // 2. Present view with action box and get string of action type
-//            // 3. Perform player action (getAction (List<String> s) - always called on main player
-//            // 4. Tell backend to do action
-//            // this.myTable.performPlayerAction(this.myPlayerActions, (action) -> this.acceptAction(action));
-//        }
+        while (this.myTable.hasActivePlayers()) {
+            Player p = this.myTable.getNextPlayer();
+            System.out.printf("prompting player (%s) for a bet", p.getName());
+            this.myGameView.updateMainPlayer(p.getID());
+            Action a = this.myFactory.createAction(this.myGameView.getAction(this.myPlayerActions));
+            a.execute(p.getNextBet());
+        }
     }
 
     private void updatePlayerHands() {

@@ -2,11 +2,11 @@ package actionFactory;
 
 import engine.bet.Bet;
 
-public class Check extends Action {
+public class Stay extends Action {
 
-    public Check() {
+    public Stay() {
         super();
-        System.out.println("Created a check action");
+        System.out.println("Created a stay action");
     }
 
     @Override

@@ -35,4 +35,10 @@ public interface PlayerInterface {
      * @param wager size of bet
      */
     int placeBet(double wager);
+
+    /**
+     * Finds next active bet inside of the player
+     * @return
+     */
+    Bet getNextBet();
 }
