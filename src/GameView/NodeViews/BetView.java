@@ -51,8 +51,8 @@ public class BetView implements NodeViewInterface, TaggableInterface {
     }
 
     // TODO: this checks index twice (again in handview): good or bad?
-    public void showCard(int id) {
-        myHand.showCard(id);
+    public void showCard(int cardID) {
+        myHand.showCard(cardID);
     }
 
     public VBox getView() {
