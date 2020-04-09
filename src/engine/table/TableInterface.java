@@ -59,7 +59,7 @@ public interface TableInterface {
      * fetch table limits of betting to determine slider ranges for user display
      * @return table min/max as specified in data file
      */
-    int getTableMin();
-    int getTableMax();
+    double getTableMin();
+    double getTableMax();
 
 }
