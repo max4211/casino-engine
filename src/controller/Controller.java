@@ -47,8 +47,11 @@ public class Controller implements ControllerInterface {
         for (Player p: this.myTable.getPlayers()) {
             int playerHash = p.getID();
             this.myGameView.updateMainPlayer(playerHash);
-            // double wager = this.myGameView.promptPlayerBet(this.myTable.getTableMin(), (int)(Math.min(this.myTable.getTableMax(), p.getBankroll())));
-            double wager = 10;
+            int min = this.myTable.getTableMin();
+            int max = (int) Math.min(this.myTable.getTableMax(), p.getBankroll());
+            System.out.printf("min: %d, max: %d\n", min, max);
+            double wager = this.myGameView.promptPlayerBet(min, max);
+            // double wager = 10;
             int betID = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
             this.myGameView.addBet(null, wager, betID, playerHash);
         }
