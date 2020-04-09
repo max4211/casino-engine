@@ -23,7 +23,6 @@ public class HandClassifier implements HandClassifierInterface {
 
     @Override
     public void classifyHand(Hand h) {
-        System.out.println("Classifying hand inside HandClassifier.java");
         printHand(h);
         if (checkLosingHand(h)) {
             return;
@@ -41,7 +40,7 @@ public class HandClassifier implements HandClassifierInterface {
 
     //TODO - implement reflection (see below)
     private boolean checkLosingHand(Hand h) {
-        System.out.printf("\nchecking losing hands: ");
+        System.out.printf("\nchecking losing hands: \n");
         for (String s: myLosingHands) {
             System.out.printf("%s, ", s);
             if (reflectOnMethod(s, h)) {
@@ -97,11 +96,12 @@ public class HandClassifier implements HandClassifierInterface {
     private boolean reflectOnMethod(String name, Hand h) {
         try {
             String methodName = IS_PREFIX + name;
-            System.out.println("invoked method name: " + methodName);
+//            System.out.println("invoked method name: " + methodName);
             Method method = this.getClass().getDeclaredMethod(methodName, Hand.class);
-            System.out.println("method recieved: " + method);
+//            System.out.println("method recieved: " + method);
             Object o = method.invoke(this, h);
-            System.out.println("invoked method and recieved object: " + o);
+//            System.out.println("invoked method and recieved object: " + o);
+            System.out.printf("(%s)\n", o);
             return (boolean) o;
         } catch (Exception e) {
             e.printStackTrace();
