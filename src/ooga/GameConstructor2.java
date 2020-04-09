@@ -40,13 +40,8 @@ public class GameConstructor2 extends Application {
         List<Pair> deckList = myReader.getDeck();
         Deck myDeck = new Deck(deckList);
         Dealer myDealer = new Dealer(myDeck);
+        Table myTable = new Table(playerList, myDealer);
 
-        List<String> myWinningHands = myReader.getWinningHands();
-        List<String> myLosingHands = myReader.getLosingHands();
-        HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);
-        HandEvaluator myHandEvaluator = new HandEvaluator();
-        BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
-        Table myTable = new Table(playerList, myDealer, myBetEvaluator, myHandClassifier);
         return myTable;
     }
 
@@ -54,7 +49,13 @@ public class GameConstructor2 extends Application {
         String myEntryBet = myReader.getEntryBet();
         List<String> myPlayerActions = myReader.getPlayerAction();
         Pair myDealerAction = myReader.getDealerAction();
-        return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction);
+        List<String> myWinningHands = myReader.getWinningHands();
+        List<String> myLosingHands = myReader.getLosingHands();
+        HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);
+        HandEvaluator myHandEvaluator = new HandEvaluator();
+        BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
+
+        return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction, myHandClassifier, myBetEvaluator);
     }
 
     private static GameView constructGameView() {

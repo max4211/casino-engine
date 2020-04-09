@@ -18,4 +18,23 @@ public interface HandInterface {
      */
     List<Card> getCards();
 
+    /**
+     * Called by the HandClssifier to add a classification tag to a hand
+     * @param type
+     * @param loser checks if the hand lost
+     */
+    void classifyHand(String type, boolean loser);
+
+    /**
+     * Called by the Bet to determine what type of hand it holds
+     * @return the classification (String, TODO enum)
+     */
+    String getClassification();
+
+    /**
+     * Checks if the hand is a loser for garbage collection
+     * @return
+     */
+    boolean isLoser();
+
 }

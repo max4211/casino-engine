@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+
 /**
  * Module that handles game initalization, but little more. The sole method works with the XML and Table modules to construct a MVC model
  * with user inputted preferences via the XML.
