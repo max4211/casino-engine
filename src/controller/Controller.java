@@ -100,6 +100,7 @@ public class Controller implements ControllerInterface {
     private void updatePlayerHands() {
         for (Player p: this.myTable.getPlayers()) {
             int playerID = p.getID();
+            this.myGameView.updateMainPlayer(playerID);
             for (Bet b: p.getBets()) {
                 int betID = b.getID();
                 for (Card c: b.getHand().getCards()) {
