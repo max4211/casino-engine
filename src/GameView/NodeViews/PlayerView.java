@@ -1,7 +1,7 @@
-package GameView.Players;
+package GameView.NodeViews;
 
-import GameView.TaggableInterface;
-import GameView.ViewInterface;
+import GameView.NodeViews.Interfaces.TaggableInterface;
+import GameView.NodeViews.Interfaces.NodeViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.HBox;
@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerView implements ViewInterface, TaggableInterface {
+public class PlayerView implements NodeViewInterface, TaggableInterface {
 
     private List<BetView> myBets;
     private PlayerInfoView myInfo;
@@ -30,8 +30,8 @@ public class PlayerView implements ViewInterface, TaggableInterface {
         myView.getChildren().add(myInfo.getView());
     }
 
-    public void addBet(List<CardTriplet> hand, double wager, int id) {
-        BetView addedBetView = new BetView(hand, wager, id);
+    public void addBet(List<CardTriplet> hand, double wager, int betID) {
+        BetView addedBetView = new BetView(hand, wager, betID);
         myBets.add(addedBetView);
         myView.getChildren().add(addedBetView.getView());
     }

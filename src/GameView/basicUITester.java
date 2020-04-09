@@ -1,6 +1,8 @@
 package GameView;
 
-import GameView.Players.PlayerView;
+import GameView.NodeViews.GameView;
+import GameView.NodeViews.PlayerView;
+import GameView.NodeViews.TableView;
 import Utility.CardTriplet;
 import javafx.application.Application;
 import javafx.scene.Scene;

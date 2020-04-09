@@ -1,9 +1,10 @@
-package GameView;
+package GameView.NodeViews;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import GameView.NodeViews.Interfaces.NodeViewInterface;
 
-public class TableView implements ViewInterface {
+public class TableView implements NodeViewInterface {
 
     private static final String FOLDER = "tableImages/";
     private ImageView myTable;
@@ -23,4 +24,5 @@ public class TableView implements ViewInterface {
     public ImageView getView() {
         return myTable;
     }
+
 }

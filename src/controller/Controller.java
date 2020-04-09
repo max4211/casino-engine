@@ -1,6 +1,6 @@
 package controller;
 
-import GameView.GameView;
+import GameView.NodeViews.GameView;
 import Utility.CardTriplet;
 import data.xmlreader.Pair;
 import engine.bet.Bet;
@@ -9,7 +9,6 @@ import engine.player.Player;
 import engine.table.Table;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class Controller implements ControllerInterface {
 

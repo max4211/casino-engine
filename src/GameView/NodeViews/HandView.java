@@ -1,6 +1,6 @@
-package GameView.Players;
+package GameView.NodeViews;
 
-import GameView.ViewInterface;
+import GameView.NodeViews.Interfaces.NodeViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.HBox;
@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HandView implements ViewInterface {
+public class HandView implements NodeViewInterface {
 
     private HBox myHand;
     private List<CardView> myCards;

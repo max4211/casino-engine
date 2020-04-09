@@ -1,38 +1,26 @@
-package GameView;
+package GameView.NodeViews.Interfaces;
 
 import Utility.CardTriplet;
-import javafx.util.Pair;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public interface GameViewInterface {
 
-    /**
-     * always call this
-     * @param file
-     */
     public void renderTable(String file);
 
-    /**
-     * make sure ids are unique for perfect functionality
-     */
     public void addCard(CardTriplet cardInfo, int playerID, int betID);
 
     public void showCard(int betId, int cardId);
 
-    public String getAction(List<String> actions);
-
-    /**
-     * optional call needed for blackjack
-     */
     public void renderAdversary(List<CardTriplet> actions);
 
     public void showAdversaryCard(int cardId);
 
+    public void addAdversaryCard(int cardID);
+
     public void addBet(List<CardTriplet> deckInfo, double wager, int betID, int playerID);
 
-    public void deleteBet(int playerId, int betId);
+    public void removeBet(int playerId, int betId);
 
     public void addPlayer(int playerId, double bankroll);
 
@@ -45,5 +33,7 @@ public interface GameViewInterface {
      * @param minBet
      * @param maxBet
      */
-    double promptPlayerBet(double minBet, double maxBet);
+    double getWager(double minBet, double maxBet);
+
+    public String getAction(List<String> actions);
 }
