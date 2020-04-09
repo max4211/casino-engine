@@ -7,7 +7,7 @@ import engine.player.Player;
 
 import java.util.List;
 
-public class Table {
+public class Table implements TableInterface {
 
     private List<Player> myPlayers;
     private Dealer myDealer;
@@ -25,7 +25,11 @@ public class Table {
     /**
      * SHELL
      */
+    @Override
     public void acceptString(String s) {
         System.out.println(s);
     }
+
+
+
 }

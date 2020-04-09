@@ -1,5 +1,6 @@
 package ooga;
 
+import controller.Controller;
 import data.xmlreader.Pair;
 import data.xmlreader.XMLReader;
 import engine.dealer.Dealer;
@@ -48,13 +49,19 @@ public class GameConstructor {
         return myTable;
     }
 
+    private static Controller constructController(XMLReader myReader, Table myTable) {
+        String myEntryBet = myReader.getEntryBet();
+        List<String> myPlayerActions = myReader.getPlayerAction();
+        Pair myDealerAction = myReader.getDealerAction();
+
+        return new Controller(myTable, myEntryBet, myPlayerActions, myDealerAction);
+    }
+
     // TODO - refactor game code into non static objects, currently running through main must be static
     public static void main (String[] args) throws ParserConfigurationException, SAXException, IOException {
         XMLReader myReader = new XMLReader(testFile);
         Table myTable = constructTable(myReader);
+        Controller myController = constructController(myReader, myTable);
 
-        String myEntryBet = myReader.getEntryBet();
-        List<String> myPlayerActions = myReader.getPlayerAction();
-        Pair myDealerAction = myReader.getDealerAction();
     }
 }
