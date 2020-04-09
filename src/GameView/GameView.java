@@ -92,6 +92,7 @@ public class GameView implements GameViewInterface {
 
 
     public double promptPlayerBet(double minBet, double maxBet) {
+
         TextInputDialog betAmount = new TextInputDialog(String.valueOf(minBet));
         String actionPrompt = myResources.getString(BET_PROMPT_KEY);
         actionPrompt.replaceAll(MIN_STRING, String.valueOf(minBet));

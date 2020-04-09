@@ -9,7 +9,6 @@ import engine.player.Player;
 import engine.table.Table;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class Controller implements ControllerInterface {
 
@@ -50,8 +49,8 @@ public class Controller implements ControllerInterface {
             double min = this.myTable.getTableMin();
             double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
             System.out.printf("min: %.1f, max: %.1f\n", min, max);
-            double wager = this.myGameView.promptPlayerBet(min, max);
-            // double wager = 10;
+            // double wager = this.myGameView.promptPlayerBet(min, max);
+            double wager = 10;
             int betID = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
             this.myGameView.addBet(null, wager, betID, playerHash);
         }
@@ -63,15 +62,17 @@ public class Controller implements ControllerInterface {
     }
 
     private void promptForActions() {
-        while (this.myTable.hasActivePlayers()) {
-            // TODO - prompt action to be performed on front end
-            // 0: Get next active Player from table (implement tags for bets of active in round)
-            // 1: Controller tells front end who is up (player ID)
-            // 2. Present view with action box and get string of action type
-            // 3. Perform player action (getAction (List<String> s) - always called on main player
-            // 4. Tell backend to do action
-            // this.myTable.performPlayerAction(this.myPlayerActions, (action) -> this.acceptAction(action));
-        }
+        this.myGameView.getAction(this.myPlayerActions);
+//        while (this.myTable.hasActivePlayers()) {
+//
+//            // TODO - prompt action to be performed on front end
+//            // 0: Get next active Player from table (implement tags for bets of active in round)
+//            // 1: Controller tells front end who is up (player ID)
+//            // 2. Present view with action box and get string of action type
+//            // 3. Perform player action (getAction (List<String> s) - always called on main player
+//            // 4. Tell backend to do action
+//            // this.myTable.performPlayerAction(this.myPlayerActions, (action) -> this.acceptAction(action));
+//        }
     }
 
     private void updatePlayerHands() {
