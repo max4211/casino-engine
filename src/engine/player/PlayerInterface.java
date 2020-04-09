@@ -34,5 +34,5 @@ public interface PlayerInterface {
      * Place bet (of size wager)
      * @param wager size of bet
      */
-    void placeBet(double wager);
+    int placeBet(double wager);
 }
