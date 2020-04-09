@@ -4,66 +4,178 @@
     <Authors>Eric Doppelt and Max Smith</Authors>
     <Card>
         <Value>1</Value>
-        <Suit>Club</Suit>
+        <Suit>Hearts</Suit>
     </Card>
     <Card>
         <Value>2</Value>
-        <Suit>Club</Suit>
+        <Suit>Hearts</Suit>
     </Card>
     <Card>
         <Value>3</Value>
-        <Suit>Club</Suit>
+        <Suit>Hearts</Suit>
     </Card>
     <Card>
         <Value>4</Value>
-        <Suit>Club</Suit>
+        <Suit>Hearts</Suit>
+    </Card>
+    <Card>
+        <Value>5</Value>
+        <Suit>Hearts</Suit>
+    </Card>
+    <Card>
+        <Value>6</Value>
+        <Suit>Hearts</Suit>
+    </Card>
+    <Card>
+        <Value>7</Value>
+        <Suit>Hearts</Suit>
+    </Card>
+    <Card>
+        <Value>8</Value>
+        <Suit>Hearts</Suit>
+    </Card>
+    <Card>
+        <Value>9</Value>
+        <Suit>Hearts</Suit>
+    </Card>
+    <Card>
+        <Value>10</Value>
+        <Suit>Hearts</Suit>
+    </Card>
+    <Card>
+        <Value>11</Value>
+        <Suit>Hearts</Suit>
     </Card>
     <Card>
         <Value>1</Value>
-        <Suit>Spade</Suit>
+        <Suit>Spades</Suit>
     </Card>
     <Card>
         <Value>2</Value>
-        <Suit>Spade</Suit>
+        <Suit>Spades</Suit>
     </Card>
     <Card>
         <Value>3</Value>
-        <Suit>Spade</Suit>
+        <Suit>Spades</Suit>
     </Card>
     <Card>
         <Value>4</Value>
-        <Suit>Spade</Suit>
+        <Suit>Spades</Suit>
+    </Card>
+    <Card>
+        <Value>5</Value>
+        <Suit>Spades</Suit>
+    </Card>
+    <Card>
+        <Value>6</Value>
+        <Suit>Spades</Suit>
+    </Card>
+    <Card>
+        <Value>7</Value>
+        <Suit>Spades</Suit>
+    </Card>
+    <Card>
+        <Value>8</Value>
+        <Suit>Spades</Suit>
+    </Card>
+    <Card>
+        <Value>9</Value>
+        <Suit>Spades</Suit>
+    </Card>
+    <Card>
+        <Value>10</Value>
+        <Suit>Spades</Suit>
+    </Card>
+    <Card>
+        <Value>11</Value>
+        <Suit>Spades</Suit>
     </Card>
     <Card>
         <Value>1</Value>
-        <Suit>Diamond</Suit>
+        <Suit>Clubs</Suit>
     </Card>
     <Card>
         <Value>2</Value>
-        <Suit>Diamond</Suit>
+        <Suit>Clubs</Suit>
     </Card>
     <Card>
         <Value>3</Value>
-        <Suit>Diamond</Suit>
+        <Suit>Clubs</Suit>
     </Card>
     <Card>
         <Value>4</Value>
-        <Suit>Diamond</Suit>
+        <Suit>Clubs</Suit>
+    </Card>
+    <Card>
+        <Value>5</Value>
+        <Suit>Clubs</Suit>
+    </Card>
+    <Card>
+        <Value>6</Value>
+        <Suit>Clubs</Suit>
+    </Card>
+    <Card>
+        <Value>7</Value>
+        <Suit>Clubs</Suit>
+    </Card>
+    <Card>
+        <Value>8</Value>
+        <Suit>Clubs</Suit>
+    </Card>
+    <Card>
+        <Value>9</Value>
+        <Suit>Clubs</Suit>
+    </Card>
+    <Card>
+        <Value>10</Value>
+        <Suit>Clubs</Suit>
+    </Card>
+    <Card>
+        <Value>11</Value>
+        <Suit>Clubs</Suit>
     </Card>
     <Card>
         <Value>1</Value>
-        <Suit>Heart</Suit>
+        <Suit>Diamonds</Suit>
     </Card>
     <Card>
         <Value>2</Value>
-        <Suit>Heart</Suit>
+        <Suit>Diamonds</Suit>
     </Card>
     <Card>
         <Value>3</Value>
-        <Suit>Heart</Suit>
+        <Suit>Diamonds</Suit>
     </Card>
     <Card>
         <Value>4</Value>
-        <Suit>Heart</Suit>
+        <Suit>Diamonds</Suit>
+    </Card>
+    <Card>
+        <Value>5</Value>
+        <Suit>Diamonds</Suit>
+    </Card>
+    <Card>
+        <Value>6</Value>
+        <Suit>Diamonds</Suit>
+    </Card>
+    <Card>
+        <Value>7</Value>
+        <Suit>Diamonds</Suit>
+    </Card>
+    <Card>
+        <Value>8</Value>
+        <Suit>Diamonds</Suit>
+    </Card>
+    <Card>
+        <Value>9</Value>
+        <Suit>Diamonds</Suit>
+    </Card>
+    <Card>
+        <Value>10</Value>
+        <Suit>Diamonds</Suit>
+    </Card>
+    <Card>
+        <Value>11</Value>
+        <Suit>Diamonds</Suit>
     </Card>
 </Deck>
