@@ -1,5 +1,6 @@
 package engine.table;
 
+import Utility.CardTriplet;
 import data.xmlreader.Pair;
 import engine.bet.Bet;
 import engine.player.Player;
@@ -27,8 +28,9 @@ public interface TableInterface {
     /**
      * called by controller for dealer to distribute cards to players
      * @param dealerAction dictates what type of action is conducted
+     * @param cardinfo is the card information to be accepted and executed
      */
-    void performDealerAction(Pair dealerAction);
+    void performDealerAction(Pair dealerAction, Consumer<CardTriplet> cardinfo);
 
     /**
      * called by controller to perform player action (as selected)

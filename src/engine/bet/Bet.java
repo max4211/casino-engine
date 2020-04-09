@@ -8,6 +8,8 @@ public class Bet implements BetInterface {
     private int myID;
     private Hand myHand;
     private double myWager;
+    private boolean handWon;
+    private String myHandClassifier;
 
     public Bet(double wager) {
         this.myHand = new Hand();

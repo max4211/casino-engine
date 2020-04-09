@@ -1,5 +1,6 @@
 package engine.table;
 
+import Utility.CardTriplet;
 import data.xmlreader.Pair;
 import engine.bet.Bet;
 import engine.dealer.Card;
@@ -62,7 +63,7 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public void performDealerAction(Pair dealerAction) {
+    public void performDealerAction(Pair dealerAction, Consumer<CardTriplet> cardinfo) {
         String actionType = dealerAction.getKey();
         int actionQuantity = Integer.parseInt(dealerAction.getValue());
         Class clazz = int.class;
