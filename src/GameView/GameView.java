@@ -12,8 +12,6 @@ import java.util.ResourceBundle;
 
 public class GameView implements GameViewInterface {
 
-
-
     private BorderPane myPane;
     private int DEFAULT_ACTION_INDEX = 0;
 

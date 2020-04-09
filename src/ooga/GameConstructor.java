@@ -13,6 +13,7 @@ import engine.player.Player;
 import engine.player.PlayerList;
 import engine.table.Table;
 import org.xml.sax.SAXException;
+import GameView.Lobby;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -22,6 +23,18 @@ import java.util.Map;
 public class GameConstructor {
 
     private static final String testFile = "src/data/game/blackjackGame.xml";
+
+    public GameConstructor(Lobby myLobby) {
+        try {
+            XMLReader myReader = new XMLReader(testFile);
+            Table myTable = constructTable(myReader);
+            Controller myController = constructController(myReader, myTable, myLobby.getGameView());
+            myController.startGame();
+        } catch (Exception e) {
+            ;
+        }
+
+    }
 
     private static List<Player> createPlayerList(Map<String, Double> playerMap) {
         PlayerList myPlayers = new PlayerList(playerMap);
@@ -50,11 +63,10 @@ public class GameConstructor {
         return myTable;
     }
 
-    private static Controller constructController(XMLReader myReader, Table myTable) {
+    private static Controller constructController(XMLReader myReader, Table myTable, GameView myGameView) {
         String myEntryBet = myReader.getEntryBet();
         List<String> myPlayerActions = myReader.getPlayerAction();
         Pair myDealerAction = myReader.getDealerAction();
-        GameView myGameView = new GameView();
         return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction);
     }
 
@@ -62,7 +74,7 @@ public class GameConstructor {
     public static void main (String[] args) throws ParserConfigurationException, SAXException, IOException {
         XMLReader myReader = new XMLReader(testFile);
         Table myTable = constructTable(myReader);
-        Controller myController = constructController(myReader, myTable);
+        Controller myController = constructController(myReader, myTable, new GameView());
         myController.startGame();
     }
 }
