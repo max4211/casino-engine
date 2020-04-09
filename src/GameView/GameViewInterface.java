@@ -16,12 +16,8 @@ public interface GameViewInterface {
 
     /**
      * make sure ids are unique for perfect functionality
-     * @param deckInfo
-     * @param wager
-     * @param id
      */
-
-    public void addCard(CardTriplet cardInfo);
+    public void addCard(CardTriplet cardInfo, int playerID, int betID);
 
     public void showCard(int betId, int cardId);
 
@@ -36,7 +32,7 @@ public interface GameViewInterface {
 
     public void addBet(List<CardTriplet> deckInfo, double wager, int betID, int playerID);
 
-    public void deleteBet(int betId);
+    public void deleteBet(int playerId, int betId);
 
     public void addPlayer(int playerId, double bankroll);
 
