@@ -16,13 +16,13 @@ public class ActionBoxView implements ViewInterface {
     private Formatter myFormatter;
 
 
-    public ActionBoxView(List<String> allActions, Consumer<String> actionReceiver, Pane parent) {
+    public ActionBoxView(List<String> allActions, Pane parent) {
         myActions = new HBox();
         myFormatter = new Formatter();
         myFormatter.formatUnfixedHBox(myActions);
         for (String action : allActions) {
             Button addedButton = new Button(action);
-            addedButton.setOnAction(e -> selectAction(action, actionReceiver, parent));
+            addedButton.setOnAction(e -> selectAction(action, parent));
             myActions.getChildren().add(addedButton);
         }
     }
@@ -31,8 +31,7 @@ public class ActionBoxView implements ViewInterface {
         return myActions;
     }
 
-    private void selectAction(String chosenAction, Consumer<String> actionReciever, Pane parent) {
-        actionReciever.accept(chosenAction);
-        parent.getChildren().remove(myActions);
+    private void selectAction(String chosenAction, Pane parent) {
+
     }
 }

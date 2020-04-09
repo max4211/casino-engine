@@ -35,6 +35,13 @@ public class basicUITester extends Application {
 
         PV.addCard(a, 50);
 
+        GameView gv = new GameView();
+        List<String> myList = new ArrayList<>();
+        myList.add("max");
+        myList.add("smith");
+
+        System.out.println(gv.getAction(myList));
+        System.out.println(gv.promptPlayerBet(0, 100));
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
     }
