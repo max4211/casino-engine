@@ -1,7 +1,7 @@
 package GameView;
 
-import Formatting.Formatter;
-import javafx.scene.layout.HBox;
+import Utility.CardTriplet;
+import Utility.Formatter;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 
@@ -13,6 +13,8 @@ public class BetView implements ViewInterface {
     private HandView myHand;
     private WagerView myWager;
 
+    private int myID;
+
     // TODO: bind to handview
     private static final int CARD_WIDTH = 56;
     private static final int HEIGHT = 20;
@@ -20,10 +22,12 @@ public class BetView implements ViewInterface {
 
     private Formatter myFormatter;
 
-    public BetView(List<Pair<Double, String>> hand, double wager, int id) {
+    public BetView(List<CardTriplet> hand, double wager, int id) {
         myView = new VBox();
         myFormatter = new Formatter();
         numberOfCards = hand.size();
+        myID = id;
+
         myFormatter.formatFixedVBox(myView, HEIGHT, CARD_WIDTH * numberOfCards);
         myHand = new HandView(hand);
         myWager = new WagerView(wager);
@@ -32,18 +36,18 @@ public class BetView implements ViewInterface {
     }
 
     public void updateWager(double amount) {
-        myWager.updateWager(amount);
+        if (amount > 0) myWager.updateWager(amount);
     }
 
-    public void addCard(Pair<Double, String> newCard) {
+    public void addCard(CardTriplet newCard) {
         numberOfCards++;
         myFormatter.updateVBoxWidth(myView, CARD_WIDTH * numberOfCards);
         myHand.addCardView(newCard);
     }
 
     // TODO: this checks index twice (again in handview): good or bad?
-    public void showCard(int index) {
-        if (index < numberOfCards && index > 0) myHand.showCard(index);
+    public void showCard(int id) {
+        myHand.showCard(id);
     }
 
     public VBox getView() {

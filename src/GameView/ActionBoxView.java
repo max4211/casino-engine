@@ -1,27 +1,26 @@
 package GameView;
 
-import Formatting.Formatter;
+import Utility.Formatter;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ActionBoxView implements ViewInterface {
 
     private HBox myActions;
     private Formatter myFormatter;
-    private String myChosenAction;
 
-    private boolean actionIsSelected;
 
-    public ActionBoxView(List<String> allActions) {
+
+    public ActionBoxView(List<String> allActions, Consumer<String> actionReciever) {
         myActions = new HBox();
         myFormatter = new Formatter();
         myFormatter.formatUnfixedHBox(myActions);
-        actionIsSelected = false;
         for (String action : allActions) {
             Button addedButton = new Button(action);
-            addedButton.setOnAction(e -> selectAction(action));
+            addedButton.setOnAction(e -> selectAction(action, actionReciever));
             myActions.getChildren().add(addedButton);
         }
     }
@@ -30,16 +29,7 @@ public class ActionBoxView implements ViewInterface {
         return myActions;
     }
 
-    public boolean getActionIsSelected() {
-        return actionIsSelected;
-    }
-
-    public String getChosenAction() {
-        return myChosenAction;
-    }
-
-    private void selectAction(String chosenAction) {
-        myChosenAction = chosenAction;
-        actionIsSelected = true;
+    private void selectAction(String chosenAction, Consumer<String> actionReciever) {
+        actionReciever.accept(chosenAction);
     }
 }

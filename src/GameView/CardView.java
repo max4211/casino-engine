@@ -1,6 +1,7 @@
 package GameView;
 
-import Formatting.Formatter;
+import Utility.CardTriplet;
+import Utility.Formatter;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
@@ -10,10 +11,11 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class CardView implements ViewInterface {
+public class CardView implements ViewInterface, TaggableInterface {
 
     private VBox myCard;
     private Collection myCardNodes;
+    private int myID;
 
     private static final double CARD_HEIGHT = 88.9;
     // TODO: bind the width to the BetView, does simple math with it
@@ -21,25 +23,25 @@ public class CardView implements ViewInterface {
     private static final double CORNER_RADIUS = 5;
     private static final Formatter myFormatter = new Formatter();
 
-    private static final int FULL_BACKGROUND_FILL = 1;
-    private static final boolean FILL_AS_PERCENT = true;
-    private static final boolean BACKGROUNDFILL_CONTAIN = false;
-    private static final boolean BACKGROUNDFILL_COVER = false;
-
     // TODO: make this data driven!
     private String cardFilePath = "././data/cardImages/fancyCardDown.png";
     private Image cardImage = new Image(cardFilePath);
 
+    private static final int FULL_BACKGROUND_FILL = 1;
+    private static final boolean FILL_AS_PERCENT = true;
+    private static final boolean BACKGROUNDFILL_CONTAIN = false;
+    private static final boolean BACKGROUNDFILL_COVER = false;
     private static final BackgroundSize FULL_BACKGROUND_SIZE = new BackgroundSize(FULL_BACKGROUND_FILL, FULL_BACKGROUND_FILL, FILL_AS_PERCENT, FILL_AS_PERCENT, BACKGROUNDFILL_CONTAIN, BACKGROUNDFILL_COVER);
     private BackgroundImage hiddenBackgroundImage = new BackgroundImage(cardImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, FULL_BACKGROUND_SIZE);
 
     // TODO: make this data driven!
     private static final Color showingColor = Color.web("FF6464");
 
-    public CardView(Pair<Double, String> cardInfo) {
+    public CardView(CardTriplet cardInfo) {
         myCard = new VBox();
+        myID = cardInfo.getID();
         myFormatter.formatFixedVBox(myCard, CARD_HEIGHT, CARD_WIDTH);
-        createCardNodes(cardInfo.getKey(), cardInfo.getValue());
+        createCardNodes(cardInfo.getValue(), cardInfo.getSuit());
         hideCard();
     }
 
@@ -47,6 +49,8 @@ public class CardView implements ViewInterface {
     public VBox getView() {
         return myCard;
     }
+
+    public boolean hasSameID(int id) { return myID == id;}
 
     //TODO: could remove duplication here in a refactoring step
     public void hideCard() {
