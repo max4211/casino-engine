@@ -39,6 +39,7 @@ public class Bet implements BetInterface {
 
     @Override
     public void acceptCard(Card c) {
+        System.out.printf("bet accepting card: %s\n", c);
         this.myHand.acceptCard(c);
     }
 

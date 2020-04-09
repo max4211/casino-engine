@@ -70,7 +70,7 @@ public class Controller implements ControllerInterface {
     private void promptForActions() {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
-            System.out.printf("prompting player (%s) for a bet --> ", p.getName());
+            System.out.printf("prompting player (%s) for an action --> ", p.getName());
             this.myGameView.updateMainPlayer(p.getID());
             Action a = this.myFactory.createAction(this.myGameView.getAction(this.myPlayerActions));
             a.execute(p.getNextBet());
