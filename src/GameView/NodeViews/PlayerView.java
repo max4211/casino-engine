@@ -36,8 +36,8 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
         myView.getChildren().add(addedBetView.getView());
     }
 
-    public void removeBet(int id) {
-        BetView removedBet = getBet(id);
+    public void removeBet(int betID) {
+        BetView removedBet = getBet(betID);
         myBets.remove(removedBet);
         myView.getChildren().remove(removedBet.getView());
     }
