@@ -33,6 +33,11 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
+    public void removeCard(int playerID, int betID) {
+        
+    }
+
+    @Override
     public void showCard(int betId, int cardId) {
 
     }

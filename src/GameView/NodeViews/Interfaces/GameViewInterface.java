@@ -10,6 +10,8 @@ public interface GameViewInterface {
 
     public void addCard(CardTriplet cardInfo, int playerID, int betID);
 
+    public void removeCard(int playerID, int betID);
+
     public void showCard(int betId, int cardId);
 
     public void renderAdversary(List<CardTriplet> actions);
