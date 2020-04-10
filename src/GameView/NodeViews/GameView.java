@@ -79,6 +79,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void renderAdversary(List<CardTriplet> hand) {
+        System.out.println("RENDERING");
         myAdversary = new HandView(hand);
         myBorderPane.setTop(myAdversary.getView());
     }

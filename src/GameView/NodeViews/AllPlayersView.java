@@ -35,19 +35,11 @@ public class AllPlayersView implements NodeViewInterface {
 
     public void addPlayer(PlayerView addedPlayer) {
         myPlayers.getChildren().add(addedPlayer.getView());
-        System.out.println(addedPlayer.getView());
-        System.out.println(myPlayers.getChildren());
-        System.out.println("ADDING");
-        System.out.println();
         allPlayers.add(addedPlayer);
     }
 
     public void removePlayer(int playerID) {
-        System.out.println("REMOVING");
         PlayerView removedPlayerView = getPlayerView(playerID);
-        System.out.println(removedPlayerView.getView());
-        System.out.println(myPlayers.getChildren());
-        System.out.println();
         myPlayers.getChildren().remove(removedPlayerView.getView());
         allPlayers.remove(removedPlayerView);
     }
