@@ -15,7 +15,13 @@ public class MainPlayerView implements NodeViewInterface, TaggableInterface {
     public MainPlayerView() {
         myView = new VBox();
         myFormatter = new Formatter();
-        myFormatter.formatUnFixedVBox(myView);
+        myFormatter.formatUnfixedCenter(myView);
+
+        String css = "-fx-border-color: #52d780;\n" +
+                "-fx-border-insets: 5;\n" +
+                "-fx-border-width: 3;\n" +
+                "-fx-border-style: dashed;\n";
+        myView.setStyle(css);
     }
 
     public void setMainPlayer(PlayerView newMainPlayer) {
@@ -23,7 +29,7 @@ public class MainPlayerView implements NodeViewInterface, TaggableInterface {
         myView.getChildren().add(myPlayer.getView());
     }
 
-    public void clearMainPlayer() {
+    public void clear() {
         myView.getChildren().clear();;
         myPlayer = null;
     }

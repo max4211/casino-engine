@@ -17,7 +17,7 @@ public class HandView implements NodeViewInterface {
 
     public HandView(List<CardTriplet> allCards) {
         myHand = new HBox();
-        myFormatter.formatUnfixedHBox(myHand);
+        myFormatter.formatUnfixedCenter(myHand);
         myCards = new ArrayList<>();
 
             for (CardTriplet cardInfo : allCards) {

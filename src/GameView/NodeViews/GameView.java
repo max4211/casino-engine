@@ -13,12 +13,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     private BorderPane myBorderPane;
     private MainPlayerView myMainPlayer;
-    private AllPlayersView myOtherPlayers;
+    private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
 
     public GameView() {
         myBorderPane = new BorderPane();
-        myOtherPlayers = new AllPlayersView();
+        myOtherPlayers = new OtherPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
 
         myMainPlayer = new MainPlayerView();
@@ -100,7 +100,8 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void removePlayer(int playerId) {
-
+        if (myMainPlayer.holdsAPlayer() && myMainPlayer.hasSameID(playerId)) myMainPlayer.clear();
+        else if (myOtherPlayers.hasPlayerView(playerId)) myOtherPlayers.removePlayer(playerId);
     }
 
     // TODO: fix this to avoid updating BorderPane all the time
