@@ -80,9 +80,10 @@ public class Controller implements ControllerInterface {
     }
 
     private void renderAdversary() {
-        if(this.myCompetition.equals(Competition.ADVERSARY)) {
-            Adversary adversary = this.myTable.createAdversary();
-            this.myGameView.renderAdversary(parseAdversary(adversary.getHand()));
+        if(this.myCompetition.toUpperCase().equals(Competition.ADVERSARY.toString())) {
+            this.myAdversary = this.myTable.createAdversary();
+            this.myGameView.renderAdversary(parseAdversary(this.myAdversary.getHand()));
+            this.myGameView.showAdversaryCard(this.myAdversary.getCard().getID());
         }
     }
 
@@ -104,8 +105,9 @@ public class Controller implements ControllerInterface {
         }
     }
 
+    // TODO - allow for group evaluation of bets as well
     private void invokeCompetition() {
-
+        // while (this.myAdversary.getHand().getClassification())
     }
 
     private void classifyHand(Bet b) {
