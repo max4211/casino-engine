@@ -1,6 +1,7 @@
 package engine.player;
 
 import engine.bet.Bet;
+import engine.hand.HandOutcome;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,5 +55,20 @@ public class Player implements PlayerInterface {
             }
         }
         return null;
+    }
+
+    @Override
+    public void cashBets() {
+        for (Bet b: this.myActiveBets) {
+            HandOutcome outcome = b.getHand().getOutcome();
+            if (outcome.equals(HandOutcome.WIN)) {
+                this.myBankroll += b.getWager();
+            } else if (outcome.equals(HandOutcome.LOSS)) {
+                this.myBankroll -= b.getWager();
+            } else if (outcome.equals(HandOutcome.TIE)) {
+                ;
+            }
+        }
+        this.myActiveBets = new ArrayList<>();
     }
 }

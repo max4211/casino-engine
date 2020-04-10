@@ -126,7 +126,9 @@ public class Controller implements ControllerInterface {
                 for (Bet b: p.getBets()) {
                     this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
                     System.out.printf("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
+
                 }
+                p.cashBets();
             }
         }
     }
