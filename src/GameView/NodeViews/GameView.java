@@ -61,12 +61,13 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void clearAllBets() {
-
+        if (myMainPlayer.holdsAPlayer()) myMainPlayer.getMainPlayer().clearBets();
+        myOtherPlayers.clearBets();
     }
 
     @Override
     public void clearAdversary() {
-
+        if (myAdversary != null) myAdversary.clearHand();
     }
 
     @Override

@@ -63,4 +63,9 @@ public class HandView implements NodeViewInterface {
             }
         }
     }
+
+    public void clearHand() {
+        myCards.clear();
+        myHand.getChildren().clear();
+    }
  }
