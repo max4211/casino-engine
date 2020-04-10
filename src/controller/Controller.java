@@ -47,7 +47,7 @@ public class Controller implements ControllerInterface {
         this.myEntryBet = entryBet;
         this.myPlayerActions = playerActions;
         this.myDealerAction = dealerAction;
-        this.myFactory = new ActionFactory(playerActions);
+        this.myFactory = new ActionFactory();
         this.myHandClassifier =  handClassifier;
         this.myBetEvaluator = betEvaluator;
         this.myCompetition = competition;
@@ -128,6 +128,7 @@ public class Controller implements ControllerInterface {
                 this.myGameView.updateWager(b.getWager(), p.getID(), b.getID());
             } catch (ReflectionException e) {
                 this.myGameView.displayError(e);
+                System.out.println(e);
             }
         }
     }

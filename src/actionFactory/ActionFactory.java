@@ -10,12 +10,10 @@ import java.util.List;
  */
 public class ActionFactory implements ActionFactoryInterface {
 
-    private List<String> myPossibleActions;
     private static final String ACTION_FACTORY = "actionFactory";
 
-    // TODO - remove possible actioons (currently unused)
-    public ActionFactory(List<String> possibleActions) {
-        this.myPossibleActions = possibleActions;
+    public ActionFactory() {
+
     }
 
 
