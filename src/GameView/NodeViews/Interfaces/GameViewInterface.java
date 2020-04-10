@@ -39,5 +39,7 @@ public interface GameViewInterface {
 
     public void updateWager(double newWager, int playerID, int BetID);
 
+    public void updateBankRoll(double newBankroll, int playerID);
+
     public String selectAction(List<String> actions);
 }
