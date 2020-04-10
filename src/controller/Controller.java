@@ -64,7 +64,7 @@ public class Controller implements ControllerInterface {
         System.out.printf("prompting players for entry bet...\n");
         for (Player p: this.myTable.getPlayers()) {
             int playerHash = p.getID();
-            this.myGameView.updateMainPlayer(playerHash);
+            this.myGameView.setMainPlayer(playerHash);
             double min = this.myTable.getTableMin();
             double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
             System.out.printf("min: %.1f, max: %.1f\n", min, max);
@@ -91,7 +91,7 @@ public class Controller implements ControllerInterface {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
             System.out.printf("prompting player (%s) for an action --> ", p.getName());
-            this.myGameView.updateMainPlayer(p.getID());
+            this.myGameView.setMainPlayer(p.getID());
             Action a = this.myFactory.createAction(this.myGameView.selectAction(this.myPlayerActions));
             Bet b = p.getNextBet();
             a.execute(p, b);

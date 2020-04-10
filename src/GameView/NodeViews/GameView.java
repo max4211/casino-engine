@@ -12,7 +12,7 @@ import java.util.List;
 public class GameView implements GameViewInterface, NodeViewInterface {
 
     private BorderPane myBorderPane;
-    private PlayerView myMainPlayer;
+    private MainPlayerView myMainPlayer;
     private AllPlayersView myOtherPlayers;
     private HandView myAdversary;
 
@@ -20,6 +20,9 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myBorderPane = new BorderPane();
         myOtherPlayers = new AllPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
+
+        myMainPlayer = new MainPlayerView();
+        myBorderPane.setBottom(myMainPlayer.getView());
     }
 
     public BorderPane getView() {
@@ -102,18 +105,15 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     // TODO: fix this to avoid updating BorderPane all the time
     @Override
-    public void updateMainPlayer(int playerID) {
+    public void setMainPlayer(int playerID) {
         if (!myOtherPlayers.hasPlayerView(playerID)) return;
-
-        if (myMainPlayer != null) myOtherPlayers.addPlayer(myMainPlayer);
-        myMainPlayer = myOtherPlayers.getPlayerView(playerID);
-        myBorderPane.setBottom(myMainPlayer.getView());
-
+        if (myMainPlayer.holdsAPlayer()) myOtherPlayers.addPlayer(myMainPlayer.getMainPlayer());
+        myMainPlayer.setMainPlayer(myOtherPlayers.getPlayerView(playerID));
         myOtherPlayers.removePlayer(playerID);
     }
 
     private PlayerView getPlayerView(int playerID) {
-        if (myMainPlayer != null && myMainPlayer.hasSameID(playerID)) return myMainPlayer;
+        if (myMainPlayer.holdsAPlayer() && myMainPlayer.hasSameID(playerID)) return myMainPlayer.getMainPlayer();
         return myOtherPlayers.getPlayerView(playerID);
     }
 }
