@@ -17,8 +17,9 @@ class HandClassifierTest {
 
     @Test
     void testSumHandEvaluations() {
-        HandClassifier hc = new HandClassifier(List.of("SumUnder22"), List.of("SumOver21"));
+        List<String> winners = List.of("Blackjack", "SumUnder22");
+        List<String> losers = List.of("SumOver21");
+        Hand bjTest = new Hand(List.of(new Card("Heart",  11), new Card("Diamond", 10)));
         Hand h = new Hand(List.of(new Card("Heart", 11), new Card("Heart", 10)));
-
     }
 }

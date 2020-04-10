@@ -66,9 +66,11 @@ public class Controller implements ControllerInterface {
     private void restartGame() {
         try {
             Thread.sleep(3000);
-            // this.myGameView.removeBet();
+            this.myGameView.clearAllBets();
+            this.myGameView.clearAdversary();
+            this.startGame();
         } catch (Exception e) {
-            startGame();
+            System.exit(0);
         }
     }
 
