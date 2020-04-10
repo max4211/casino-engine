@@ -33,6 +33,8 @@ public class Controller implements ControllerInterface {
     private final String myCompetition;
     private Adversary myAdversary;
 
+    private static final int SLEEP_TIME = 2000;
+
     // TODO - refactor into data files (in adversary construction?)
     private static final int ADVERSARY_MIN = 17;
 
@@ -65,7 +67,7 @@ public class Controller implements ControllerInterface {
 
     private void restartGame() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(SLEEP_TIME);
             this.myGameView.clearAllBets();
             this.myGameView.clearAdversary();
             this.startGame();

@@ -43,7 +43,7 @@ public class Player implements PlayerInterface {
                 activeBets.add(b);
             }
         }
-        return activeBets;
+        return this.myBets;
     }
 
     @Override
