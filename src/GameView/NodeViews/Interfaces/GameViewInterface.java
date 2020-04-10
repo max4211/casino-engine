@@ -46,4 +46,6 @@ public interface GameViewInterface {
     public void clearAllBets();
 
     public void clearAdversary();
+
+    void announceError(Exception e);
 }

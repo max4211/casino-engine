@@ -1,5 +1,7 @@
 package actionFactory;
 
+import exceptions.ReflectionException;
+
 import java.lang.reflect.Constructor;
 import java.util.List;
 
@@ -24,10 +26,8 @@ public class ActionFactory implements ActionFactoryInterface {
             Constructor ctor = clazz.getConstructor();
             return (Action) ctor.newInstance();
         } catch (Exception e) {
-            System.out.println("Sorry could not invoke reflection at this time");
+            throw new ReflectionException(e);
         }
-
-        return null;
     }
 
     private String createActionPath(String action) {
