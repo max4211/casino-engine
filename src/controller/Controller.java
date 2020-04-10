@@ -129,6 +129,7 @@ public class Controller implements ControllerInterface {
 
                 }
                 p.cashBets();
+                // this.myGameView.updateBankroll()
             }
         }
     }
