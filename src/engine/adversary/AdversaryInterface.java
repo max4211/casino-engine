@@ -22,4 +22,10 @@ public interface AdversaryInterface {
      * @return a single card
      */
     Card getCard();
+
+    /**
+     * Called by controller in end game to increase adversary cards until a point
+     * @return the sum of all cards in adversary hand
+     */
+    int handSum();
 }

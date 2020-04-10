@@ -122,11 +122,18 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public Adversary createAdversary() {
-        this.myAdversary = new Adversary();
-        this.myAdversary.acceptCard(this.myDealer.getCard());
-        this.myAdversary.acceptCard(this.myDealer.getCard());
+    public Adversary createAdversary(int min) {
+        this.myAdversary = new Adversary(min);
+        giveAdversaryCard();
+        giveAdversaryCard();
         return this.myAdversary;
+    }
+
+    @Override
+    public Card giveAdversaryCard() {
+        Card c = this.myDealer.getCard();
+        this.myAdversary.acceptCard(c);
+        return c;
     }
 
     // TODO - slower individual card dealing with animation (Sprint 3 task)

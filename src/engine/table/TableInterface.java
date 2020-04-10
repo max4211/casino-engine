@@ -73,7 +73,13 @@ public interface TableInterface {
 
     /**
      * Create an adversary
+     * @param min are parameters to adversary gameplay
      * @return the adversary inside of the game
      */
-    Adversary createAdversary();
+    Adversary createAdversary(int min);
+
+    /**
+     * Returns card that was just given to adversary
+     */
+    Card giveAdversaryCard();
 }

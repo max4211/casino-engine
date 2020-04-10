@@ -6,9 +6,11 @@ import engine.hand.Hand;
 public class Adversary implements AdversaryInterface {
 
     private Hand myHand;
+    private final int myMinSum;
 
-    public Adversary() {
+    public Adversary(int min) {
         this.myHand = new Hand();
+        this.myMinSum = min;
     }
 
     @Override
@@ -24,5 +26,19 @@ public class Adversary implements AdversaryInterface {
     @Override
     public Hand getHand() {
         return this.myHand;
+    }
+
+    @Override
+    public int handSum() {
+        int total = 0;
+        for (Card c: this.myHand.getCards()) {
+            total += c.getValue();
+        }
+        return total;
+    }
+
+    public boolean wantsCards() {
+        int sum = this.handSum();
+        return (sum < this.myMinSum);
     }
 }

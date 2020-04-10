@@ -30,6 +30,10 @@ public class Controller implements ControllerInterface {
     private final String myCompetition;
     private Adversary myAdversary;
 
+    // TODO - refactor into data files (in adversary construction?)
+    private static final int ADVERSARY_MAX = 21;
+    private static final int ADVERSARY_MIN = 17;
+
     public Controller(Table table, GameView gameView, String entryBet, List<String> playerActions, Pair dealerAction,
                       HandClassifier handClassifier, BetEvaluator betEvaluator, String competition) {
         this.myTable = table;
@@ -61,7 +65,7 @@ public class Controller implements ControllerInterface {
     }
 
     private void promptForEntryBet() {
-        System.out.printf("prompting players for entry bet...\n");
+        System.out.print("prompting players for entry bet...\n");
         for (Player p: this.myTable.getPlayers()) {
             int playerHash = p.getID();
             this.myGameView.updateMainPlayer(playerHash);
@@ -81,7 +85,7 @@ public class Controller implements ControllerInterface {
 
     private void renderAdversary() {
         if(this.myCompetition.toUpperCase().equals(Competition.ADVERSARY.toString())) {
-            this.myAdversary = this.myTable.createAdversary();
+            this.myAdversary = this.myTable.createAdversary(ADVERSARY_MIN);
             this.myGameView.renderAdversary(parseAdversary(this.myAdversary.getHand()));
             this.myGameView.showAdversaryCard(this.myAdversary.getCard().getID());
         }
@@ -105,9 +109,24 @@ public class Controller implements ControllerInterface {
         }
     }
 
-    // TODO - allow for group evaluation of bets as well
+    // TODO - refactor adversary sum to hand type?
+    // TODO - refactor to lambdas?
     private void invokeCompetition() {
-        // while (this.myAdversary.getHand().getClassification())
+        if (this.myCompetition.toUpperCase().equals(Competition.ADVERSARY.toString())) {
+            while (this.myAdversary.wantsCards()) {
+                this.myGameView.addAdversaryCard(createCardTriplet(this.myTable.giveAdversaryCard()));
+                for (Card c: this.myAdversary.getHand().getCards()) {
+                    this.myGameView.showAdversaryCard(c.getID());
+                }
+            }
+        } else {
+            // TODO - group evaluation
+        }
+    }
+
+    // TODO implement method
+    private boolean adversaryHit() {
+        return false;
     }
 
     private void classifyHand(Bet b) {
