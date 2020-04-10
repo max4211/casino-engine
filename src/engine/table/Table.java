@@ -1,19 +1,15 @@
 package engine.table;
 
-import Utility.CardTriplet;
 import data.xmlreader.Pair;
+import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.dealer.Dealer;
-import engine.evaluator.BetEvaluator;
-import engine.evaluator.HandClassifier;
 import engine.player.Player;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class Table implements TableInterface {
 
@@ -29,6 +25,8 @@ public class Table implements TableInterface {
 
     private double myTableMin = 5;
     private double myTableMax = 100;
+
+    private Adversary myAdversary;
 
     public Table(List<Player> players, Dealer dealer) {
         this.myPlayers = players;
@@ -121,6 +119,14 @@ public class Table implements TableInterface {
             }
         }
         return null;
+    }
+
+    @Override
+    public Adversary createAdversary() {
+        this.myAdversary = new Adversary();
+        this.myAdversary.acceptCard(this.myDealer.getCard());
+        this.myAdversary.acceptCard(this.myDealer.getCard());
+        return this.myAdversary;
     }
 
     // TODO - slower individual card dealing with animation (Sprint 3 task)

@@ -5,10 +5,12 @@ import Utility.CardTriplet;
 import actionFactory.Action;
 import actionFactory.ActionFactory;
 import data.xmlreader.Pair;
+import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.evaluator.BetEvaluator;
 import engine.evaluator.HandClassifier;
+import engine.hand.Hand;
 import engine.player.Player;
 import engine.table.Table;
 
@@ -26,6 +28,7 @@ public class Controller implements ControllerInterface {
     private final HandClassifier myHandClassifier;
     private final BetEvaluator myBetEvaluator;
     private final String myCompetition;
+    private Adversary myAdversary;
 
     public Controller(Table table, GameView gameView, String entryBet, List<String> playerActions, Pair dealerAction,
                       HandClassifier handClassifier, BetEvaluator betEvaluator, String competition) {
@@ -76,10 +79,10 @@ public class Controller implements ControllerInterface {
         updatePlayerHands();
     }
 
-    // TODO - render adversary
     private void renderAdversary() {
         if(this.myCompetition.equals(Competition.ADVERSARY)) {
-            System.out.println("Rendering adversary ...");
+            Adversary adversary = this.myTable.createAdversary();
+            this.myGameView.renderAdversary(parseAdversary(adversary.getHand()));
         }
     }
 
@@ -138,6 +141,14 @@ public class Controller implements ControllerInterface {
 
     private CardTriplet createCardTriplet(Card c) {
         return new CardTriplet(c.getValue(), c.getSuit(), c.getID());
+    }
+
+    private List<CardTriplet> parseAdversary(Hand h) {
+        List<CardTriplet> list = new ArrayList<>();
+        for (Card c: h.getCards()) {
+            list.add(createCardTriplet(c));
+        }
+        return list;
     }
 
     /** Max's team code for reflection example within their execution (shows how to invoke a method)

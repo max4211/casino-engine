@@ -2,6 +2,7 @@ package engine.table;
 
 import Utility.CardTriplet;
 import data.xmlreader.Pair;
+import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.player.Player;
@@ -69,4 +70,10 @@ public interface TableInterface {
      * @return card that was added to the bet (for hit/double down)
      */
     Card updateBets(Player p);
+
+    /**
+     * Create an adversary
+     * @return the adversary inside of the game
+     */
+    Adversary createAdversary();
 }
