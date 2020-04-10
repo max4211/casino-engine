@@ -95,6 +95,7 @@ public class Controller implements ControllerInterface {
                 this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
                 this.myGameView.showCard(p.getID(), b.getID(), c.getID());
             }
+            // this.myGameView.updateWager(b.getWager());
             garbageCollect(p);
         }
     }
