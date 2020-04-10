@@ -1,5 +1,8 @@
 package engine.evaluator;
 
+import engine.bet.Bet;
+import engine.hand.Hand;
+
 import java.util.Collection;
 
 public class BetEvaluator implements BetEvaluatorInterface {
@@ -8,16 +11,21 @@ public class BetEvaluator implements BetEvaluatorInterface {
 
     public BetEvaluator(HandEvaluator handEvaluator) {
         this.myHandEvaluator = handEvaluator;
+    }
+
+    @Override
+    public void evaluateBets(Collection<Bet> bets) {
 
     }
 
     @Override
-    public void evaluateBets(Collection Bets) {
+    public void updateWagers(Collection<Bet> bets) {
 
     }
 
+    // TODO - algorithm to handle larger groups
     @Override
-    public void updateWagers(Collection Bets) {
+    public void evaluateHands(Collection<Hand> hands) {
 
     }
 }

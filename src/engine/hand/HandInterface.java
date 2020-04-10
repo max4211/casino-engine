@@ -23,13 +23,13 @@ public interface HandInterface {
      * @param type
      * @param loser checks if the hand lost
      */
-    void classifyHand(String type, boolean loser);
+    void classifyHand(ClassifiedHand type, boolean loser);
 
     /**
      * Called by the Bet to determine what type of hand it holds
      * @return the classification (String, TODO enum)
      */
-    String getClassification();
+    ClassifiedHand getClassification();
 
     /**
      * Checks if the hand is a loser for garbage collection

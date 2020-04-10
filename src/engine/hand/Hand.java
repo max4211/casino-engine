@@ -9,7 +9,7 @@ import java.util.List;
 public class Hand implements HandInterface {
 
     private List<Card> myCards;
-    private String myClassification;
+    private ClassifiedHand myClassification;
     private boolean isLoser = false;
 
     public Hand(List<Card> cards) {
@@ -37,13 +37,13 @@ public class Hand implements HandInterface {
     }
 
     @Override
-    public void classifyHand(String type, boolean loser) {
+    public void classifyHand(ClassifiedHand type, boolean loser) {
         this.myClassification = type;
         this.isLoser = loser;
     }
 
     @Override
-    public String getClassification() {
+    public ClassifiedHand getClassification() {
         return this.myClassification;
     }
 

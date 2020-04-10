@@ -1,6 +1,7 @@
 package engine.evaluator;
 
 import engine.dealer.Card;
+import engine.hand.ClassifiedHand;
 import engine.hand.Hand;
 
 import java.lang.reflect.Method;
@@ -38,13 +39,12 @@ public class HandClassifier implements HandClassifierInterface {
         }
     }
 
-    //TODO - implement reflection (see below)
     private boolean checkLosingHand(Hand h) {
         System.out.printf("\nchecking losing hands: \n");
         for (String s: myLosingHands) {
             System.out.printf("%s, ", s);
             if (reflectOnMethod(s, h)) {
-                h.classifyHand(s, true);
+                h.classifyHand(new ClassifiedHand(s, this.myWinningHands.indexOf(s), sumCards(h)), true);
                 return true;
             }
         }
@@ -56,7 +56,7 @@ public class HandClassifier implements HandClassifierInterface {
         for (String s: myWinningHands) {
             System.out.printf("%s, ", s);
             if (reflectOnMethod(s, h)) {
-                h.classifyHand(s, false);
+                h.classifyHand(new ClassifiedHand(s, this.myWinningHands.indexOf(s), sumCards(h)), false);
                 return true;
             }
         }
