@@ -109,8 +109,6 @@ public class Controller implements ControllerInterface {
         }
     }
 
-    // TODO - refactor adversary sum to hand type?
-    // TODO - refactor to lambdas?
     private void invokeCompetition() {
         if (this.myCompetition.toUpperCase().equals(Competition.ADVERSARY.toString())) {
             while (this.myAdversary.wantsCards()) {
@@ -122,11 +120,6 @@ public class Controller implements ControllerInterface {
         } else {
             // TODO - group evaluation
         }
-    }
-
-    // TODO implement method
-    private boolean adversaryHit() {
-        return false;
     }
 
     private void classifyHand(Bet b) {
