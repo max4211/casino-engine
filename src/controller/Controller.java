@@ -14,6 +14,7 @@ import engine.hand.Hand;
 import engine.player.Player;
 import engine.table.Table;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,6 +23,7 @@ public class Controller implements ControllerInterface {
 
     private Table myTable;
     private GameView myGameView;
+    private GameView myOGGameView;
     private final String myEntryBet;
     private final List<String> myPlayerActions;
     private final Pair myDealerAction;
@@ -38,6 +40,7 @@ public class Controller implements ControllerInterface {
                       HandClassifier handClassifier, BetEvaluator betEvaluator, String competition) {
         this.myTable = table;
         this.myGameView = gameView;
+        this.myOGGameView = gameView;
         this.myEntryBet = entryBet;
         this.myPlayerActions = playerActions;
         this.myDealerAction = dealerAction;
@@ -45,11 +48,11 @@ public class Controller implements ControllerInterface {
         this.myHandClassifier =  handClassifier;
         this.myBetEvaluator = betEvaluator;
         this.myCompetition = competition;
+        renderPlayers();
     }
 
     @Override
     public void startGame() {
-        renderPlayers();
         promptForEntryBet();
         performDealerAction();
         renderAdversary();
@@ -57,6 +60,16 @@ public class Controller implements ControllerInterface {
         garbageCollect();
         invokeCompetition();
         computePayoffs();
+        restartGame();
+    }
+
+    private void restartGame() {
+        try {
+            Thread.sleep(3000);
+            // this.myGameView.removeBet();
+        } catch (Exception e) {
+            startGame();
+        }
     }
 
     private void renderPlayers() {
@@ -126,20 +139,25 @@ public class Controller implements ControllerInterface {
                 for (Bet b: p.getBets()) {
                     this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
                     System.out.printf("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
-
                 }
                 p.cashBets();
-                // this.myGameView.updateBankroll()
+                this.myGameView.updateBankRoll(p.getBankroll(), p.getID());
             }
         }
     }
 
+    // TODO - refactor to lambdas in adversary
     private void adversaryActionLoop() {
+        showAdversaryCards();
         while (this.myAdversary.wantsCards()) {
             this.myGameView.addAdversaryCard(createCardTriplet(this.myTable.giveAdversaryCard()));
-            for (Card c: this.myAdversary.getHand().getCards()) {
-                this.myGameView.showAdversaryCard(c.getID());
-            }
+            showAdversaryCards();
+        }
+    }
+
+    private void showAdversaryCards() {
+        for (Card c: this.myAdversary.getHand().getCards()) {
+            this.myGameView.showAdversaryCard(c.getID());
         }
     }
 
@@ -189,21 +207,5 @@ public class Controller implements ControllerInterface {
         }
         return list;
     }
-
-    /** Max's team code for reflection example within their execution (shows how to invoke a method)
-     *
-     *     private List<String> executeCommand(Command command) {
-     *         try {
-     *             Class superclazz = command.getClass().getSuperclass();
-     *             String name = EXECUTE + superclazz.getSimpleName();
-     *             Method method = this.getClass().getDeclaredMethod(name, superclazz); //Command.class
-     *             Object o = method.invoke(this, command);
-     *             return (List<String>) o;
-     *         } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException | NullPointerException e) {
-     *             throw new ReflectionException("Unable to apply Reflection in parser");
-     *         }
-     *     }
-     */
-
 
 }

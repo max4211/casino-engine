@@ -11,12 +11,12 @@ public class Player implements PlayerInterface {
     private final int myID;
     private final String myName;
     private double myBankroll;
-    private List<Bet> myActiveBets;
+    private List<Bet> myBets;
 
     public Player(String name, double bankroll) {
         this.myName = name;
         this.myBankroll = bankroll;
-        this.myActiveBets = new ArrayList<Bet>();
+        this.myBets = new ArrayList<Bet>();
         this.myID = this.hashCode();
     }
 
@@ -37,19 +37,25 @@ public class Player implements PlayerInterface {
 
     @Override
     public List<Bet> getBets() {
-        return this.myActiveBets;
+        List<Bet> activeBets = new ArrayList<Bet>();
+        for (Bet b: this.myBets) {
+            if (!b.getHand().isLoser()) {
+                activeBets.add(b);
+            }
+        }
+        return activeBets;
     }
 
     @Override
     public int placeBet(double wager) {
         Bet bet = new Bet(wager);
-        this.myActiveBets.add(bet);
+        this.myBets.add(bet);
         return bet.getID();
     }
 
     @Override
     public Bet getNextBet() {
-        for (Bet b: this.myActiveBets) {
+        for (Bet b: this.myBets) {
             if (b.isActive()) {
                 return b;
             }
@@ -59,7 +65,7 @@ public class Player implements PlayerInterface {
 
     @Override
     public void cashBets() {
-        for (Bet b: this.myActiveBets) {
+        for (Bet b: this.myBets) {
             HandOutcome outcome = b.getHand().getOutcome();
             if (outcome.equals(HandOutcome.WIN)) {
                 this.myBankroll += b.getWager();
@@ -69,6 +75,6 @@ public class Player implements PlayerInterface {
                 ;
             }
         }
-        this.myActiveBets = new ArrayList<>();
+        this.myBets = new ArrayList<>();
     }
 }
