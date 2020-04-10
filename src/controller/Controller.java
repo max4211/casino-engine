@@ -47,6 +47,7 @@ public class Controller implements ControllerInterface {
         performDealerAction();
         renderAdversary();
         promptForActions();
+        garbageCollect();
         invokeCompetition();
     }
 
@@ -91,12 +92,12 @@ public class Controller implements ControllerInterface {
             Bet b = p.getNextBet();
             a.execute(p, b);
             Card c = this.myTable.updateBets(p);
+            classifyHand(b);
             if (c != null) {
                 this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
                 this.myGameView.showCard(p.getID(), b.getID(), c.getID());
             }
             this.myGameView.updateWager(b.getWager(), p.getID(), b.getID());
-            garbageCollect(p);
         }
     }
 
@@ -104,12 +105,19 @@ public class Controller implements ControllerInterface {
 
     }
 
-    private void garbageCollect(Player p) {
-        for (Bet b: p.getBets()) {
-            this.myHandClassifier.classifyHand(b.getHand());
-            if (b.getHand().isLoser()) {
-                b.setActive(false);
-                this.myGameView.removeBet(p.getID(), b.getID());
+    private void classifyHand(Bet b) {
+        this.myHandClassifier.classifyHand(b.getHand());
+        if (b.getHand().isLoser()) {
+            b.setActive(false);
+        }
+    }
+
+    private void garbageCollect() {
+        for (Player p: this.myTable.getPlayers()) {
+            for (Bet b: p.getBets()) {
+                if (b.getHand().isLoser()) {
+                    this.myGameView.removeBet(p.getID(), b.getID());
+                }
             }
         }
     }
