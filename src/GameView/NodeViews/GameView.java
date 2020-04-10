@@ -129,6 +129,10 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myOtherPlayers.removePlayer(playerID);
     }
 
+    public void displayError(Exception ex) {
+
+    }
+
     private PlayerView getPlayerView(int playerID) {
         if (myMainPlayer.holdsAPlayer() && myMainPlayer.hasSameID(playerID)) return myMainPlayer.getMainPlayer();
         return myOtherPlayers.getPlayerView(playerID);
