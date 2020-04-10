@@ -28,7 +28,7 @@ public interface GameViewInterface {
 
     public void removePlayer(int playerId);
 
-    public void updateMainPlayer(int playerId);
+    public void setMainPlayer(int playerId);
 
     /**
      * only works on main player

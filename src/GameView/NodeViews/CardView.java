@@ -18,9 +18,9 @@ public class CardView implements NodeViewInterface, TaggableInterface {
     private Collection myCardNodes;
     private int myID;
 
-    private static final double CARD_HEIGHT = 88.9;
+    private static final double CARD_HEIGHT = 100;
     // TODO: bind the width to the BetView, does simple math with it
-    private static final double CARD_WIDTH = 56;
+    private static final double CARD_WIDTH = 70;
     private static final double CORNER_RADIUS = 5;
     private static final Formatter myFormatter = new Formatter();
 
