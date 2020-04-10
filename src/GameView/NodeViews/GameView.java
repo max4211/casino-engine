@@ -65,6 +65,11 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
+    public void updateWager(double newWager, int playerID, int BetID) {
+        
+    }
+
+    @Override
     public void showAdversaryCard(int cardID) {
         myAdversary.showCard(cardID);
     }

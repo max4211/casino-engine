@@ -15,6 +15,7 @@ public class WagerView implements NodeViewInterface {
 
     //TODO: BIND THIS?
     private static final double VIEW_HEIGHT = 20;
+    private static final double MIN_VIEW_WIDtH = 56;
     private static final Color backgroundColor = Color.web("2FC436");
 
     private static final Formatter myFormatter = new Formatter();
@@ -26,7 +27,7 @@ public class WagerView implements NodeViewInterface {
 
     public WagerView(double wager) {
         myWager = new HBox();
-        myFormatter.formatWideHBox(myWager, VIEW_HEIGHT);
+        myFormatter.formatGrowingHBox(myWager, VIEW_HEIGHT, MIN_VIEW_WIDtH);
         myFormatter.updateBackground(myWager, backgroundColor);
         updateWager(wager);
     }

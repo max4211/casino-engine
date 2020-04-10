@@ -35,10 +35,12 @@ public class Formatter {
         rawHBox.setAlignment(Pos.CENTER);
     }
 
-    public void formatWideHBox(HBox rawHBox, double amount) {
+    public void formatGrowingHBox(HBox rawHBox, double height, double minWidth) {
         formatUnfixedHBox(rawHBox);
-        rawHBox.setMinHeight(amount);
-        rawHBox.setMaxHeight(amount);
+        rawHBox.setMinHeight(height);
+        rawHBox.setMaxHeight(height);
+
+        rawHBox.setMinWidth(minWidth);
     }
 
     public void updateVBoxWidth(VBox rawVBox, double newWidth) {

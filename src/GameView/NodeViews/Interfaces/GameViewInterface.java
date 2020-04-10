@@ -37,5 +37,7 @@ public interface GameViewInterface {
      */
     public double selectWager(double minBet, double maxBet);
 
+    public void updateWager(double newWager, int playerID, int BetID);
+
     public String selectAction(List<String> actions);
 }
