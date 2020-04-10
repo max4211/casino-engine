@@ -96,6 +96,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void removePlayer(int playerId) {
+
     }
 
     // TODO: fix this to avoid updating BorderPane all the time
