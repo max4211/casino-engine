@@ -38,14 +38,14 @@ public class PlayerInfoView implements NodeViewInterface {
         Label nameLabel = new Label(myResources.getString(NAME_KEY) + name);
         myDetails.getChildren().add(nameLabel);
         myDetails.setVgrow(nameLabel, Priority.ALWAYS);
-        updateWager(bankroll);
+        updateBankroll(bankroll);
     }
 
     public VBox getView() {
         return myDetails;
     }
 
-    public void updateWager(double amount) {
+    public void updateBankroll(double amount) {
         if (amount >= 0) {
             if (myDetails.getChildren().size() == 2) myDetails.getChildren().remove(BANK_INDEX);
              myDetails.getChildren().add(new Label(myResources.getString(BANK_KEY) + amount));

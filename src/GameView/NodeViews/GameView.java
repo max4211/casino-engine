@@ -66,7 +66,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void updateWager(double newWager, int playerID, int BetID) {
-        
+        getPlayerView(playerID).updateWager(BetID, newWager);
     }
 
     @Override
