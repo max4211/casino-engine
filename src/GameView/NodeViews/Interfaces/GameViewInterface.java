@@ -47,5 +47,5 @@ public interface GameViewInterface {
 
     public void clearAdversary();
 
-    void announceError(Exception e);
+    public void displayError(Exception ex);
 }

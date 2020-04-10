@@ -8,6 +8,7 @@ class HandViewTest {
 
     @Test
     void getView() {
+
     }
 
     @Test

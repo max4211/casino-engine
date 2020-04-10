@@ -127,7 +127,7 @@ public class Controller implements ControllerInterface {
                 }
                 this.myGameView.updateWager(b.getWager(), p.getID(), b.getID());
             } catch (ReflectionException e) {
-                this.myGameView.announceError(e);
+                this.myGameView.displayError(e);
             }
         }
     }
