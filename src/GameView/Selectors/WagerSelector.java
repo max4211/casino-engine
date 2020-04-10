@@ -18,8 +18,8 @@ public class WagerSelector {
     public static double selectWager(double minBet, double maxBet) {
         TextInputDialog betAmount = new TextInputDialog(String.valueOf(minBet));
         String actionPrompt = myResources.getString(BET_PROMPT_KEY);
-        actionPrompt.replace(MIN_STRING, String.valueOf(minBet));
-        actionPrompt.replace(MAX_STRING, String.valueOf(maxBet));
+        actionPrompt = actionPrompt.replace(MIN_STRING, String.valueOf(minBet));
+        actionPrompt = actionPrompt.replace(MAX_STRING, String.valueOf(maxBet));
         betAmount.setContentText(actionPrompt);
 
         Optional<String> suggestedBetText = betAmount.showAndWait();

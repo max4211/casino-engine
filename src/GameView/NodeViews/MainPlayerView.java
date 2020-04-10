@@ -3,6 +3,7 @@ package GameView.NodeViews;
 import GameView.NodeViews.Interfaces.NodeViewInterface;
 import GameView.NodeViews.Interfaces.TaggableInterface;
 import Utility.Formatter;
+import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
 public class MainPlayerView implements NodeViewInterface, TaggableInterface {
@@ -11,6 +12,7 @@ public class MainPlayerView implements NodeViewInterface, TaggableInterface {
     private VBox myView;
     private Formatter myFormatter;
 
+    private static final Pos MAIN_PLAYER_ALIGNMENT = Pos.CENTER;
 
     public MainPlayerView() {
         myView = new VBox();
@@ -26,6 +28,7 @@ public class MainPlayerView implements NodeViewInterface, TaggableInterface {
 
     public void setMainPlayer(PlayerView newMainPlayer) {
         myPlayer = newMainPlayer;
+        myPlayer.getView().setAlignment(MAIN_PLAYER_ALIGNMENT);
         myView.getChildren().add(myPlayer.getView());
     }
 
