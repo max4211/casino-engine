@@ -1,12 +1,13 @@
 package GameView;
 
-import GameView.NodeViews.GameView;
-import GameView.NodeViews.PlayerView;
-import GameView.NodeViews.TableView;
+import GameView.NodeViews.*;
+import GameView.Selectors.ActionSelector;
+import GameView.Selectors.WagerSelector;
 import Utility.CardTriplet;
+import actionFactory.Action;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -22,35 +23,130 @@ public class basicUITester extends Application {
         primaryStage.setTitle("UI Tester");
         BorderPane root = new BorderPane();
 
-        PlayerView PV = new PlayerView("Eric", 100, 1.);
-        root.setCenter(PV.getView());
+        testCards(root);
+        testBets(root);
+        testPlayers(root);
+        testSelectors(root);
 
-        CardTriplet a = new CardTriplet(1., "hearts", 1);
-        CardTriplet b = new CardTriplet(2., "spades", 2);
-
-        List<CardTriplet> ab = new ArrayList<>();
-        ab.add(a);
-        ab.add(b);
-
-        PV.addBet(ab, 10., 50);
-        PV.addBet(ab, 20., 20);
-
-        PV.addCard(a, 50);
-
-        TableView tb = new TableView("StandardBJTable.jpeg");
-        root.setCenter(tb.getView());
-
-        GameView gv = new GameView();
-        List<String> myList = new ArrayList<>();
-        myList.add("max");
-        myList.add("smith");
-
-        double min = .1;
-        double max = 100.5;
-
-        System.out.println(gv.selectAction((myList)));
-        System.out.println(gv.selectWager(0.1, max));
-        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.setScene(new Scene(root, 500, 500));
         primaryStage.show();
+    }
+
+    private void testCards(BorderPane p) {
+        CardTriplet ct1 = new CardTriplet(4, "hearts", 1);
+        CardTriplet ct2 = new CardTriplet(5, "spades", 2);
+        CardTriplet ct3 = new CardTriplet(6, "clubs", 3);
+        CardTriplet ct4 = new CardTriplet(-10, "banana", -2);
+
+        List<CardTriplet> allCTs = new ArrayList<>();
+        allCTs.add(ct1);
+        allCTs.add(ct2);
+        allCTs.add(ct3);
+        allCTs.add(ct4);
+
+        CardView cv1 = new CardView(ct1);
+        CardView cv2 = new CardView(ct2);
+        CardView cv3 = new CardView(ct3);
+        CardView cv4 = new CardView(ct4);
+
+        p.setCenter(cv1.getView());
+        // p.setCenter(cv2.getView());
+        // p.setCenter(cv3.getView());
+        // p.setCenter(cv4.getView());
+
+
+        cv2.showCard();
+
+        cv3.showCard();
+        cv3.hideCard();
+
+        cv4.hideCard();
+        cv4.showCard();
+        cv4.showCard();
+        cv4.hideCard();
+        cv4.hideCard();
+        cv4.showCard();
+    }
+
+    private void testBets(BorderPane p) {
+        p.getChildren().clear();
+
+        CardTriplet ct1 = new CardTriplet(4, "hearts", 1);
+        CardTriplet ct2 = new CardTriplet(5, "spades", 2);
+        CardTriplet ct3 = new CardTriplet(6, "clubs", 3);
+        CardTriplet ct4 = new CardTriplet(-10, "banana", -2);
+
+        List<CardTriplet> allCTs = new ArrayList<>();
+        allCTs.add(ct1);
+        allCTs.add(ct2);
+        allCTs.add(ct3);
+        allCTs.add(ct4);
+
+        BetView bv1 = new BetView(allCTs, 10, 20);
+
+        BetView bv2 = new BetView(allCTs, -20, 20);
+        bv2.showCard(2);
+        bv2.showCard(-2);
+
+        BetView bv3 = new BetView(new ArrayList<>(), 10000, 50);
+
+        BetView bv4 = new BetView(new ArrayList<>(), 10000, 50);
+        bv4.addCard(ct4);
+
+        p.setCenter(bv1.getView());
+        p.setCenter(bv2.getView());
+        p.setCenter(bv3.getView());
+        p.setCenter(bv4.getView());
+    }
+
+    private void testPlayers(BorderPane p) {
+        p.getChildren().clear();
+
+        CardTriplet ct1 = new CardTriplet(4, "hearts", 1);
+        CardTriplet ct2 = new CardTriplet(5, "spades", 2);
+        CardTriplet ct3 = new CardTriplet(6, "clubs", 3);
+        CardTriplet ct4 = new CardTriplet(-10, "banana", -2);
+
+        List<CardTriplet> allCTs = new ArrayList<>();
+        allCTs.add(ct1);
+        allCTs.add(ct2);
+        allCTs.add(ct3);
+        allCTs.add(ct4);
+
+        List<CardTriplet> allCT2 = new ArrayList<>();
+        allCT2.add(ct1);
+        allCT2.add(ct2);
+
+        PlayerView pv1 = new PlayerView("Eric", 1, 1000);
+        PlayerView pv2 = new PlayerView("Max", 2, -2000);
+        PlayerView pv3 = new PlayerView("Duvall", -2, 40000);
+
+        p.setCenter(pv1.getView());
+
+        p.setCenter(pv2.getView());
+        pv2.addBet(allCTs, 40, 2);
+        pv2.addBet(allCT2, 60, 4);
+        pv2.showCard(4, 2);
+
+        p.setCenter(pv3.getView());
+        pv3.addBet(allCTs, 40, 2);
+        pv3.addBet(allCT2, 60, 4);
+        pv3.clearBets();
+    }
+
+    private void testSelectors(BorderPane p) {
+        p.getChildren().clear();
+        List<String> noActions = new ArrayList<>();
+        System.out.println(ActionSelector.selectAction(noActions));
+
+        List<String> someActions = new ArrayList<>();
+        someActions.add("Split");
+        someActions.add("Hit");
+        someActions.add("Fold");
+        System.out.println(ActionSelector.selectAction(someActions));
+
+        System.out.println(WagerSelector.selectWager(0, 100));
+        System.out.println(WagerSelector.selectWager(50, 50));
+        System.out.println(WagerSelector.selectWager(20, 10));
     }
 }

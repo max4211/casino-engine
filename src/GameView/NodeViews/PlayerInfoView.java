@@ -35,7 +35,8 @@ public class PlayerInfoView implements NodeViewInterface {
         myFormatter.formatFixedVBox(myDetails, CARD_HEIGHT + WAGER_HEIGHT, VIEW_WIDTH);
         myDetails.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(CORNER_RADIUS), null)));
 
-        Label nameLabel = new Label(myResources.getString(NAME_KEY) + name);
+
+        Label nameLabel = new Label(myResources.getString(NAME_KEY).concat(name));
         myDetails.getChildren().add(nameLabel);
         myDetails.setVgrow(nameLabel, Priority.ALWAYS);
         updateBankroll(bankroll);
@@ -46,9 +47,8 @@ public class PlayerInfoView implements NodeViewInterface {
     }
 
     public void updateBankroll(double amount) {
-        if (amount >= 0) {
-            if (myDetails.getChildren().size() == 2) myDetails.getChildren().remove(BANK_INDEX);
-             myDetails.getChildren().add(new Label(myResources.getString(BANK_KEY) + amount));
-        }
+        if (myDetails.getChildren().size() == 2) myDetails.getChildren().remove(BANK_INDEX);
+        myDetails.getChildren().add(new Label(myResources.getString(BANK_KEY) + amount));
     }
 }
+

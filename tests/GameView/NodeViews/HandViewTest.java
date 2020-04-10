@@ -1,6 +1,7 @@
 package GameView.NodeViews;
 
 import Utility.CardTriplet;
+import exceptions.ActionException;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -30,10 +31,15 @@ class HandViewTest {
         VBox cardView = (VBox)handView.getChildren().get(0);
         System.out.println(cardView.getChildren().size());
 
+        assertThrows(IndexOutOfBoundsException.class, () -> cardView.getChildren().get(0));
         testHandView.showCard(1);
 
         Label valueLabel = (Label)cardView.getChildren().get(0);
         String valueText = valueLabel.getText();
+
+        Label suitLabel = (Label)cardView.getChildren().get(1);
+        String suitText = suitLabel.getText();
         assertEquals(valueText, "11.0");
+        assertEquals(suitText, "hearts");
     }
 }
