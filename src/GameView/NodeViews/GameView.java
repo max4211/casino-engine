@@ -4,25 +4,25 @@ import GameView.NodeViews.Interfaces.GameViewInterface;
 import GameView.Selectors.ActionSelector;
 import GameView.Selectors.WagerSelector;
 import Utility.CardTriplet;
-import Utility.Formatter;
 import javafx.scene.layout.BorderPane;
 import GameView.NodeViews.Interfaces.NodeViewInterface;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameView implements GameViewInterface, NodeViewInterface {
 
     private BorderPane myBorderPane;
-    private PlayerView myMainPlayer;
-    private AllPlayersView myOtherPlayers;
+    private MainPlayerView myMainPlayer;
+    private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
 
     public GameView() {
         myBorderPane = new BorderPane();
-        myOtherPlayers = new AllPlayersView();
+        myOtherPlayers = new OtherPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
+
+        myMainPlayer = new MainPlayerView();
+        myBorderPane.setBottom(myMainPlayer.getView());
     }
 
     public BorderPane getView() {
@@ -82,6 +82,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void renderAdversary(List<CardTriplet> hand) {
+        System.out.println("RENDERING");
         myAdversary = new HandView(hand);
         myBorderPane.setTop(myAdversary.getView());
     }
@@ -99,22 +100,21 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void removePlayer(int playerId) {
-
+        if (myMainPlayer.holdsAPlayer() && myMainPlayer.hasSameID(playerId)) myMainPlayer.clear();
+        else if (myOtherPlayers.hasPlayerView(playerId)) myOtherPlayers.removePlayer(playerId);
     }
 
+    // TODO: fix this to avoid updating BorderPane all the time
     @Override
-    public void updateMainPlayer(int playerID) {
+    public void setMainPlayer(int playerID) {
         if (!myOtherPlayers.hasPlayerView(playerID)) return;
-
-        myMainPlayer = myOtherPlayers.getPlayerView(playerID);
+        if (myMainPlayer.holdsAPlayer()) myOtherPlayers.addPlayer(myMainPlayer.getMainPlayer());
+        myMainPlayer.setMainPlayer(myOtherPlayers.getPlayerView(playerID));
         myOtherPlayers.removePlayer(playerID);
-
-        myBorderPane.setBottom(myMainPlayer.getView());
-        myOtherPlayers.addPlayer(myMainPlayer);
     }
 
     private PlayerView getPlayerView(int playerID) {
-        if (myMainPlayer != null && myMainPlayer.hasSameID(playerID)) return myMainPlayer;
+        if (myMainPlayer.holdsAPlayer() && myMainPlayer.hasSameID(playerID)) return myMainPlayer.getMainPlayer();
         return myOtherPlayers.getPlayerView(playerID);
     }
 }

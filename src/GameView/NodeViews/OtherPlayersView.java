@@ -2,28 +2,24 @@ package GameView.NodeViews;
 
 import GameView.NodeViews.Interfaces.NodeViewInterface;
 import Utility.Formatter;
-import engine.player.Player;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllPlayersView implements NodeViewInterface {
+public class OtherPlayersView implements NodeViewInterface {
 
     private VBox myPlayers;
     private Formatter myFormatter;
     private List<PlayerView>  allPlayers;
 
-    private static final Color backgroundColor = Color.web("3385FF");
 
 
-    public AllPlayersView() {
+    public OtherPlayersView() {
         myPlayers = new VBox();
         myFormatter = new Formatter();
-        myFormatter.formatUnFixedVBox(myPlayers);
-        myFormatter.updateBackground(myPlayers, backgroundColor);
+        myFormatter.formatUnfixedLeft(myPlayers);
         allPlayers = new ArrayList<>();
     }
 

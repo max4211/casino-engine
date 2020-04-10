@@ -23,20 +23,33 @@ public class Formatter {
     }
 
     // TODO: duplication here, talk to DUVALL
-    public void formatUnFixedVBox(VBox rawVBox) {
-        rawVBox.setMaxWidth(Double.MAX_VALUE);
-        rawVBox.setMaxHeight(Double.MAX_VALUE);
+    public void formatUnfixedCenter(VBox rawVBox) {
+        setMaxBounds(rawVBox);
         rawVBox.setAlignment(Pos.CENTER);
     }
 
-    public void formatUnfixedHBox(HBox rawHBox) {
-        rawHBox.setMaxWidth(Double.MAX_VALUE);
-        rawHBox.setMaxHeight(Double.MAX_VALUE);
+    public void formatUnfixedCenter(HBox rawHBox) {
+        setMaxBounds(rawHBox);
         rawHBox.setAlignment(Pos.CENTER);
     }
 
+    public void formatUnfixedLeft(VBox rawVBox) {
+        setMaxBounds(rawVBox);
+        rawVBox.setAlignment(Pos.CENTER_LEFT);
+    }
+
+    public void formatUnfixedLeft(HBox rawHBox) {
+        setMaxBounds(rawHBox);
+        rawHBox.setAlignment(Pos.CENTER_LEFT);
+    }
+
+    private void setMaxBounds(Pane rawPane) {
+        rawPane.setMaxWidth(Double.MAX_VALUE);
+        rawPane.setMaxHeight(Double.MAX_VALUE);
+    }
+
     public void formatGrowingHBox(HBox rawHBox, double height, double minWidth) {
-        formatUnfixedHBox(rawHBox);
+        formatUnfixedCenter(rawHBox);
         rawHBox.setMinHeight(height);
         rawHBox.setMaxHeight(height);
 
