@@ -67,6 +67,10 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
 
     public void updateWager(int betID, double newWager) {getBet(betID).updateWager(newWager);}
 
+    public void updateBankRoll(double newBankroll) {
+        myInfo.updateBankroll(newBankroll);
+    }
+
     private BetView getBet(int ID) {
         for (BetView tempBetView : myBets) {
             if (tempBetView.hasSameID(ID)) return tempBetView;

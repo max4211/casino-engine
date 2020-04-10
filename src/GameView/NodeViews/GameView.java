@@ -71,7 +71,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void updateBankRoll(double newBankroll, int playerID) {
-
+        getPlayerView(playerID).updateBankRoll(newBankroll);
     }
 
     @Override
