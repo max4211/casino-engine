@@ -10,7 +10,9 @@ public class Hand implements HandInterface {
 
     private List<Card> myCards;
     private ClassifiedHand myClassification;
+    // TODO refactor loser state to enumerated type of outcome
     private boolean isLoser = false;
+    private HandOutcome myOutcome = HandOutcome.WIN;
 
     public Hand(List<Card> cards) {
         this.myCards = new ArrayList<Card>();
@@ -37,9 +39,24 @@ public class Hand implements HandInterface {
     }
 
     @Override
-    public void classifyHand(ClassifiedHand type, boolean loser) {
+    public void classifyHand(ClassifiedHand type) {
         this.myClassification = type;
-        this.isLoser = loser;
+    }
+
+    @Override
+    public void setLoser(boolean state) {
+        this.isLoser = state;
+        this.myOutcome = HandOutcome.LOSS;
+    }
+
+    @Override
+    public void setOutcome(HandOutcome outcome) {
+        this.myOutcome = outcome;
+    }
+
+    @Override
+    public HandOutcome getOutcome() {
+        return this.myOutcome;
     }
 
     @Override
@@ -51,4 +68,5 @@ public class Hand implements HandInterface {
     public boolean isLoser() {
         return this.isLoser;
     }
+
 }

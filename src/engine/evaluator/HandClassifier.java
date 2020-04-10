@@ -44,7 +44,7 @@ public class HandClassifier implements HandClassifierInterface {
         for (String s: myLosingHands) {
             System.out.printf("%s, ", s);
             if (reflectOnMethod(s, h)) {
-                h.classifyHand(new ClassifiedHand(s, this.myWinningHands.indexOf(s), sumCards(h)), true);
+                h.setLoser(true);
                 return true;
             }
         }
@@ -56,7 +56,7 @@ public class HandClassifier implements HandClassifierInterface {
         for (String s: myWinningHands) {
             System.out.printf("%s, ", s);
             if (reflectOnMethod(s, h)) {
-                h.classifyHand(new ClassifiedHand(s, this.myWinningHands.indexOf(s), sumCards(h)), false);
+                h.classifyHand(new ClassifiedHand(s, this.myWinningHands.indexOf(s), sumCards(h)));
                 return true;
             }
         }

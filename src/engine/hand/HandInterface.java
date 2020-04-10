@@ -20,10 +20,9 @@ public interface HandInterface {
 
     /**
      * Called by the HandClssifier to add a classification tag to a hand
-     * @param type
-     * @param loser checks if the hand lost
+     * @param type is type of hand
      */
-    void classifyHand(ClassifiedHand type, boolean loser);
+    void classifyHand(ClassifiedHand type);
 
     /**
      * Called by the Bet to determine what type of hand it holds
@@ -36,5 +35,23 @@ public interface HandInterface {
      * @return
      */
     boolean isLoser();
+
+    /**
+     * toggles loser when a losing hand is encountered
+     * @param state
+     */
+    void setLoser(boolean state);
+
+    /**
+     * Set outcome of hand inside of bet evaluator
+     * @param outcome is the result of the hand
+     */
+    void setOutcome(HandOutcome outcome);
+
+    /**
+     * Return the hand outcome for bet evaluator to help update bets
+     * @return hand outcome
+     */
+    HandOutcome getOutcome();
 
 }

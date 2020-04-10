@@ -124,7 +124,8 @@ public class Controller implements ControllerInterface {
             this.myHandClassifier.classifyHand(this.myAdversary.getHand());
             for (Player p: this.myTable.getPlayers()) {
                 for (Bet b: p.getBets()) {
-                    this.myBetEvaluator.evaluateHands(new ArrayList<Hand>(List.of(b.getHand(), this.myAdversary.getHand())));
+                    this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
+                    System.out.printf("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
                 }
             }
         }
