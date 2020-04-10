@@ -2,6 +2,7 @@ package GameView.NodeViews;
 
 import GameView.NodeViews.Interfaces.NodeViewInterface;
 import Utility.Formatter;
+import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -14,6 +15,8 @@ public class OtherPlayersView implements NodeViewInterface {
     private Formatter myFormatter;
     private List<PlayerView>  allPlayers;
 
+    // TODO: move this into formatting
+    private static final Pos OTHER_PLAYERS_ALIGNMENT = Pos.CENTER_LEFT;
 
 
     public OtherPlayersView() {
@@ -30,6 +33,7 @@ public class OtherPlayersView implements NodeViewInterface {
     }
 
     public void addPlayer(PlayerView addedPlayer) {
+        addedPlayer.getView().setAlignment(OTHER_PLAYERS_ALIGNMENT);
         myPlayers.getChildren().add(addedPlayer.getView());
         allPlayers.add(addedPlayer);
     }
