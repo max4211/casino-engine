@@ -13,6 +13,7 @@ import engine.evaluator.HandClassifier;
 import engine.hand.Hand;
 import engine.player.Player;
 import engine.table.Table;
+import exceptions.ReflectionException;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class Controller implements ControllerInterface {
         this.myEntryBet = entryBet;
         this.myPlayerActions = playerActions;
         this.myDealerAction = dealerAction;
-        this.myFactory = new ActionFactory(playerActions);
+        this.myFactory = new ActionFactory();
         this.myHandClassifier =  handClassifier;
         this.myBetEvaluator = betEvaluator;
         this.myCompetition = competition;
@@ -114,16 +115,21 @@ public class Controller implements ControllerInterface {
             Player p = this.myTable.getNextPlayer();
             System.out.printf("prompting player (%s) for an action --> ", p.getName());
             this.myGameView.setMainPlayer(p.getID());
-            Action a = this.myFactory.createAction(this.myGameView.selectAction(this.myPlayerActions));
-            Bet b = p.getNextBet();
-            a.execute(p, b);
-            Card c = this.myTable.updateBets(p);
-            classifyHand(b);
-            if (c != null) {
-                this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
-                this.myGameView.showCard(p.getID(), b.getID(), c.getID());
+            try {
+                Action a = this.myFactory.createAction(this.myGameView.selectAction(this.myPlayerActions));
+                Bet b = p.getNextBet();
+                a.execute(p, b);
+                Card c = this.myTable.updateBets(p);
+                classifyHand(b);
+                if (c != null) {
+                    this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
+                    this.myGameView.showCard(p.getID(), b.getID(), c.getID());
+                }
+                this.myGameView.updateWager(b.getWager(), p.getID(), b.getID());
+            } catch (ReflectionException e) {
+                this.myGameView.displayError(e);
+                System.out.println(e);
             }
-            this.myGameView.updateWager(b.getWager(), p.getID(), b.getID());
         }
     }
 

@@ -1,5 +1,7 @@
 package actionFactory;
 
+import exceptions.ReflectionException;
+
 import java.lang.reflect.Constructor;
 import java.util.List;
 
@@ -8,12 +10,10 @@ import java.util.List;
  */
 public class ActionFactory implements ActionFactoryInterface {
 
-    private List<String> myPossibleActions;
     private static final String ACTION_FACTORY = "actionFactory";
 
-    // TODO - remove possible actioons (currently unused)
-    public ActionFactory(List<String> possibleActions) {
-        this.myPossibleActions = possibleActions;
+    public ActionFactory() {
+
     }
 
 
@@ -24,10 +24,8 @@ public class ActionFactory implements ActionFactoryInterface {
             Constructor ctor = clazz.getConstructor();
             return (Action) ctor.newInstance();
         } catch (Exception e) {
-            System.out.println("Sorry could not invoke reflection at this time");
+            throw new ReflectionException(e);
         }
-
-        return null;
     }
 
     private String createActionPath(String action) {
