@@ -17,6 +17,11 @@ public class Adversary implements AdversaryInterface {
     }
 
     @Override
+    public Card getCard() {
+        return this.myHand.getCards().get(0);
+    }
+
+    @Override
     public Hand getHand() {
         return this.myHand;
     }

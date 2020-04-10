@@ -16,4 +16,10 @@ public interface AdversaryInterface {
      * @param c
      */
     void acceptCard(Card c);
+
+    /**
+     * Get a single card from the adversary
+     * @return a single card
+     */
+    Card getCard();
 }
