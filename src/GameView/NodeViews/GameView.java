@@ -4,12 +4,9 @@ import GameView.NodeViews.Interfaces.GameViewInterface;
 import GameView.Selectors.ActionSelector;
 import GameView.Selectors.WagerSelector;
 import Utility.CardTriplet;
-import Utility.Formatter;
 import javafx.scene.layout.BorderPane;
 import GameView.NodeViews.Interfaces.NodeViewInterface;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameView implements GameViewInterface, NodeViewInterface {
@@ -99,18 +96,18 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void removePlayer(int playerId) {
-
     }
 
+    // TODO: fix this to avoid updating BorderPane all the time
     @Override
     public void updateMainPlayer(int playerID) {
         if (!myOtherPlayers.hasPlayerView(playerID)) return;
 
+        if (myMainPlayer != null) myOtherPlayers.addPlayer(myMainPlayer);
         myMainPlayer = myOtherPlayers.getPlayerView(playerID);
-        myOtherPlayers.removePlayer(playerID);
-
         myBorderPane.setBottom(myMainPlayer.getView());
-        myOtherPlayers.addPlayer(myMainPlayer);
+
+        myOtherPlayers.removePlayer(playerID);
     }
 
     private PlayerView getPlayerView(int playerID) {

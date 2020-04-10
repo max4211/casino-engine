@@ -25,7 +25,7 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
         myFormatter = new Formatter();
         myFormatter.formatUnfixedHBox(myView);
         myID = ID;
-        myBets = new ArrayList<BetView>();
+        myBets = new ArrayList<>();
         myInfo = new PlayerInfoView(name, bankroll);
         myView.getChildren().add(myInfo.getView());
     }
