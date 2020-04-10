@@ -22,6 +22,7 @@ class HandClassifierTest {
         Hand bjTest = new Hand(List.of(new Card("Heart",  11), new Card("Diamond", 10)));
         hc.classifyHand(bjTest);
         assertEquals(bjTest.getClassification().getName(), "Blackjack");
+        assertEquals(bjTest.getClassification().getPower(), 21);
     }
 
     @Test
