@@ -42,4 +42,8 @@ public interface GameViewInterface {
     public void updateBankRoll(double newBankroll, int playerID);
 
     public String selectAction(List<String> actions);
+
+    public void clearAllBets();
+
+    public void clearAdversary();
 }

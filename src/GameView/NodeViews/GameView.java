@@ -60,6 +60,16 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
+    public void clearAllBets() {
+
+    }
+
+    @Override
+    public void clearAdversary() {
+
+    }
+
+    @Override
     public double selectWager(double minBet, double maxBet) {
         return WagerSelector.selectWager(minBet, maxBet);
     }
