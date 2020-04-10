@@ -5,6 +5,7 @@ import GameView.NodeViews.Interfaces.NodeViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class BetView implements NodeViewInterface, TaggableInterface {
     // TODO: bind to handview
     private static final int CARD_WIDTH = 56;
     private static final int HEIGHT = 20;
+    private static final int DEFAULT_WIDTH = 112;
+    private static final int EMPTY = 0;
     private int numberOfCards;
 
     private Formatter myFormatter;
@@ -29,7 +32,11 @@ public class BetView implements NodeViewInterface, TaggableInterface {
         numberOfCards = hand.size();
         myID = id;
 
-        myFormatter.formatFixedVBox(myView, HEIGHT, CARD_WIDTH * numberOfCards);
+        int initialWidth;
+        if (numberOfCards == EMPTY) initialWidth = DEFAULT_WIDTH;
+        else initialWidth = CARD_WIDTH * numberOfCards;
+        myFormatter.formatFixedVBox(myView, HEIGHT, initialWidth);
+
         myHand = new HandView(hand);
         myWager = new WagerView(wager);
 

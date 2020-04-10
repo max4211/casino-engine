@@ -5,6 +5,7 @@ import GameView.NodeViews.Interfaces.NodeViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,6 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
         myView = new HBox();
         myFormatter = new Formatter();
         myFormatter.formatUnfixedHBox(myView);
-
         myID = ID;
         myBets = new ArrayList<BetView>();
         myInfo = new PlayerInfoView(name, bankroll);
