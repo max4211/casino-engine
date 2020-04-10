@@ -12,6 +12,7 @@ public class Check extends Action {
 
     @Override
     public void execute(Player player, Bet target) {
+        target.setNeedsCard(false);
         target.setActive(false);
     }
 }

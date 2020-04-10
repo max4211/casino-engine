@@ -41,4 +41,9 @@ public interface PlayerInterface {
      * @return
      */
     Bet getNextBet();
+
+    /**
+     * Signalled by the controller to cash bets (update bankroll)
+     */
+    void cashBets();
 }

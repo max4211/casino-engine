@@ -15,6 +15,7 @@ import engine.player.Player;
 import engine.table.Table;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Controller implements ControllerInterface {
@@ -31,7 +32,6 @@ public class Controller implements ControllerInterface {
     private Adversary myAdversary;
 
     // TODO - refactor into data files (in adversary construction?)
-    private static final int ADVERSARY_MAX = 21;
     private static final int ADVERSARY_MIN = 17;
 
     public Controller(Table table, GameView gameView, String entryBet, List<String> playerActions, Pair dealerAction,
@@ -56,6 +56,7 @@ public class Controller implements ControllerInterface {
         promptForActions();
         garbageCollect();
         invokeCompetition();
+        computePayoffs();
     }
 
     private void renderPlayers() {
@@ -84,7 +85,7 @@ public class Controller implements ControllerInterface {
     }
 
     private void renderAdversary() {
-        if(this.myCompetition.toUpperCase().equals(Competition.ADVERSARY.toString())) {
+        if(isAdversaryGame()) {
             this.myAdversary = this.myTable.createAdversary(ADVERSARY_MIN);
             this.myGameView.renderAdversary(parseAdversary(this.myAdversary.getHand()));
             this.myGameView.showAdversaryCard(this.myAdversary.getCard().getID());
@@ -110,16 +111,39 @@ public class Controller implements ControllerInterface {
     }
 
     private void invokeCompetition() {
-        if (this.myCompetition.toUpperCase().equals(Competition.ADVERSARY.toString())) {
-            while (this.myAdversary.wantsCards()) {
-                this.myGameView.addAdversaryCard(createCardTriplet(this.myTable.giveAdversaryCard()));
-                for (Card c: this.myAdversary.getHand().getCards()) {
-                    this.myGameView.showAdversaryCard(c.getID());
-                }
-            }
+        if (isAdversaryGame()) {
+            adversaryActionLoop();
         } else {
             // TODO - group evaluation
         }
+    }
+
+    // TODO - use reflection for payoffs in adversary vs. group competition game
+    private void computePayoffs() {
+        if (isAdversaryGame()) {
+            this.myHandClassifier.classifyHand(this.myAdversary.getHand());
+            for (Player p: this.myTable.getPlayers()) {
+                for (Bet b: p.getBets()) {
+                    this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
+                    System.out.printf("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
+
+                }
+                p.cashBets();
+            }
+        }
+    }
+
+    private void adversaryActionLoop() {
+        while (this.myAdversary.wantsCards()) {
+            this.myGameView.addAdversaryCard(createCardTriplet(this.myTable.giveAdversaryCard()));
+            for (Card c: this.myAdversary.getHand().getCards()) {
+                this.myGameView.showAdversaryCard(c.getID());
+            }
+        }
+    }
+
+    private boolean isAdversaryGame() {
+        return this.myCompetition.toUpperCase().equals(Competition.ADVERSARY.toString());
     }
 
     private void classifyHand(Bet b) {
