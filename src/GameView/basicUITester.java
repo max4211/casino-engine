@@ -23,7 +23,7 @@ public class basicUITester extends Application {
         BorderPane root = new BorderPane();
 
         PlayerView PV = new PlayerView("Eric", 100, 1.);
-        //root.setCenter(PV.getView());
+        root.setCenter(PV.getView());
 
         CardTriplet a = new CardTriplet(1., "hearts", 1);
         CardTriplet b = new CardTriplet(2., "spades", 2);
