@@ -55,6 +55,10 @@ public class OtherPlayersView implements NodeViewInterface {
         return getPlayerView(playerID) != null;
     }
 
+    public void clearBets() {
+        for (PlayerView tempPlayerView : allPlayers) tempPlayerView.clearBets();
+    }
+
     @Override
     public VBox getView() {
         return myPlayers;
