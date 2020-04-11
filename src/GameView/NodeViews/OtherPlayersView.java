@@ -9,7 +9,9 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OtherPlayersView implements NodeViewInterface {
+public class
+
+OtherPlayersView implements NodeViewInterface {
 
     private VBox myPlayers;
     private Formatter myFormatter;
