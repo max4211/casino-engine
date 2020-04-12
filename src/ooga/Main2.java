@@ -20,7 +20,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
-public class GameConstructor2 extends Application {
+public class Main2 extends Application {
 
     private static final String testFile = "src/data/game/blackjackGame.xml";
 
