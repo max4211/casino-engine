@@ -16,6 +16,11 @@ public class WagerSelector {
     private static ResourceBundle myResources = ResourceBundle.getBundle(INITIAL_RESOURCE_LANGUAGE);
 
     public static double selectWager(double minBet, double maxBet) {
+        if (maxBet < minBet) {
+            System.out.println("EXECPTION NEEDS TO BE HANDLED");
+            return -1;
+        }
+
         TextInputDialog betAmount = new TextInputDialog(String.valueOf(minBet));
         String actionPrompt = myResources.getString(BET_PROMPT_KEY);
         actionPrompt = actionPrompt.replace(MIN_STRING, String.valueOf(minBet));
@@ -28,6 +33,7 @@ public class WagerSelector {
             if (suggestedBet >= minBet && suggestedBet <= maxBet) return suggestedBet;
             // TODO: proper convention for one line else statements?
         }
+        System.out.println("ENTER A VALID BET");
         return selectWager(minBet, maxBet);
     }
 }
