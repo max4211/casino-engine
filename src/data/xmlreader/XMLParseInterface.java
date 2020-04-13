@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public interface XMLParseInterface {
@@ -18,8 +19,8 @@ public interface XMLParseInterface {
         return e.getElementsByTagName(tag).item(0).getTextContent();
     }
 
-    static List<String> getXMLList(Document document, String metatag, String subtag) {
-        List<String> list = new ArrayList<>();
+    static Collection<String> getXMLList(Document document, String metatag, String subtag) {
+        Collection<String> list = new ArrayList<>();
         NodeList handNodeList = document.getElementsByTagName(metatag);
         for (int index = 0; index < handNodeList.getLength(); index ++) {
             Node handNode = handNodeList.item(index);

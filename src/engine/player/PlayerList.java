@@ -1,39 +1,48 @@
 package engine.player;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import Utility.Pair;
+
+import java.util.*;
 
 public class PlayerList implements ListInterface, PlayerListInterface, Iterator {
 
     private static final int DEFAULT_INDEX = 0;
 
-    private List<Player> myPlayerList;
+    private Collection<Player> myPlayerCollection;
     private int myPlayerIndex;
 
+    public PlayerList(Collection<Pair> playerCollection) {
+        this.myPlayerCollection = new ArrayList<>();
+        for (Pair p: playerCollection) {
+            String name = (String) p.getFirst();
+            double bankroll = (double) p.getSecond();
+            this.myPlayerCollection.add(new Player(name, bankroll));
+        }
+    }
+
+    @Deprecated
     public PlayerList(Map<String, Double> playerMap) {
-        this.myPlayerList = new ArrayList<>();
+        this.myPlayerCollection = new ArrayList<>();
         for (String key: playerMap.keySet()) {
-            this.myPlayerList.add(new Player(key, playerMap.get(key)));
+            this.myPlayerCollection.add(new Player(key, playerMap.get(key)));
         }
     }
 
     @Override
     public void add(Object o) {
         Player p = castToPlayer(o);
-        this.myPlayerList.add(p);
+        this.myPlayerCollection.add(p);
     }
 
     @Override
     public void remove(Object o) {
         Player p = castToPlayer(o);
-        this.myPlayerList.remove(p);
+        this.myPlayerCollection.remove(p);
     }
 
     @Override
     public int length() {
-        return this.myPlayerList.size();
+        return this.myPlayerCollection.size();
     }
 
     private Player castToPlayer(Object o) {
@@ -52,7 +61,7 @@ public class PlayerList implements ListInterface, PlayerListInterface, Iterator 
 
     @Override
     public boolean pointTo(int index) {
-        if (this.myPlayerList.size() < index) {
+        if (this.myPlayerCollection.size() < index) {
             this.myPlayerIndex = index;
             return true;
         } else {
@@ -62,7 +71,7 @@ public class PlayerList implements ListInterface, PlayerListInterface, Iterator 
     }
 
     @Override
-    public List<Player> getPlayers() {
-        return this.myPlayerList;
+    public Collection<Player> getPlayers() {
+        return this.myPlayerCollection;
     }
 }

@@ -1,7 +1,6 @@
 package data.xmlreader;
 
-import engine.dealer.Card;
-
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +43,7 @@ public interface GameReaderInterface {
      * Fetch ingame player actions possible
      * @return a List of strings containing all possible player actions
      */
-    List<String> getPlayerAction();
+    Collection<String> getPlayerAction();
 
     /**
      * Takes the current settings in a game and saves it to an XML file.

@@ -5,18 +5,21 @@ import engine.hand.ClassifiedHand;
 import engine.hand.Hand;
 
 import java.lang.reflect.Method;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class HandClassifier implements HandClassifierInterface {
 
-    private List<String> myWinningHands;
-    private List<String> myLosingHands;
+    private Collection<String> myWinningHands;
+    private Collection<String> myLosingHands;
 
     private static final String IS_PREFIX = "is";
 
+    public HandClassifier(Collection<String> winners, Collection<String> losers) {
+        this.myWinningHands = winners;
+        this.myLosingHands = losers;
+    }
 
+    @Deprecated
     public HandClassifier(List<String> winners, List<String> losers) {
         this.myWinningHands = winners;
         this.myLosingHands = losers;
@@ -56,11 +59,22 @@ public class HandClassifier implements HandClassifierInterface {
         for (String s: myWinningHands) {
             System.out.printf("%s, ", s);
             if (reflectOnMethod(s, h)) {
-                h.classifyHand(new ClassifiedHand(s, this.myWinningHands.indexOf(s), sumCards(h)));
+                h.classifyHand(new ClassifiedHand(s, indexOf(this.myWinningHands, s), sumCards(h)));
                 return true;
             }
         }
         return true;
+    }
+
+    private int indexOf(Collection<String> collection, String s) {
+        int count = 0;
+        Iterator iter = collection.iterator();
+        while (iter.hasNext()) {
+            if (iter.next().equals(s))
+                return count;
+            count ++;
+        }
+        return 0;
     }
 
     private boolean isBlackjack(Hand h) {

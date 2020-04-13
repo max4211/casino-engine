@@ -8,20 +8,6 @@
         <Type>Standard</Type>
     </Deck>
     <Competition>Adversary</Competition>
-    <WinningHand>
-        <Name>XCardSumY</Name>
-        <Parameters>2, 21</Parameters>
-        <Multiplier>1.5</Multiplier>
-        <ViewName>Blackjack</ViewName>
-    </WinningHand>
-    <WinningHand>
-        <Name>SumUnderX</Name>
-        <Parameters>22</Parameters>
-        <Muliplier>1.0</Muliplier>
-    </WinningHand>
-    <LosingHand>
-        <Name>SumOver21</Name>
-    </LosingHand>
     <Actions>
         <EntryBet>Generic</EntryBet>
         <DealerAction>

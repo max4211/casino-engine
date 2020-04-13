@@ -1,6 +1,6 @@
 package data.xmlreader;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface HandReaderInterface {
 
@@ -10,7 +10,7 @@ public interface HandReaderInterface {
      *
      * @return a List of Strings containing the names of all Hands that can win in a given game
      */
-    List<String> getWinningHands();
+    Collection<String> getWinningHands();
 
     /**
      * Translates the XML tag for Losing Java jands into naming each Hand
@@ -18,5 +18,5 @@ public interface HandReaderInterface {
      *
      * @return a List of Strings containing the names of all Hands that can lose in a given game
      */
-    List<String> getLosingHands();
+    Collection<String> getLosingHands();
 }

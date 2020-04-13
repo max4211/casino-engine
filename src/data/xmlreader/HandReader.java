@@ -6,7 +6,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
 
 public class HandReader implements HandReaderInterface {
 
@@ -29,12 +29,12 @@ public class HandReader implements HandReaderInterface {
     }
 
     @Override
-    public List<String> getWinningHands() {
+    public Collection<String> getWinningHands() {
         return XMLParseInterface.getXMLList(myDocument, WINNINGHAND_TAG, NAME_TAG);
     }
 
     @Override
-    public List<String> getLosingHands() {
+    public Collection<String> getLosingHands() {
         return XMLParseInterface.getXMLList(myDocument, LOSINGHAND_TAG, NAME_TAG);
     }
 }

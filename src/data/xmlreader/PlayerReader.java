@@ -1,5 +1,6 @@
 package data.xmlreader;
 
+import Utility.Pair;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -9,6 +10,8 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,20 +33,18 @@ public class PlayerReader implements PlayerReaderInterface {
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
-
-
     @Override
-    public Map<String, Double> getPlayers() {
-        Map<String, Double> map = new HashMap<>();
+    public Collection<Pair> getPlayers() {
+        Collection<Pair> playerCollection = new ArrayList<>();
         NodeList playersNodeList = XMLParseInterface.getNodeList(myDocument, PLAYER_TAG);
         for (int index = 0; index < playersNodeList.getLength(); index ++) {
             Node playerNode = playersNodeList.item(index);
             Element playerElement = (Element) playerNode;
             String name = XMLParseInterface.getElement(playerElement, NAME_TAG);
             double roll = Double.parseDouble(XMLParseInterface.getElement(playerElement, BANKROLL_TAG));
-            map.put(name, roll);
+            playerCollection.add(new Pair(name, roll));
         }
-        return map;
+        return playerCollection;
     }
 
 }

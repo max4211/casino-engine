@@ -21,29 +21,23 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 public class Main extends Application {
 
-    private static final String gameFile = "src/data/game/blackjackGame.xml";
+    private static final String gameFile = "src/data/game/blackjackGame_v2.xml";
     private static final String playerFile = "src/data/players/players.xml";
     private static final String handFile = "src/data/hands/hands.xml";
 
-    private static List<Player> createPlayerList(PlayerReader playerReader) {
-        Map<String, Double> playerMap = playerReader.getPlayers();
-        PlayerList myPlayers = new PlayerList(playerMap);
+    private static Collection<Player> createPlayerList(PlayerReader playerReader) {
+        Collection<Utility.Pair> playerCollection = playerReader.getPlayers();
+        PlayerList myPlayers = new PlayerList(playerCollection);
         return myPlayers.getPlayers();
     }
 
-    private static void traverseList(List<String> list) {
-        for (String s: list) {
-            System.out.println(s);
-        }
-    }
-
-    private static Table constructTable(GameReader gameReader, PlayerReader playerReader) throws IOException, SAXException, ParserConfigurationException {
-        List<Player> playerList = createPlayerList(playerReader);
+    private static Table constructTable(GameReader gameReader, PlayerReader playerReader) {
+        Collection<Player> playerList = createPlayerList(playerReader);
         List<Pair> deckList = gameReader.getDeck();
         Deck myDeck = new Deck(deckList);
         Dealer myDealer = new Dealer(myDeck);
@@ -54,10 +48,10 @@ public class Main extends Application {
 
     private static Controller constructController(GameReader gameReader, HandReader handReader, Table myTable, GameView myGameView) {
         String myEntryBet = gameReader.getEntryBet();
-        List<String> myPlayerActions = gameReader.getPlayerAction();
+        Collection<String> myPlayerActions = gameReader.getPlayerAction();
         Pair myDealerAction = gameReader.getDealerAction();
-        List<String> myWinningHands = handReader.getWinningHands();
-        List<String> myLosingHands = handReader.getLosingHands();
+        Collection<String> myWinningHands = handReader.getWinningHands();
+        Collection<String> myLosingHands = handReader.getLosingHands();
         HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);
         HandEvaluator myHandEvaluator = new HandEvaluator();
         BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);

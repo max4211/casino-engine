@@ -9,10 +9,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameReader implements GameReaderInterface {
 
@@ -83,7 +80,7 @@ public class GameReader implements GameReaderInterface {
     }
 
     @Override
-    public List<String> getPlayerAction() {
+    public Collection<String> getPlayerAction() {
         return XMLParseInterface.getXMLList(myDocument, PLAYERACTION_TAG, NAME_TAG);
     }
 

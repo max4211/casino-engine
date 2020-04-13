@@ -15,7 +15,6 @@ import engine.player.Player;
 import engine.table.Table;
 import exceptions.ReflectionException;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,7 +25,7 @@ public class Controller implements ControllerInterface {
     private GameView myGameView;
     private GameView myOGGameView;
     private final String myEntryBet;
-    private final List<String> myPlayerActions;
+    private final Collection<String> myPlayerActions;
     private final Pair myDealerAction;
     private final ActionFactory myFactory;
     private final HandClassifier myHandClassifier;
@@ -39,7 +38,7 @@ public class Controller implements ControllerInterface {
     // TODO - refactor into data files (in adversary construction?)
     private static final int ADVERSARY_MIN = 17;
 
-    public Controller(Table table, GameView gameView, String entryBet, List<String> playerActions, Pair dealerAction,
+    public Controller(Table table, GameView gameView, String entryBet, Collection<String> playerActions, Pair dealerAction,
                       HandClassifier handClassifier, BetEvaluator betEvaluator, String competition) {
         this.myTable = table;
         this.myGameView = gameView;
@@ -116,7 +115,7 @@ public class Controller implements ControllerInterface {
             System.out.printf("prompting player (%s) for an action --> ", p.getName());
             this.myGameView.setMainPlayer(p.getID());
             try {
-                Action a = this.myFactory.createAction(this.myGameView.selectAction(this.myPlayerActions));
+                Action a = this.myFactory.createAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();
                 a.execute(p, b);
                 Card c = this.myTable.updateBets(p);
