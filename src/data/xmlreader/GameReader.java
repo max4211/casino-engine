@@ -36,6 +36,7 @@ public class GameReader implements GameReaderInterface {
     private static final String TABLE_MAX_TAG = "TableMax";
 
     private static final String COMPETITION_TAG = "Competition";
+    private static final String CARDSHOW_TAG = "CardShow";
 
     public GameReader(File file) throws IOException, SAXException, ParserConfigurationException {
         this.myDocument = XMLGeneratorInterface.createDocument(file);
@@ -105,6 +106,11 @@ public class GameReader implements GameReaderInterface {
     @Override
     public double getTableMax() {
         return Double.parseDouble(myDocument.getElementsByTagName(TABLE_MAX_TAG).item(ZERO).getTextContent());
+    }
+
+    @Override
+    public String getCardShow() {
+        return myDocument.getElementsByTagName(CARDSHOW_TAG).item(ZERO).getTextContent();
     }
 
     private File findDeckFile(String fileName) {

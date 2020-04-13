@@ -10,6 +10,7 @@
     <Competition>Adversary</Competition>
     <TableMin>5</TableMin>
     <TableMax>200</TableMax>
+    <CardShow>All</CardShow>
     <Actions>
         <EntryBet>Generic</EntryBet>
         <DealerAction>

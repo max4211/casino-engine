@@ -67,4 +67,10 @@ public interface GameReaderInterface {
     double getTableMin();
     double getTableMax();
 
+    /**
+     * Fetch the card showing policy for players
+     * @return
+     */
+    String getCardShow();
+
 }

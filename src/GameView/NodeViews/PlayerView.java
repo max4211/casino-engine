@@ -82,4 +82,8 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
         }
         return null;
     }
+
+    public void hideCard(int betID, int cardID) {
+
+    }
 }

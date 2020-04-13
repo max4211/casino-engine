@@ -14,6 +14,8 @@ public interface GameViewInterface {
 
     public void showCard(int playerID, int betID, int cardID);
 
+    void hideCard(int playerID, int betID, int cardID);
+
     public void renderAdversary(List<CardTriplet> hand);
 
     public void showAdversaryCard(int cardId);
