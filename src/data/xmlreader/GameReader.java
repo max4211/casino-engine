@@ -14,16 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
+public class GameReader implements GameReaderInterface {
 
     private static Document myDocument;
     private static final int ZERO = 0;
-    private static final String XML_EXTENSION = ".xml";
     private static final String DECK_DIRECTORY = "src/data/deck/";
-
-    private static final String PLAYER_TAG = "Player";
-    private static final String NAME_TAG = "Name";
-    private static final String BANKROLL_TAG = "Bankroll";
+    private static final String XML_EXTENSION = ".xml";
 
     private static final String DECK_TAG = "Deck";
     private static final String QUANTITY_TAG = "Quantity";
@@ -32,6 +28,7 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
     private static final String CARD_TAG = "Card";
     private static final String SUIT_TAG = "Suit";
     private static final String VALUE_TAG = "Value";
+    private static final String NAME_TAG = "Name";
 
     private static final String WINNINGHAND_TAG = "WinningHand";
     private static final String LOSINGHAND_TAG = "LosingHand";
@@ -40,21 +37,23 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
     private static final String ENTRY_TAG = "EntryBet";
     private static final String DEALERACTION_TAG = "DealerAction";
     private static final String PLAYERACTION_TAG = "PlayerAction";
-    private static final String ACTION_TAG = "Action";
     private static final String TYPE_TAG = "Type";
 
     private static final String COMPETITION_TAG = "Competition";
 
-    public XMLReader(File file) throws IOException, SAXException, ParserConfigurationException {
-        myDocument = XMLGeneratorInterface.createDocument(file);
+    public GameReader(File file) throws IOException, SAXException, ParserConfigurationException {
+        this.myDocument = XMLGeneratorInterface.createDocument(file);
+        traverseXML(myDocument.getDocumentElement());
     }
 
-    public XMLReader(String file) throws IOException, SAXException, ParserConfigurationException {
-        myDocument = XMLGeneratorInterface.createDocument(new File(file));
+    public GameReader(String file) throws IOException, SAXException, ParserConfigurationException {
+        this.myDocument = XMLGeneratorInterface.createDocument(new File(file));
+        traverseXML(myDocument.getDocumentElement());
     }
 
     @Override
     public List<Pair> getDeck() {
+//        Element deckElement = this.myDocument.getElementById(DECK_TAG);
         NodeList deckNodeList = getNodeList(DECK_TAG);
         Element deckElement = (Element) deckNodeList.item(ZERO);
         String type = getElement(deckElement, DECK_TYPE);
@@ -104,20 +103,6 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
     }
 
     @Override
-    public Map<String, Double> getPlayers() {
-        Map<String, Double> map = new HashMap<>();
-        NodeList playersNodeList = getNodeList(PLAYER_TAG);
-        for (int index = 0; index < playersNodeList.getLength(); index ++) {
-            Node playerNode = playersNodeList.item(index);
-            Element playerElement = (Element) playerNode;
-            String name = getElement(playerElement, NAME_TAG);
-            double roll = Double.parseDouble(getElement(playerElement, BANKROLL_TAG));
-            map.put(name, roll);
-        }
-        return map;
-    }
-
-    @Override
     public void savePreferences(String fileName) {
 
     }
@@ -132,6 +117,7 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
     }
 
     private String getElement(Element e, String tag) {
+        System.out.println("e.toString(): " + e.toString());
         return e.getElementsByTagName(tag).item(ZERO).getTextContent();
     }
 
@@ -164,6 +150,16 @@ public class XMLReader implements XMLGeneratorInterface, XMLParseInterface {
             list.add(name);
         }
         return list;
+    }
+
+    private void traverseXML(Node node) {
+        System.out.println(node.getNodeName());
+        NodeList nodeList = node.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i ++) {
+            Node curNode = nodeList.item(i);
+            if (curNode.getNodeType() == Node.ELEMENT_NODE)
+                traverseXML(curNode);
+        }
     }
 
 }
