@@ -32,6 +32,9 @@ public class GameReader implements GameReaderInterface {
     private static final String PLAYERACTION_TAG = "PlayerAction";
     private static final String TYPE_TAG = "Type";
 
+    private static final String TABLE_MIN_TAG = "TableMin";
+    private static final String TABLE_MAX_TAG = "TableMax";
+
     private static final String COMPETITION_TAG = "Competition";
 
     public GameReader(File file) throws IOException, SAXException, ParserConfigurationException {
@@ -92,6 +95,16 @@ public class GameReader implements GameReaderInterface {
     @Override
     public String getCompetition() {
         return myDocument.getElementsByTagName(COMPETITION_TAG).item(ZERO).getTextContent();
+    }
+
+    @Override
+    public double getTableMin() {
+        return Double.parseDouble(myDocument.getElementsByTagName(TABLE_MIN_TAG).item(ZERO).getTextContent());
+    }
+
+    @Override
+    public double getTableMax() {
+        return Double.parseDouble(myDocument.getElementsByTagName(TABLE_MAX_TAG).item(ZERO).getTextContent());
     }
 
     private File findDeckFile(String fileName) {

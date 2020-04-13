@@ -8,6 +8,8 @@
         <Type>Standard</Type>
     </Deck>
     <Competition>Adversary</Competition>
+    <TableMin>5</TableMin>
+    <TableMax>200</TableMax>
     <Actions>
         <EntryBet>Generic</EntryBet>
         <DealerAction>

@@ -42,6 +42,16 @@ public class Table implements TableInterface {
         this.myPlayerHashCodes = recordPlayerHashCodes();
     }
 
+    public Table(Collection<Player> players, Dealer dealer, double min, double max) {
+        this.myPlayers = players;
+        this.myDealer = dealer;
+        this.myPlayerHashCodes = recordPlayerHashCodes();
+        this.myTableMin = min;
+        this.myTableMax = max;
+    }
+
+
+
     private List<Integer> recordPlayerHashCodes() {
         List<Integer> list = new ArrayList<>();
         for (Player p: myPlayers) {

@@ -39,9 +39,11 @@ public class Main extends Application {
     private static Table constructTable(GameReader gameReader, PlayerReader playerReader) {
         Collection<Player> playerList = createPlayerList(playerReader);
         List<Pair> deckList = gameReader.getDeck();
+        double tableMin = gameReader.getTableMin();
+        double tableMax = gameReader.getTableMax();
         Deck myDeck = new Deck(deckList);
         Dealer myDealer = new Dealer(myDeck);
-        Table myTable = new Table(playerList, myDealer);
+        Table myTable = new Table(playerList, myDealer, tableMin, tableMax);
 
         return myTable;
     }

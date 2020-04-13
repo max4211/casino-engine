@@ -60,4 +60,11 @@ public interface GameReaderInterface {
      */
     String getCompetition();
 
+    /**
+     * Get table limits to help organize bet structure
+     * @return
+     */
+    double getTableMin();
+    double getTableMax();
+
 }
