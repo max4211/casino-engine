@@ -22,12 +22,12 @@ public class PlayerReader implements PlayerReaderInterface {
 
     public PlayerReader(File file) throws IOException, SAXException, ParserConfigurationException {
         this.myDocument = XMLGeneratorInterface.createDocument(file);
-        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
+//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     public PlayerReader(String file) throws IOException, SAXException, ParserConfigurationException {
         this.myDocument = XMLGeneratorInterface.createDocument(new File(file));
-        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
+//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
 

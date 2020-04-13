@@ -30,10 +30,6 @@ public class GameReader implements GameReaderInterface {
     private static final String VALUE_TAG = "Value";
     private static final String NAME_TAG = "Name";
 
-    private static final String WINNINGHAND_TAG = "WinningHand";
-    private static final String LOSINGHAND_TAG = "LosingHand";
-    private static final String HAND_TAG = "Hand";
-
     private static final String ENTRY_TAG = "EntryBet";
     private static final String DEALERACTION_TAG = "DealerAction";
     private static final String PLAYERACTION_TAG = "PlayerAction";
@@ -43,12 +39,12 @@ public class GameReader implements GameReaderInterface {
 
     public GameReader(File file) throws IOException, SAXException, ParserConfigurationException {
         this.myDocument = XMLGeneratorInterface.createDocument(file);
-        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
+//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     public GameReader(String file) throws IOException, SAXException, ParserConfigurationException {
         this.myDocument = XMLGeneratorInterface.createDocument(new File(file));
-        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
+//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     @Override
@@ -70,16 +66,6 @@ public class GameReader implements GameReaderInterface {
     @Override
     public Map<String, Double> getPayoutOdds() {
         return null;
-    }
-
-    @Override
-    public List<String> getWinningHands() {
-        return XMLParseInterface.getXMLList(myDocument, WINNINGHAND_TAG, NAME_TAG);
-    }
-
-    @Override
-    public List<String> getLosingHands() {
-        return XMLParseInterface.getXMLList(myDocument, LOSINGHAND_TAG, NAME_TAG);
     }
 
     @Override

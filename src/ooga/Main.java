@@ -3,6 +3,7 @@ package ooga;
 import GameView.NodeViews.GameView;
 import controller.Controller;
 import data.xmlreader.GameReader;
+import data.xmlreader.HandReader;
 import data.xmlreader.Pair;
 import data.xmlreader.PlayerReader;
 import engine.dealer.Dealer;
@@ -27,9 +28,9 @@ public class Main extends Application {
 
     private static final String gameFile = "src/data/game/blackjackGame.xml";
     private static final String playerFile = "src/data/players/players.xml";
+    private static final String handFile = "src/data/hands/hands.xml";
 
-    private static List<Player> createPlayerList() throws ParserConfigurationException, SAXException, IOException {
-        PlayerReader playerReader = new PlayerReader(playerFile);
+    private static List<Player> createPlayerList(PlayerReader playerReader) {
         Map<String, Double> playerMap = playerReader.getPlayers();
         PlayerList myPlayers = new PlayerList(playerMap);
         return myPlayers.getPlayers();
@@ -41,9 +42,9 @@ public class Main extends Application {
         }
     }
 
-    private static Table constructTable(GameReader myReader) throws IOException, SAXException, ParserConfigurationException {
-        List<Player> playerList = createPlayerList();
-        List<Pair> deckList = myReader.getDeck();
+    private static Table constructTable(GameReader gameReader, PlayerReader playerReader) throws IOException, SAXException, ParserConfigurationException {
+        List<Player> playerList = createPlayerList(playerReader);
+        List<Pair> deckList = gameReader.getDeck();
         Deck myDeck = new Deck(deckList);
         Dealer myDealer = new Dealer(myDeck);
         Table myTable = new Table(playerList, myDealer);
@@ -51,16 +52,16 @@ public class Main extends Application {
         return myTable;
     }
 
-    private static Controller constructController(GameReader myReader, Table myTable, GameView myGameView) {
-        String myEntryBet = myReader.getEntryBet();
-        List<String> myPlayerActions = myReader.getPlayerAction();
-        Pair myDealerAction = myReader.getDealerAction();
-        List<String> myWinningHands = myReader.getWinningHands();
-        List<String> myLosingHands = myReader.getLosingHands();
+    private static Controller constructController(GameReader gameReader, HandReader handReader, Table myTable, GameView myGameView) {
+        String myEntryBet = gameReader.getEntryBet();
+        List<String> myPlayerActions = gameReader.getPlayerAction();
+        Pair myDealerAction = gameReader.getDealerAction();
+        List<String> myWinningHands = handReader.getWinningHands();
+        List<String> myLosingHands = handReader.getLosingHands();
         HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);
         HandEvaluator myHandEvaluator = new HandEvaluator();
         BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
-        String myCompetition = myReader.getCompetition();
+        String myCompetition = gameReader.getCompetition();
 
         return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction, myHandClassifier, myBetEvaluator, myCompetition);
     }
@@ -79,13 +80,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws ParserConfigurationException, SAXException, IOException {
-        GameReader myReader = new GameReader(gameFile);
-        Table myTable = constructTable(myReader);
+        GameReader gameReader = new GameReader(gameFile);
+        HandReader handReader = new HandReader(handFile);
+        PlayerReader playerReader = new PlayerReader(playerFile);
+
+        Table myTable = constructTable(gameReader, playerReader);
         GameView myGameView = constructGameView();
         primaryStage.setScene(new Scene(myGameView.getView(), 800, 800));
         primaryStage.show();
 
-        Controller myController = constructController(myReader, myTable, myGameView);
+        Controller myController = constructController(gameReader, handReader, myTable, myGameView);
         myController.startGame();
     }
 }
