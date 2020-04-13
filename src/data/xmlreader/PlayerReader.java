@@ -1,11 +1,15 @@
 package data.xmlreader;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerReader implements PlayerReaderInterface {
@@ -30,6 +34,16 @@ public class PlayerReader implements PlayerReaderInterface {
 
     @Override
     public Map<String, Double> getPlayers() {
-        return null;
+        Map<String, Double> map = new HashMap<>();
+        NodeList playersNodeList = XMLParseInterface.getNodeList(myDocument, PLAYER_TAG);
+        for (int index = 0; index < playersNodeList.getLength(); index ++) {
+            Node playerNode = playersNodeList.item(index);
+            Element playerElement = (Element) playerNode;
+            String name = XMLParseInterface.getElement(playerElement, NAME_TAG);
+            double roll = Double.parseDouble(XMLParseInterface.getElement(playerElement, BANKROLL_TAG));
+            map.put(name, roll);
+        }
+        return map;
     }
+
 }

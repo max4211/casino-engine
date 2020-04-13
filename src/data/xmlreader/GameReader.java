@@ -43,21 +43,20 @@ public class GameReader implements GameReaderInterface {
 
     public GameReader(File file) throws IOException, SAXException, ParserConfigurationException {
         this.myDocument = XMLGeneratorInterface.createDocument(file);
-        traverseXML(myDocument.getDocumentElement());
+        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     public GameReader(String file) throws IOException, SAXException, ParserConfigurationException {
         this.myDocument = XMLGeneratorInterface.createDocument(new File(file));
-        traverseXML(myDocument.getDocumentElement());
+        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     @Override
     public List<Pair> getDeck() {
-//        Element deckElement = this.myDocument.getElementById(DECK_TAG);
-        NodeList deckNodeList = getNodeList(DECK_TAG);
+        NodeList deckNodeList = XMLParseInterface.getNodeList(myDocument, DECK_TAG);
         Element deckElement = (Element) deckNodeList.item(ZERO);
-        String type = getElement(deckElement, DECK_TYPE);
-        int quantity = Integer.parseInt(getElement(deckElement, QUANTITY_TAG));
+        String type = XMLParseInterface.getElement(deckElement, DECK_TYPE);
+        int quantity = Integer.parseInt(XMLParseInterface.getElement(deckElement, QUANTITY_TAG));
         try {
             File deckFile = findDeckFile(type);
             Document deckXML = XMLGeneratorInterface.createDocument(deckFile);
@@ -75,12 +74,12 @@ public class GameReader implements GameReaderInterface {
 
     @Override
     public List<String> getWinningHands() {
-        return getXMLList(WINNINGHAND_TAG, NAME_TAG);
+        return XMLParseInterface.getXMLList(myDocument, WINNINGHAND_TAG, NAME_TAG);
     }
 
     @Override
     public List<String> getLosingHands() {
-        return getXMLList(LOSINGHAND_TAG, NAME_TAG);
+        return XMLParseInterface.getXMLList(myDocument, LOSINGHAND_TAG, NAME_TAG);
     }
 
     @Override
@@ -90,16 +89,16 @@ public class GameReader implements GameReaderInterface {
 
     @Override
     public Pair getDealerAction() {
-        Node dealerActionNodeList = getNodeList(DEALERACTION_TAG).item(ZERO);
+        Node dealerActionNodeList = XMLParseInterface.getNodeList(myDocument, DEALERACTION_TAG).item(ZERO);
         Element dealerActionElement = (Element) dealerActionNodeList;
-        String type = getElement(dealerActionElement, TYPE_TAG);
-        String quantity = getElement(dealerActionElement, QUANTITY_TAG);
+        String type = XMLParseInterface.getElement(dealerActionElement, TYPE_TAG);
+        String quantity = XMLParseInterface.getElement(dealerActionElement, QUANTITY_TAG);
         return new Pair(type, quantity);
     }
 
     @Override
     public List<String> getPlayerAction() {
-        return getXMLList(PLAYERACTION_TAG, NAME_TAG);
+        return XMLParseInterface.getXMLList(myDocument, PLAYERACTION_TAG, NAME_TAG);
     }
 
     @Override
@@ -110,15 +109,6 @@ public class GameReader implements GameReaderInterface {
     @Override
     public String getCompetition() {
         return myDocument.getElementsByTagName(COMPETITION_TAG).item(ZERO).getTextContent();
-    }
-
-    private NodeList getNodeList(String tag) {
-        return myDocument.getElementsByTagName(tag);
-    }
-
-    private String getElement(Element e, String tag) {
-        System.out.println("e.toString(): " + e.toString());
-        return e.getElementsByTagName(tag).item(ZERO).getTextContent();
     }
 
     private File findDeckFile(String fileName) {
@@ -133,33 +123,11 @@ public class GameReader implements GameReaderInterface {
         for (int index = 0; index < cardNodeList.getLength(); index ++) {
             Node cardNode = cardNodeList.item(index);
             Element cardElement = (Element) cardNode;
-            String suit = getElement(cardElement, SUIT_TAG);
-            String value = getElement(cardElement, VALUE_TAG);
+            String suit = XMLParseInterface.getElement(cardElement, SUIT_TAG);
+            String value = XMLParseInterface.getElement(cardElement, VALUE_TAG);
             list.add(new Pair(suit, value));
         }
         return list;
-    }
-
-    private List<String> getXMLList(String metatag, String subtag) {
-        List<String> list = new ArrayList<>();
-        NodeList handNodeList = myDocument.getElementsByTagName(metatag);
-        for (int index = 0; index < handNodeList.getLength(); index ++) {
-            Node handNode = handNodeList.item(index);
-            Element handElement = (Element) handNode;
-            String name = getElement(handElement, subtag);
-            list.add(name);
-        }
-        return list;
-    }
-
-    private void traverseXML(Node node) {
-        System.out.println(node.getNodeName());
-        NodeList nodeList = node.getChildNodes();
-        for (int i = 0; i < nodeList.getLength(); i ++) {
-            Node curNode = nodeList.item(i);
-            if (curNode.getNodeType() == Node.ELEMENT_NODE)
-                traverseXML(curNode);
-        }
     }
 
 }

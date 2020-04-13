@@ -29,7 +29,6 @@ public class Main extends Application {
     private static final String playerFile = "src/data/players/players.xml";
 
     private static List<Player> createPlayerList() throws ParserConfigurationException, SAXException, IOException {
-        System.out.println("CREATING PLAYER LIST!!!!!");
         PlayerReader playerReader = new PlayerReader(playerFile);
         Map<String, Double> playerMap = playerReader.getPlayers();
         PlayerList myPlayers = new PlayerList(playerMap);
