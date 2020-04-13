@@ -24,9 +24,9 @@ public class basicUITester extends Application {
         BorderPane root = new BorderPane();
 
         testCards(root);
-        testBets(root);
-        testPlayers(root);
-        testSelectors(root);
+//        testBets(root);
+//        testPlayers(root);
+//        testSelectors(root);
 
         primaryStage.setScene(new Scene(root, 500, 500));
         primaryStage.show();
@@ -52,7 +52,7 @@ public class basicUITester extends Application {
         p.setCenter(cv1.getView());
         // p.setCenter(cv2.getView());
         // p.setCenter(cv3.getView());
-        // p.setCenter(cv4.getView());
+         p.setCenter(cv4.getView());
 
 
         cv2.showCard();

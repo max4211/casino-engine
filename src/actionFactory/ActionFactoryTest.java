@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ActionFactoryTest {
 
+    // HAPPY PATH :)
     @Test
     void testCreateAction() {
         ActionFactory factory = new ActionFactory();
@@ -18,10 +19,12 @@ class ActionFactoryTest {
         assertEquals(doubleDownTest.getClass(), DoubleDown.class);
     }
 
+    // SAD PATH :)
     @Test
     void testInvalidAction() {
         ActionFactory factory = new ActionFactory();
         Exception e = assertThrows(RuntimeException.class, () -> factory.createAction("blah"));
         assertEquals(e.getClass(), ReflectionException.class);
+        // TODO - test exception matches string
     }
 }
