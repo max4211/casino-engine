@@ -56,16 +56,18 @@ public class HandView implements NodeViewInterface {
     }
 
     public void removeCard(int cardID) {
-        for (CardView tempCardView : myCards) {
-            if (tempCardView.hasSameID(cardID)) {
-                myHand.getChildren().remove(tempCardView);
-                return;
-            }
-        }
+        myCards.remove(cardID);
     }
 
     public void clearHand() {
         myCards.clear();
         myHand.getChildren().clear();
+    }
+
+    private CardView getCard(int id) {
+        for (CardView tempCardView : myCards) {
+            if (tempCardView.hasSameID(id)) return tempCardView;
+        }
+        return null;
     }
  }
