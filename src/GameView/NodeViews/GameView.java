@@ -50,7 +50,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void removeCard(int playerID, int betID, int cardID) {
-        getPlayerView(betID).removeCard(betID, cardID);
+        getPlayerView(playerID).removeCard(betID, cardID);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     @Override
     public void removeBet(int playerId, int betId) {
         getPlayerView(playerId).removeBet(betId);
-    }
+    }git 
 
     @Override
     public String selectAction(List<String> actions) {
@@ -108,7 +108,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     public void addAdversaryCard(CardTriplet cardInfo) {
         myAdversary.addCard(cardInfo);
     }
-
 
     @Override
     public void renderAdversary(List<CardTriplet> hand) {
