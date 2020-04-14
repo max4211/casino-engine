@@ -1,4 +1,4 @@
-package xmlreader;
+package xmlreader.readers;
 
 import Utility.Pair;
 import org.w3c.dom.Document;
@@ -6,6 +6,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import xmlreader.interfaces.PlayerReaderInterface;
+import xmlreader.interfaces.XMLGeneratorInterface;
+import xmlreader.interfaces.XMLParseInterface;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;

@@ -1,10 +1,14 @@
-package xmlreader;
+package xmlreader.readers;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import Utility.StringPair;
+import xmlreader.interfaces.GameReaderInterface;
+import xmlreader.interfaces.XMLGeneratorInterface;
+import xmlreader.interfaces.XMLParseInterface;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
@@ -50,7 +54,7 @@ public class GameReader implements GameReaderInterface {
     }
 
     @Override
-    public List<Pair> getDeck() {
+    public List<StringPair> getDeck() {
         NodeList deckNodeList = XMLParseInterface.getNodeList(myDocument, DECK_TAG);
         Element deckElement = (Element) deckNodeList.item(ZERO);
         String type = XMLParseInterface.getElement(deckElement, DECK_TYPE);
@@ -76,12 +80,12 @@ public class GameReader implements GameReaderInterface {
     }
 
     @Override
-    public Pair getDealerAction() {
+    public StringPair getDealerAction() {
         Node dealerActionNodeList = XMLParseInterface.getNodeList(myDocument, DEALERACTION_TAG).item(ZERO);
         Element dealerActionElement = (Element) dealerActionNodeList;
         String type = XMLParseInterface.getElement(dealerActionElement, TYPE_TAG);
         String quantity = XMLParseInterface.getElement(dealerActionElement, QUANTITY_TAG);
-        return new Pair(type, quantity);
+        return new StringPair(type, quantity);
     }
 
     @Override
@@ -125,15 +129,15 @@ public class GameReader implements GameReaderInterface {
     }
 
     // TODO - refactor, very similar to parsePlayers method
-    private List<Pair> parseDeck(Document d) {
-        List<Pair> list = new ArrayList<>();
+    private List<StringPair> parseDeck(Document d) {
+        List<StringPair> list = new ArrayList<>();
         NodeList cardNodeList = d.getElementsByTagName(CARD_TAG);
         for (int index = 0; index < cardNodeList.getLength(); index ++) {
             Node cardNode = cardNodeList.item(index);
             Element cardElement = (Element) cardNode;
             String suit = XMLParseInterface.getElement(cardElement, SUIT_TAG);
             String value = XMLParseInterface.getElement(cardElement, VALUE_TAG);
-            list.add(new Pair(suit, value));
+            list.add(new StringPair(suit, value));
         }
         return list;
     }

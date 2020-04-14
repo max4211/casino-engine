@@ -1,6 +1,6 @@
 package engine.table;
 
-import xmlreader.Pair;
+import Utility.StringPair;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
@@ -73,7 +73,7 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public void performDealerAction(Pair dealerAction) {
+    public void performDealerAction(StringPair dealerAction) {
         String actionType = dealerAction.getKey();
         int actionQuantity = Integer.parseInt(dealerAction.getValue());
         Class clazz = int.class;

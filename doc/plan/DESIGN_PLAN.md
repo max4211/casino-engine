@@ -92,7 +92,7 @@ public Map<String, Double> getPlayers()
 To playerHand out `Card` objects from a data-defined `Deck` to `Hands`.
 
 *Classes and Objects:*
-`Card` wraps information regarding a Suit and a Value, where Suit is an enumerated String type and Value is a double. These values are defined by a deck XML file, where each line represents a card. The `CardFactory` class takes the pair of suit and value found in the data, and constructs a `Card` object with it.
+`Card` wraps information regarding a Suit and a Value, where Suit is an enumerated String type and Value is a double. These values are defined by a deck XML file, where each line represents a card. The `CardFactory` class takes the stringPair of suit and value found in the data, and constructs a `Card` object with it.
 
 A `Deck` encapsulates a collection of `Card` objects.
 
@@ -283,7 +283,7 @@ This game is a natural extension to our poker setup and shows the ease that one 
 
 The distinction between five-card draw and texas hold'em boils down to little more than a few XMl tags. The mid-turn Actions that a user can take is modified to implement a replace card action, as is allowed in the game (and not hold'em). Moreover, the number of cards distributed to a player is changed in the XML, but aside from that, little has to be done, especially the games implement the same ranking heirarchy.
 
-If one wanted to change this heirarchy, it would be extrememly easy. If someone wanted a two-pair to be the best possible playerHand, they could restructure the XML tag to look like the following:
+If one wanted to change this heirarchy, it would be extrememly easy. If someone wanted a two-stringPair to be the best possible playerHand, they could restructure the XML tag to look like the following:
 
 ```htmlmixed
 <Hierarchy>

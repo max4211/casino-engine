@@ -1,6 +1,6 @@
 package engine.dealer;
 
-import xmlreader.Pair;
+import Utility.StringPair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,10 @@ public class Deck implements DealerInterface {
     private List<Card> myCurrentCards;
     private List<Card> myBaseCards;
 
-    public Deck(List<Pair> cards) {
+    public Deck(List<StringPair> cards) {
         this.myBaseCards = new ArrayList<>();
         this.myCurrentCards = new ArrayList<>();
-        for (Pair p: cards) {
+        for (StringPair p: cards) {
             this.myBaseCards.add(new Card(p));
         }
         this.myCurrentCards = this.myBaseCards;

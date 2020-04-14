@@ -1,8 +1,8 @@
 package ooga;
 
 import GameView.NodeViews.GameView;
+import Utility.StringPair;
 import controller.Controller;
-import xmlreader.*;
 import engine.dealer.Dealer;
 import engine.dealer.Deck;
 import engine.evaluator.BetEvaluator;
@@ -15,6 +15,10 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
+import xmlreader.readers.GameReader;
+import xmlreader.readers.HandReader;
+import xmlreader.readers.PlayerReader;
+import xmlreader.readers.ViewReader;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -36,7 +40,7 @@ public class Main extends Application {
 
     private static Table constructTable(GameReader gameReader, PlayerReader playerReader) {
         Collection<Player> playerList = createPlayerList(playerReader);
-        List<Pair> deckList = gameReader.getDeck();
+        List<StringPair> deckList = gameReader.getDeck();
         double tableMin = gameReader.getTableMin();
         double tableMax = gameReader.getTableMax();
         Deck myDeck = new Deck(deckList);
@@ -49,7 +53,7 @@ public class Main extends Application {
     private static Controller constructController(GameReader gameReader, HandReader handReader, Table myTable, GameView myGameView) {
         String myEntryBet = gameReader.getEntryBet();
         Collection<String> myPlayerActions = gameReader.getPlayerAction();
-        Pair myDealerAction = gameReader.getDealerAction();
+        StringPair myDealerAction = gameReader.getDealerAction();
         Collection<String> myWinningHands = handReader.getWinningHands();
         Collection<String> myLosingHands = handReader.getLosingHands();
         HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);

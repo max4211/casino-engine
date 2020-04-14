@@ -1,4 +1,4 @@
-package xmlreader;
+package xmlreader.interfaces;
 
 import Utility.Pair;
 

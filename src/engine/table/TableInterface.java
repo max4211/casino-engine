@@ -1,6 +1,6 @@
 package engine.table;
 
-import xmlreader.Pair;
+import Utility.StringPair;
 import engine.adversary.Adversary;
 import engine.dealer.Card;
 import engine.player.Player;
@@ -29,7 +29,7 @@ public interface TableInterface {
      * called by controller for dealer to distribute cards to players
      * @param dealerAction dictates what type of action is conducted
      */
-    void performDealerAction(Pair dealerAction);
+    void performDealerAction(StringPair dealerAction);
 
     /**
      * called by the controller to identify players

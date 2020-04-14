@@ -1,4 +1,4 @@
-package xmlreader;
+package xmlwriter;
 
 import java.util.List;
 

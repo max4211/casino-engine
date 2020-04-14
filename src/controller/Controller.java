@@ -4,7 +4,7 @@ import GameView.NodeViews.GameView;
 import Utility.CardTriplet;
 import actionFactory.Action;
 import actionFactory.ActionFactory;
-import xmlreader.Pair;
+import Utility.StringPair;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
@@ -26,7 +26,7 @@ public class Controller implements ControllerInterface {
     private GameView myOGGameView;
     private final String myEntryBet;
     private final Collection<String> myPlayerActions;
-    private final Pair myDealerAction;
+    private final StringPair myDealerAction;
     private final ActionFactory myFactory;
     private final HandClassifier myHandClassifier;
     private final BetEvaluator myBetEvaluator;
@@ -41,7 +41,7 @@ public class Controller implements ControllerInterface {
     // TODO - refactor into data files (in adversary construction?)
     private static final int ADVERSARY_MIN = 17;
 
-    public Controller(Table table, GameView gameView, String entryBet, Collection<String> playerActions, Pair dealerAction,
+    public Controller(Table table, GameView gameView, String entryBet, Collection<String> playerActions, StringPair dealerAction,
                       HandClassifier handClassifier, BetEvaluator betEvaluator,
                       String competition, String cardshow, String goal) {
         this.myTable = table;

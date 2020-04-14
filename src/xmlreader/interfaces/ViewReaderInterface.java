@@ -1,4 +1,4 @@
-package xmlreader;
+package xmlreader.interfaces;
 
 public interface ViewReaderInterface {
 

@@ -1,4 +1,6 @@
-package xmlreader;
+package xmlreader.interfaces;
+
+import Utility.StringPair;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,7 +18,7 @@ public interface GameReaderInterface {
      *
      * @return a List with each Pair entry containing the suit and value of a card in the deck.
      */
-    List<Pair> getDeck();
+    List<StringPair> getDeck();
 
     /**
      * Method that translates the XML Payout Odds tag to a Map
@@ -37,7 +39,7 @@ public interface GameReaderInterface {
      * Fetch dealer opening action, all casino games start with dealer action
      * @return a pair containing action type and quantity
      */
-    Pair getDealerAction();
+    StringPair getDealerAction();
 
     /**
      * Fetch ingame player actions possible

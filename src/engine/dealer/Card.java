@@ -1,6 +1,6 @@
 package engine.dealer;
 
-import xmlreader.Pair;
+import Utility.StringPair;
 
 public class Card implements CardInterface {
 
@@ -17,9 +17,9 @@ public class Card implements CardInterface {
         this.myID = this.hashCode();
     }
 
-    public Card(Pair pair) {
-        this.mySuit = pair.getKey();
-        this.myValue = Double.parseDouble(pair.getValue());
+    public Card(StringPair stringPair) {
+        this.mySuit = stringPair.getKey();
+        this.myValue = Double.parseDouble(stringPair.getValue());
         this.myID = this.hashCode();
     }
 
