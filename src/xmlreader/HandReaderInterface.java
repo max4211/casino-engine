@@ -1,4 +1,4 @@
-package data.xmlreader;
+package xmlreader;
 
 import java.util.Collection;
 

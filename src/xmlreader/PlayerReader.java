@@ -1,4 +1,4 @@
-package data.xmlreader;
+package xmlreader;
 
 import Utility.Pair;
 import org.w3c.dom.Document;

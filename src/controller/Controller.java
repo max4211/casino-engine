@@ -4,7 +4,7 @@ import GameView.NodeViews.GameView;
 import Utility.CardTriplet;
 import actionFactory.Action;
 import actionFactory.ActionFactory;
-import data.xmlreader.Pair;
+import xmlreader.Pair;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
@@ -185,6 +185,7 @@ public class Controller implements ControllerInterface {
 
     private void showAdversaryCards() {
         for (Card c: this.myAdversary.getHand().getCards()) {
+            System.out.println("Adversary card: " + c.toString());
             this.myGameView.showAdversaryCard(c.getID());
         }
     }

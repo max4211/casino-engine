@@ -1,4 +1,4 @@
-package data.xmlreader;
+package xmlreader;
 
 public class Pair {
 

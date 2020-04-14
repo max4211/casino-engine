@@ -2,10 +2,7 @@ package ooga;
 
 import GameView.NodeViews.GameView;
 import controller.Controller;
-import data.xmlreader.GameReader;
-import data.xmlreader.HandReader;
-import data.xmlreader.Pair;
-import data.xmlreader.PlayerReader;
+import xmlreader.*;
 import engine.dealer.Dealer;
 import engine.dealer.Deck;
 import engine.evaluator.BetEvaluator;
@@ -29,6 +26,7 @@ public class Main extends Application {
     private static final String gameFile = "src/data/game/blackjackGame_v2.xml";
     private static final String playerFile = "src/data/players/players.xml";
     private static final String handFile = "src/data/hands/hands.xml";
+    private static final String viewFile = "src/data/view/view.xml";
 
     private static Collection<Player> createPlayerList(PlayerReader playerReader) {
         Collection<Utility.Pair> playerCollection = playerReader.getPlayers();
@@ -83,10 +81,11 @@ public class Main extends Application {
         GameReader gameReader = new GameReader(gameFile);
         HandReader handReader = new HandReader(handFile);
         PlayerReader playerReader = new PlayerReader(playerFile);
+        ViewReader viewReader = new ViewReader(viewFile);
 
         Table myTable = constructTable(gameReader, playerReader);
         GameView myGameView = constructGameView();
-        primaryStage.setScene(new Scene(myGameView.getView(), 800, 800));
+        primaryStage.setScene(new Scene(myGameView.getView(), viewReader.getScreenWidth(), viewReader.getScreenWidth()));
         primaryStage.show();
 
         Controller myController = constructController(gameReader, handReader, myTable, myGameView);

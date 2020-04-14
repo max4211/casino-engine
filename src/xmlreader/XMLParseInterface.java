@@ -1,4 +1,4 @@
-package data.xmlreader;
+package xmlreader;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -7,7 +7,6 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public interface XMLParseInterface {
 

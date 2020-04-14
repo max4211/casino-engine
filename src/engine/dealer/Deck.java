@@ -1,9 +1,8 @@
 package engine.dealer;
 
-import data.xmlreader.Pair;
+import xmlreader.Pair;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Deck implements DealerInterface {

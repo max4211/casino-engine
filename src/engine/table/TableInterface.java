@@ -1,6 +1,6 @@
 package engine.table;
 
-import data.xmlreader.Pair;
+import xmlreader.Pair;
 import engine.adversary.Adversary;
 import engine.dealer.Card;
 import engine.player.Player;

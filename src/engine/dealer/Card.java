@@ -1,6 +1,6 @@
 package engine.dealer;
 
-import data.xmlreader.Pair;
+import xmlreader.Pair;
 
 public class Card implements CardInterface {
 
