@@ -33,6 +33,8 @@ public class Controller implements ControllerInterface {
     private final String myCompetition;
     private Adversary myAdversary;
     private String myCardshow;
+    // TODO - use long term goal tag
+    private String myGoal;
 
     private static final int SLEEP_TIME = 2000;
 
@@ -40,7 +42,8 @@ public class Controller implements ControllerInterface {
     private static final int ADVERSARY_MIN = 17;
 
     public Controller(Table table, GameView gameView, String entryBet, Collection<String> playerActions, Pair dealerAction,
-                      HandClassifier handClassifier, BetEvaluator betEvaluator, String competition, String cardshow) {
+                      HandClassifier handClassifier, BetEvaluator betEvaluator,
+                      String competition, String cardshow, String goal) {
         this.myTable = table;
         this.myGameView = gameView;
         this.myOGGameView = gameView;
@@ -51,7 +54,8 @@ public class Controller implements ControllerInterface {
         this.myHandClassifier =  handClassifier;
         this.myBetEvaluator = betEvaluator;
         this.myCompetition = competition;
-        this.myCardshow= cardshow;
+        this.myCardshow = cardshow;
+        this.myGoal = goal;
         renderPlayers();
     }
 

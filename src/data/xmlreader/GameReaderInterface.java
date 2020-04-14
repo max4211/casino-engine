@@ -73,4 +73,9 @@ public interface GameReaderInterface {
      */
     String getCardShow();
 
+    /**
+     * Fetch the goal of the game (per round)
+     * @return
+     */
+    String getGoal();
 }

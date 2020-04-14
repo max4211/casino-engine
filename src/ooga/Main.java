@@ -59,8 +59,11 @@ public class Main extends Application {
         BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
         String myCompetition = gameReader.getCompetition();
         String myCardShow = gameReader.getCardShow();
+        String myGoal = gameReader.getGoal();
 
-        return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction, myHandClassifier, myBetEvaluator, myCompetition, myCardShow);
+        return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction,
+                myHandClassifier, myBetEvaluator,
+                myCompetition, myCardShow, myGoal);
     }
 
     // TODO - give game view parameters form the XML file
