@@ -67,14 +67,14 @@ public class Controller implements ControllerInterface {
     }
 
     private void restartGame() {
-        try {
+        /*try {
             Thread.sleep(SLEEP_TIME);
             this.myGameView.clearAllBets();
             this.myGameView.clearAdversary();
             this.startGame();
         } catch (Exception e) {
             System.exit(0);
-        }
+        }*/
     }
 
     private void renderPlayers() {

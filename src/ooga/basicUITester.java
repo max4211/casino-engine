@@ -1,4 +1,4 @@
-package GameView;
+package ooga;
 
 import GameView.NodeViews.*;
 import GameView.Selectors.ActionSelector;

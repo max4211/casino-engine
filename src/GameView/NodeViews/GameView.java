@@ -4,6 +4,7 @@ import GameView.NodeViews.Interfaces.GameViewInterface;
 import GameView.Selectors.ActionSelector;
 import GameView.Selectors.WagerSelector;
 import Utility.CardTriplet;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import GameView.NodeViews.Interfaces.NodeViewInterface;
 
@@ -16,6 +17,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
 
+    private static final String PATH_TO_STYLESHEETS = "./GameView/StyleSheets/";
+    private static final String DEFAULT_CSS = PATH_TO_STYLESHEETS + "Normal.css";
+    private static final String DARK_MODE_CSS = PATH_TO_STYLESHEETS + "DarkMode.css";
+    private String myStyleSheet;
+
+
     public GameView() {
         myBorderPane = new BorderPane();
         myOtherPlayers = new OtherPlayersView();
@@ -23,6 +30,13 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
         myMainPlayer = new MainPlayerView();
         myBorderPane.setBottom(myMainPlayer.getView());
+
+        myBorderPane.getStylesheets().add(DEFAULT_CSS);
+        Button tempDarkMode = new Button();
+        tempDarkMode.setOnAction(e -> updateStyleSheet(DARK_MODE_CSS));
+        tempDarkMode.setText("DARKMODE!");
+        myBorderPane.setRight(tempDarkMode);
+        myStyleSheet = DEFAULT_CSS;
     }
 
     public BorderPane getView() {
@@ -136,5 +150,11 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private PlayerView getPlayerView(int playerID) {
         if (myMainPlayer.holdsAPlayer() && myMainPlayer.hasSameID(playerID)) return myMainPlayer.getMainPlayer();
         return myOtherPlayers.getPlayerView(playerID);
+    }
+
+    private void updateStyleSheet(String newStylesheet) {
+        myBorderPane.getStylesheets().remove(myStyleSheet);
+        myBorderPane.getStylesheets().add(newStylesheet);
+        myStyleSheet = newStylesheet;
     }
 }
