@@ -66,7 +66,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     @Override
     public void removeBet(int playerId, int betId) {
         getPlayerView(playerId).removeBet(betId);
-    }git 
+    }
 
     @Override
     public String selectAction(List<String> actions) {
