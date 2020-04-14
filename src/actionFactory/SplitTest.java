@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SplitTest {
 
+    // HAPPY PATH :)
     @Test
     void testSplitNoThrow() {
         Split split = new Split();
@@ -21,6 +22,7 @@ class SplitTest {
         assertDoesNotThrow(() -> split.execute(p, b));
     }
 
+    // SAD PATH :(
     @Test
     void testSplitDoesThrow() {
         Split split = new Split();

@@ -9,6 +9,7 @@ import engine.player.Player;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Table implements TableInterface {
@@ -19,7 +20,7 @@ public class Table implements TableInterface {
     private static final String DEAL_ACTION = "deal";
     private static final String DEAL_SUFFIX = "Card";
 
-    private List<Player> myPlayers;
+    private Collection<Player> myPlayers;
     private List<Integer> myPlayerHashCodes;
     private Dealer myDealer;
 
@@ -28,11 +29,28 @@ public class Table implements TableInterface {
 
     private Adversary myAdversary;
 
+    @Deprecated
     public Table(List<Player> players, Dealer dealer) {
         this.myPlayers = players;
         this.myDealer = dealer;
         this.myPlayerHashCodes = recordPlayerHashCodes();
     }
+
+    public Table(Collection<Player> players, Dealer dealer) {
+        this.myPlayers = players;
+        this.myDealer = dealer;
+        this.myPlayerHashCodes = recordPlayerHashCodes();
+    }
+
+    public Table(Collection<Player> players, Dealer dealer, double min, double max) {
+        this.myPlayers = players;
+        this.myDealer = dealer;
+        this.myPlayerHashCodes = recordPlayerHashCodes();
+        this.myTableMin = min;
+        this.myTableMax = max;
+    }
+
+
 
     private List<Integer> recordPlayerHashCodes() {
         List<Integer> list = new ArrayList<>();
@@ -52,8 +70,6 @@ public class Table implements TableInterface {
         Player p = findPlayer(playerHash);
         System.out.printf("player: %s \n", p.getName());
         return p.placeBet(wager);
-//        String methodName = BET_ACTION + betType + BET_SUFFIX;
-//        System.out.printf("reflection on method: %s\n", methodName);
     }
 
     @Override
@@ -78,7 +94,7 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public List<Player> getPlayers() {
+    public Collection<Player> getPlayers() {
         return this.myPlayers;
     }
 
