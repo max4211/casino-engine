@@ -63,6 +63,7 @@ public class Controller implements ControllerInterface {
     public void startGame() {
         promptForEntryBet();
         performDealerAction();
+        updatePlayerHands();
         renderAdversary();
         promptForActions();
         garbageCollect();
@@ -104,7 +105,6 @@ public class Controller implements ControllerInterface {
 
     private void performDealerAction() {
         this.myTable.performDealerAction(this.myDealerAction);
-        updatePlayerHands();
     }
 
     private void renderAdversary() {
@@ -237,6 +237,7 @@ public class Controller implements ControllerInterface {
             if (!player.equals(p)) {
                 for (Bet b: p.getBets()) {
                     for (Card c: b.getHand().getCards()) {
+                        this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
                         this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
                         this.myGameView.hideCard(p.getID(), b.getID(), c.getID());
                     }
@@ -270,7 +271,6 @@ public class Controller implements ControllerInterface {
                 for (Card c: b.getHand().getCards()) {
                     CardTriplet cardTriplet = createCardTriplet(c);
                     this.myGameView.addCard(cardTriplet, playerID, betID);
-//                    this.myGameView.showCard(playerID, betID, c.getID());
                 }
             }
         }

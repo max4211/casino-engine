@@ -3,7 +3,8 @@ package controller;
 public enum Goal {
 
     CASHGAME("Cashgame"),
-    TOURNAMENT("Tournament");
+    TOURNAMENT("Tournament"),
+    TARGET("Target");
 
     private final String myType;
 
