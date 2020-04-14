@@ -2,7 +2,7 @@ package engine.evaluator;
 
 import engine.dealer.Card;
 import engine.hand.ClassifiedHand;
-import engine.hand.Hand;
+import engine.hand.PlayerPlayerHand;
 
 import java.lang.reflect.Method;
 import java.util.*;
@@ -26,7 +26,7 @@ public class HandClassifier implements HandClassifierInterface {
     }
 
     @Override
-    public void classifyHand(Hand h) {
+    public void classifyHand(PlayerPlayerHand h) {
         printHand(h);
         if (checkLosingHand(h)) {
             return;
@@ -35,14 +35,14 @@ public class HandClassifier implements HandClassifierInterface {
         }
     }
 
-    private void printHand(Hand h) {
+    private void printHand(PlayerPlayerHand h) {
         System.out.printf("\nprinting hand: ");
         for (Card c: h.getCards()) {
             System.out.printf("%s, ", c);
         }
     }
 
-    private boolean checkLosingHand(Hand h) {
+    private boolean checkLosingHand(PlayerPlayerHand h) {
         System.out.printf("\nchecking losing hands: \n");
         for (String s: myLosingHands) {
             System.out.printf("%s, ", s);
@@ -54,7 +54,7 @@ public class HandClassifier implements HandClassifierInterface {
         return false;
     }
 
-    private boolean checkWinningHand(Hand h) {
+    private boolean checkWinningHand(PlayerPlayerHand h) {
         System.out.printf("\nchecking winning hands: ");
         for (String s: myWinningHands) {
             System.out.printf("%s, ", s);
@@ -77,19 +77,19 @@ public class HandClassifier implements HandClassifierInterface {
         return 0;
     }
 
-    private boolean isBlackjack(Hand h) {
+    private boolean isBlackjack(PlayerPlayerHand h) {
         return ((sumCards(h) == 21) && (h.getCards().size() == 2));
     }
 
-    private boolean isSumUnder22(Hand h) {
+    private boolean isSumUnder22(PlayerPlayerHand h) {
         return sumCards(h) < 22;
     }
 
-    private boolean isSumOver21(Hand h) {
+    private boolean isSumOver21(PlayerPlayerHand h) {
         return sumCards(h) > 21;
     }
 
-    private boolean isFlush(Hand h) {
+    private boolean isFlush(PlayerPlayerHand h) {
         List<Card> handCards = h.getCards();
         Set<String> suits = new HashSet<>();
         for (Card card: handCards) {
@@ -98,7 +98,7 @@ public class HandClassifier implements HandClassifierInterface {
         return suits.size() == 1;
     }
 
-    private double sumCards(Hand h) {
+    private double sumCards(PlayerPlayerHand h) {
         List<Card> handCards = h.getCards();
         double sum = 0;
         for (Card card: handCards) {
@@ -107,11 +107,11 @@ public class HandClassifier implements HandClassifierInterface {
         return sum;
     }
 
-    private boolean reflectOnMethod(String name, Hand h) {
+    private boolean reflectOnMethod(String name, PlayerPlayerHand h) {
         try {
             String methodName = IS_PREFIX + name;
 //            System.out.println("invoked method name: " + methodName);
-            Method method = this.getClass().getDeclaredMethod(methodName, Hand.class);
+            Method method = this.getClass().getDeclaredMethod(methodName, PlayerPlayerHand.class);
 //            System.out.println("method recieved: " + method);
             Object o = method.invoke(this, h);
 //            System.out.println("invoked method and recieved object: " + o);

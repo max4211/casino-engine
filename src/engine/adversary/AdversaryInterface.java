@@ -1,7 +1,7 @@
 package engine.adversary;
 
 import engine.dealer.Card;
-import engine.hand.Hand;
+import engine.hand.PlayerPlayerHand;
 
 public interface AdversaryInterface {
 
@@ -9,7 +9,7 @@ public interface AdversaryInterface {
      * Fetch the hand internal to the adversary
      * @return
      */
-    Hand getHand();
+    PlayerPlayerHand getHand();
 
     /**
      * Accept cards from the controller

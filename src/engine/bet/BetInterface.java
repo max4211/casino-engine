@@ -1,7 +1,7 @@
 package engine.bet;
 
 import engine.dealer.Card;
-import engine.hand.Hand;
+import engine.hand.PlayerPlayerHand;
 
 public interface BetInterface {
 
@@ -9,7 +9,7 @@ public interface BetInterface {
      * Called by the ActionFactory and Controller to get the Bet's hand
      * @return the hand inside of the bet
      */
-    Hand getHand();
+    PlayerPlayerHand getHand();
 
     /**
      * Called by the Table to get the wager on the bet

@@ -33,7 +33,7 @@ userAction.execute(Bet userBet);
 
 ### Use Case 4: Compare Hands to Evaluate a Bet
 Here, a lot of code that the Controller does to handle the executions is lacking, but the API calls
-used to execute this are as follow. Say we have a Collection of two Bets, Bet1 and Bet2, which each a hand (Hand1 and Hand2):
+used to execute this are as follow. Say we have a Collection of two Bets, Bet1 and Bet2, which each a playerHand (Hand1 and Hand2):
 ```java
 Collection<Bet> allBets = new ArrayList<Bets>();
 allBets.add(Bet1);

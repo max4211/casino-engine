@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HandViewTest {
+class PlayerHandViewTest {
 
     @Test
     void getView() {

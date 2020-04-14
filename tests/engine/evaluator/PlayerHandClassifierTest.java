@@ -1,7 +1,7 @@
 package engine.evaluator;
 
 import engine.dealer.Card;
-import engine.hand.Hand;
+import engine.hand.PlayerPlayerHand;
 import engine.hand.HandOutcome;
 import org.junit.jupiter.api.Test;
 
@@ -14,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author Max Smith
  */
-class HandClassifierTest {
+class PlayerHandClassifierTest {
 
     @Test
     void testBlackJack() {
         HandClassifier hc = createHandClassifier();
-        Hand bjTest = new Hand(List.of(new Card("Heart",  11), new Card("Diamond", 10)));
+        PlayerPlayerHand bjTest = new PlayerPlayerHand(List.of(new Card("Heart",  11), new Card("Diamond", 10)));
         hc.classifyHand(bjTest);
         assertEquals(bjTest.getClassification().getName(), "Blackjack");
         assertEquals(bjTest.getClassification().getPower(), 21);
@@ -28,7 +28,7 @@ class HandClassifierTest {
     @Test
     void testBust() {
         HandClassifier hc = createHandClassifier();
-        Hand bustTest = new Hand(List.of(new Card("Heart",  11), new Card("Diamond", 10), new Card("Spade", 11)));
+        PlayerPlayerHand bustTest = new PlayerPlayerHand(List.of(new Card("Heart",  11), new Card("Diamond", 10), new Card("Spade", 11)));
         hc.classifyHand(bustTest);
         assertEquals(bustTest.getOutcome(), HandOutcome.LOSS);
     }
@@ -36,7 +36,7 @@ class HandClassifierTest {
     @Test
     void TestUnder21() {
         HandClassifier hc = createHandClassifier();
-        Hand under22Test = new Hand(List.of(new Card("Spade", 11)));
+        PlayerPlayerHand under22Test = new PlayerPlayerHand(List.of(new Card("Spade", 11)));
         hc.classifyHand(under22Test);
         assertEquals(under22Test.getClassification().getName(), "SumUnder22");
         assertEquals(under22Test.getClassification().getRank(), 1);

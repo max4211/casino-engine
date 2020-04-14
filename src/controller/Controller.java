@@ -10,7 +10,7 @@ import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.evaluator.BetEvaluator;
 import engine.evaluator.HandClassifier;
-import engine.hand.Hand;
+import engine.hand.PlayerPlayerHand;
 import engine.player.Player;
 import engine.table.Table;
 import exceptions.ReflectionException;
@@ -268,7 +268,7 @@ public class Controller implements ControllerInterface {
         return new CardTriplet(c.getValue(), c.getSuit(), c.getID());
     }
 
-    private List<CardTriplet> parseAdversary(Hand h) {
+    private List<CardTriplet> parseAdversary(PlayerPlayerHand h) {
         List<CardTriplet> list = new ArrayList<>();
         for (Card c: h.getCards()) {
             list.add(createCardTriplet(c));

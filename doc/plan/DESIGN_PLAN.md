@@ -14,7 +14,7 @@ Furthermore, we will be utilizing the MVC design pattern to implement the game. 
 
 
 ### Overview
-> This section serves as a map of your design for other programmers to gain a general understanding of how and why the program was divided up, and how the individual parts work together to provide the desired functionality. Describe specific modules you intend to create, their purpose with regards to the program's functionality, and how they collaborate with each other, focusing specifically on each one's API. Include a picture of how the modules are related (these pictures can be hand drawn and scanned in, created with a standard drawing program, or screen shots from a UML design program). Discuss specific classes, methods, and data structures, but not individual lines of code.
+> This section serves as a map of your design for other programmers to gain a general understanding of how and why the program was divided up, and how the individual parts work together to provide the desired functionality. Describe specific modules you intend to create, their purpose with regards to the program's functionality, and how they collaborate with each other, focusing specifically on each one's API. Include a picture of how the modules are related (these pictures can be playerHand drawn and scanned in, created with a standard drawing program, or screen shots from a UML design program). Discuss specific classes, methods, and data structures, but not individual lines of code.
 
 Our program is divided up into the following modules:
 * Game Generation
@@ -89,7 +89,7 @@ public Map<String, Double> getPlayers()
 
 #### Card Distribution
 *Functional Goal:*
-To hand out `Card` objects from a data-defined `Deck` to `Hands`.
+To playerHand out `Card` objects from a data-defined `Deck` to `Hands`.
 
 *Classes and Objects:*
 `Card` wraps information regarding a Suit and a Value, where Suit is an enumerated String type and Value is a double. These values are defined by a deck XML file, where each line represents a card. The `CardFactory` class takes the pair of suit and value found in the data, and constructs a `Card` object with it.
@@ -122,7 +122,7 @@ public void classifyHand(Hand h)
 ```
 
 *Internal API Contract:*
-Note, we see some duplication here and will likely refactor to a single loop over all possible card combinations given your hand, and then in order of the winning hand hierarchy. Using reflection to check conditions and then assignment of classified hand with another reflective call to construction.
+Note, we see some duplication here and will likely refactor to a single loop over all possible card combinations given your playerHand, and then in order of the winning playerHand hierarchy. Using reflection to check conditions and then assignment of classified playerHand with another reflective call to construction.
 ```java3
 private boolean isFlush(Hand h) {
     if (suitsMatch(h)) {
@@ -158,7 +158,7 @@ public int compareHighCard(ClassifiedHand ch1, ClassifiedHand ch2)
 *Functional Goal:* Allows bets to be marked as winners or losers, and if winners, have their values updated based on payout odds/multipliers. It evaluates bets in a competitive circle (either full table or dealer against player)
 
 *Classes and Objects:*
-One class is of value here which is `BetEvaluator`. This takes in a collection of bets and, using the hand evaluator, determines the winning hand. Then, using the payout odds read in through the FileReader, it updates the value of the ticket. 
+One class is of value here which is `BetEvaluator`. This takes in a collection of bets and, using the playerHand evaluator, determines the winning playerHand. Then, using the payout odds read in through the FileReader, it updates the value of the ticket. 
 
 *External API Contract:*
 ```java3
@@ -168,7 +168,7 @@ public void evaluateBets(Collection Bets)
 #### Table
 
 *Functional Goal:*
-The `Table` is acting as controller and coordinates the logic of the game, as given to it by the `GameGenerator`. It determines the sequence of events, as dictated by XML files (e.g. card distribution, bet payoffs, hand hierarchy, number of players, etc.).
+The `Table` is acting as controller and coordinates the logic of the game, as given to it by the `GameGenerator`. It determines the sequence of events, as dictated by XML files (e.g. card distribution, bet payoffs, playerHand hierarchy, number of players, etc.).
 
 *Classes and Objects:*
 A `Table`, serving as a controller, manages the game by dealing with `Players`, their `Bets`, a `Dealer`, and a series of evaluators and comparators for `Hands` and `Bets`. It also interacts with `Actions` as given below, to run turns of each game.
@@ -242,9 +242,9 @@ Moreover, the use of a Dealer encapsulates the card data and randomization to be
 
 Moreover, the classifier works with our "garbage collector" in the Table to recognize hands that should be removed from gameplay.
 
-`Hand Evaluation`: This module allows for significant changes to the Dynamic Game Rules. Essentially, after the classifier identifies each hand in the game, the evaluator compares them via the heirarchy given by the XML file. 
+`Hand Evaluation`: This module allows for significant changes to the Dynamic Game Rules. Essentially, after the classifier identifies each playerHand in the game, the evaluator compares them via the heirarchy given by the XML file. 
 
-This flexible nature of the evaluator allows the engine to run any type of card game that can be repersented by hand-based heirarchies. In the future, if we implement Roulette, which we hope to do, this will allow the implementation, since winning tickets can be viewed as Pairs (which can be identified) between the bet ticket and wheel value.
+This flexible nature of the evaluator allows the engine to run any type of card game that can be repersented by playerHand-based heirarchies. In the future, if we implement Roulette, which we hope to do, this will allow the implementation, since winning tickets can be viewed as Pairs (which can be identified) between the bet ticket and wheel value.
 
 `Bet Evaluation`:
 The bet evaluation allows for flexibility in its payout structure. By working with the XMLReader to obtain a map of payout odds, the user can easily set this. Moreover, via basic setter methods, a Game Area Editor could manipulate these payout odds to allow blackjacks to pay out 10 to 1, for example.
@@ -273,7 +273,7 @@ Lastly, we support casino-like payout odds for Blackjacks (which is about 1.5 to
 #### Texas Hold'em
 Our next game is texas holdem, where players compete against eachother. Additionally, to address the dual goals of:
 1. Being the last player standing
-2. Having the best hand at showdown
+2. Having the best playerHand at showdown
 
 We have developed a system of garbage collection and tagging bets which filters out losing hands. As `Actions` are selected by the user, `Hands` are classified, and if they are classified as a `LosingHand`, then they are garbage collected. Or if there are multiple players at showdown, there is a `BetEvaluation` module which iterates over all combinations of bets, compares their best (we only care about the best bet) classifications using a `HandComparator`, and assigns Win and Loss. Finally, the table calls all Bets to be *cashed*. When this call is made, winning bets cash based on their competitive circle (Poker hands cash their portion of the pot).  This enables a single logical process to govern all games.
 
@@ -283,7 +283,7 @@ This game is a natural extension to our poker setup and shows the ease that one 
 
 The distinction between five-card draw and texas hold'em boils down to little more than a few XMl tags. The mid-turn Actions that a user can take is modified to implement a replace card action, as is allowed in the game (and not hold'em). Moreover, the number of cards distributed to a player is changed in the XML, but aside from that, little has to be done, especially the games implement the same ranking heirarchy.
 
-If one wanted to change this heirarchy, it would be extrememly easy. If someone wanted a two-pair to be the best possible hand, they could restructure the XML tag to look like the following:
+If one wanted to change this heirarchy, it would be extrememly easy. If someone wanted a two-pair to be the best possible playerHand, they could restructure the XML tag to look like the following:
 
 ```htmlmixed
 <Hierarchy>

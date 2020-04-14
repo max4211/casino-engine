@@ -4,7 +4,7 @@ import engine.dealer.Card;
 
 import java.util.List;
 
-public interface HandInterface {
+public interface PlayerHandInterface {
 
     /**
      * Method called by the Dealer to enable hand to accept card

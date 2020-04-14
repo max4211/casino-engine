@@ -1,26 +1,26 @@
 package engine.bet;
 
 import engine.dealer.Card;
-import engine.hand.Hand;
+import engine.hand.PlayerPlayerHand;
 
 public class Bet implements BetInterface {
 
     private int myID;
-    private Hand myHand;
+    private PlayerPlayerHand myPlayerHand;
     private double myWager;
     private boolean myActive;
     private boolean needsCard;
 
     public Bet(double wager) {
-        this.myHand = new Hand();
+        this.myPlayerHand = new PlayerPlayerHand();
         this.myWager = wager;
         this.myID = this.hashCode();
         this.myActive = true;
         this.needsCard = false;
     }
 
-    public Bet(double wager, Hand hand) {
-        this.myHand = hand;
+    public Bet(double wager, PlayerPlayerHand playerHand) {
+        this.myPlayerHand = playerHand;
         this.myWager = wager;
         this.myID = this.hashCode();
         this.myActive = true;
@@ -28,8 +28,8 @@ public class Bet implements BetInterface {
     }
 
     @Override
-    public Hand getHand() {
-        return this.myHand;
+    public PlayerPlayerHand getHand() {
+        return this.myPlayerHand;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Bet implements BetInterface {
     @Override
     public void acceptCard(Card c) {
         System.out.printf("bet accepting card: %s\n", c);
-        this.myHand.acceptCard(c);
+        this.myPlayerHand.acceptCard(c);
     }
 
     @Override
