@@ -19,7 +19,7 @@ class SplitTest {
         Bet b = p.getNextBet();
         b.acceptCard(new Card("Diamond", 11));
         b.acceptCard(new Card("Heart", 11));
-        assertDoesNotThrow(() -> split.execute(p, b));
+        assertDoesNotThrow(() -> split.execute(p, b, null));
     }
 
     // SAD PATH :(
@@ -31,7 +31,7 @@ class SplitTest {
         Bet b = p.getNextBet();
         b.acceptCard(new Card("Diamond", 11));
         b.acceptCard(new Card("Heart", 10));
-        assertThrows(ActionException.class, () -> split.execute(p, b));
+        assertThrows(ActionException.class, () -> split.execute(p, b, null));
     }
 
 }

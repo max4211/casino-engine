@@ -11,6 +11,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class Table implements TableInterface {
 
@@ -126,18 +127,6 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public Card updateBets(Player p) {
-        for (Bet b: p.getBets()) {
-            if (b.needsCard()) {
-                Card c = this.myDealer.getCard();
-                b.acceptCard(c);
-                return c;
-            }
-        }
-        return null;
-    }
-
-    @Override
     public Adversary createAdversary(int min) {
         this.myAdversary = new Adversary(min);
         giveAdversaryCard();
@@ -150,6 +139,11 @@ public class Table implements TableInterface {
         Card c = this.myDealer.getCard();
         this.myAdversary.acceptCard(c);
         return c;
+    }
+
+    @Override
+    public Supplier<Card> getDealCardMethod() {
+        return () -> this.myDealer.getCard();
     }
 
     // TODO - slower individual card dealing with animation (Sprint 3 task)

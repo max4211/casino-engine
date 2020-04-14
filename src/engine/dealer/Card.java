@@ -1,5 +1,6 @@
 package engine.dealer;
 
+import Utility.HashNoise;
 import Utility.StringPair;
 
 public class Card implements CardInterface {
@@ -14,13 +15,13 @@ public class Card implements CardInterface {
     public Card(String suit, double value) {
         this.mySuit = suit;
         this.myValue = value;
-        this.myID = this.hashCode();
+        this.myID = HashNoise.addNoise(this);
     }
 
     public Card(StringPair stringPair) {
         this.mySuit = stringPair.getKey();
         this.myValue = Double.parseDouble(stringPair.getValue());
-        this.myID = this.hashCode();
+        this.myID = HashNoise.addNoise(this);
     }
 
     @Override

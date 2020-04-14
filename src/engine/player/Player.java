@@ -1,5 +1,6 @@
 package engine.player;
 
+import Utility.HashNoise;
 import engine.bet.Bet;
 import engine.hand.HandOutcome;
 
@@ -17,7 +18,7 @@ public class Player implements PlayerInterface {
         this.myName = name;
         this.myBankroll = bankroll;
         this.myBets = new ArrayList<Bet>();
-        this.myID = this.hashCode();
+        this.myID = HashNoise.addNoise(this);
     }
 
     @Override
@@ -51,6 +52,11 @@ public class Player implements PlayerInterface {
         Bet bet = new Bet(wager);
         this.myBets.add(bet);
         return bet.getID();
+    }
+
+    @Override
+    public void placeBet(Bet bet) {
+        this.myBets.add(bet);
     }
 
     @Override

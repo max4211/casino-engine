@@ -7,6 +7,8 @@ import engine.player.Player;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public interface TableInterface {
 
@@ -63,13 +65,6 @@ public interface TableInterface {
     Player getNextPlayer();
 
     /**
-     * After a player performs an action, update their bets in the table
-     * @param p player to update
-     * @return card that was added to the bet (for hit/double down)
-     */
-    Card updateBets(Player p);
-
-    /**
      * Create an adversary
      * @param min are parameters to adversary gameplay
      * @return the adversary inside of the game
@@ -80,4 +75,7 @@ public interface TableInterface {
      * Returns card that was just given to adversary
      */
     Card giveAdversaryCard();
+
+
+    Supplier<Card> getDealCardMethod();
 }

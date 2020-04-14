@@ -10,7 +10,7 @@ import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.evaluator.BetEvaluator;
 import engine.evaluator.HandClassifier;
-import engine.hand.PlayerPlayerHand;
+import engine.hand.PlayerHand;
 import engine.player.Player;
 import engine.table.Table;
 import exceptions.ReflectionException;
@@ -124,10 +124,9 @@ public class Controller implements ControllerInterface {
             try {
                 Action a = this.myFactory.createAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();
-                a.execute(p, b);
-                Card c = this.myTable.updateBets(p);
+                a.execute(p, b, this.myTable.getDealCardMethod());
                 classifyHand(b);
-                addCard(c, p.getID(), b.getID());
+                addCardToPlayer(p);
                 this.myGameView.updateWager(b.getWager(), p.getID(), b.getID());
             } catch (ReflectionException e) {
                 this.myGameView.displayError(e);
@@ -136,10 +135,22 @@ public class Controller implements ControllerInterface {
         }
     }
 
-    private void addCard(Card c, int playerID, int betID) {
-        if (c != null) {
-            this.myGameView.addCard(createCardTriplet(c), playerID, betID);
+    private void addCardToPlayer(Player p) {
+        for (Bet b: p.getBets()) {
+            for (Card c: b.getHand().getCards()) {
+                this.myGameView.removeBet(p.getID(), b.getID());
+                this.myGameView.addBet(createTripletList(b.getHand()), b.getWager(), p.getID(), b.getID());
+                this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
+                this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
+            }
         }
+    }
+
+    private List<CardTriplet> createTripletList(PlayerHand h) {
+        List<CardTriplet> list = new ArrayList<>();
+        for (Card c: h.getCards())
+            list.add(createCardTriplet(c));
+        return list;
     }
 
     // TODO - refactor cardshow and competition to reflection
@@ -269,7 +280,7 @@ public class Controller implements ControllerInterface {
         return new CardTriplet(c.getValue(), c.getSuit(), c.getID());
     }
 
-    private List<CardTriplet> parseAdversary(PlayerPlayerHand h) {
+    private List<CardTriplet> parseAdversary(PlayerHand h) {
         List<CardTriplet> list = new ArrayList<>();
         for (Card c: h.getCards()) {
             list.add(createCardTriplet(c));

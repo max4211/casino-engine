@@ -1,15 +1,15 @@
 package engine.adversary;
 
 import engine.dealer.Card;
-import engine.hand.PlayerPlayerHand;
+import engine.hand.PlayerHand;
 
 public class Adversary implements AdversaryInterface {
 
-    private PlayerPlayerHand myPlayerHand;
+    private PlayerHand myPlayerHand;
     private final int myMinSum;
 
     public Adversary(int min) {
-        this.myPlayerHand = new PlayerPlayerHand();
+        this.myPlayerHand = new PlayerHand();
         this.myMinSum = min;
     }
 
@@ -24,7 +24,7 @@ public class Adversary implements AdversaryInterface {
     }
 
     @Override
-    public PlayerPlayerHand getHand() {
+    public PlayerHand getHand() {
         return this.myPlayerHand;
     }
 

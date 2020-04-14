@@ -1,6 +1,6 @@
 package engine.evaluator;
 
-import engine.hand.PlayerPlayerHand;
+import engine.hand.PlayerHand;
 
 public interface HandClassifierInterface {
 
@@ -10,6 +10,6 @@ public interface HandClassifierInterface {
      *
      * @param unclassfiedPlayerHand is the Hand to classify and save its classification in itself
      */
-    void classifyHand(PlayerPlayerHand unclassfiedPlayerHand);
+    void classifyHand(PlayerHand unclassfiedPlayerHand);
 
 }

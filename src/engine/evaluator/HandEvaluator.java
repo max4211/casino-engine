@@ -1,7 +1,7 @@
 package engine.evaluator;
 
 import engine.hand.ClassifiedHand;
-import engine.hand.PlayerPlayerHand;
+import engine.hand.PlayerHand;
 
 public class HandEvaluator implements HandEvaluatorInterface {
 
@@ -10,7 +10,7 @@ public class HandEvaluator implements HandEvaluatorInterface {
     }
 
     @Override
-    public int compare(PlayerPlayerHand playerHand1, PlayerPlayerHand playerHand2) {
+    public int compare(PlayerHand playerHand1, PlayerHand playerHand2) {
         if (playerHand1.isLoser() && !playerHand2.isLoser()) {
             return 1;
         } else if (playerHand2.isLoser() && !playerHand1.isLoser()) {

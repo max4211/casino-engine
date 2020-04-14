@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PlayerPlayerHand implements PlayerHandInterface {
+public class PlayerHand implements PlayerHandInterface {
 
     private List<Card> myCards;
     private ClassifiedHand myClassification;
@@ -14,17 +14,17 @@ public class PlayerPlayerHand implements PlayerHandInterface {
     private boolean isLoser = false;
     private HandOutcome myOutcome = HandOutcome.WIN;
 
-    public PlayerPlayerHand(List<Card> cards) {
+    public PlayerHand(List<Card> cards) {
         this.myCards = new ArrayList<Card>();
         this.myCards.addAll(cards);
     }
 
-    public PlayerPlayerHand(Card card) {
+    public PlayerHand(Card card) {
         this.myCards = new ArrayList<Card>();
         this.myCards.add(card);
     }
 
-    public PlayerPlayerHand() {
+    public PlayerHand() {
         this.myCards = new ArrayList<Card>();
     }
 

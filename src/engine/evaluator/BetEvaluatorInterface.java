@@ -1,7 +1,7 @@
 package engine.evaluator;
 
 import engine.bet.Bet;
-import engine.hand.PlayerPlayerHand;
+import engine.hand.PlayerHand;
 
 import java.util.List;
 
@@ -26,5 +26,5 @@ public interface BetEvaluatorInterface {
      * Evaluate hands against eachother (assume all are classified
      * @param h1 that have been classified in the same competitive pool
      */
-    void evaluateHands(PlayerPlayerHand h1, PlayerPlayerHand h2);
+    void evaluateHands(PlayerHand h1, PlayerHand h2);
 }

@@ -1,34 +1,32 @@
 package engine.bet;
 
+import Utility.HashNoise;
 import engine.dealer.Card;
-import engine.hand.PlayerPlayerHand;
+import engine.hand.PlayerHand;
 
 public class Bet implements BetInterface {
 
     private int myID;
-    private PlayerPlayerHand myPlayerHand;
+    private PlayerHand myPlayerHand;
     private double myWager;
     private boolean myActive;
-    private boolean needsCard;
 
     public Bet(double wager) {
-        this.myPlayerHand = new PlayerPlayerHand();
+        this.myPlayerHand = new PlayerHand();
         this.myWager = wager;
-        this.myID = this.hashCode();
+        this.myID = HashNoise.addNoise(this);
         this.myActive = true;
-        this.needsCard = false;
     }
 
-    public Bet(double wager, PlayerPlayerHand playerHand) {
+    public Bet(double wager, PlayerHand playerHand) {
         this.myPlayerHand = playerHand;
         this.myWager = wager;
-        this.myID = this.hashCode();
+        this.myID = HashNoise.addNoise(this);
         this.myActive = true;
-        this.needsCard = false;
     }
 
     @Override
-    public PlayerPlayerHand getHand() {
+    public PlayerHand getHand() {
         return this.myPlayerHand;
     }
 
@@ -54,18 +52,8 @@ public class Bet implements BetInterface {
     }
 
     @Override
-    public boolean needsCard() {
-        return this.needsCard;
-    }
-
-    @Override
     public void setActive(boolean state) {
         this.myActive = state;
-    }
-
-    @Override
-    public void setNeedsCard(boolean state) {
-        this.needsCard = state;
     }
 
     @Override

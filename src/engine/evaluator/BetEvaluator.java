@@ -1,7 +1,7 @@
 package engine.evaluator;
 
 import engine.bet.Bet;
-import engine.hand.PlayerPlayerHand;
+import engine.hand.PlayerHand;
 import engine.hand.HandOutcome;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class BetEvaluator implements BetEvaluatorInterface {
 
     // TODO - algorithm to handle larger groups
     @Override
-    public void evaluateHands(PlayerPlayerHand h1, PlayerPlayerHand h2) {
+    public void evaluateHands(PlayerHand h1, PlayerHand h2) {
         int compare = this.myHandEvaluator.compare(h1, h2);
         if (compare > 0) {
             assignOutcome(h1, HandOutcome.WIN);
@@ -40,7 +40,7 @@ public class BetEvaluator implements BetEvaluatorInterface {
         }
     }
 
-    private void assignOutcome(PlayerPlayerHand playerHand, HandOutcome outcome) {
+    private void assignOutcome(PlayerHand playerHand, HandOutcome outcome) {
         playerHand.setOutcome(outcome);
     }
 

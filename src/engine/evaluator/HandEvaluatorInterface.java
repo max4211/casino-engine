@@ -1,6 +1,6 @@
 package engine.evaluator;
 
-import engine.hand.PlayerPlayerHand;
+import engine.hand.PlayerHand;
 
 public interface HandEvaluatorInterface {
 
@@ -11,5 +11,5 @@ public interface HandEvaluatorInterface {
      * @param playerHand2 is the second hand to compare
      * @return either -1 (first hand wins), 0 (push), or 1 (second hand wins).
      */
-    int compare(PlayerPlayerHand playerHand1, PlayerPlayerHand playerHand2);
+    int compare(PlayerHand playerHand1, PlayerHand playerHand2);
 }
