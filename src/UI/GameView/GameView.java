@@ -44,6 +44,11 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
+    public void addCardIfAbsent(CardTriplet cardInfo, int playerID, int betID) {
+        getPlayerView(playerID).addCardIfAbsent(cardInfo, betID);
+    }
+
+    @Override
     public void addCard(CardTriplet cardInfo, int playerID, int betID) {
         getPlayerView(playerID).addCard(cardInfo, betID);
     }

@@ -14,8 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 
         LobbyView myLobby = new LobbyView();
-        Scene myScene = new Scene(myLobby.getView(), 1000, 1000);
-
+        Scene myScene = new Scene(myLobby.getView(), 500, 500);
         primaryStage.setScene(myScene);
         primaryStage.show();
     }
