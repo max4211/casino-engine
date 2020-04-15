@@ -93,13 +93,12 @@ public class Controller implements ControllerInterface {
 
     private void promptForEntryBet() {
         for (Player p: this.myTable.getPlayers()) {
-            int playerHash = p.getID();
-            this.myGameView.setMainPlayer(playerHash);
+            this.myGameView.setMainPlayer(p.getID());
             double min = this.myTable.getTableMin();
             double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
             double wager = this.myGameView.selectWager(min, max);
-            Bet b = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
-            this.myGameView.addBet(new ArrayList<>(), wager, playerHash, b.getID());
+            Bet b = this.myTable.placeEntryBet(p.getID(), this.myEntryBet, wager);
+            this.myGameView.addBet(new ArrayList<>(), wager, p.getID(), b.getID());
             this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
     }
@@ -153,8 +152,7 @@ public class Controller implements ControllerInterface {
                     (card) -> this.myGameView.showAdversaryCard(card),
                     (triplet) -> this.myGameView.addAdversaryCard(triplet),
                     this.myTable.getDealCardMethod());
-//            adversaryActionLoop();
-        } else {
+        } else if (isGroupGame()) {
             // TODO - group evaluation
         }
     }
@@ -182,7 +180,6 @@ public class Controller implements ControllerInterface {
 //                this.myGameView.addBet(createTripletList(b.getHand()), b.getWager(), p.getID(), b.getID());
 //                this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
                 this.myGameView.addCardIfAbsent(Generator.createCardTriplet(c), p.getID(), b.getID());
-                this.myGameView.showCard(p.getID(), b.getID(), c.getID());
             }
         }
     }
@@ -196,30 +193,16 @@ public class Controller implements ControllerInterface {
         }
     }
 
-    // TODO - refactor to lambdas in adversary
-    private void adversaryActionLoop() {
-        showAdversaryCards();
-        while (this.myAdversary.wantsCards()) {
-            this.myGameView.addAdversaryCard(Generator.createCardTriplet(this.myTable.giveAdversaryCard()));
-            showAdversaryCards();
-        }
-    }
-
-    private void showAdversaryCards() {
-        for (Card c: this.myAdversary.getHand().getCards()) {
-            System.out.println("Adversary card: " + c.toString());
-            this.myGameView.showAdversaryCard(c.getID());
-        }
-    }
-
     private boolean isAdversaryGame() {
         return this.myCompetition.equals(Competition.ADVERSARY);
+    }
+    private boolean isGroupGame() {
+        return this.myCompetition.equals(Competition.GROUP);
     }
 
     private boolean isAllCardshow() {
         return this.myCardshow.equals(Cardshow.ALL);
     }
-
     private boolean isActiveCardshow() {
         return this.myCardshow.equals(Cardshow.ACTIVE);
     }
@@ -245,12 +228,12 @@ public class Controller implements ControllerInterface {
 
     private void hideCards(Player p) {
         for (Player player: this.myTable.getPlayers()) {
-            if (!player.equals(p)) {
-                for (Bet b: p.getBets()) {
+            if (!(player.getID() == p.getID())) {
+                System.out.printf("%s is active, hiding %s's cards\n", p.getName(), player.getName());
+                for (Bet b: player.getBets()) {
                     for (Card c: b.getHand().getCards()) {
-                        this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
-                        this.myGameView.addCardIfAbsent(Generator.createCardTriplet(c), p.getID(), b.getID());
-                        this.myGameView.hideCard(p.getID(), b.getID(), c.getID());
+                        this.myGameView.addCardIfAbsent(Generator.createCardTriplet(c), player.getID(), b.getID());
+                        this.myGameView.hideCard(player.getID(), b.getID(), c.getID());
                     }
                 }
             }
