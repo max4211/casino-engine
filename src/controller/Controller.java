@@ -136,6 +136,7 @@ public class Controller implements ControllerInterface {
     }
 
     private void garbageCollect() {
+        GarbageCollect.clearLoser(this.myTable.getPlayers(), )
         for (Player p: this.myTable.getPlayers()) {
             for (Bet b: p.getBets()) {
                 if (b.getHand().isLoser()) {
