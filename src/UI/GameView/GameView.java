@@ -4,6 +4,7 @@ import UI.Interfaces.GameViewInterface;
 import UI.Selectors.ActionSelector;
 import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import UI.Interfaces.NodeViewInterface;
@@ -89,11 +90,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public String selectAction(List<String> actions) {
-        return ActionSelector.selectAction(actions);
-    }
-
-    @Override
     public void clearAllBets() {
         if (myMainPlayer.holdsAPlayer()) myMainPlayer.getMainPlayer().clearBets();
         myOtherPlayers.clearBets();
@@ -102,11 +98,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     @Override
     public void clearAdversary() {
         if (myAdversary != null) myAdversary.clearHand();
-    }
-
-    @Override
-    public double selectWager(double minBet, double maxBet) {
-        return WagerSelector.selectWager(minBet, maxBet);
     }
 
     @Override
@@ -162,8 +153,20 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myOtherPlayers.removePlayer(playerID);
     }
 
-    public void displayError(Exception ex) {
+    @Override
+    public double selectWager(double minBet, double maxBet) {
+        return WagerSelector.selectWager(minBet, maxBet);
+    }
 
+    @Override
+    public String selectAction(List<String> actions) {
+        return ActionSelector.selectAction(actions);
+    }
+
+    public void displayError(Exception ex) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(ex.getLocalizedMessage());
+        alert.showAndWait();
     }
 
     private PlayerView getPlayerView(int playerID) {
