@@ -163,6 +163,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         return ActionSelector.selectAction(actions);
     }
 
+    @Override
     public void displayError(Exception ex) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(ex.getLocalizedMessage());
