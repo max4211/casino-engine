@@ -89,13 +89,11 @@ public class Controller implements ControllerInterface {
     }
 
     private void promptForEntryBet() {
-        System.out.print("prompting players for entry bet...\n");
         for (Player p: this.myTable.getPlayers()) {
             int playerHash = p.getID();
             this.myGameView.setMainPlayer(playerHash);
             double min = this.myTable.getTableMin();
             double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
-            System.out.printf("min: %.1f, max: %.1f\n", min, max);
             double wager = this.myGameView.selectWager(min, max);
             int betID = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
             this.myGameView.addBet(new ArrayList<>(), wager, playerHash, betID);
@@ -136,7 +134,7 @@ public class Controller implements ControllerInterface {
     }
 
     private void garbageCollect() {
-        GarbageCollect.clearLoser(this.myTable.getPlayers(), )
+//        GarbageCollect.clearLosers(this.myTable.getPlayers(), (pid, bid) -> this.myGameView.removeBet(pid, bid));
         for (Player p: this.myTable.getPlayers()) {
             for (Bet b: p.getBets()) {
                 if (b.getHand().isLoser()) {
@@ -214,15 +212,15 @@ public class Controller implements ControllerInterface {
     }
 
     private boolean isAdversaryGame() {
-        return this.myCompetition.equals(Competition.ADVERSARY.toString());
+        return this.myCompetition.equals(Competition.ADVERSARY);
     }
 
     private boolean isAllCardshow() {
-        return this.myCardshow.equals(Cardshow.ALL.toString());
+        return this.myCardshow.equals(Cardshow.ALL);
     }
 
     private boolean isActiveCardshow() {
-        return this.myCardshow.equals(Cardshow.ACTIVE.toString());
+        return this.myCardshow.equals(Cardshow.ACTIVE);
     }
 
     private void showAllCards() {

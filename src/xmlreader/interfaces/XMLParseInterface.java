@@ -18,6 +18,11 @@ public interface XMLParseInterface {
         return e.getElementsByTagName(tag).item(0).getTextContent();
     }
 
+    static String getSingleTag(Document d, String tag) {
+        final int ZERO = 0;
+        return d.getElementsByTagName(tag).item(ZERO).getTextContent();
+    }
+
     static Collection<String> getXMLList(Document document, String metatag, String subtag) {
         Collection<String> list = new ArrayList<>();
         NodeList handNodeList = document.getElementsByTagName(metatag);

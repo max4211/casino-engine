@@ -52,8 +52,6 @@ public class Table implements TableInterface {
         this.myTableMax = max;
     }
 
-
-
     private List<Integer> recordPlayerHashCodes() {
         List<Integer> list = new ArrayList<>();
         for (Player p: myPlayers) {
@@ -78,11 +76,10 @@ public class Table implements TableInterface {
     public void performDealerAction(StringPair dealerAction) {
         String actionType = dealerAction.getKey();
         int actionQuantity = Integer.parseInt(dealerAction.getValue());
-        Class clazz = int.class;
         String methodName = DEAL_ACTION + actionType + DEAL_SUFFIX;
-        reflectOnMethod(methodName, clazz);
+        reflectOnMethod(methodName, int.class);
         try {
-            Method method = this.getClass().getDeclaredMethod(methodName, clazz);
+            Method method = this.getClass().getDeclaredMethod(methodName, int.class);
             method.invoke(this, actionQuantity);
         } catch (Exception e) {
             System.out.println("could not apply reflection at this time");
@@ -174,21 +171,5 @@ public class Table implements TableInterface {
         }
         return null;
     }
-
-    /** Max's team code for reflection example within their execution (shows how to invoke a method)
-     *
-     *     private List<String> executeCommand(Command command) {
-     *         try {
-     *             Class superclazz = command.getClass().getSuperclass();
-     *             String name = EXECUTE + superclazz.getSimpleName();
-     *             Method method = this.getClass().getDeclaredMethod(name, superclazz); //Command.class
-     *             Object o = method.invoke(this, command);
-     *             return (List<String>) o;
-     *         } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException | NullPointerException e) {
-     *             throw new ReflectionException("Unable to apply Reflection in parser");
-     *         }
-     *     }
-     */
-
 
 }

@@ -15,10 +15,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
-import xmlreader.readers.GameReader;
-import xmlreader.readers.HandReader;
-import xmlreader.readers.PlayerReader;
-import xmlreader.readers.ViewReader;
+import xmlreader.readers.*;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -27,6 +24,7 @@ import java.util.List;
 
 public class Main extends Application {
 
+    private static final String deckFile = "src/data/deck/standard.xml";
     private static final String gameFile = "src/data/game/blackjackGame_v2.xml";
     private static final String playerFile = "src/data/players/players.xml";
     private static final String handFile = "src/data/hands/hands.xml";
@@ -38,9 +36,9 @@ public class Main extends Application {
         return myPlayers.getPlayers();
     }
 
-    private static Table constructTable(GameReader gameReader, PlayerReader playerReader) {
+    private static Table constructTable(GameReader gameReader, PlayerReader playerReader, DeckReader deckReader) {
         Collection<Player> playerList = createPlayerList(playerReader);
-        List<StringPair> deckList = gameReader.getDeck();
+        List<StringPair> deckList = deckReader.getDeck();
         double tableMin = gameReader.getTableMin();
         double tableMax = gameReader.getTableMax();
         Deck myDeck = new Deck(deckList);
@@ -89,8 +87,9 @@ public class Main extends Application {
         HandReader handReader = new HandReader(handFile);
         PlayerReader playerReader = new PlayerReader(playerFile);
         ViewReader viewReader = new ViewReader(viewFile);
+        DeckReader deckReader = new DeckReader(deckFile);
 
-        Table myTable = constructTable(gameReader, playerReader);
+        Table myTable = constructTable(gameReader, playerReader, deckReader);
         GameView myGameView = constructGameView();
         primaryStage.setScene(new Scene(myGameView.getView(), viewReader.getScreenWidth(), viewReader.getScreenWidth()));
         primaryStage.show();

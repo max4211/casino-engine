@@ -13,14 +13,6 @@ import java.util.Map;
 public interface GameReaderInterface {
 
     /**
-     * Method that translates the XML Deck tag to a List of Pair objects holding the Suit (String) and Value (Integer) for each Card.
-     * Called in CardDistribution module to assemble the deck.
-     *
-     * @return a List with each Pair entry containing the suit and value of a card in the deck.
-     */
-    List<StringPair> getDeck();
-
-    /**
      * Method that translates the XML Payout Odds tag to a Map
      * Each entry in the Map is a String detailing the Hand Type and a Double indicating its payoff odds
      * If key is not found, assume 1:1 payout odds.

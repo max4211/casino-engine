@@ -22,19 +22,13 @@ public class GameReader implements GameReaderInterface {
     private static final String DECK_DIRECTORY = "src/data/deck/";
     private static final String XML_EXTENSION = ".xml";
 
-    private static final String DECK_TAG = "Deck";
-    private static final String QUANTITY_TAG = "Quantity";
-    private static final String DECK_TYPE = "Type";
-
-    private static final String CARD_TAG = "Card";
-    private static final String SUIT_TAG = "Suit";
-    private static final String VALUE_TAG = "Value";
     private static final String NAME_TAG = "Name";
 
     private static final String ENTRY_TAG = "EntryBet";
     private static final String DEALERACTION_TAG = "DealerAction";
     private static final String PLAYERACTION_TAG = "PlayerAction";
     private static final String TYPE_TAG = "Type";
+    private static final String QUANTITY_TAG = "Quantity";
 
     private static final String TABLE_MIN_TAG = "TableMin";
     private static final String TABLE_MAX_TAG = "TableMax";
@@ -51,22 +45,6 @@ public class GameReader implements GameReaderInterface {
     public GameReader(String file) throws IOException, SAXException, ParserConfigurationException {
         this.myDocument = XMLGeneratorInterface.createDocument(new File(file));
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
-    }
-
-    @Override
-    public List<StringPair> getDeck() {
-        NodeList deckNodeList = XMLParseInterface.getNodeList(myDocument, DECK_TAG);
-        Element deckElement = (Element) deckNodeList.item(ZERO);
-        String type = XMLParseInterface.getElement(deckElement, DECK_TYPE);
-        int quantity = Integer.parseInt(XMLParseInterface.getElement(deckElement, QUANTITY_TAG));
-        try {
-            File deckFile = findDeckFile(type);
-            Document deckXML = XMLGeneratorInterface.createDocument(deckFile);
-            return parseDeck(deckXML);
-        } catch (IOException | SAXException | ParserConfigurationException e) {
-            System.out.println("could not find deck file");
-            return null;
-        }
     }
 
     @Override
@@ -126,20 +104,6 @@ public class GameReader implements GameReaderInterface {
     private File findDeckFile(String fileName) {
         String pathName = DECK_DIRECTORY + fileName.toLowerCase() + XML_EXTENSION;
         return new File(pathName);
-    }
-
-    // TODO - refactor, very similar to parsePlayers method
-    private List<StringPair> parseDeck(Document d) {
-        List<StringPair> list = new ArrayList<>();
-        NodeList cardNodeList = d.getElementsByTagName(CARD_TAG);
-        for (int index = 0; index < cardNodeList.getLength(); index ++) {
-            Node cardNode = cardNodeList.item(index);
-            Element cardElement = (Element) cardNode;
-            String suit = XMLParseInterface.getElement(cardElement, SUIT_TAG);
-            String value = XMLParseInterface.getElement(cardElement, VALUE_TAG);
-            list.add(new StringPair(suit, value));
-        }
-        return list;
     }
 
 }
