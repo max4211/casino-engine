@@ -59,6 +59,11 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
+    public void hideCard(int playerID, int betID, int cardID) {
+        getPlayerView(betID).hideCard(betID, cardID);
+    }
+
+    @Override
     public void addBet(List<CardTriplet> handInfo, double wager, int playerID, int betID) {
         getPlayerView(playerID).addBet(handInfo, wager, betID);
     }

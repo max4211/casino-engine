@@ -1,88 +1,44 @@
 package data.xmlreader;
 
-import engine.dealer.Card;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
-/**
- * Module that translates XML-defined preferences into Java-friendly structures such as Maps and Lists.
- * Also saves preferences of a game including color scheme, XML rules, and number of players.
- */
 public interface XMLParseInterface {
 
-    /**
-     * Method that translates the XML Deck tag to a List of Pair objects holding the Suit (String) and Value (Integer) for each Card.
-     * Called in CardDistribution module to assemble the deck.
-     *
-     * @return a List with each Pair entry containing the suit and value of a card in the deck.
-     */
-    List<Pair> getDeck();
+    static NodeList getNodeList(Document doc, String tag) {
+        return doc.getElementsByTagName(tag);
+    }
 
-    /**
-     * Method that translates the XML Payout Odds tag to a Map
-     * Each entry in the Map is a String detailing the Hand Type and a Double indicating its payoff odds
-     * If key is not found, assume 1:1 payout odds.
-     *
-     * @return a Map containing the Payout Odds for every type of winning bet that is not 1:1 odds
-     */
-    Map<String, Double> getPayoutOdds();
+    static String getElement(Element e, String tag) {
+        return e.getElementsByTagName(tag).item(0).getTextContent();
+    }
 
-    /**
-     * Translates the XML tag for Winning Java hands into a List of String objects naming each Hand
-     * The first entry is the best hand (trumps all) and the last entry is the worst hand (can still win, but loses to every entry before it)
-     *
-     * @return a List of Strings containing the names of all Hands that can win in a given game
-     */
-    List<String> getWinningHands();
+    static Collection<String> getXMLList(Document document, String metatag, String subtag) {
+        Collection<String> list = new ArrayList<>();
+        NodeList handNodeList = document.getElementsByTagName(metatag);
+        for (int index = 0; index < handNodeList.getLength(); index ++) {
+            Node handNode = handNodeList.item(index);
+            Element handElement = (Element) handNode;
+            String name = getElement(handElement, subtag);
+            list.add(name);
+        }
+        return list;
+    }
 
-    /**
-     * Translates the XML tag for Losing Java jands into naming each Hand
-     * Any Hand that is classified as an entry in this list is automatically removed from the game and Garbage Collected by the Table
-     *
-     * @return a List of Strings containing the names of all Hands that can lose in a given game
-     */
-    List<String> getLosingHands();
-
-    /**
-     * Fetch entry bet, all casino games start with such a bet and this is a differentiating factor driven by data
-     * @return a string containing the entry bet type (e.g. Generic or Specific)
-     */
-    String getEntryBet();
-
-    /**
-     * Fetch dealer opening action, all casino games start with dealer action
-     * @return a pair containing action type and quantity
-     */
-    Pair getDealerAction();
-
-    /**
-     * Fetch ingame player actions possible
-     * @return a List of strings containing all possible player actions
-     */
-    List<String> getPlayerAction();
-
-    /**
-     * Translates the XML tag for players in a game into a Map
-     * The String keys are the names for the players, and the Doubles are their initial bankroll
-     *
-     * @return a Map containing all the information for players mapping their names to their bankrolls
-     */
-    Map<String, Double> getPlayers();
-
-    /**
-     * Takes the current settings in a game and saves it to an XML file.
-     * Properties saved include color scheme for the game, number of players, and current deck.
-     * Basic implementation will not support changing in-game actions or bet heirarchy, but extensions past basic visual customizations can be implemented later.
-     *
-     * @param fileName is the name of the XML file to save the preferences to
-     */
-    void savePreferences(String fileName);
-
-    /**
-     * Get the type of competition for the game in raw string format
-     * @return
-     */
-    String getCompetition();
+    static void traverseXML(Node node) {
+        System.out.println(node.getNodeName());
+        NodeList nodeList = node.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i ++) {
+            Node curNode = nodeList.item(i);
+            if (curNode.getNodeType() == Node.ELEMENT_NODE)
+                traverseXML(curNode);
+        }
+    }
 
 }

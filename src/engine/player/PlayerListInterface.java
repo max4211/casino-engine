@@ -1,5 +1,6 @@
 package engine.player;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface PlayerListInterface {
@@ -13,8 +14,8 @@ public interface PlayerListInterface {
 
     /**
      * Fetch all players in the list, using for initial debug
-     * @return all players in the list (aka at the table)
+     * @return all players in the collection (aka at the table)
      */
-    List<Player> getPlayers();
+    Collection<Player> getPlayers();
 
 }

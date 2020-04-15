@@ -1,14 +1,12 @@
 package engine.table;
 
-import Utility.CardTriplet;
 import data.xmlreader.Pair;
 import engine.adversary.Adversary;
-import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.player.Player;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.function.Consumer;
 
 public interface TableInterface {
 
@@ -43,7 +41,7 @@ public interface TableInterface {
      * Get all of the current players at the table
      * @return list of players
      */
-    List<Player> getPlayers();
+    Collection<Player> getPlayers();
 
     /**
      * Determine if any players are still active in the round/game

@@ -8,17 +8,10 @@
         <Type>Standard</Type>
     </Deck>
     <Competition>Adversary</Competition>
-    <WinningHand>
-        <Name>Blackjack</Name>
-        <Multiplier>1.5</Multiplier>
-    </WinningHand>
-    <WinningHand>
-        <Name>SumUnder22</Name>
-        <Multiplier>1.0</Multiplier>
-    </WinningHand>
-    <LosingHand>
-        <Name>SumOver21</Name>
-    </LosingHand>
+    <TableMin>5</TableMin>
+    <TableMax>200</TableMax>
+    <CardShow>All</CardShow>
+    <Goal>Cashgame</Goal>
     <Actions>
         <EntryBet>Generic</EntryBet>
         <DealerAction>
