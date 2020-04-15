@@ -60,6 +60,10 @@ public class BetView implements NodeViewInterface, TaggableInterface {
         myHand.removeCard(cardID);
     }
 
+    public void hideCard(int cardID) {
+        myHand.hideCard(cardID);
+    }
+
     // TODO: this checks index twice (again in handview): good or bad?
     public void showCard(int cardID) {
         myHand.showCard(cardID);

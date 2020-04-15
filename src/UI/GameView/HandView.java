@@ -64,6 +64,10 @@ public class HandView implements NodeViewInterface {
         myCards.remove(cardID);
     }
 
+    public void hideCard(int cardID) {
+        getCard(cardID).hideCard();
+    }
+
     public void clearHand() {
         myCards.clear();
         myHand.getChildren().clear();
