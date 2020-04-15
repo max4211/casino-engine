@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Game>
-    <Title>Blackjack</Title>
-    <Authors>Eric Doppelt and Max Smith</Authors>
-    <Language>English</Language>
-    <Deck>
-        <Quantity>2</Quantity>
-        <Type>Standard</Type>
-    </Deck>
     <Competition>Adversary</Competition>
     <TableMin>5</TableMin>
     <TableMax>200</TableMax>

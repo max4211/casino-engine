@@ -66,7 +66,7 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public int placeEntryBet(int playerHash, EntryBet betType, double wager) {
+    public Bet placeEntryBet(int playerHash, EntryBet betType, double wager) {
         Player p = findPlayer(playerHash);
         System.out.printf("player: %s \n", p.getName());
         return p.placeBet(wager);

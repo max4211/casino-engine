@@ -8,4 +8,13 @@ public interface ViewReaderInterface {
      */
     int getScreenWidth();
     int getScreenHeight();
+
+    /**
+     * Get string type parameters governing the game
+     * @return
+     */
+    String getTitle();
+    String getAuthors();
+    String getLanguage();
+
 }

@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import xmlreader.interfaces.ViewReaderInterface;
 import xmlreader.interfaces.XMLGeneratorInterface;
+import xmlreader.interfaces.XMLParseInterface;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
@@ -16,6 +17,9 @@ public class ViewReader implements ViewReaderInterface {
 
     private static final String WIDTH_TAG = "Width";
     private static final String HEIGHT_TAG = "Height";
+    private static final String TITLE_TAG = "Title";
+    private static final String AUTHORS_TAG = "Authors";
+    private static final String LANGUAGE_TAG = "Language";
 
     public ViewReader(File file) throws IOException, SAXException, ParserConfigurationException {
         this.myDocument = XMLGeneratorInterface.createDocument(file);
@@ -30,11 +34,26 @@ public class ViewReader implements ViewReaderInterface {
 
     @Override
     public int getScreenWidth() {
-        return Integer.parseInt(myDocument.getElementsByTagName(WIDTH_TAG).item(ZERO).getTextContent());
+        return Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, WIDTH_TAG));
     }
 
     @Override
     public int getScreenHeight() {
-        return Integer.parseInt(myDocument.getElementsByTagName(HEIGHT_TAG).item(ZERO).getTextContent());
+        return Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, HEIGHT_TAG));
+    }
+
+    @Override
+    public String getTitle() {
+        return XMLParseInterface.getSingleTag(myDocument, TITLE_TAG);
+    }
+
+    @Override
+    public String getAuthors() {
+        return XMLParseInterface.getSingleTag(myDocument, AUTHORS_TAG);
+    }
+
+    @Override
+    public String getLanguage() {
+        return XMLParseInterface.getSingleTag(myDocument, LANGUAGE_TAG);
     }
 }
