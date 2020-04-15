@@ -33,8 +33,8 @@ public class GameConstructor {
 
     private static final String DECK_KEY = "deck";
     private static final String GAME_KEY = "game";
-    private static final String PLAYER_KEY = "player";
-    private static final String HAND_KEY = "hand";
+    private static final String PLAYER_KEY = "players";
+    private static final String HAND_KEY = "hands";
     private static final String VIEW_KEY = "view";
 
     public GameConstructor(Map<String, File> myFiles) {

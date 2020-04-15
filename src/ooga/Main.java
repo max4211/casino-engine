@@ -30,6 +30,5 @@ public class Main extends Application {
             final String viewFile = "src/data/view/view.xml";
             GameConstructor gtor = new GameConstructor(deckFile, gameFile, playerFile, handFile, viewFile);
         }
-
     }
 }

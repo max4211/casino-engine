@@ -8,7 +8,7 @@ public interface GameViewInterface {
 
     public void renderTable(String file);
 
-    public void addCard(CardTriplet cardInfo, int playerID, int betID);
+    public void addCardIfAbsent(CardTriplet cardInfo, int playerID, int betID);
 
     public void removeCard(int playerID, int betID, int cardID);
 
@@ -34,6 +34,7 @@ public interface GameViewInterface {
 
     /**
      * only works on main player
+     *
      * @param minBet
      * @param maxBet
      */
@@ -50,4 +51,7 @@ public interface GameViewInterface {
     public void clearAdversary();
 
     public void displayError(Exception ex);
+
+    public void addCard(CardTriplet cardInfo, int playerID, int betID);
+
 }

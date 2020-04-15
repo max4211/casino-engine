@@ -1,9 +1,7 @@
 package UI.GameView;
 
-import UI.GameView.BetView;
-import UI.GameView.PlayerInfoView;
-import UI.Interfaces.TaggableInterface;
 import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggableInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.HBox;
@@ -57,6 +55,10 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
 
     public void addCard(CardTriplet cardInfo, int betID) {
         getBet(betID).addCard(cardInfo);
+    }
+
+    public void addCardIfAbsent(CardTriplet cardInfo, int betID) {
+        getBet(betID).addCardIfAbsent(cardInfo);
     }
 
     public void removeCard(int betID, int cardID) {
