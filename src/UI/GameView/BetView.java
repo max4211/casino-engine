@@ -52,6 +52,10 @@ public class BetView implements NodeViewInterface, TaggableInterface {
         myHand.addCard(newCard);
     }
 
+    public void addCardIfAbsent(CardTriplet checkedCard) {
+        if (!myHand.hasCard(checkedCard.getID())) addCard(checkedCard);
+    }
+
     public void removeCard(int cardID) {
         myHand.removeCard(cardID);
     }

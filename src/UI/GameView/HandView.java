@@ -1,6 +1,5 @@
 package UI.GameView;
 
-import UI.GameView.CardView;
 import UI.Interfaces.NodeViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
@@ -55,6 +54,11 @@ public class HandView implements NodeViewInterface {
         myCards.add(addedCardView);
         myHand.getChildren().add(addedCardView.getView());
     }
+
+    public boolean hasCard(int cardID) {
+        return getCard(cardID) != null;
+    }
+
 
     public void removeCard(int cardID) {
         myCards.remove(cardID);

@@ -20,8 +20,8 @@ public class LobbyView implements NodeViewInterface {
         ALL_XMLS = new ArrayList<>();
         ALL_XMLS.add("deck");
         ALL_XMLS.add("game");
-        ALL_XMLS.add("player");
-        ALL_XMLS.add("hand");
+        ALL_XMLS.add("players");
+        ALL_XMLS.add("hands");
         ALL_XMLS.add("view");
 
         XMLButton myButton = new XMLButton(ALL_XMLS, c -> createGame(c));

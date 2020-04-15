@@ -97,7 +97,7 @@ public class Controller implements ControllerInterface {
             double wager = this.myGameView.selectWager(min, max);
             Bet b = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
             this.myGameView.addBet(new ArrayList<>(), wager, playerHash, b.getID());
-            this.myGameView.updateBankRoll(p.getBankroll(), p.getID());
+            this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
     }
 
@@ -175,7 +175,7 @@ public class Controller implements ControllerInterface {
 //                this.myGameView.removeBet(p.getID(), b.getID());
 //                this.myGameView.addBet(createTripletList(b.getHand()), b.getWager(), p.getID(), b.getID());
 //                this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
-                this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
+                this.myGameView.addCardIfAbsent(createCardTriplet(c), p.getID(), b.getID());
                 this.myGameView.showCard(p.getID(), b.getID(), c.getID());
                 System.out.printf("added card %s to player %s\n", c.toString(), p.getName());
             }
@@ -251,7 +251,7 @@ public class Controller implements ControllerInterface {
                 for (Bet b: p.getBets()) {
                     for (Card c: b.getHand().getCards()) {
                         this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
-                        this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
+                        this.myGameView.addCardIfAbsent(createCardTriplet(c), p.getID(), b.getID());
                         this.myGameView.hideCard(p.getID(), b.getID(), c.getID());
                     }
                 }
@@ -273,7 +273,7 @@ public class Controller implements ControllerInterface {
                 int betID = b.getID();
                 for (Card c: b.getHand().getCards()) {
                     CardTriplet cardTriplet = createCardTriplet(c);
-                    this.myGameView.addCard(cardTriplet, playerID, betID);
+                    this.myGameView.addCardIfAbsent(cardTriplet, playerID, betID);
                 }
             }
         }
