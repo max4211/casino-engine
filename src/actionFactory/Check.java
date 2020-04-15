@@ -18,4 +18,5 @@ public class Check extends Action {
     public void execute(Player player, Bet target, Supplier<Card> getCard) {
         target.setActive(false);
     }
+
 }

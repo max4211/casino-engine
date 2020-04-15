@@ -3,7 +3,7 @@
     <Competition>Adversary</Competition>
     <TableMin>5</TableMin>
     <TableMax>200</TableMax>
-    <CardShow>Active</CardShow>
+    <CardShow>All</CardShow>
     <Goal>Tournament</Goal>
     <Actions>
         <EntryBet>Generic</EntryBet>

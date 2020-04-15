@@ -110,8 +110,7 @@ public class HandClassifier implements HandClassifierInterface {
             Object o = method.invoke(this, h);
             return (boolean) o;
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.printf("Coder did not create hand type: %s, please returning false\n", name);
+            System.out.printf("Coder did not create hand type: %s, returning false\n", name);
             return false;
         }
 

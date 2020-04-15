@@ -69,7 +69,6 @@ public class Controller implements ControllerInterface {
         renderAdversary();
         promptForActions();
         garbageCollect();
-        invokeCompetition();
         computePayoffs();
         restartGame();
     }
@@ -110,7 +109,8 @@ public class Controller implements ControllerInterface {
     private void renderAdversary() {
         if(isAdversaryGame()) {
             this.myAdversary = this.myTable.createAdversary(ADVERSARY_MIN);
-            this.myGameView.renderAdversary(parseAdversary(this.myAdversary.getHand()));
+            List<CardTriplet> list = Generator.createTripletList(this.myAdversary.getHand());
+            this.myGameView.renderAdversary(list);
             this.myGameView.showAdversaryCard(this.myAdversary.getCard().getID());
         }
     }
@@ -136,29 +136,19 @@ public class Controller implements ControllerInterface {
     }
 
     private void garbageCollect() {
-//        GarbageCollect.clearLosers(this.myTable.getPlayers(), (pid, bid) -> this.myGameView.removeBet(pid, bid));
-        for (Player p: this.myTable.getPlayers()) {
-            for (Bet b: p.getBets()) {
-                if (b.getHand().isLoser()) {
-                    this.myGameView.removeBet(p.getID(), b.getID());
-                }
-            }
-        }
-    }
-
-    private void invokeCompetition() {
-        if (isAdversaryGame()) {
-            this.myAdversary.playHand(
-                    (card) -> this.myGameView.showAdversaryCard(card),
-                    (triplet) -> this.myGameView.addAdversaryCard(triplet),
-                    this.myTable.getDealCardMethod());
-        } else if (isGroupGame()) {
-            // TODO - group evaluation
-        }
+        GarbageCollect.clearLosers(this.myTable.getPlayers(), (pid, bid) -> this.myGameView.removeBet(pid, bid));
+//        for (Player p: this.myTable.getPlayers()) {
+//            for (Bet b: p.getBets()) {
+//                if (b.getHand().isLoser()) {
+//                    this.myGameView.removeBet(p.getID(), b.getID());
+//                }
+//            }
+//        }
     }
 
     // TODO - use reflection for payoffs in adversary vs. group competition game
     private void computePayoffs() {
+        invokeCompetition();
         if (isAdversaryGame()) {
             this.myHandClassifier.classifyHand(this.myAdversary.getHand());
             for (Player p: this.myTable.getPlayers()) {
@@ -169,6 +159,18 @@ public class Controller implements ControllerInterface {
                 p.cashBets();
                 this.myGameView.setBankRoll(p.getBankroll(), p.getID());
             }
+        }
+    }
+
+    // TODO - refactor to separate classes/reflection internal to controller
+    private void invokeCompetition() {
+        if (isAdversaryGame()) {
+            this.myAdversary.playHand(
+                    (card) -> this.myGameView.showAdversaryCard(card),
+                    (triplet) -> this.myGameView.addAdversaryCard(triplet),
+                    this.myTable.getDealCardMethod());
+        } else if (isGroupGame()) {
+            // TODO - group evaluation
         }
     }
 
@@ -258,14 +260,6 @@ public class Controller implements ControllerInterface {
                 }
             }
         }
-    }
-
-    private List<CardTriplet> parseAdversary(PlayerHand h) {
-        List<CardTriplet> list = new ArrayList<>();
-        for (Card c: h.getCards()) {
-            list.add(Generator.createCardTriplet(c));
-        }
-        return list;
     }
 
 }

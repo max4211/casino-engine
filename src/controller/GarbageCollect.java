@@ -10,11 +10,11 @@ import java.util.function.BiConsumer;
 
 public interface GarbageCollect {
 
-    static void clearLosers(Collection<Player> players, BiConsumer<Integer, Integer> consumer) {
+    static void clearLosers(Collection<Player> players, BiConsumer<Integer, Integer> removeViewBet) {
         for (Player p: players) {
             for (Bet b: p.getBets()) {
                 if (b.getHand().isLoser()) {
-                    consumer.accept(p.getID(), b.getID());
+                    removeViewBet.accept(p.getID(), b.getID());
                 }
             }
         }
