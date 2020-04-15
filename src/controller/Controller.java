@@ -95,8 +95,8 @@ public class Controller implements ControllerInterface {
             double min = this.myTable.getTableMin();
             double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
             double wager = this.myGameView.selectWager(min, max);
-            int betID = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
-            this.myGameView.addBet(new ArrayList<>(), wager, playerHash, betID);
+            Bet b = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
+            this.myGameView.addBet(new ArrayList<>(), wager, playerHash, b.getID());
             this.myGameView.updateBankRoll(p.getBankroll(), p.getID());
         }
     }

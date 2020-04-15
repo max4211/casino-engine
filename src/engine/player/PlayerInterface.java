@@ -33,8 +33,9 @@ public interface PlayerInterface {
     /**
      * Place bet (of size wager)
      * @param wager size of bet
+     * @return the bet that was created
      */
-    int placeBet(double wager);
+    Bet placeBet(double wager);
 
     /**
      * Place a preformatted bet

@@ -48,11 +48,11 @@ public class Player implements PlayerInterface {
     }
 
     @Override
-    public int placeBet(double wager) {
+    public Bet placeBet(double wager) {
         Bet bet = new Bet(wager);
         this.myBets.add(bet);
         this.myBankroll -= wager;
-        return bet.getID();
+        return bet;
     }
 
     @Override

@@ -3,6 +3,7 @@ package engine.table;
 import Utility.StringPair;
 import controller.EntryBet;
 import engine.adversary.Adversary;
+import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.player.Player;
 
@@ -25,8 +26,9 @@ public interface TableInterface {
      * @param playerHash is the identification number of the appropriate player
      * @param betType is the bet type that was placed
      * @param wager is the wager size for that bet
+     * @return bet that was just placed
      */
-    int placeEntryBet(int playerHash, EntryBet betType, double wager);
+    Bet placeEntryBet(int playerHash, EntryBet betType, double wager);
 
     /**
      * called by controller for dealer to distribute cards to players
