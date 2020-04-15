@@ -2,6 +2,7 @@ package controller;
 
 import UI.GameView.GameView;
 import Utility.CardTriplet;
+import Utility.Generator;
 import Utility.StringPair;
 import actionFactory.Action;
 import actionFactory.ActionFactory;
@@ -18,6 +19,8 @@ import exceptions.ReflectionException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class Controller implements ControllerInterface {
 
@@ -118,7 +121,6 @@ public class Controller implements ControllerInterface {
             Player p = this.myTable.getNextPlayer();
             this.myGameView.setMainPlayer(p.getID());
             cardShow(p);
-            System.out.printf("prompting player (%s) for an action --> ", p.getName());
             try {
                 Action a = this.myFactory.createAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();
@@ -147,7 +149,11 @@ public class Controller implements ControllerInterface {
 
     private void invokeCompetition() {
         if (isAdversaryGame()) {
-            adversaryActionLoop();
+            this.myAdversary.playHand(
+                    (card) -> this.myGameView.showAdversaryCard(card),
+                    (triplet) -> this.myGameView.addAdversaryCard(triplet),
+                    this.myTable.getDealCardMethod());
+//            adversaryActionLoop();
         } else {
             // TODO - group evaluation
         }
@@ -175,18 +181,10 @@ public class Controller implements ControllerInterface {
 //                this.myGameView.removeBet(p.getID(), b.getID());
 //                this.myGameView.addBet(createTripletList(b.getHand()), b.getWager(), p.getID(), b.getID());
 //                this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
-                this.myGameView.addCardIfAbsent(createCardTriplet(c), p.getID(), b.getID());
+                this.myGameView.addCardIfAbsent(Generator.createCardTriplet(c), p.getID(), b.getID());
                 this.myGameView.showCard(p.getID(), b.getID(), c.getID());
-                System.out.printf("added card %s to player %s\n", c.toString(), p.getName());
             }
         }
-    }
-
-    private List<CardTriplet> createTripletList(PlayerHand h) {
-        List<CardTriplet> list = new ArrayList<>();
-        for (Card c: h.getCards())
-            list.add(createCardTriplet(c));
-        return list;
     }
 
     // TODO - refactor cardshow and competition to reflection
@@ -202,7 +200,7 @@ public class Controller implements ControllerInterface {
     private void adversaryActionLoop() {
         showAdversaryCards();
         while (this.myAdversary.wantsCards()) {
-            this.myGameView.addAdversaryCard(createCardTriplet(this.myTable.giveAdversaryCard()));
+            this.myGameView.addAdversaryCard(Generator.createCardTriplet(this.myTable.giveAdversaryCard()));
             showAdversaryCards();
         }
     }
@@ -251,7 +249,7 @@ public class Controller implements ControllerInterface {
                 for (Bet b: p.getBets()) {
                     for (Card c: b.getHand().getCards()) {
                         this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
-                        this.myGameView.addCardIfAbsent(createCardTriplet(c), p.getID(), b.getID());
+                        this.myGameView.addCardIfAbsent(Generator.createCardTriplet(c), p.getID(), b.getID());
                         this.myGameView.hideCard(p.getID(), b.getID(), c.getID());
                     }
                 }
@@ -272,21 +270,17 @@ public class Controller implements ControllerInterface {
             for (Bet b: p.getBets()) {
                 int betID = b.getID();
                 for (Card c: b.getHand().getCards()) {
-                    CardTriplet cardTriplet = createCardTriplet(c);
+                    CardTriplet cardTriplet = Generator.createCardTriplet(c);
                     this.myGameView.addCardIfAbsent(cardTriplet, playerID, betID);
                 }
             }
         }
     }
 
-    private CardTriplet createCardTriplet(Card c) {
-        return new CardTriplet(c.getValue(), c.getSuit(), c.getID());
-    }
-
     private List<CardTriplet> parseAdversary(PlayerHand h) {
         List<CardTriplet> list = new ArrayList<>();
         for (Card c: h.getCards()) {
-            list.add(createCardTriplet(c));
+            list.add(Generator.createCardTriplet(c));
         }
         return list;
     }

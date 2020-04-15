@@ -11,7 +11,6 @@ public class Stay extends Action {
 
     public Stay() {
         super();
-        System.out.println("Created a stay action");
     }
 
     @Override

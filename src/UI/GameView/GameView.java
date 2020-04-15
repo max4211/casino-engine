@@ -111,11 +111,13 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void showAdversaryCard(int cardID) {
+        System.out.println("(GAMEVIEW): showing adversary card in view");
         myAdversary.showCard(cardID);
     }
 
     @Override
     public void addAdversaryCard(CardTriplet cardInfo) {
+        System.out.println("(GAMEVIEW): added adversary card to view");
         myAdversary.addCard(cardInfo);
     }
 

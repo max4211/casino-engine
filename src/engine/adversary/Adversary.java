@@ -1,7 +1,12 @@
 package engine.adversary;
 
+import Utility.CardTriplet;
+import Utility.Generator;
 import engine.dealer.Card;
 import engine.hand.PlayerHand;
+
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class Adversary implements AdversaryInterface {
 
@@ -35,6 +40,29 @@ public class Adversary implements AdversaryInterface {
             total += c.getValue();
         }
         return total;
+    }
+
+    @Override
+    public void playHand(Consumer<Integer> showCard, Consumer<CardTriplet> addCard, Supplier<Card> getCard) {
+        showMyCards(showCard);
+        while (this.wantsCards()) {
+            Card c = getCard.get();
+            this.acceptCard(c);
+            CardTriplet ct = Generator.createCardTriplet(c);
+            addCard.accept(ct);
+            System.out.printf("(ADVERSARY): add adversary card %s to view\n", c.toString());
+            showCard.accept(c.getID());
+            System.out.printf("(ADVERSARY): show adversary card %s in view\n", c.toString());
+        }
+    }
+
+    private void showMyCards(Consumer<Integer> showCard) {
+        for (Card c: this.myPlayerHand.getCards()) {
+            System.out.printf("(ADVERSARY): show adversary card %s in view\n", c.toString());
+
+            showCard.accept(c.getID());
+        }
+
     }
 
     public boolean wantsCards() {

@@ -27,7 +27,7 @@ public class HandClassifier implements HandClassifierInterface {
 
     @Override
     public void classifyHand(PlayerHand h) {
-        printHand(h);
+//        printHand(h);
         if (checkLosingHand(h)) {
             return;
         } else {
@@ -43,9 +43,7 @@ public class HandClassifier implements HandClassifierInterface {
     }
 
     private boolean checkLosingHand(PlayerHand h) {
-        System.out.printf("\nchecking losing hands: \n");
         for (String s: myLosingHands) {
-            System.out.printf("%s, ", s);
             if (reflectOnMethod(s, h)) {
                 h.setLoser(true);
                 return true;
@@ -55,9 +53,7 @@ public class HandClassifier implements HandClassifierInterface {
     }
 
     private boolean checkWinningHand(PlayerHand h) {
-        System.out.printf("\nchecking winning hands: ");
         for (String s: myWinningHands) {
-            System.out.printf("%s, ", s);
             if (reflectOnMethod(s, h)) {
                 h.classifyHand(new ClassifiedHand(s, indexOf(this.myWinningHands, s), sumCards(h)));
                 return true;
@@ -110,12 +106,8 @@ public class HandClassifier implements HandClassifierInterface {
     private boolean reflectOnMethod(String name, PlayerHand h) {
         try {
             String methodName = IS_PREFIX + name;
-//            System.out.println("invoked method name: " + methodName);
             Method method = this.getClass().getDeclaredMethod(methodName, PlayerHand.class);
-//            System.out.println("method recieved: " + method);
             Object o = method.invoke(this, h);
-//            System.out.println("invoked method and recieved object: " + o);
-            System.out.printf("(%s)\n", o);
             return (boolean) o;
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,20 +116,5 @@ public class HandClassifier implements HandClassifierInterface {
         }
 
     }
-
-    /** Max's team code for reflection example within their execution (shows how to invoke a method)
-     *
-     *     private List<String> executeCommand(Command command) {
-     *         try {
-     *             Class superclazz = command.getClass().getSuperclass();
-     *             String name = EXECUTE + superclazz.getSimpleName();
-     *             Method method = this.getClass().getDeclaredMethod(name, superclazz); //Command.class
-     *             Object o = method.invoke(this, command);
-     *             return (List<String>) o;
-     *         } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException | NullPointerException e) {
-     *             throw new ReflectionException("Unable to apply Reflection in parser");
-     *         }
-     *     }
-     */
 
 }

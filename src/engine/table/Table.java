@@ -68,7 +68,6 @@ public class Table implements TableInterface {
     @Override
     public Bet placeEntryBet(int playerHash, EntryBet betType, double wager) {
         Player p = findPlayer(playerHash);
-        System.out.printf("player: %s \n", p.getName());
         return p.placeBet(wager);
     }
 
@@ -151,7 +150,6 @@ public class Table implements TableInterface {
                 List<Bet> activeBets = p.getBets();
                 for (Bet b: activeBets) {
                     Card c = this.myDealer.getCard();
-                    System.out.printf("generating individual card #%d to player %s (%s)\n", i, p.getName(), c);
                     b.acceptCard(c);
                 }
             }

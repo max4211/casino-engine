@@ -11,7 +11,6 @@ public class Split extends Action {
 
     public Split() {
         super();
-        System.out.println("Created a split action");
     }
 
 //    // TODO implement split method
@@ -22,7 +21,6 @@ public class Split extends Action {
 //            // TODO implement split
 //            target.setActive(false);
 //        } else {
-//            System.out.println("could not split hand");
 //            throw new ActionException();
 //        }
 //
