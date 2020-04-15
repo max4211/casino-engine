@@ -97,6 +97,7 @@ public class Controller implements ControllerInterface {
             double wager = this.myGameView.selectWager(min, max);
             int betID = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
             this.myGameView.addBet(new ArrayList<>(), wager, playerHash, betID);
+            this.myGameView.updateBankRoll(p.getBankroll(), p.getID());
         }
     }
 
@@ -112,13 +113,12 @@ public class Controller implements ControllerInterface {
         }
     }
 
-    // TODO - only change action if changes occured?
     private void promptForActions() {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
+            this.myGameView.setMainPlayer(p.getID());
             cardShow(p);
             System.out.printf("prompting player (%s) for an action --> ", p.getName());
-            this.myGameView.setMainPlayer(p.getID());
             try {
                 Action a = this.myFactory.createAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();
@@ -126,6 +126,7 @@ public class Controller implements ControllerInterface {
                 classifyHand(b);
                 addCardToPlayer(p);
                 this.myGameView.updateWager(b.getWager(), p.getID(), b.getID());
+                this.myGameView.updateBankRoll(p.getBankroll(), p.getID());
             } catch (ReflectionException e) {
                 this.myGameView.displayError(e);
                 System.out.println(e);
@@ -171,10 +172,12 @@ public class Controller implements ControllerInterface {
     private void addCardToPlayer(Player p) {
         for (Bet b: p.getBets()) {
             for (Card c: b.getHand().getCards()) {
-                this.myGameView.removeBet(p.getID(), b.getID());
-                this.myGameView.addBet(createTripletList(b.getHand()), b.getWager(), p.getID(), b.getID());
-                this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
+//                this.myGameView.removeBet(p.getID(), b.getID());
+//                this.myGameView.addBet(createTripletList(b.getHand()), b.getWager(), p.getID(), b.getID());
+//                this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
                 this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
+                this.myGameView.showCard(p.getID(), b.getID(), c.getID());
+                System.out.printf("added card %s to player %s\n", c.toString(), p.getName());
             }
         }
     }

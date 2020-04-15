@@ -46,4 +46,10 @@ public interface BetInterface {
      * @param wager new wgaer amount
      */
     void setWager(double wager);
+
+    /**
+     * Called by player to get payoff of their bets
+     * @return double value indicating payoff (multiplier?)
+     */
+    double getPayoff();
 }
