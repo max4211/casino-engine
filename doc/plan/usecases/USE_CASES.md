@@ -5,7 +5,7 @@
 
 
 #### Case 1 - Select Game
-Upon startup, the User is greeted with a LobbyView (that can also be entered via the MenuView at any time). The LobbyView allows the user to select a game (by picking an icon) which prompts a FileChooser for XML data within that genre. The file is then sent off to an XML Parsing module for GameObject creation. 
+Upon startup, the User is greeted with a UI.LobbyView (that can also be entered via the MenuView at any time). The UI.LobbyView allows the user to select a game (by picking an icon) which prompts a FileChooser for XML data within that genre. The file is then sent off to an XML Parsing module for GameObject creation. 
 
 #### Case 2 - Create Game
 An XML Parsing module translates the game (data file) the user selected into an ecosystem of interdependent objects that form the Game MVC (model/logic, view/interface, and controller/medium). The XML data files are rich with preferences which drive substitution in the GameCreation. Classes such as a Deck and HandEvaluator are configured based on this information.
@@ -48,7 +48,7 @@ Per the design goal of making the program as data driven as possible, creating a
 The Deck objects are also completely data driven, and each card is explicitly defined inside of a Deck XML file (where each card has two properties, Value and Suit). To create a deck without queens, one could just duplicate the StandardDeck XML file and remove all reference to queens. Likewise, one could create a new suit called oranges and change all of the hearts to oranges. Evaluation of hands is still the same, as it only revolves around relationships between card parameters (for example a flush is when all card parameters are the same - and all cards could be of a made up suit called orange).
 
 #### Case 15 - Playing at Multiple Tables
-By design, a Table is an independent entity driving a game and has all of the Objects it needs to function without managerial oversight. By keeping the LobbyView accessible, multiple games can be played concurrently by simply selecting another GameIcon (indirect XML selection) at startup.
+By design, a Table is an independent entity driving a game and has all of the Objects it needs to function without managerial oversight. By keeping the UI.LobbyView accessible, multiple games can be played concurrently by simply selecting another GameIcon (indirect XML selection) at startup.
 
 #### Case 16 - Toggling Display to Dark Mode
 Through the MenuView, the user has the ability to change preferences regarding the Game visual rendering. They can select from multiple color pallette themes (for example DarkMode) which results in the swapping in a new CSS file, hence changing all colors.

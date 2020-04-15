@@ -1,7 +1,7 @@
-package GameView.NodeViews;
+package UI.GameView;
 
-import GameView.NodeViews.Interfaces.NodeViewInterface;
-import GameView.NodeViews.Interfaces.TaggableInterface;
+import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggableInterface;
 import Utility.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;

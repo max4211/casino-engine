@@ -1,4 +1,4 @@
-package GameView.Selectors;
+package UI.Selectors;
 
 import javafx.scene.control.ChoiceDialog;
 

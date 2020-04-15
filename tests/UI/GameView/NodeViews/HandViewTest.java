@@ -1,9 +1,9 @@
-package GameView.NodeViews;
+package UI.GameView.NodeViews;
 
+import UI.GameView.CardView;
+import UI.GameView.HandView;
 import Utility.CardTriplet;
-import exceptions.ActionException;
 import javafx.embed.swing.JFXPanel;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;

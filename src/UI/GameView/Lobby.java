@@ -1,6 +1,5 @@
-package GameView;
+package UI.GameView;
 
-import GameView.NodeViews.GameView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

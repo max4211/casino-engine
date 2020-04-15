@@ -1,10 +1,9 @@
-package GameView.NodeViews;
+package UI.GameView;
 
-import GameView.NodeViews.Interfaces.NodeViewInterface;
+import UI.Interfaces.NodeViewInterface;
 import Utility.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;

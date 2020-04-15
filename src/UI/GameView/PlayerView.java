@@ -1,7 +1,9 @@
-package GameView.NodeViews;
+package UI.GameView;
 
-import GameView.NodeViews.Interfaces.TaggableInterface;
-import GameView.NodeViews.Interfaces.NodeViewInterface;
+import UI.GameView.BetView;
+import UI.GameView.PlayerInfoView;
+import UI.Interfaces.TaggableInterface;
+import UI.Interfaces.NodeViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.HBox;

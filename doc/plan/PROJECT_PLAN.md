@@ -14,10 +14,10 @@ Since there are only two people in our group, both of which live near COVID-19 o
 Eric will focus mainly on the Internal and External frontend, while also doing some all-purpose external backend work relating to XML and the classes it interfaces with most.
 
 Primary:
-* `GameView`
+* `UI.GameView`
 * `XMLParsing`
 * `Card Distribution`
-* `LobbyView`
+* `UI.LobbyView`
 
 Secondary:
 * `Hand Evaluator`
@@ -36,7 +36,7 @@ Primary
 * `Action Generator`
 
 Secondary:
-* `LobbyView`
+* `UI.LobbyView`
 * `XML Parser`
 
 
@@ -56,12 +56,12 @@ Submitted in Survey
 *Goals:*
 Focus on strong design while implementing the basic functionality for one game as determined in our `DESIGN_PLAN.md`.
 
-Implement beta versions of all modules (except `LobbyView`) for one basic card game: blackjack.
+Implement beta versions of all modules (except `UI.LobbyView`) for one basic card game: blackjack.
 
 *Features:*
 
 Eric:
-1. GameView and its subclasses (BetView, WagerView, etc.)
+1. UI.GameView and its subclasses (BetView, WagerView, etc.)
 2. XMLWriter and XMLReader
 3. Card Distribution (Card, Deck, Dealer)
 
@@ -84,8 +84,8 @@ Iron out the controller/model separation, and determine more abstractions to imp
 
 Eric:
 1. Implement Dark Mode settings in the UI.
-2. Add a LobbyView with UI access to XML.
-3. Spend time finalizing nuances of GameView, since realistically it will take more than just one week.
+2. Add a UI.LobbyView with UI access to XML.
+3. Spend time finalizing nuances of UI.GameView, since realistically it will take more than just one week.
 4. Wager bets and error popups
 
 Max:

@@ -1,4 +1,4 @@
-package GameView.NodeViews.Interfaces;
+package UI.Interfaces;
 
 import Utility.CardTriplet;
 
@@ -39,9 +39,9 @@ public interface GameViewInterface {
      */
     public double selectWager(double minBet, double maxBet);
 
-    public void updateWager(double newWager, int playerID, int BetID);
+    public void setWager(double newWager, int playerID, int BetID);
 
-    public void updateBankRoll(double newBankroll, int playerID);
+    public void setBankRoll(double newBankroll, int playerID);
 
     public String selectAction(List<String> actions);
 

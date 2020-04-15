@@ -1,6 +1,6 @@
-package GameView.NodeViews;
+package UI.GameView;
 
-import GameView.NodeViews.Interfaces.NodeViewInterface;
+import UI.Interfaces.NodeViewInterface;
 import Utility.Formatter;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;

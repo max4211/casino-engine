@@ -25,8 +25,8 @@ Our program is divided up into the following modules:
 * Bet Evaluator
 * Table
 * Action Generator
-* GameView
-* LobbyView
+* UI.GameView
+* UI.LobbyView
 
 ![](https://i.imgur.com/5xVDisT.jpg)
 
@@ -193,7 +193,7 @@ public Action createAction(String name)
 public void execute(Bet target)
 ```
 
-#### GameView
+#### UI.GameView
 
 *Functional Goal:* To display the poker game in the UI.
 
@@ -221,7 +221,7 @@ public void renderTable(Image image)
 public void selectAction(Player p1)
 ```
 
-#### LobbyView
+#### UI.LobbyView
 
 *Functional Goal:* The goal of the lobby is for the user to be welcomed into the game environment with a splash screen. It allows for the user to implicitly select an XML file.
 
@@ -253,9 +253,9 @@ The bet evaluation allows for flexibility in its payout structure. By working wi
 
 `Action Factory`: This works with the table to create mid-game functionality that is data-driven from the XML. The Action objects are all subclasses and can be replaced in the Table controller. This allows us to support games that have different mid-turn options, such as Blackjack allowing Hits and Poker allowing raises.
 
-`LobbyView`: The Lobby View is necessary since it can be rendered before game preferences have been set. This allows the Game Engine to run its course prior to initializing a GameView, as described below. Moreover, in the LobbyView, a Game Aread Editor could later be added, where it could work with the XMLWriter to save preferences and change in-game settings.
+`UI.LobbyView`: The Lobby View is necessary since it can be rendered before game preferences have been set. This allows the Game Engine to run its course prior to initializing a UI.GameView, as described below. Moreover, in the UI.LobbyView, a Game Aread Editor could later be added, where it could work with the XMLWriter to save preferences and change in-game settings.
 
-`GameView`: The Game View allows the game to be run, and it also allows users to pick their own mid-game actions. There is no extended functionality that this really offers, but it is certainly necessary to view the model and allow user input, which the Table then operates on.
+`UI.GameView`: The Game View allows the game to be run, and it also allows users to pick their own mid-game actions. There is no extended functionality that this really offers, but it is certainly necessary to view the model and allow user input, which the Table then operates on.
 
 ### Example Games
 > Describe three example games that differ significantly in detail. Clearly identify how the functional differences in these games is supported by your design. Use these examples to help clarify the abstractions in your design.

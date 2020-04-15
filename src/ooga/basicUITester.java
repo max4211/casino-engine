@@ -1,10 +1,11 @@
 package ooga;
 
-import GameView.NodeViews.*;
-import GameView.Selectors.ActionSelector;
-import GameView.Selectors.WagerSelector;
+import UI.GameView.BetView;
+import UI.GameView.CardView;
+import UI.GameView.PlayerView;
+import UI.Selectors.ActionSelector;
+import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
-import actionFactory.Action;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;

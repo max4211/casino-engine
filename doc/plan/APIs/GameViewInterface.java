@@ -1,6 +1,6 @@
 /**
  * External frontend API used to render a given game.
- * Called after a XML file is chosen in the LobbyView.
+ * Called after a XML file is chosen in the UI.LobbyView.
  * New games are created in New Windows.
  */
 public interface GameViewInterface {

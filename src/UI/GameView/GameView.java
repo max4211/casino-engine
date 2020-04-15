@@ -1,12 +1,12 @@
-package GameView.NodeViews;
+package UI.GameView;
 
-import GameView.NodeViews.Interfaces.GameViewInterface;
-import GameView.Selectors.ActionSelector;
-import GameView.Selectors.WagerSelector;
+import UI.Interfaces.GameViewInterface;
+import UI.Selectors.ActionSelector;
+import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import GameView.NodeViews.Interfaces.NodeViewInterface;
+import UI.Interfaces.NodeViewInterface;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
 
-    private static final String PATH_TO_STYLESHEETS = "./GameView/StyleSheets/";
+    private static final String PATH_TO_STYLESHEETS = "././UI/StyleSheets/";
     private static final String DEFAULT_CSS = PATH_TO_STYLESHEETS + "Normal.css";
     private static final String DARK_MODE_CSS = PATH_TO_STYLESHEETS + "DarkMode.css";
     private String myStyleSheet;
@@ -95,12 +95,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public void updateWager(double newWager, int playerID, int BetID) {
+    public void setWager(double newWager, int playerID, int BetID) {
         getPlayerView(playerID).updateWager(BetID, newWager);
     }
 
     @Override
-    public void updateBankRoll(double newBankroll, int playerID) {
+    public void setBankRoll(double newBankroll, int playerID) {
         getPlayerView(playerID).updateBankRoll(newBankroll);
     }
 

@@ -1,7 +1,7 @@
-package GameView.NodeViews;
+package UI.GameView;
 
-import GameView.NodeViews.Interfaces.TaggableInterface;
-import GameView.NodeViews.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggableInterface;
+import UI.Interfaces.NodeViewInterface;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.control.Label;

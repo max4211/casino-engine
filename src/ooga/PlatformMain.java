@@ -1,6 +1,6 @@
 package ooga;
 
-import GameView.Lobby;
+import UI.GameView.Lobby;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 

@@ -1,5 +1,6 @@
-package GameView.NodeViews;
+package UI.GameView.NodeViews;
 
+import UI.GameView.PlayerView;
 import engine.player.Player;
 import javafx.embed.swing.JFXPanel;
 import org.junit.jupiter.api.Test;

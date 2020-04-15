@@ -1,18 +1,13 @@
-package GameView.NodeViews;
+package UI.GameView.NodeViews;
 
+import UI.GameView.GameView;
 import Utility.CardTriplet;
-import engine.bet.Bet;
-import engine.hand.Hand;
-import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GameViewTest extends DukeApplicationTest {
 

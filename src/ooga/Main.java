@@ -1,6 +1,6 @@
 package ooga;
 
-import GameView.NodeViews.GameView;
+import UI.GameView.GameView;
 import controller.Controller;
 import data.xmlreader.GameReader;
 import data.xmlreader.HandReader;

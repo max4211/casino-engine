@@ -1,6 +1,6 @@
 package controller;
 
-import GameView.NodeViews.GameView;
+import UI.GameView.GameView;
 import Utility.CardTriplet;
 import actionFactory.Action;
 import actionFactory.ActionFactory;
@@ -128,7 +128,7 @@ public class Controller implements ControllerInterface {
                 Card c = this.myTable.updateBets(p);
                 classifyHand(b);
                 addCard(c, p.getID(), b.getID());
-                this.myGameView.updateWager(b.getWager(), p.getID(), b.getID());
+                this.myGameView.setWager(b.getWager(), p.getID(), b.getID());
             } catch (ReflectionException e) {
                 this.myGameView.displayError(e);
                 System.out.println(e);
@@ -169,7 +169,7 @@ public class Controller implements ControllerInterface {
                     System.out.printf("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
                 }
                 p.cashBets();
-                this.myGameView.updateBankRoll(p.getBankroll(), p.getID());
+                this.myGameView.setBankRoll(p.getBankroll(), p.getID());
             }
         }
     }

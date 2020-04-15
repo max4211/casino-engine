@@ -1,8 +1,8 @@
-package GameView.NodeViews;
+package UI.GameView;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import GameView.NodeViews.Interfaces.NodeViewInterface;
+import UI.Interfaces.NodeViewInterface;
 
 public class TableView implements NodeViewInterface {
 

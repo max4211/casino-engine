@@ -1,5 +1,5 @@
-[GameView](GameView.JPG)
+[UI.GameView](UI.GameView.JPG)
 
-[LobbyView](LobbyView.JPG)
+[UI.LobbyView](LobbyView.JPG)
 
 [Error and Wager View](ErrorWagerView.JPG)

@@ -5,7 +5,7 @@ the actual code is also included in Java files to show that it compiles. The use
 
 ### Use Case 1: Creating a Game
 
-After an XML file has been selected in LobbyView, the game can be created using a simple createGame() call from the GameGeneratorInterface. This is clearly a simple use case.
+After an XML file has been selected in UI.LobbyView, the game can be created using a simple createGame() call from the GameGeneratorInterface. This is clearly a simple use case.
 ```java
 GameGenerator.createGame(chosenXMLFile);
 ```
@@ -74,7 +74,7 @@ try {
 Action userAction = ActionFactory.createAction(actionChoice);
 userAction.execute(Bet userBet);
 } catch (ClassNotFoundException e) {
-   GameView.displayError(e);
+   UI.GameView.displayError(e);
 }
 ```
 
@@ -88,10 +88,10 @@ Dealer.shuffle();
 try {
 Card newCard = Dealer.dealCard(c);
 } catch (CardNotFoundException e) {
-   GameView.displayError(e);
+   UI.GameView.displayError(e);
 }
-GameView.giveCard(betViewOne, newCard);
-GameView.showCard(betViewOne, newCard);
+UI.GameView.giveCard(betViewOne, newCard);
+UI.GameView.showCard(betViewOne, newCard);
 ```
 
 This shows the flexible nature of our frontend API, wherein any error can be handled with a simple and flexible method call.

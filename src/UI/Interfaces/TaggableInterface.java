@@ -1,4 +1,4 @@
-package GameView.NodeViews.Interfaces;
+package UI.Interfaces;
 
 public interface TaggableInterface {
 
