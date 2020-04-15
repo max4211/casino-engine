@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private static final boolean LOBBY_START = true;
+    private static final boolean LOBBY_START = false;
 
     public static void main(String[] args) {
         launch(args);
