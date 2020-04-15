@@ -7,7 +7,7 @@
 
 Due to the complexity of this project, we have spent an extensive amount of time making our design goal to be data driven. With this in mind, we want to cater to our areas of expertise that we have developed in past projects, while also allowing each other to try something new.
 
-With this in mind, Eric will be handling frontend mainly, but he will be working on minor features in the backend. Max, on the other hand, will be a back end specialist but will support some front end work.
+With this in mind, Eric will be handling frontend mainly, but he will be working on minor features in the backend. Max, on the other playerHand, will be a back end specialist but will support some front end work.
 
 Since there are only two people in our group, both of which live near COVID-19 outbreaks, we recognize that the following schedule may have to change a bit as we progress. But in the meantime, here is our general plan divided into modules and their APIs:
 

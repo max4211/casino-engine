@@ -1,7 +1,11 @@
 package actionFactory;
 
 import engine.bet.Bet;
+import engine.dealer.Card;
+import engine.dealer.Dealer;
 import engine.player.Player;
+
+import java.util.function.Supplier;
 
 public class Hit extends Action {
 
@@ -11,7 +15,7 @@ public class Hit extends Action {
     }
 
     @Override
-    public void execute(Player player, Bet target) {
-        target.setNeedsCard(true);
+    public void execute(Player player, Bet target, Supplier<Card> getCard) {
+        target.acceptCard(getCard.get());
     }
 }

@@ -60,7 +60,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void hideCard(int playerID, int betID, int cardID) {
-        getPlayerView(betID).hideCard(betID, cardID);
+        getPlayerView(playerID).hideCard(betID, cardID);
     }
 
     @Override

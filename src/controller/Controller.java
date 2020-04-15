@@ -2,15 +2,15 @@ package controller;
 
 import UI.GameView.GameView;
 import Utility.CardTriplet;
+import Utility.StringPair;
 import actionFactory.Action;
 import actionFactory.ActionFactory;
-import data.xmlreader.Pair;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
-import engine.evaluator.BetEvaluator;
-import engine.evaluator.HandClassifier;
-import engine.hand.Hand;
+import engine.evaluator.bet.BetEvaluator;
+import engine.evaluator.handclassifier.HandClassifier;
+import engine.hand.PlayerHand;
 import engine.player.Player;
 import engine.table.Table;
 import exceptions.ReflectionException;
@@ -23,30 +23,29 @@ public class Controller implements ControllerInterface {
 
     private Table myTable;
     private GameView myGameView;
-    private GameView myOGGameView;
-    private final String myEntryBet;
     private final Collection<String> myPlayerActions;
-    private final Pair myDealerAction;
+    private final StringPair myDealerAction;
     private final ActionFactory myFactory;
     private final HandClassifier myHandClassifier;
     private final BetEvaluator myBetEvaluator;
-    private final String myCompetition;
     private Adversary myAdversary;
-    private String myCardshow;
-    // TODO - use long term goal tag
-    private String myGoal;
+
+    private final EntryBet myEntryBet;
+    private final Competition myCompetition;
+    private Cardshow myCardshow;
+    private Goal myGoal;
 
     private static final int SLEEP_TIME = 2000;
 
     // TODO - refactor into data files (in adversary construction?)
     private static final int ADVERSARY_MIN = 17;
 
-    public Controller(Table table, GameView gameView, String entryBet, Collection<String> playerActions, Pair dealerAction,
+    // TODO refactor items into a map of objects
+    public Controller(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, StringPair dealerAction,
                       HandClassifier handClassifier, BetEvaluator betEvaluator,
-                      String competition, String cardshow, String goal) {
+                      Competition competition, Cardshow cardshow, Goal goal) {
         this.myTable = table;
         this.myGameView = gameView;
-        this.myOGGameView = gameView;
         this.myEntryBet = entryBet;
         this.myPlayerActions = playerActions;
         this.myDealerAction = dealerAction;
@@ -63,6 +62,7 @@ public class Controller implements ControllerInterface {
     public void startGame() {
         promptForEntryBet();
         performDealerAction();
+        updatePlayerHands();
         renderAdversary();
         promptForActions();
         garbageCollect();
@@ -72,14 +72,14 @@ public class Controller implements ControllerInterface {
     }
 
     private void restartGame() {
-        /*try {
+        try {
             Thread.sleep(SLEEP_TIME);
             this.myGameView.clearAllBets();
             this.myGameView.clearAdversary();
             this.startGame();
         } catch (Exception e) {
             System.exit(0);
-        }*/
+        }
     }
 
     private void renderPlayers() {
@@ -89,22 +89,20 @@ public class Controller implements ControllerInterface {
     }
 
     private void promptForEntryBet() {
-        System.out.print("prompting players for entry bet...\n");
         for (Player p: this.myTable.getPlayers()) {
             int playerHash = p.getID();
             this.myGameView.setMainPlayer(playerHash);
             double min = this.myTable.getTableMin();
             double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
-            System.out.printf("min: %.1f, max: %.1f\n", min, max);
             double wager = this.myGameView.selectWager(min, max);
             int betID = this.myTable.placeEntryBet(playerHash, this.myEntryBet, wager);
             this.myGameView.addBet(new ArrayList<>(), wager, playerHash, betID);
+            this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
     }
 
     private void performDealerAction() {
         this.myTable.performDealerAction(this.myDealerAction);
-        updatePlayerHands();
     }
 
     private void renderAdversary() {
@@ -118,17 +116,17 @@ public class Controller implements ControllerInterface {
     private void promptForActions() {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
+            this.myGameView.setMainPlayer(p.getID());
             cardShow(p);
             System.out.printf("prompting player (%s) for an action --> ", p.getName());
-            this.myGameView.setMainPlayer(p.getID());
             try {
                 Action a = this.myFactory.createAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();
-                a.execute(p, b);
-                Card c = this.myTable.updateBets(p);
+                a.execute(p, b, this.myTable.getDealCardMethod());
                 classifyHand(b);
-                addCard(c, p.getID(), b.getID());
+                addCardToPlayer(p);
                 this.myGameView.setWager(b.getWager(), p.getID(), b.getID());
+                this.myGameView.setBankRoll(p.getBankroll(), p.getID());
             } catch (ReflectionException e) {
                 this.myGameView.displayError(e);
                 System.out.println(e);
@@ -136,18 +134,14 @@ public class Controller implements ControllerInterface {
         }
     }
 
-    private void addCard(Card c, int playerID, int betID) {
-        if (c != null) {
-            this.myGameView.addCard(createCardTriplet(c), playerID, betID);
-        }
-    }
-
-    // TODO - refactor cardshow and competition to reflection
-    private void cardShow(Player p) {
-        if (isAllCardshow()) {
-            showAllCards();
-        } else if (isActiveCardshow()) {
-            showActiveCards(p);
+    private void garbageCollect() {
+//        GarbageCollect.clearLosers(this.myTable.getPlayers(), (pid, bid) -> this.myGameView.removeBet(pid, bid));
+        for (Player p: this.myTable.getPlayers()) {
+            for (Bet b: p.getBets()) {
+                if (b.getHand().isLoser()) {
+                    this.myGameView.removeBet(p.getID(), b.getID());
+                }
+            }
         }
     }
 
@@ -174,6 +168,36 @@ public class Controller implements ControllerInterface {
         }
     }
 
+    // TODO - refactor gameview to validating elements as they are received
+    private void addCardToPlayer(Player p) {
+        for (Bet b: p.getBets()) {
+            for (Card c: b.getHand().getCards()) {
+//                this.myGameView.removeBet(p.getID(), b.getID());
+//                this.myGameView.addBet(createTripletList(b.getHand()), b.getWager(), p.getID(), b.getID());
+//                this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
+                this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
+                this.myGameView.showCard(p.getID(), b.getID(), c.getID());
+                System.out.printf("added card %s to player %s\n", c.toString(), p.getName());
+            }
+        }
+    }
+
+    private List<CardTriplet> createTripletList(PlayerHand h) {
+        List<CardTriplet> list = new ArrayList<>();
+        for (Card c: h.getCards())
+            list.add(createCardTriplet(c));
+        return list;
+    }
+
+    // TODO - refactor cardshow and competition to reflection
+    private void cardShow(Player p) {
+        if (isAllCardshow()) {
+            showAllCards();
+        } else if (isActiveCardshow()) {
+            showActiveCards(p);
+        }
+    }
+
     // TODO - refactor to lambdas in adversary
     private void adversaryActionLoop() {
         showAdversaryCards();
@@ -185,20 +209,21 @@ public class Controller implements ControllerInterface {
 
     private void showAdversaryCards() {
         for (Card c: this.myAdversary.getHand().getCards()) {
+            System.out.println("Adversary card: " + c.toString());
             this.myGameView.showAdversaryCard(c.getID());
         }
     }
 
     private boolean isAdversaryGame() {
-        return this.myCompetition.toUpperCase().equals(Competition.ADVERSARY.toString());
+        return this.myCompetition.equals(Competition.ADVERSARY);
     }
 
     private boolean isAllCardshow() {
-        return this.myCardshow.toUpperCase().equals(Cardshow.ALL.toString());
+        return this.myCardshow.equals(Cardshow.ALL);
     }
 
     private boolean isActiveCardshow() {
-        return this.myCardshow.toUpperCase().equals(Cardshow.ACTIVE.toString());
+        return this.myCardshow.equals(Cardshow.ACTIVE);
     }
 
     private void showAllCards() {
@@ -225,6 +250,7 @@ public class Controller implements ControllerInterface {
             if (!player.equals(p)) {
                 for (Bet b: p.getBets()) {
                     for (Card c: b.getHand().getCards()) {
+                        this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
                         this.myGameView.addCard(createCardTriplet(c), p.getID(), b.getID());
                         this.myGameView.hideCard(p.getID(), b.getID(), c.getID());
                     }
@@ -240,16 +266,6 @@ public class Controller implements ControllerInterface {
         }
     }
 
-    private void garbageCollect() {
-        for (Player p: this.myTable.getPlayers()) {
-            for (Bet b: p.getBets()) {
-                if (b.getHand().isLoser()) {
-                    this.myGameView.removeBet(p.getID(), b.getID());
-                }
-            }
-        }
-    }
-
     private void updatePlayerHands() {
         for (Player p: this.myTable.getPlayers()) {
             int playerID = p.getID();
@@ -258,7 +274,6 @@ public class Controller implements ControllerInterface {
                 for (Card c: b.getHand().getCards()) {
                     CardTriplet cardTriplet = createCardTriplet(c);
                     this.myGameView.addCard(cardTriplet, playerID, betID);
-//                    this.myGameView.showCard(playerID, betID, c.getID());
                 }
             }
         }
@@ -268,7 +283,7 @@ public class Controller implements ControllerInterface {
         return new CardTriplet(c.getValue(), c.getSuit(), c.getID());
     }
 
-    private List<CardTriplet> parseAdversary(Hand h) {
+    private List<CardTriplet> parseAdversary(PlayerHand h) {
         List<CardTriplet> list = new ArrayList<>();
         for (Card c: h.getCards()) {
             list.add(createCardTriplet(c));

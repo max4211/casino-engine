@@ -6,38 +6,38 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class XMLButton implements NodeViewInterface {
 
-    private static final String ACCEPTED_EXTENSION = ".xml";
+    private static final String ACCEPTED_XML_DESCRIPTION = "All XMLs";
+    private static final String ACCEPTED_XML_EXTENSION = "*.xml";
     private static final String PATH_TO_XML = "./././data/";
     private static final String BUNDLE_NAME = "English";
     private static final ResourceBundle myResources = ResourceBundle.getBundle(BUNDLE_NAME);
     private static final String XML_INPUT_KEY = "XMLChooser";
+    private static final String XML_BUTTON_KEY = "XMLButton";
     private Button myButton;
 
-    public XMLButton(List<String> allXMLs, Consumer<List<File>> myGameGenerator) {
+    public XMLButton(List<String> allXMLs, Consumer<Map<String, File>> myGameGenerator) {
         myButton = new Button();
+        myButton.setText(myResources.getString(XML_BUTTON_KEY));
         myButton.setOnAction(e -> {
-            List<File> returnedXML = new ArrayList<>();
+            Map<String, File> returnedXML = new HashMap<>();
             for (String xmlType : allXMLs) {
-                String chooserTitle = myResources.getString(XML_INPUT_KEY) + returnedXML;
-                File fileChosen = makeChooser(chooserTitle, xmlType).showOpenDialog(new Stage());
-                returnedXML.add(fileChosen);
+                File fileChosen = makeChooser(xmlType).showOpenDialog(new Stage());
+                returnedXML.put(xmlType, fileChosen);
             }
             myGameGenerator.accept(returnedXML);
         });
     }
 
-    private static FileChooser makeChooser(String stageTitle, String xmlPackage) {
+    private static FileChooser makeChooser(String xmlPackage) {
+        System.out.println(xmlPackage);
         FileChooser result = new FileChooser();
-        result.setTitle(stageTitle);
         result.setInitialFileName(PATH_TO_XML + xmlPackage);
-        result.setSelectedExtensionFilter(new FileChooser.ExtensionFilter(ACCEPTED_EXTENSION));
+        result.setSelectedExtensionFilter(new FileChooser.ExtensionFilter(ACCEPTED_XML_DESCRIPTION, ACCEPTED_XML_EXTENSION));
         return result;
     }
 

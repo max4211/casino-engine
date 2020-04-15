@@ -12,7 +12,6 @@ public class ClassifiedHand implements ClassifiedHandInterface {
         this.myPower = power;
     }
 
-
     @Override
     public String getName() {
         return this.myName;

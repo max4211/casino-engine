@@ -37,6 +37,12 @@ public interface PlayerInterface {
     int placeBet(double wager);
 
     /**
+     * Place a preformatted bet
+     * @param bet
+     */
+    void placeBet(Bet bet);
+
+    /**
      * Finds next active bet inside of the player
      * @return
      */

@@ -1,12 +1,15 @@
 package engine.table;
 
-import data.xmlreader.Pair;
+import Utility.StringPair;
+import controller.EntryBet;
 import engine.adversary.Adversary;
 import engine.dealer.Card;
 import engine.player.Player;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public interface TableInterface {
 
@@ -20,16 +23,16 @@ public interface TableInterface {
      * Place the bet accordingly with the front end selection
      * @return id of the bet that has been placed
      * @param playerHash is the identification number of the appropriate player
-     * @param s is the bet type that was placed
+     * @param betType is the bet type that was placed
      * @param wager is the wager size for that bet
      */
-    int placeEntryBet(int playerHash, String s, double wager);
+    int placeEntryBet(int playerHash, EntryBet betType, double wager);
 
     /**
      * called by controller for dealer to distribute cards to players
      * @param dealerAction dictates what type of action is conducted
      */
-    void performDealerAction(Pair dealerAction);
+    void performDealerAction(StringPair dealerAction);
 
     /**
      * called by the controller to identify players
@@ -63,13 +66,6 @@ public interface TableInterface {
     Player getNextPlayer();
 
     /**
-     * After a player performs an action, update their bets in the table
-     * @param p player to update
-     * @return card that was added to the bet (for hit/double down)
-     */
-    Card updateBets(Player p);
-
-    /**
      * Create an adversary
      * @param min are parameters to adversary gameplay
      * @return the adversary inside of the game
@@ -80,4 +76,7 @@ public interface TableInterface {
      * Returns card that was just given to adversary
      */
     Card giveAdversaryCard();
+
+
+    Supplier<Card> getDealCardMethod();
 }
