@@ -1,12 +1,15 @@
 package Utility;
 
 import javafx.geometry.Pos;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 public class Formatter {
 
     private static final double CORNER_RADIUS = 5;
+    private static final int IMAGE_FIT_WIDTH = 100;
+    private static final int IMAGE_FIT_HEIGHT = 100;
 
     public Formatter() {}
 
@@ -18,10 +21,12 @@ public class Formatter {
         rawVBox.setMaxWidth(width);
 
         rawVBox.setAlignment(Pos.CENTER);
-
-
     }
 
+    public void formatIconView(ImageView rawImageView) {
+        rawImageView.setFitWidth(IMAGE_FIT_WIDTH);
+        rawImageView.setFitHeight(IMAGE_FIT_HEIGHT);
+    }
     // TODO: duplication here, talk to DUVALL
     public void formatUnfixedCenter(VBox rawVBox) {
         setMaxBounds(rawVBox);

@@ -24,7 +24,7 @@ public class LobbyView implements NodeViewInterface {
         ALL_XMLS.add("hands");
         ALL_XMLS.add("view");
 
-        XMLButton myButton = new XMLButton(ALL_XMLS, c -> createGame(c));
+        CustomGameIcon myButton = new CustomGameIcon("BlackJackIcon.png", c -> createGame(c), ALL_XMLS);
         myFlowPane.getChildren().add(myButton.getView());
     }
 
