@@ -1,6 +1,7 @@
 package engine.evaluator;
 
 import engine.dealer.Card;
+import engine.evaluator.handclassifier.HandClassifier;
 import engine.hand.PlayerHand;
 import engine.hand.HandOutcome;
 import org.junit.jupiter.api.Test;

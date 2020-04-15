@@ -1,4 +1,4 @@
-package engine.evaluator;
+package engine.evaluator.bet;
 
 import engine.bet.Bet;
 import engine.hand.PlayerHand;

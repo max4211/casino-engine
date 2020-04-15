@@ -1,4 +1,4 @@
-package engine.evaluator;
+package engine.evaluator.handclassifier;
 
 import engine.dealer.Card;
 import engine.hand.ClassifiedHand;

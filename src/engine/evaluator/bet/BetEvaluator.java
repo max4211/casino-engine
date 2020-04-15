@@ -1,6 +1,7 @@
-package engine.evaluator;
+package engine.evaluator.bet;
 
 import engine.bet.Bet;
+import engine.evaluator.handevaluator.HandEvaluator;
 import engine.hand.PlayerHand;
 import engine.hand.HandOutcome;
 

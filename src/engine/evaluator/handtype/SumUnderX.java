@@ -1,4 +1,4 @@
-package engine.evaluator;
+package engine.evaluator.handtype;
 
 import engine.dealer.Card;
 

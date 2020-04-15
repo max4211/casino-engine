@@ -1,6 +1,8 @@
 package engine.evaluator;
 
 import engine.dealer.Card;
+import engine.evaluator.handtype.Hand;
+import engine.evaluator.handtype.XCardSumY;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

@@ -5,9 +5,9 @@ import Utility.StringPair;
 import controller.*;
 import engine.dealer.Dealer;
 import engine.dealer.Deck;
-import engine.evaluator.BetEvaluator;
-import engine.evaluator.HandClassifier;
-import engine.evaluator.HandEvaluator;
+import engine.evaluator.bet.BetEvaluator;
+import engine.evaluator.handclassifier.HandClassifier;
+import engine.evaluator.handevaluator.HandEvaluator;
 import engine.player.Player;
 import engine.player.PlayerList;
 import engine.table.Table;
@@ -23,9 +23,7 @@ import xmlreader.readers.ViewReader;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Main extends Application {
 

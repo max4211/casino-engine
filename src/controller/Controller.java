@@ -8,8 +8,8 @@ import Utility.StringPair;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
-import engine.evaluator.BetEvaluator;
-import engine.evaluator.HandClassifier;
+import engine.evaluator.bet.BetEvaluator;
+import engine.evaluator.handclassifier.HandClassifier;
 import engine.hand.PlayerHand;
 import engine.player.Player;
 import engine.table.Table;
@@ -135,6 +135,39 @@ public class Controller implements ControllerInterface {
         }
     }
 
+    private void garbageCollect() {
+        for (Player p: this.myTable.getPlayers()) {
+            for (Bet b: p.getBets()) {
+                if (b.getHand().isLoser()) {
+                    this.myGameView.removeBet(p.getID(), b.getID());
+                }
+            }
+        }
+    }
+
+    private void invokeCompetition() {
+        if (isAdversaryGame()) {
+            adversaryActionLoop();
+        } else {
+            // TODO - group evaluation
+        }
+    }
+
+    // TODO - use reflection for payoffs in adversary vs. group competition game
+    private void computePayoffs() {
+        if (isAdversaryGame()) {
+            this.myHandClassifier.classifyHand(this.myAdversary.getHand());
+            for (Player p: this.myTable.getPlayers()) {
+                for (Bet b: p.getBets()) {
+                    this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
+                    System.out.printf("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
+                }
+                p.cashBets();
+                this.myGameView.updateBankRoll(p.getBankroll(), p.getID());
+            }
+        }
+    }
+
     // TODO - refactor gameview to validating elements as they are received
     private void addCardToPlayer(Player p) {
         for (Bet b: p.getBets()) {
@@ -160,29 +193,6 @@ public class Controller implements ControllerInterface {
             showAllCards();
         } else if (isActiveCardshow()) {
             showActiveCards(p);
-        }
-    }
-
-    private void invokeCompetition() {
-        if (isAdversaryGame()) {
-            adversaryActionLoop();
-        } else {
-            // TODO - group evaluation
-        }
-    }
-
-    // TODO - use reflection for payoffs in adversary vs. group competition game
-    private void computePayoffs() {
-        if (isAdversaryGame()) {
-            this.myHandClassifier.classifyHand(this.myAdversary.getHand());
-            for (Player p: this.myTable.getPlayers()) {
-                for (Bet b: p.getBets()) {
-                    this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
-                    System.out.printf("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
-                }
-                p.cashBets();
-                this.myGameView.updateBankRoll(p.getBankroll(), p.getID());
-            }
         }
     }
 
@@ -251,16 +261,6 @@ public class Controller implements ControllerInterface {
         this.myHandClassifier.classifyHand(b.getHand());
         if (b.getHand().isLoser()) {
             b.setActive(false);
-        }
-    }
-
-    private void garbageCollect() {
-        for (Player p: this.myTable.getPlayers()) {
-            for (Bet b: p.getBets()) {
-                if (b.getHand().isLoser()) {
-                    this.myGameView.removeBet(p.getID(), b.getID());
-                }
-            }
         }
     }
 
