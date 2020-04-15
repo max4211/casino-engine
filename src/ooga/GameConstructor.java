@@ -46,6 +46,15 @@ public class GameConstructor {
         createGame();
     }
 
+    public GameConstructor(String deck, String game, String player, String hand, String view) {
+        this.deckFile = new File (deck);
+        this.gameFile = new File (game);
+        this.playerFile = new File (player);
+        this.handFile = new File (hand);
+        this.viewFile = new File (view);
+        createGame();
+    }
+
     private void createGame() {
         try {
             GameReader gameReader = new GameReader(gameFile);
