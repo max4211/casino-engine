@@ -2,6 +2,7 @@
 <Deck>
     <Title>Standard</Title>
     <Authors>Eric Doppelt and Max Smith</Authors>
+    <Quantity>2</Quantity>
     <Card>
         <Value>1</Value>
         <Suit>Hearts</Suit>

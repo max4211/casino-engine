@@ -1,7 +1,11 @@
 package actionFactory;
 
 import engine.bet.Bet;
+import engine.dealer.Card;
+import engine.dealer.Dealer;
 import engine.player.Player;
+
+import java.util.function.Supplier;
 
 public class DoubleDown extends Action {
 
@@ -11,9 +15,9 @@ public class DoubleDown extends Action {
     }
 
     @Override
-    public void execute(Player player, Bet target) {
+    public void execute(Player player, Bet target, Supplier<Card> getCard) {
+        target.setWager(target.getWager() * 2);
+        target.acceptCard(getCard.get());
         target.setActive(false);
-        target.setNeedsCard(true);
-        target.setWager(2*target.getWager());
     }
 }

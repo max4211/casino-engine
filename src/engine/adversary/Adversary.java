@@ -1,37 +1,37 @@
 package engine.adversary;
 
 import engine.dealer.Card;
-import engine.hand.Hand;
+import engine.hand.PlayerHand;
 
 public class Adversary implements AdversaryInterface {
 
-    private Hand myHand;
+    private PlayerHand myPlayerHand;
     private final int myMinSum;
 
     public Adversary(int min) {
-        this.myHand = new Hand();
+        this.myPlayerHand = new PlayerHand();
         this.myMinSum = min;
     }
 
     @Override
     public void acceptCard(Card c) {
-        this.myHand.acceptCard(c);
+        this.myPlayerHand.acceptCard(c);
     }
 
     @Override
     public Card getCard() {
-        return this.myHand.getCards().get(0);
+        return this.myPlayerHand.getCards().get(0);
     }
 
     @Override
-    public Hand getHand() {
-        return this.myHand;
+    public PlayerHand getHand() {
+        return this.myPlayerHand;
     }
 
     @Override
     public int handSum() {
         int total = 0;
-        for (Card c: this.myHand.getCards()) {
+        for (Card c: this.myPlayerHand.getCards()) {
             total += c.getValue();
         }
         return total;

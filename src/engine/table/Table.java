@@ -1,6 +1,7 @@
 package engine.table;
 
-import data.xmlreader.Pair;
+import Utility.StringPair;
+import controller.EntryBet;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
@@ -11,6 +12,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class Table implements TableInterface {
 
@@ -50,8 +52,6 @@ public class Table implements TableInterface {
         this.myTableMax = max;
     }
 
-
-
     private List<Integer> recordPlayerHashCodes() {
         List<Integer> list = new ArrayList<>();
         for (Player p: myPlayers) {
@@ -66,21 +66,20 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public int placeEntryBet(int playerHash, String betType, double wager) {
+    public int placeEntryBet(int playerHash, EntryBet betType, double wager) {
         Player p = findPlayer(playerHash);
         System.out.printf("player: %s \n", p.getName());
         return p.placeBet(wager);
     }
 
     @Override
-    public void performDealerAction(Pair dealerAction) {
+    public void performDealerAction(StringPair dealerAction) {
         String actionType = dealerAction.getKey();
         int actionQuantity = Integer.parseInt(dealerAction.getValue());
-        Class clazz = int.class;
         String methodName = DEAL_ACTION + actionType + DEAL_SUFFIX;
-        reflectOnMethod(methodName, clazz);
+        reflectOnMethod(methodName, int.class);
         try {
-            Method method = this.getClass().getDeclaredMethod(methodName, clazz);
+            Method method = this.getClass().getDeclaredMethod(methodName, int.class);
             method.invoke(this, actionQuantity);
         } catch (Exception e) {
             System.out.println("could not apply reflection at this time");
@@ -126,18 +125,6 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public Card updateBets(Player p) {
-        for (Bet b: p.getBets()) {
-            if (b.needsCard()) {
-                Card c = this.myDealer.getCard();
-                b.acceptCard(c);
-                return c;
-            }
-        }
-        return null;
-    }
-
-    @Override
     public Adversary createAdversary(int min) {
         this.myAdversary = new Adversary(min);
         giveAdversaryCard();
@@ -150,6 +137,11 @@ public class Table implements TableInterface {
         Card c = this.myDealer.getCard();
         this.myAdversary.acceptCard(c);
         return c;
+    }
+
+    @Override
+    public Supplier<Card> getDealCardMethod() {
+        return () -> this.myDealer.getCard();
     }
 
     // TODO - slower individual card dealing with animation (Sprint 3 task)
@@ -179,21 +171,5 @@ public class Table implements TableInterface {
         }
         return null;
     }
-
-    /** Max's team code for reflection example within their execution (shows how to invoke a method)
-     *
-     *     private List<String> executeCommand(Command command) {
-     *         try {
-     *             Class superclazz = command.getClass().getSuperclass();
-     *             String name = EXECUTE + superclazz.getSimpleName();
-     *             Method method = this.getClass().getDeclaredMethod(name, superclazz); //Command.class
-     *             Object o = method.invoke(this, command);
-     *             return (List<String>) o;
-     *         } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException | NullPointerException e) {
-     *             throw new ReflectionException("Unable to apply Reflection in parser");
-     *         }
-     *     }
-     */
-
 
 }

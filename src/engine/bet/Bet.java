@@ -1,35 +1,34 @@
 package engine.bet;
 
+import Utility.HashNoise;
 import engine.dealer.Card;
-import engine.hand.Hand;
+import engine.hand.PlayerHand;
 
 public class Bet implements BetInterface {
 
     private int myID;
-    private Hand myHand;
+    private PlayerHand myPlayerHand;
     private double myWager;
     private boolean myActive;
-    private boolean needsCard;
+    private double myMultiplier = 2.0;
 
     public Bet(double wager) {
-        this.myHand = new Hand();
+        this.myPlayerHand = new PlayerHand();
         this.myWager = wager;
-        this.myID = this.hashCode();
+        this.myID = HashNoise.addNoise(this);
         this.myActive = true;
-        this.needsCard = false;
     }
 
-    public Bet(double wager, Hand hand) {
-        this.myHand = hand;
+    public Bet(double wager, PlayerHand playerHand) {
+        this.myPlayerHand = playerHand;
         this.myWager = wager;
-        this.myID = this.hashCode();
+        this.myID = HashNoise.addNoise(this);
         this.myActive = true;
-        this.needsCard = false;
     }
 
     @Override
-    public Hand getHand() {
-        return this.myHand;
+    public PlayerHand getHand() {
+        return this.myPlayerHand;
     }
 
     @Override
@@ -40,7 +39,7 @@ public class Bet implements BetInterface {
     @Override
     public void acceptCard(Card c) {
         System.out.printf("bet accepting card: %s\n", c);
-        this.myHand.acceptCard(c);
+        this.myPlayerHand.acceptCard(c);
     }
 
     @Override
@@ -54,23 +53,18 @@ public class Bet implements BetInterface {
     }
 
     @Override
-    public boolean needsCard() {
-        return this.needsCard;
-    }
-
-    @Override
     public void setActive(boolean state) {
         this.myActive = state;
     }
 
     @Override
-    public void setNeedsCard(boolean state) {
-        this.needsCard = state;
+    public void setWager(double wager) {
+        this.myWager = wager;
     }
 
     @Override
-    public void setWager(double wager) {
-        this.myWager = wager;
+    public double getPayoff() {
+        return this.myWager * this.myMultiplier;
     }
 
 
