@@ -14,7 +14,6 @@ public interface GarbageCollect {
         for (Player p: players) {
             for (Bet b: p.getBets()) {
                 if (b.getHand().isLoser()) {
-                    System.out.println("found a loser hand, garbage collecting");
                     consumer.accept(p.getID(), b.getID());
                 }
             }

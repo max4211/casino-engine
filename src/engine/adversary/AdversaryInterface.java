@@ -1,7 +1,11 @@
 package engine.adversary;
 
+import Utility.CardTriplet;
 import engine.dealer.Card;
 import engine.hand.PlayerHand;
+
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public interface AdversaryInterface {
 
@@ -28,4 +32,12 @@ public interface AdversaryInterface {
      * @return the sum of all cards in adversary hand
      */
     int handSum();
+
+    /**
+     * Gives the adversary method calls it needs to process a hand
+     * @param showCard
+     * @param addCard
+     * @param getCard
+     */
+    void playHand(Consumer<Integer> showCard, Consumer<CardTriplet> addCard, Supplier<Card> getCard);
 }
