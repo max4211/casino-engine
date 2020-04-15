@@ -2,7 +2,7 @@ package ooga;
 
 import GameView.NodeViews.GameView;
 import Utility.StringPair;
-import controller.Controller;
+import controller.*;
 import engine.dealer.Dealer;
 import engine.dealer.Deck;
 import engine.evaluator.BetEvaluator;
@@ -23,7 +23,9 @@ import xmlreader.readers.ViewReader;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main extends Application {
 
@@ -51,7 +53,7 @@ public class Main extends Application {
     }
 
     private static Controller constructController(GameReader gameReader, HandReader handReader, Table myTable, GameView myGameView) {
-        String myEntryBet = gameReader.getEntryBet();
+
         Collection<String> myPlayerActions = gameReader.getPlayerAction();
         StringPair myDealerAction = gameReader.getDealerAction();
         Collection<String> myWinningHands = handReader.getWinningHands();
@@ -59,9 +61,12 @@ public class Main extends Application {
         HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);
         HandEvaluator myHandEvaluator = new HandEvaluator();
         BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
-        String myCompetition = gameReader.getCompetition();
-        String myCardShow = gameReader.getCardShow();
-        String myGoal = gameReader.getGoal();
+
+        // TODO - add validation to enum constants
+        EntryBet myEntryBet = EntryBet.valueOf(gameReader.getEntryBet().toUpperCase());
+        Competition myCompetition = Competition.valueOf(gameReader.getCompetition().toUpperCase());
+        Cardshow myCardShow = Cardshow.valueOf(gameReader.getCardShow().toUpperCase());
+        Goal myGoal = Goal.valueOf(gameReader.getGoal().toUpperCase());
 
         return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction,
                 myHandClassifier, myBetEvaluator,

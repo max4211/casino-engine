@@ -23,30 +23,29 @@ public class Controller implements ControllerInterface {
 
     private Table myTable;
     private GameView myGameView;
-    private GameView myOGGameView;
-    private final String myEntryBet;
     private final Collection<String> myPlayerActions;
     private final StringPair myDealerAction;
     private final ActionFactory myFactory;
     private final HandClassifier myHandClassifier;
     private final BetEvaluator myBetEvaluator;
-    private final String myCompetition;
     private Adversary myAdversary;
-    private String myCardshow;
-    // TODO - use long term goal tag
-    private String myGoal;
+
+    private final EntryBet myEntryBet;
+    private final Competition myCompetition;
+    private Cardshow myCardshow;
+    private Goal myGoal;
 
     private static final int SLEEP_TIME = 2000;
 
     // TODO - refactor into data files (in adversary construction?)
     private static final int ADVERSARY_MIN = 17;
 
-    public Controller(Table table, GameView gameView, String entryBet, Collection<String> playerActions, StringPair dealerAction,
+    // TODO refactor items into a map of objects
+    public Controller(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, StringPair dealerAction,
                       HandClassifier handClassifier, BetEvaluator betEvaluator,
-                      String competition, String cardshow, String goal) {
+                      Competition competition, Cardshow cardshow, Goal goal) {
         this.myTable = table;
         this.myGameView = gameView;
-        this.myOGGameView = gameView;
         this.myEntryBet = entryBet;
         this.myPlayerActions = playerActions;
         this.myDealerAction = dealerAction;
@@ -115,6 +114,7 @@ public class Controller implements ControllerInterface {
         }
     }
 
+    // TODO - only change action if changes occured?
     private void promptForActions() {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
@@ -135,6 +135,7 @@ public class Controller implements ControllerInterface {
         }
     }
 
+    // TODO - refactor gameview to validating elements as they are received
     private void addCardToPlayer(Player p) {
         for (Bet b: p.getBets()) {
             for (Card c: b.getHand().getCards()) {
@@ -202,15 +203,15 @@ public class Controller implements ControllerInterface {
     }
 
     private boolean isAdversaryGame() {
-        return this.myCompetition.toUpperCase().equals(Competition.ADVERSARY.toString());
+        return this.myCompetition.equals(Competition.ADVERSARY.toString());
     }
 
     private boolean isAllCardshow() {
-        return this.myCardshow.toUpperCase().equals(Cardshow.ALL.toString());
+        return this.myCardshow.equals(Cardshow.ALL.toString());
     }
 
     private boolean isActiveCardshow() {
-        return this.myCardshow.toUpperCase().equals(Cardshow.ACTIVE.toString());
+        return this.myCardshow.equals(Cardshow.ACTIVE.toString());
     }
 
     private void showAllCards() {

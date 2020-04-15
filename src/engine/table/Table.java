@@ -1,6 +1,7 @@
 package engine.table;
 
 import Utility.StringPair;
+import controller.EntryBet;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
@@ -67,7 +68,7 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public int placeEntryBet(int playerHash, String betType, double wager) {
+    public int placeEntryBet(int playerHash, EntryBet betType, double wager) {
         Player p = findPlayer(playerHash);
         System.out.printf("player: %s \n", p.getName());
         return p.placeBet(wager);
