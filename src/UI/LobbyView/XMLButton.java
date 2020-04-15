@@ -13,7 +13,8 @@ public class XMLButton implements NodeViewInterface {
 
     private static final String ACCEPTED_XML_DESCRIPTION = "All XMLs";
     private static final String ACCEPTED_XML_EXTENSION = "*.xml";
-    private static final String PATH_TO_XML = "./././data/";
+
+    private static final String DIRECTORY_TO_XML = System.getProperty("user.dir") + "/src/data/";
     private static final String BUNDLE_NAME = "English";
     private static final ResourceBundle myResources = ResourceBundle.getBundle(BUNDLE_NAME);
     private static final String XML_INPUT_KEY = "XMLChooser";
@@ -36,7 +37,7 @@ public class XMLButton implements NodeViewInterface {
     private static FileChooser makeChooser(String xmlPackage) {
         System.out.println(xmlPackage);
         FileChooser result = new FileChooser();
-        result.setInitialFileName(PATH_TO_XML + xmlPackage);
+        result.setInitialDirectory(new File(DIRECTORY_TO_XML + xmlPackage));
         result.setSelectedExtensionFilter(new FileChooser.ExtensionFilter(ACCEPTED_XML_DESCRIPTION, ACCEPTED_XML_EXTENSION));
         return result;
     }
