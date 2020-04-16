@@ -12,9 +12,9 @@ public class HandEvaluator implements HandEvaluatorInterface {
     @Override
     public int compare(PlayerHand playerHand1, PlayerHand playerHand2) {
         if (playerHand1.isLoser() && !playerHand2.isLoser()) {
-            return 1;
-        } else if (playerHand2.isLoser() && !playerHand1.isLoser()) {
             return -1;
+        } else if (playerHand2.isLoser() && !playerHand1.isLoser()) {
+            return 1;
         } else {
             return compareClassification(playerHand1.getClassification(), playerHand2.getClassification());
         }

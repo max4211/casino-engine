@@ -20,6 +20,10 @@ public class BetEvaluator implements BetEvaluatorInterface {
         this.myHandEvaluator = handEvaluator;
     }
 
+    public BetEvaluator() {
+        this.myHandEvaluator = new HandEvaluator();
+    }
+
     @Override
     public void evaluateBets(@NotNull List<Bet> bets) {
         PriorityQueue<Bet> pq = new PriorityQueue<>(bets.size(), new BetComparator());
@@ -39,9 +43,9 @@ public class BetEvaluator implements BetEvaluatorInterface {
 
     private boolean traversePQ(PriorityQueue<Bet> pq, Bet first) {
         BetComparator bc = new BetComparator();
-        boolean notEmpty = !pq.isEmpty();
-        boolean stillEqual = bc.compare(first, pq.peek()) == 0;
-        return notEmpty && stillEqual;
+        if (!(pq.isEmpty()))
+            return (bc.compare(first, pq.peek()) == 0);
+        return false;
     }
 
     private void assignWinningBets(List<Bet> winners) {
@@ -58,27 +62,9 @@ public class BetEvaluator implements BetEvaluatorInterface {
     }
 
     class BetComparator implements Comparator<Bet>{
-
         @Override
         public int compare(Bet b1, Bet b2) {
-            ClassifiedHand c1 = b1.getHand().getClassification();
-            ClassifiedHand c2 = b2.getHand().getClassification();
-            int rankDiff = c1.getRank() - c2.getRank();
-            double powDiff = c1.getPower() - c2.getPower();
-
-            if (rankDiff != 0)
-                return rankDiff;
-            else
-                return doubleToInt(powDiff);
-        }
-
-        private int doubleToInt(double d) {
-            if (d < 0)
-                return -1;
-            else if (d > 0)
-                return 1;
-            else
-                return 0;
+            return - new HandEvaluator().compare(b1.getHand(), b2.getHand());
         }
     }
 
