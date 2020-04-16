@@ -13,7 +13,6 @@ import java.io.IOException;
 public class LobbyReader implements LobbyReaderInterface  {
 
     private static Document myDocument;
-    private static final int ZERO = 0;
 
     private static final String NAME_TAG = "Name";
     private static final String ICON_TAG = "Icon";
@@ -31,7 +30,6 @@ public class LobbyReader implements LobbyReaderInterface  {
     public LobbyReader(String file) throws IOException, SAXException, ParserConfigurationException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
     }
-
 
     @Override
     public String getName() {
