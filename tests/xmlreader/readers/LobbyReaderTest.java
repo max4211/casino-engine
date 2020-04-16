@@ -63,5 +63,7 @@ class LobbyReaderTest {
         assertEquals(new File("data/xml/view/view.xml"), bjMap.get(VIEW_TAG));
 
         assertEquals(null, customMap.get(VIEW_TAG));
+        assertEquals(new File("data/xml/deck/guy.xml"), customMap.get(DECK_TAG));
+
     }
 }

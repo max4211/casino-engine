@@ -80,14 +80,13 @@ public class LobbyReader implements LobbyReaderInterface  {
 
     private Map<String, File> createFilesMap(Node n) {
         Map<String, File> map = new HashMap<>();
-        try {
-            map.put(DECK_TAG, new File(getElementByTag(n, DECK_TAG)));
-            map.put(GAME_TAG, new File(getElementByTag(n, GAME_TAG)));
-            map.put(HAND_TAG, new File(getElementByTag(n, HAND_TAG)));
-            map.put(PLAYER_TAG, new File(getElementByTag(n, PLAYER_TAG)));
-            map.put(VIEW_TAG, new File(getElementByTag(n, VIEW_TAG)));
-        } catch (Exception e) {
-            System.out.println("did not have files, expected behavior");
+        List<String> tags = new ArrayList<>(List.of(DECK_TAG, GAME_TAG, HAND_TAG, PLAYER_TAG, VIEW_TAG));
+        for (String tag: tags) {
+            try {
+                map.put(tag, new File(getElementByTag(n, tag)));
+            } catch (Exception e) {
+                map.put(tag, null);
+            }
         }
         return map;
     }
