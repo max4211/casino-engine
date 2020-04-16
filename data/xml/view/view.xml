@@ -2,7 +2,17 @@
 <Game>
     <Title>Blackjack</Title>
     <Authors>Eric Doppelt and Max Smith</Authors>
-    <Language>English</Language>
-    <Width>800</Width>
-    <Height>800</Height>
+    <Languages>
+        <Language>English</Language>
+        <Language>Spanish</Language>
+    </Languages>
+    <Stylesheets>
+        <Stylesheet>Light</Stylesheet>
+        <Stylesheet>Dark</Stylesheet>
+        <Stylesheet>Coral</Stylesheet>
+    </Stylesheets>
+    <Dimensions>
+        <Width>800</Width>
+        <Height>800</Height>
+    </Dimensions>
 </Game>

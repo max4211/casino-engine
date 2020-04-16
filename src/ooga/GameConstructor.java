@@ -146,11 +146,14 @@ public class GameConstructor {
 
     // TODO - give game view parameters form the XML file
     private GameView constructGameView(ViewReader viewReader) {
-        GameView gameView = new GameView(null, null);
+        List<String> stylesheets = viewReader.getStylesheets();
+        List<String> languages = viewReader.getLanguages();
+        GameView gameView = new GameView(stylesheets, languages);
         Stage newGameStage = new Stage();
         newGameStage.setScene(new Scene(gameView.getView(), viewReader.getScreenWidth(), viewReader.getScreenWidth()));
         gameView.renderTable("StandardBJTable.jpeg");
         newGameStage.show();
         return gameView;
     }
+
 }
