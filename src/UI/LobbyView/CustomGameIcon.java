@@ -2,23 +2,23 @@ package UI.LobbyView;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Consumer;
 
 public class CustomGameIcon extends GameIcon {
 
-    private List<String> myXMLFiles;
+    private Set<String> myNeededXMLs;
 
-    public CustomGameIcon(String imageFile, Consumer<Map<String, File>> myFileAccepter, List<String> allXMLs) {
+    public CustomGameIcon(String imageFile, Consumer<Map<String, File>> myFileAccepter, Set<String> neededXMLs) {
         super(imageFile, myFileAccepter);
-        myXMLFiles = allXMLs;
+        myNeededXMLs = neededXMLs;
     }
 
     @Override
     protected Map<String, File> getFiles() {
         Map<String, File> returnedMap = new HashMap<>();
-        for (String xml : myXMLFiles) {
+        for (String xml : myNeededXMLs) {
             File chosenXML = XMLChooser.getXMLFile(xml);
             returnedMap.put(xml, chosenXML);
         }

@@ -58,4 +58,5 @@ public interface GameViewInterface {
 
     public void addCard(CardTriplet cardInfo, int playerID, int betID);
 
+    void promptNewGame(Executor startNewGame);
 }

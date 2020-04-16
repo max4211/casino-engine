@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Lobby>
-    <Stylesheet>#7454c4</Stylesheet>
+    <Stylesheet>Normal.css</Stylesheet>
     <Bundle>
         <Name>Blackjack</Name>
         <Type>Standard</Type>
-        <Icon>blackJackIcon.jpg</Icon>
+        <Icon>BlackJackIcon.png</Icon>
         <Files>
             <Deck>data/xml/deck/standard.xml</Deck>
             <Game>data/xml/game/blackjackGame_v2.xml</Game>

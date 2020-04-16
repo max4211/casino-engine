@@ -1,5 +1,6 @@
 package UI.GameView;
 
+import UI.Interfaces.Executor;
 import UI.Interfaces.GameViewInterface;
 import UI.Interfaces.NodeViewInterface;
 import UI.Selectors.ActionSelector;
@@ -20,7 +21,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private HandView myAdversary;
 
     private static final String PATH_TO_STYLESHEETS = "././UI/StyleSheets/";
-    private static final String DEFAULT_CSS = PATH_TO_STYLESHEETS + "Normal.css";
+    private static final String DEFAULT_CSS = "Normal.css";
     private static final String DARK_MODE_CSS = PATH_TO_STYLESHEETS + "DarkMode.css";
     private String myStyleSheet;
 
@@ -173,6 +174,11 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(ex.getLocalizedMessage());
         alert.showAndWait();
+    }
+
+    @Override
+    public void promptNewGame(Executor startNewGame) {
+        startNewGame.run();
     }
 
     private PlayerView getPlayerView(int playerID) {
