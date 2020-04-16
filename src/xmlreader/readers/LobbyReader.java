@@ -53,22 +53,39 @@ public class LobbyReader implements LobbyReaderInterface  {
         NodeList nodeList = XMLParseInterface.getNodeList(myDocument, BUNDLE_TAG);
         for (int index = 0; index < nodeList.getLength(); index ++) {
             Node node = nodeList.item(index);
-            list.add(createMapFromNode(node));
+            list.add(createArgsMap(node));
         }
         return list;
     }
 
-    private Map<String, String> createMapFromNode(Node n) {
+    @Override
+    public List<Map<String, File>> getFileTags() {
+        List<Map<String, File>> list = new ArrayList<>();
+        NodeList nodeList = XMLParseInterface.getNodeList(myDocument, BUNDLE_TAG);
+        for (int index = 0; index < nodeList.getLength(); index ++) {
+            Node node = nodeList.item(index);
+            list.add(createFilesMap(node));
+        }
+        return list;
+    }
+
+    private Map<String, String> createArgsMap(Node n) {
         Map<String, String> map = new HashMap<>();
         map.put(NAME_TAG, getElementByTag(n, NAME_TAG));
         map.put(ICON_TAG, getElementByTag(n, ICON_TAG));
         map.put(TYPE_TAG, getElementByTag(n, TYPE_TAG));
+
+        return map;
+    }
+
+    private Map<String, File> createFilesMap(Node n) {
+        Map<String, File> map = new HashMap<>();
         try {
-            map.put(DECK_TAG, getElementByTag(n, DECK_TAG));
-            map.put(GAME_TAG, getElementByTag(n, GAME_TAG));
-            map.put(HAND_TAG, getElementByTag(n, HAND_TAG));
-            map.put(PLAYER_TAG, getElementByTag(n, PLAYER_TAG));
-            map.put(VIEW_TAG, getElementByTag(n, VIEW_TAG));
+            map.put(DECK_TAG, new File(getElementByTag(n, DECK_TAG)));
+            map.put(GAME_TAG, new File(getElementByTag(n, GAME_TAG)));
+            map.put(HAND_TAG, new File(getElementByTag(n, HAND_TAG)));
+            map.put(PLAYER_TAG, new File(getElementByTag(n, PLAYER_TAG)));
+            map.put(VIEW_TAG, new File(getElementByTag(n, VIEW_TAG)));
         } catch (Exception e) {
             System.out.println("did not have files, expected behavior");
         }

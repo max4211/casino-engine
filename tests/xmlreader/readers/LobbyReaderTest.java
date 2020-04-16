@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -35,21 +36,32 @@ class LobbyReaderTest {
     void getBundleArguments() throws ParserConfigurationException, SAXException, IOException {
         final String filename = "data/xml/lobbyview/BlackJackLobby.xml";
         LobbyReader reader = new LobbyReader(filename);
-        List<Map<String, String>> result = reader.getBundleArguments();
-        Map<String, String> bjMap = result.get(0);
-        Map<String, String> customMap = result.get(1);
+        List<Map<String, String>> bundleList = reader.getBundleArguments();
+        Map<String, String> bjMap = bundleList.get(0);
+        Map<String, String> customMap = bundleList.get(1);
         assertEquals("Blackjack", bjMap.get(NAME_TAG));
         assertEquals("Standard", bjMap.get(TYPE_TAG));
         assertEquals("blackJackIcon.jpg", bjMap.get(ICON_TAG));
-        assertEquals("data/xml/deck/standard.xml", bjMap.get(DECK_TAG));
-        assertEquals("data/xml/game/blackjackGame_v2.xml", bjMap.get(GAME_TAG));
-        assertEquals("data/xml/hands/hands.xml", bjMap.get(HAND_TAG));
-        assertEquals("data/xml/players/players.xml", bjMap.get(PLAYER_TAG));
-        assertEquals("data/xml/view/view.xml", bjMap.get(VIEW_TAG));
 
         assertEquals("Custom Game", customMap.get(NAME_TAG));
         assertEquals("Custom", customMap.get(TYPE_TAG));
         assertEquals("QuestionMark.jpg", customMap.get(ICON_TAG));
+        assertEquals(null, customMap.get(VIEW_TAG));
+    }
+
+    @Test
+    void getFileArguments() throws ParserConfigurationException, SAXException, IOException {
+        final String filename = "data/xml/lobbyview/BlackJackLobby.xml";
+        LobbyReader reader = new LobbyReader(filename);
+        List<Map<String, File>> bundleList = reader.getFileTags();
+        Map<String, File> bjMap = bundleList.get(0);
+        Map<String, File> customMap = bundleList.get(1);
+        assertEquals(new File("data/xml/deck/standard.xml"), bjMap.get(DECK_TAG));
+        assertEquals(new File("data/xml/game/blackjackGame_v2.xml"), bjMap.get(GAME_TAG));
+        assertEquals(new File("data/xml/hands/hands.xml"), bjMap.get(HAND_TAG));
+        assertEquals(new File("data/xml/players/players.xml"), bjMap.get(PLAYER_TAG));
+        assertEquals(new File("data/xml/view/view.xml"), bjMap.get(VIEW_TAG));
+
         assertEquals(null, customMap.get(VIEW_TAG));
     }
 }

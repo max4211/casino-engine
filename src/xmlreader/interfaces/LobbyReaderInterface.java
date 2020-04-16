@@ -1,5 +1,6 @@
 package xmlreader.interfaces;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -16,5 +17,11 @@ public interface LobbyReaderInterface {
      * @return
      */
     List<Map<String, String>> getBundleArguments();
+
+    /**
+     * Get a list of maps for all file arguments
+     * @return
+     */
+    List<Map<String, File>> getFileTags();
 
 }
