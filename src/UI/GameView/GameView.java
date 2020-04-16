@@ -13,6 +13,7 @@ import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import java.util.List;
 
@@ -34,8 +35,10 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myMainPlayer = new MainPlayerView();
         myBorderPane.setBottom(myMainPlayer.getView());
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
-        myBorderPane.setRight(new StylePicker(styleSheets, e -> updateStyleSheet(e)).getView());
-        myBorderPane.setRight(new LanguagePicker(languages, e -> updateLanguage(e)).getView());
+        VBox tempHolder = new VBox();
+        tempHolder.getChildren().add(new StylePicker(styleSheets, e -> updateStyleSheet(e)).getView());
+        tempHolder.getChildren().add(new LanguagePicker(languages, e -> updateLanguage(e)).getView());
+        myBorderPane.setRight(tempHolder);
         //myExceptionDisplayer = new ExceptionDisplayer(null, null, null);
     }
 
