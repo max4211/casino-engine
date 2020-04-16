@@ -1,5 +1,0 @@
-.root {
-    -fx-base: rgb(0, 0, 0);
-    -fx-control-inner-background: derive(-fx-base, 35%);
-    -fx-control-inner-background-alt: -fx-control-inner-background ;
-}

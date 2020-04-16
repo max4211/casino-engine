@@ -27,10 +27,12 @@ public class PlayerInfoView implements NodeViewInterface {
 
     private static final String RESOURCE_LANGUAGE = "English";
     private ResourceBundle myResources = ResourceBundle.getBundle(RESOURCE_LANGUAGE);
+    private static final String PLAYER_INFO_CSS_ID = "player-info";
 
     // TODO: noticing some similarities with WagerView, overlap
     public PlayerInfoView(String name, double bankroll) {
         myDetails = new VBox();
+        myDetails.setId(PLAYER_INFO_CSS_ID);
         myFormatter = new Formatter();
         myFormatter.formatFixedVBox(myDetails, CARD_HEIGHT + WAGER_HEIGHT, VIEW_WIDTH);
         myDetails.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(CORNER_RADIUS), null)));

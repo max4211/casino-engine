@@ -29,8 +29,9 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myBorderPane.setBottom(myMainPlayer.getView());
 
         ArrayList allchoices = new ArrayList();
-        allchoices.add("DarkMode.css");
-        allchoices.add("sunrise.css");
+        allchoices.add("Dark");
+        allchoices.add("Coral");
+        allchoices.add("Light");
         myBorderPane.setRight(new StylePicker(allchoices, e -> updateStyleSheet(e)).getView());
 
     }

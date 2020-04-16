@@ -1,0 +1,15 @@
+.root {
+    -fx-base: black;
+    -fx-control-inner-background: derive(-fx-base, 35%);
+    -fx-control-inner-background-alt: -fx-control-inner-background;
+}
+
+#player-info {
+    -fx-background-color: #404040;
+    -fx-border-width: 1;
+    -fx-border-color: #939393;
+}
+
+#player-info:hover {
+    -fx-background-color: derive(#404040, 5%);
+}

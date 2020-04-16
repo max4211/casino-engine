@@ -22,6 +22,7 @@ public class ExceptionHandler {
 
     public static void setStyleSheet(String icon, String newStyleSheet) {
         myDisplay.getDialogPane().getStylesheets().add(newStyleSheet);
+        System.out.println(icon);
         Image newIcon = new Image(icon);
         ImageView newGraphic = new ImageView(newIcon);
         myDisplay.getDialogPane().setGraphic(newGraphic);

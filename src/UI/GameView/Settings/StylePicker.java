@@ -11,11 +11,12 @@ public class StylePicker implements NodeViewInterface {
 
     private ComboBox<String> myChoices;
     private static final int DEFAULT_COLOR_INDEX = 0;
+    private static final String CSS_EXTENSION = ".css";
 
     public StylePicker(List<String> allChoices, Consumer<String> myStyleChanger) {
         myChoices = new ComboBox<>(FXCollections.observableList(allChoices));
         myChoices.valueProperty().addListener(e -> {
-            myStyleChanger.accept(myChoices.getValue());
+            myStyleChanger.accept(myChoices.getValue() + CSS_EXTENSION);
         });
         myChoices.setValue(allChoices.get(DEFAULT_COLOR_INDEX));
     }

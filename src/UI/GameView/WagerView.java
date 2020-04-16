@@ -25,8 +25,11 @@ public class WagerView implements NodeViewInterface {
     private static final String HEADER_KEY = "Wager";
     private ResourceBundle myResources = ResourceBundle.getBundle(RESOURCE_LANGUAGE);
 
+    private static final String WAGER_VIEW_CSS_ID = "wager-view";
+
     public WagerView(double wager) {
         myWager = new HBox();
+        myWager.setId(WAGER_VIEW_CSS_ID);
         myFormatter.formatGrowingHBox(myWager, VIEW_HEIGHT, MIN_VIEW_WIDTH);
         myFormatter.updateBackground(myWager, backgroundColor);
         updateWager(wager);

@@ -2,7 +2,7 @@
 <Lobby>
     <LobbyStylesheet>sunrise.css</LobbyStylesheet>
     <ErrorStylesheet>fire.css</ErrorStylesheet>
-    <ErrorIcon>icon.jpg</ErrorIcon>
+    <ErrorIcon>exceptionIcon.png</ErrorIcon>
     <Bundle>
         <Name>Blackjack</Name>
         <Type>Standard</Type>
