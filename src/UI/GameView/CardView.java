@@ -25,7 +25,7 @@ public class CardView implements NodeViewInterface, TaggableInterface {
     private static final Formatter myFormatter = new Formatter();
 
     // TODO: make this data driven!
-    private String cardFilePath = "data/cardImages/fancyCardDown.png";
+    private String cardFilePath = "cardImages/fancyCardDown.png";
     private Image cardImage = new Image(cardFilePath);
 
     private static final int FULL_BACKGROUND_FILL = 1;
