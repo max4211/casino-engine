@@ -38,7 +38,7 @@ public class GroupController extends Controller {
     @Override
     public void startGame() {
         promptForEntryBet();
-        performDealerAction();
+        performDealerAction(this.myDealerAction);
         updatePlayerHands();
         promptForActions();
         garbageCollect();
@@ -59,10 +59,6 @@ public class GroupController extends Controller {
             this.myGameView.addBet(new ArrayList<>(), wager, p.getID(), b.getID());
             this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
-    }
-
-    protected void performDealerAction() {
-        this.myTable.performDealerAction(this.myDealerAction);
     }
 
     @Override

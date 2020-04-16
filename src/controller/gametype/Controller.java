@@ -87,8 +87,8 @@ public abstract class Controller implements ControllerInterface {
         }
     }
 
-    protected void performDealerAction() {
-        this.myTable.performDealerAction(this.myDealerAction);
+    protected void performDealerAction(StringPair dealerAction) {
+        this.myTable.performDealerAction(dealerAction);
     }
 
     protected abstract void promptForActions();
