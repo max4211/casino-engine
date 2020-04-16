@@ -1,5 +1,7 @@
 package xmlreader.interfaces;
 
+import java.util.List;
+
 public interface ViewReaderInterface {
 
     /**
@@ -15,6 +17,12 @@ public interface ViewReaderInterface {
      */
     String getTitle();
     String getAuthors();
-    String getLanguage();
+
+    /**
+     * Get game view construct params, two lists of lang and stylesheets
+     * @return
+     */
+    List<String> getLanguages();
+    List<String> getStylesheets();
 
 }
