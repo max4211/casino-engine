@@ -12,13 +12,14 @@ import engine.evaluator.handclassifier.HandClassifier;
 import engine.table.Table;
 
 import java.util.Collection;
+import java.util.List;
 
 public class ControllerBundle implements ControllerBundleInterface {
 
     private Table myTable;
     private GameView myGameView;
     private final Collection<String> myPlayerActions;
-    private final StringPair myDealerAction;
+    private final List<StringPair> myDealerAction;
     private final HandClassifier myHandClassifier;
     private final BetEvaluator myBetEvaluator;
 
@@ -26,7 +27,7 @@ public class ControllerBundle implements ControllerBundleInterface {
     private Cardshow myCardshow;
     private Goal myGoal;
 
-    public ControllerBundle(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, StringPair dealerAction,
+    public ControllerBundle(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, List<StringPair> dealerAction,
                       HandClassifier handClassifier, BetEvaluator betEvaluator,
                       Cardshow cardshow, Goal goal) {
         this.myTable = table;
@@ -57,7 +58,7 @@ public class ControllerBundle implements ControllerBundleInterface {
     }
 
     @Override
-    public StringPair getDealerAction() {
+    public List<StringPair> getDealerAction() {
         return this.myDealerAction;
     }
 

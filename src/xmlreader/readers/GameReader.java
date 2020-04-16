@@ -23,6 +23,7 @@ public class GameReader implements GameReaderInterface {
     private static final String XML_EXTENSION = ".xml";
 
     private static final String NAME_TAG = "Name";
+    private static final String TEXT_NODE = "#text";
 
     private static final String ENTRY_TAG = "EntryBet";
     private static final String DEALERACTION_TAG = "DealerAction";
@@ -58,12 +59,17 @@ public class GameReader implements GameReaderInterface {
     }
 
     @Override
-    public StringPair getDealerAction() {
-        Node dealerActionNodeList = XMLParseInterface.getNodeList(myDocument, DEALERACTION_TAG).item(ZERO);
-        Element dealerActionElement = (Element) dealerActionNodeList;
-        String type = XMLParseInterface.getElement(dealerActionElement, TYPE_TAG);
-        String quantity = XMLParseInterface.getElement(dealerActionElement, QUANTITY_TAG);
-        return new StringPair(type, quantity);
+    public List<StringPair> getDealerAction() {
+        List<StringPair> list = new ArrayList<>();
+        NodeList dealerActionNodeList = XMLParseInterface.getNodeList(myDocument, DEALERACTION_TAG);
+        for (int index = 0; index < dealerActionNodeList.getLength(); index ++) {
+            Node node = dealerActionNodeList.item(index);
+            Element dealerActionElement = (Element) node;
+            String type = XMLParseInterface.getElement(dealerActionElement, TYPE_TAG);
+            String quantity = XMLParseInterface.getElement(dealerActionElement, QUANTITY_TAG);
+            list.add(new StringPair(type, quantity));
+        }
+        return list;
     }
 
     @Override
@@ -72,13 +78,17 @@ public class GameReader implements GameReaderInterface {
     }
 
     @Override
-    public void savePreferences(String fileName) {
-
-    }
-
-    @Override
-    public String getCompetition() {
-        return myDocument.getElementsByTagName(COMPETITION_TAG).item(ZERO).getTextContent();
+    public Map<String, String> getCompetition() {
+        Map<String, String> map = new HashMap<>();
+        NodeList nodeList = XMLParseInterface.getNodeList(myDocument, COMPETITION_TAG);
+        NodeList childNodes = nodeList.item(ZERO).getChildNodes();
+        Node child = childNodes.item(ZERO);
+        while (child.getNextSibling() != null) {
+            child = child.getNextSibling();
+            if (!child.getNodeName().equals(TEXT_NODE))
+                map.put(child.getNodeName(), child.getTextContent());
+        }
+        return map;
     }
 
     @Override

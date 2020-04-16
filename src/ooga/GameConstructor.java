@@ -41,6 +41,7 @@ public class GameConstructor {
     private final File viewFile;
 
     //TODO: duplication
+    private static final String TYPE_KEY = "Type";
     private static final String DECK_KEY = "Deck";
     private static final String GAME_KEY = "Game";
     private static final String PLAYER_KEY = "Players";
@@ -103,14 +104,15 @@ public class GameConstructor {
     }
 
     private Controller constructController(GameReader gameReader, HandReader handReader, Table table, GameView gameView) {
-        String myCompetition = gameReader.getCompetition();
+        Map<String, String> myParams = gameReader.getCompetition();
+        String myCompetition = myParams.get(TYPE_KEY);
         ControllerBundle myBundle = createControllerBundle(gameReader, handReader, table, gameView);
 
         try {
             String controllerPath = createControllerPath(myCompetition);
             Class clazz = Class.forName(controllerPath);
-            Constructor ctor = clazz.getConstructor(ControllerBundle.class);
-            return (Controller) ctor.newInstance(myBundle);
+            Constructor ctor = clazz.getConstructor(ControllerBundle.class, Map.class);
+            return (Controller) ctor.newInstance(myBundle, myParams);
         } catch (Exception e) {
             System.out.println("unable to create controller");
             throw new ReflectionException(e);
@@ -120,7 +122,7 @@ public class GameConstructor {
 
     private ControllerBundle createControllerBundle(GameReader gameReader, HandReader handReader, Table table, GameView gameView) {
         Collection<String> myPlayerActions = gameReader.getPlayerAction();
-        StringPair myDealerAction = gameReader.getDealerAction();
+        List<StringPair> myDealerAction = gameReader.getDealerAction();
         Collection<String> myWinningHands = handReader.getWinningHands();
         Collection<String> myLosingHands = handReader.getLosingHands();
         HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);

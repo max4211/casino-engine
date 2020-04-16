@@ -11,6 +11,7 @@ import engine.evaluator.handclassifier.HandClassifier;
 import engine.table.Table;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface ControllerBundleInterface {
 
@@ -24,7 +25,7 @@ public interface ControllerBundleInterface {
 
     Collection<String> getPlayerActions();
 
-    StringPair getDealerAction();
+    List<StringPair> getDealerAction();
 
     HandClassifier getHandClassifier();
 

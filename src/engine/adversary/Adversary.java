@@ -11,9 +11,9 @@ import java.util.function.Supplier;
 public class Adversary implements AdversaryInterface {
 
     private PlayerHand myPlayerHand;
-    private final int myMinSum;
+    private final double myMinSum;
 
-    public Adversary(int min) {
+    public Adversary(double min) {
         this.myPlayerHand = new PlayerHand();
         this.myMinSum = min;
     }
