@@ -1,5 +1,6 @@
 package controller.gametype;
 
+import Utility.StringPair;
 import actionFactory.Action;
 import controller.bundles.ControllerBundle;
 import engine.bet.Bet;
@@ -27,14 +28,15 @@ public class GroupController extends Controller {
     @Override
     public void startGame() {
         promptForEntryBet();
-        performDealerAction(this.myDealerAction);
-        updatePlayerHands();
-        promptForActions();
-        garbageCollect();
+        for (StringPair s: this.myDealerAction) {
+            performDealerAction(s);
+            updatePlayerHands();
+            updateCommunalCards();
+            promptForActions();
+        }
         computePayoffs();
         updateBankrolls();
         showGameViewRestart();
-        restartGame();
     }
 
     @Override
@@ -58,9 +60,9 @@ public class GroupController extends Controller {
                 Bet b = p.getNextBet();
                 a.execute(p, b, this.myTable.getDealCardMethod());
                 classifyHand(b);
-                addCardToPlayer(p);
                 this.myGameView.setWager(b.getWager(), p.getID(), b.getID());
                 this.myGameView.setBankRoll(p.getBankroll(), p.getID());
+                garbageCollect();
             } catch (ReflectionException e) {
                 this.myGameView.displayException(e);
                 System.out.println(e);

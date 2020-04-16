@@ -122,7 +122,7 @@ public class GameConstructor {
 
     private ControllerBundle createControllerBundle(GameReader gameReader, HandReader handReader, Table table, GameView gameView) {
         Collection<String> myPlayerActions = gameReader.getPlayerAction();
-        StringPair myDealerAction = gameReader.getDealerAction();
+        List<StringPair> myDealerAction = gameReader.getDealerAction();
         Collection<String> myWinningHands = handReader.getWinningHands();
         Collection<String> myLosingHands = handReader.getLosingHands();
         HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);

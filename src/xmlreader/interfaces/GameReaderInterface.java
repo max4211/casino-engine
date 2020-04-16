@@ -31,7 +31,7 @@ public interface GameReaderInterface {
      * Fetch dealer opening action, all casino games start with dealer action
      * @return a pair containing action type and quantity
      */
-    StringPair getDealerAction();
+    List<StringPair> getDealerAction();
 
     /**
      * Fetch ingame player actions possible

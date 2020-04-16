@@ -78,6 +78,16 @@ public interface TableInterface {
      */
     Card giveAdversaryCard();
 
-
     Supplier<Card> getDealCardMethod();
+
+    /**
+     * Get a list of commmunal cards at the table
+     * @return
+     */
+    List<Card> getCommunalLCards();
+
+    /**
+     * Called to reset the game to its appropriate state
+     */
+    void restartGame();
 }

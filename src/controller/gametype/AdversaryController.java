@@ -47,15 +47,16 @@ public class AdversaryController extends Controller {
     @Override
     public void startGame() {
         promptForEntryBet();
-        performDealerAction(this.myDealerAction);
-        updatePlayerHands();
         renderAdversary();
-        promptForActions();
-        garbageCollect();
+        for (StringPair s: this.myDealerAction) {
+            performDealerAction(s);
+            updatePlayerHands();
+            promptForActions();
+            garbageCollect();
+        }
         computePayoffs();
         updateBankrolls();
         showGameViewRestart();
-        restartGame();
     }
 
     @Override
