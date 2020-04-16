@@ -6,11 +6,11 @@
         <Type>Standard</Type>
         <Icon>blackJackIcon.jpg</Icon>
         <Files>
-            <DeckFile>data/xml/deck/standard.xml</DeckFile>
-            <GameFile>data/xml/game/blackjackGame_v2.xml</GameFile>
-            <HandFile>data/xml/hands/hands.xml</HandFile>
-            <PlayerFile>data/xml/players/players.xml</PlayerFile>
-            <ViewFile>data/xml/view/view.xml</ViewFile>
+            <Deck>data/xml/deck/standard.xml</Deck>
+            <Game>data/xml/game/blackjackGame_v2.xml</Game>
+            <Hands>data/xml/hands/hands.xml</Hands>
+            <Players>data/xml/players/players.xml</Players>
+            <View>data/xml/view/view.xml</View>
         </Files>
     </Tag>
     <Tag>
