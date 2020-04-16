@@ -39,20 +39,22 @@ public class PlayerInfoView implements NodeViewInterface {
         myFormatter.formatFixedVBox(myDetailsBox, CARD_HEIGHT + WAGER_HEIGHT, VIEW_WIDTH);
         myLanguageBundle = languageBundle;
 
-        createHBox(myNameBox, NAME_KEY, name);
-        createHBox(myBankBox, BANK_KEY, String.valueOf(bankroll));
+        myNameBox = createHBox(NAME_KEY, name);
+        myBankBox = createHBox(BANK_KEY, String.valueOf(bankroll));
 
+        System.out.println(myNameBox == null);
         myDetailsBox.setVgrow(myNameBox, Priority.ALWAYS);
         myDetailsBox.setVgrow(myBankBox, Priority.ALWAYS);
     }
 
-    private void createHBox(HBox rawHBox, String bundleKey, String userInput) {
-        rawHBox = new HBox();
-        rawHBox.getChildren().add(new Label(myLanguageBundle.getBundle().getString(NAME_KEY)));
+    private HBox createHBox(String bundleKey, String userInput) {
+        HBox returnedHBox = new HBox();
+        returnedHBox.getChildren().add(new Label(myLanguageBundle.getBundle().getString(NAME_KEY)));
         Label nameInputLabel = new Label(userInput);
-        rawHBox.getChildren().add(nameInputLabel);
-        rawHBox.setHgrow(nameInputLabel, Priority.ALWAYS);
-        myDetailsBox.getChildren().add(rawHBox);
+        returnedHBox.getChildren().add(nameInputLabel);
+        returnedHBox.setHgrow(nameInputLabel, Priority.ALWAYS);
+        myDetailsBox.getChildren().add(returnedHBox);
+        return returnedHBox;
     }
 
     public VBox getView() {

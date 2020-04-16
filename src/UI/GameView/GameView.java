@@ -33,9 +33,9 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myBorderPane.setLeft(myOtherPlayers.getView());
         myMainPlayer = new MainPlayerView();
         myBorderPane.setBottom(myMainPlayer.getView());
+        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
         myBorderPane.setRight(new StylePicker(styleSheets, e -> updateStyleSheet(e)).getView());
         myBorderPane.setRight(new LanguagePicker(languages, e -> updateLanguage(e)).getView());
-        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
         //myExceptionDisplayer = new ExceptionDisplayer(null, null, null);
     }
 
@@ -205,7 +205,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     private void updateLanguage(String newLanguage) {
-        //TODO: errors no longer static, label formatting
         myLanguageBundle.setLanguage(newLanguage);
         myMainPlayer.updateLanguage();
     }

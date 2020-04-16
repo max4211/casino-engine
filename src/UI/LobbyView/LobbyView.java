@@ -3,7 +3,6 @@ package UI.LobbyView;
 import UI.ExceptionHandling.ExceptionDisplayer;
 import UI.Interfaces.NodeViewInterface;
 import UI.LanguageBundle;
-import exceptions.NullFileException;
 import javafx.scene.layout.FlowPane;
 import ooga.GameConstructor;
 
@@ -45,8 +44,6 @@ public class LobbyView implements NodeViewInterface {
             }
             myFlowPane.getChildren().add(tempIcon.getView());
         }
-
-        my
     }
 
     @Override
@@ -57,7 +54,7 @@ public class LobbyView implements NodeViewInterface {
     private void createGame(Map<String, File> myXMLFiles) {
         for (String xmlType : myXMLFiles.keySet()) {
             if (myXMLFiles.get(xmlType) == null) {
-                ExceptionDisplayer.displayException(new NullFileException(xmlType));
+                //ExceptionDisplayer.displayException(new NullFileException(xmlType));
                 File newXml = XMLChooser.getXMLFile(xmlType);
                 if (newXml == null) return;
                 myXMLFiles.put(xmlType, newXml);
