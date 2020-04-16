@@ -1,6 +1,8 @@
 package UI.LobbyView;
 
+import UI.ExceptionHandling.ExceptionHandler;
 import UI.Interfaces.NodeViewInterface;
+import exceptions.NullFileException;
 import javafx.scene.layout.FlowPane;
 import ooga.GameConstructor;
 
@@ -18,10 +20,8 @@ public class LobbyView implements NodeViewInterface {
 
     private static final String CUSTOM = "Custom";
     private static final String STANDARD = "Standard";
-    private static final String DEFAULT_CSS = "lobbySunrise.css";
 
     private static final String FLOWPANE_CSS_ID = "full-lobby";
-    private static final String ICONVIEW_CSS_ID = "image-view";
 
     public LobbyView(String styleSheet, List<Map<String, String>> generalInfo, List<Map<String, File>> files) {
         myFlowPane = new FlowPane();
@@ -39,7 +39,6 @@ public class LobbyView implements NodeViewInterface {
             } else if (gameType.equals(STANDARD)) {
                 tempIcon = new StandardGameIcon(tempGeneralInfo.get(ICON_TAG), tempGeneralInfo.get(NAME_TAG), e -> createGame(e), tempFiles);
             }
-            tempIcon.getView().setId(ICONVIEW_CSS_ID);
             myFlowPane.getChildren().add(tempIcon.getView());
         }
     }
@@ -50,6 +49,12 @@ public class LobbyView implements NodeViewInterface {
     }
 
     private void createGame(Map<String, File> myXMLFiles) {
+        for (String xmlType : myXMLFiles.keySet()) {
+            if (myXMLFiles.get(xmlType) == null) {
+                ExceptionHandler.displayException(new NullFileException(xmlType));
+                myXMLFiles.put(xmlType, XMLChooser.getXMLFile(xmlType));
+            }
+        }
         GameConstructor newGame = new GameConstructor(myXMLFiles);
     }
  }
