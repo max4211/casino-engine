@@ -12,7 +12,7 @@ public class PlayerHand implements PlayerHandInterface {
     private ClassifiedHand myClassification;
     // TODO refactor loser state to enumerated type of outcome
     private boolean isLoser = false;
-    private HandOutcome myOutcome = HandOutcome.WIN;
+    private HandOutcome myOutcome;
 
     public PlayerHand(List<Card> cards) {
         this.myCards = new ArrayList<Card>();

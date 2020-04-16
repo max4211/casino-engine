@@ -16,14 +16,12 @@ import java.util.function.Supplier;
 
 public class Table implements TableInterface {
 
-    private static final String BET_ACTION = "place";
-    private static final String BET_SUFFIX = "Bet";
-
     private static final String DEAL_ACTION = "deal";
     private static final String DEAL_SUFFIX = "Card";
 
     private Collection<Player> myPlayers;
     private List<Integer> myPlayerHashCodes;
+    private List<Card> myCommunalCards;
     private Dealer myDealer;
 
     private double myTableMin = 5;
@@ -31,25 +29,13 @@ public class Table implements TableInterface {
 
     private Adversary myAdversary;
 
-    @Deprecated
-    public Table(List<Player> players, Dealer dealer) {
-        this.myPlayers = players;
-        this.myDealer = dealer;
-        this.myPlayerHashCodes = recordPlayerHashCodes();
-    }
-
-    public Table(Collection<Player> players, Dealer dealer) {
-        this.myPlayers = players;
-        this.myDealer = dealer;
-        this.myPlayerHashCodes = recordPlayerHashCodes();
-    }
-
     public Table(Collection<Player> players, Dealer dealer, double min, double max) {
         this.myPlayers = players;
         this.myDealer = dealer;
         this.myPlayerHashCodes = recordPlayerHashCodes();
         this.myTableMin = min;
         this.myTableMax = max;
+        this.myCommunalCards = new ArrayList<>();
     }
 
     private List<Integer> recordPlayerHashCodes() {
@@ -124,7 +110,7 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public Adversary createAdversary(int min) {
+    public Adversary createAdversary(double min) {
         this.myAdversary = new Adversary(min);
         giveAdversaryCard();
         giveAdversaryCard();
@@ -143,6 +129,17 @@ public class Table implements TableInterface {
         return () -> this.myDealer.getCard();
     }
 
+    @Override
+    public List<Card> getCommunalLCards() {
+        return this.myCommunalCards;
+    }
+
+    @Override
+    public void restartGame() {
+        this.myCommunalCards = new ArrayList<>();
+        this.myDealer.shuffle();
+    }
+
     // TODO - slower individual card dealing with animation (Sprint 3 task)
     private void dealIndividualCard(int quantity) {
         for (int i = 1; i <= quantity; i ++) {
@@ -153,6 +150,12 @@ public class Table implements TableInterface {
                     b.acceptCard(c);
                 }
             }
+        }
+    }
+
+    private void dealCommunalCard(int quantity) {
+        for (int i = 1; i <= quantity; i ++) {
+            this.myCommunalCards.add(this.myDealer.getCard());
         }
     }
 

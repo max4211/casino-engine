@@ -13,8 +13,12 @@ public interface Generator {
     }
 
     static List<CardTriplet> createTripletList(PlayerHand h) {
+        return createTripletList(h.getCards());
+    }
+
+    static List<CardTriplet> createTripletList(List<Card> cardList) {
         List<CardTriplet> list = new ArrayList<>();
-        for (Card c: h.getCards())
+        for (Card c: cardList)
             list.add(Generator.createCardTriplet(c));
         return list;
     }

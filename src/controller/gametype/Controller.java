@@ -18,6 +18,7 @@ import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.evaluator.bet.BetEvaluator;
 import engine.evaluator.handclassifier.HandClassifier;
+import engine.hand.PlayerHand;
 import engine.player.Player;
 import engine.table.Table;
 import exceptions.ReflectionException;
@@ -31,7 +32,7 @@ public abstract class Controller implements ControllerInterface {
     protected Table myTable;
     protected GameView myGameView;
     protected final Collection<String> myPlayerActions;
-    protected final StringPair myDealerAction;
+    protected final List<StringPair> myDealerAction;
     protected final ActionFactory myFactory;
     protected final HandClassifier myHandClassifier;
     protected final BetEvaluator myBetEvaluator;
@@ -44,7 +45,7 @@ public abstract class Controller implements ControllerInterface {
     private static final int ADVERSARY_MIN = 17;
 
     // TODO refactor items into a map of objects
-    public Controller(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, StringPair dealerAction,
+    public Controller(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, List<StringPair> dealerAction,
                       HandClassifier handClassifier, BetEvaluator betEvaluator,
                       Cardshow cardshow, Goal goal) {
         this.myTable = table;
@@ -79,6 +80,7 @@ public abstract class Controller implements ControllerInterface {
     }
 
     protected void restartGame() {
+        this.myTable.restartGame();
         this.myGameView.clearAllBets();
         this.myGameView.clearAdversary();
         this.startGame();
@@ -108,6 +110,7 @@ public abstract class Controller implements ControllerInterface {
 
     protected abstract void promptForActions();
 
+    // TODO - clear out losers
     protected void garbageCollect() {
         GarbageCollect.clearLosers(this.myTable.getPlayers(), (pid, bid) -> this.myGameView.removeBet(pid, bid));
     }
@@ -193,6 +196,13 @@ public abstract class Controller implements ControllerInterface {
                 }
             }
         }
+    }
+
+    //TODO add in gameview method to show communal cards
+    protected void updateCommunalCards() {
+        List<Card> communalCards = this.myTable.getCommunalLCards();
+        Generator.createTripletList(communalCards);
+//        this.myGameView.showCommunalCards(communalCards);
     }
 
     protected void updateBankrolls() {

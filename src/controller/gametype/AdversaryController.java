@@ -25,38 +25,38 @@ import exceptions.ReflectionException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class AdversaryController extends Controller {
 
     private Adversary myAdversary;
 
     // TODO - refactor into data files (in adversary construction?)
-    private static final int ADVERSARY_MIN = 17;
+    private static final String MINIMUM_TAG = "Minimum";
+    private double ADVERSARY_MIN;
 
-    // TODO refactor items into a map of objects
-    public AdversaryController(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, StringPair dealerAction,
-                      HandClassifier handClassifier, BetEvaluator betEvaluator,
-                      Cardshow cardshow, Goal goal) {
-        super(table, gameView, entryBet, playerActions, dealerAction,
-                handClassifier, betEvaluator, cardshow, goal);
+    public AdversaryController(ControllerBundle bundle, Map<String, String> params) {
+        super(bundle);
+        assignParams(params);
     }
 
-    public AdversaryController(ControllerBundle bundle) {
-        super(bundle);
+    private void assignParams(Map<String, String> params) {
+        this.ADVERSARY_MIN = Double.parseDouble(params.get(MINIMUM_TAG));
     }
 
     @Override
     public void startGame() {
         promptForEntryBet();
-        performDealerAction(this.myDealerAction);
-        updatePlayerHands();
         renderAdversary();
-        promptForActions();
-        garbageCollect();
+        for (StringPair s: this.myDealerAction) {
+            performDealerAction(s);
+            updatePlayerHands();
+            promptForActions();
+            garbageCollect();
+        }
         computePayoffs();
         updateBankrolls();
         showGameViewRestart();
-        restartGame();
     }
 
     @Override
