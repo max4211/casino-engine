@@ -5,8 +5,6 @@ import javafx.scene.layout.FlowPane;
 import ooga.GameConstructor;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,28 +12,36 @@ public class LobbyView implements NodeViewInterface {
 
     FlowPane myFlowPane;
 
-    public LobbyView() {
+    private static final String NAME_TAG = "Name";
+    private static final String TYPE_TAG = "Type";
+    private static final String ICON_TAG = "Icon";
+
+    private static final String DECK_TAG = "Deck";
+    private static final String GAME_TAG = "Game";
+    private static final String HAND_TAG = "Hands";
+    private static final String PLAYER_TAG = "Players";
+    private static final String VIEW_TAG = "View";
+
+    private static final String CUSTOM = "Custom";
+    private static final String STANDARD = "Standard";
+
+    public LobbyView(String styleSheet, List<Map<String, String>> generalInfo, List<Map<String, File>> files) {
         myFlowPane = new FlowPane();
+        myFlowPane.getStylesheets().add(styleSheet);
 
-        List<String> ALL_XMLS = new ArrayList<>();
-        ALL_XMLS = new ArrayList<>();
-        ALL_XMLS.add("deck");
-        ALL_XMLS.add("game");
-        ALL_XMLS.add("players");
-        ALL_XMLS.add("hands");
-        ALL_XMLS.add("view");
+        for (int i = 0; i < generalInfo.size(); i++) {
+            Map<String, String> tempGeneralInfo = generalInfo.get(i);
+            Map<String, File> tempFiles = files.get(i);
 
-        Map<String, File> BLACKJACK_XMLS = new HashMap<>();
-        BLACKJACK_XMLS.put("deck", new File("data/xml/deck/standard.xml"));
-        BLACKJACK_XMLS.put("game", new File("data/xml/game/blackjackGame_v2.xml"));
-        BLACKJACK_XMLS.put("players", new File("data/xml/players/players.xml"));
-        BLACKJACK_XMLS.put("hands", new File("data/xml/hands/hands.xml"));
-        BLACKJACK_XMLS.put("view", new File("data/xml/view/view.xml"));
-
-        CustomGameIcon myButton = new CustomGameIcon("QuestionMark.jpg", c -> createGame(c), ALL_XMLS);
-        StandardGameIcon myButton2 = new StandardGameIcon("BlackJackIcon.png", c -> createGame(c), BLACKJACK_XMLS);
-        myFlowPane.getChildren().add(myButton.getView());
-        myFlowPane.getChildren().add(myButton2.getView());
+            String gameType = generalInfo.get(i).get(TYPE_TAG);
+            GameIcon tempIcon = null;
+            if (gameType.equals(CUSTOM)) {
+                tempIcon = new CustomGameIcon(tempGeneralInfo.get(ICON_TAG), e -> createGame(e), tempFiles.keySet());
+            } else if (gameType.equals(STANDARD)) {
+                tempIcon = new StandardGameIcon(tempGeneralInfo.get(ICON_TAG), e -> createGame(e), tempFiles);
+            }
+            myFlowPane.getChildren().add(tempIcon.getView());
+        }
     }
 
     @Override
