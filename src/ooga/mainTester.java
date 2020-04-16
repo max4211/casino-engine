@@ -1,6 +1,7 @@
 package ooga;
 
 import UI.GameView.GameView;
+import controller.gametype.AdversaryController;
 import controller.gametype.Controller;
 import Utility.StringPair;
 import controller.enums.Cardshow;
@@ -68,9 +69,9 @@ public class mainTester extends Application {
         Cardshow myCardShow = Cardshow.valueOf(gameReader.getCardShow().toUpperCase());
         Goal myGoal = Goal.valueOf(gameReader.getGoal().toUpperCase());
 
-        return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction,
+        return new AdversaryController(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction,
                 myHandClassifier, myBetEvaluator,
-                myCompetition, myCardShow, myGoal);
+                myCardShow, myGoal);
     }
 
     // TODO - give game view parameters form the XML file
