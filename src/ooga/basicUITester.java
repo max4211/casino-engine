@@ -1,13 +1,10 @@
 package ooga;
 
-import UI.ExceptionHandling.ExceptionHandler;
-import UI.GameView.BetView;
 import UI.GameView.CardView;
-import UI.GameView.PlayerView;
+import UI.GameView.GameView;
 import UI.Selectors.ActionSelector;
 import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
-import exceptions.NullFileException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -24,16 +21,20 @@ public class basicUITester extends Application {
 
     public void start(Stage primaryStage) {
         primaryStage.setTitle("UI Tester");
-        BorderPane root = new BorderPane();
 
-        ExceptionHandler.setStyleSheet("exceptionIcon.png", "fire.css");
-        ExceptionHandler.displayException(new NullFileException("deck"));
-//        testCards(root);
-//        testBets(root);
-//        testPlayers(root);
-//        testSelectors(root);
+        ArrayList allchoices = new ArrayList();
+        allchoices.add("Dark");
+        allchoices.add("Coral");
+        allchoices.add("Light");
 
-        primaryStage.setScene(new Scene(root, 500, 500));
+        ArrayList allLanguages = new ArrayList();
+        allLanguages.add("English");
+        allLanguages.add("Spanish");
+
+        GameView root = new GameView(allchoices, allLanguages);
+
+
+        primaryStage.setScene(new Scene(root.getView(), 500, 500));
         primaryStage.show();
     }
 
@@ -87,21 +88,18 @@ public class basicUITester extends Application {
         allCTs.add(ct3);
         allCTs.add(ct4);
 
-        BetView bv1 = new BetView(allCTs, 10, 20);
+        // BetView bv1 = new BetView(allCTs, 10, 20);
 
-        BetView bv2 = new BetView(allCTs, -20, 20);
-        bv2.showCard(2);
-        bv2.showCard(-2);
+       //  BetView bv2 = new BetView(allCTs, -20, 20);
+       //  bv2.showCard(2);
+       //  bv2.showCard(-2);
 
-        BetView bv3 = new BetView(new ArrayList<>(), 10000, 50);
+       // BetView bv3 = new BetView(new ArrayList<>(), 10000, 50);
 
-        BetView bv4 = new BetView(new ArrayList<>(), 10000, 50);
-        bv4.addCard(ct4);
+        //BetView bv4 = new BetView(new ArrayList<>(), 10000, 50);
+       // bv4.addCard(ct4);
 
-        p.setCenter(bv1.getView());
-        p.setCenter(bv2.getView());
-        p.setCenter(bv3.getView());
-        p.setCenter(bv4.getView());
+       //  p.setCenter(bv1.getView());
     }
 
     private void testPlayers(BorderPane p) {
@@ -121,22 +119,6 @@ public class basicUITester extends Application {
         List<CardTriplet> allCT2 = new ArrayList<>();
         allCT2.add(ct1);
         allCT2.add(ct2);
-
-        PlayerView pv1 = new PlayerView("Eric", 1, 1000);
-        PlayerView pv2 = new PlayerView("Max", 2, -2000);
-        PlayerView pv3 = new PlayerView("Duvall", -2, 40000);
-
-        p.setCenter(pv1.getView());
-
-        p.setCenter(pv2.getView());
-        pv2.addBet(allCTs, 40, 2);
-        pv2.addBet(allCT2, 60, 4);
-        pv2.showCard(4, 2);
-
-        p.setCenter(pv3.getView());
-        pv3.addBet(allCTs, 40, 2);
-        pv3.addBet(allCT2, 60, 4);
-        pv3.clearBets();
     }
 
     private void testSelectors(BorderPane p) {

@@ -24,13 +24,6 @@ public class MainPlayerView implements NodeViewInterface, TaggableInterface {
         myView = new HBox();
         myFormatter = new Formatter();
         myFormatter.formatUnfixedCenter(myView);
-
-        //TODO: move this to CSS
-        String css = "-fx-border-color: #52d780;\n" +
-                "-fx-border-insets: 5;\n" +
-                "-fx-border-width: 3;\n" +
-                "-fx-border-style: dashed;\n";
-        myView.setStyle(css);
         isReadyForAction = false;
     }
 
@@ -64,5 +57,9 @@ public class MainPlayerView implements NodeViewInterface, TaggableInterface {
 
     public void waitUntilReady(SelectorType mySelectionType) {
         SelectorReadyInput.pauseUntilReady(myView, mySelectionType);
+    }
+
+    public void updateLanguage() {
+        if (myPlayer != null) myPlayer.updateLanguage();
     }
 }

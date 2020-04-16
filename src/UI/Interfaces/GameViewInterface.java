@@ -28,6 +28,12 @@ public interface GameViewInterface {
 
     public void addPlayer(String name, int playerId, double bankroll);
 
+    void renderCommonCards(List<CardTriplet> hand);
+
+    void addCommonCard(CardTriplet cardInfo);
+
+    void showCommonCard(int cardID);
+
     public void addAllCards(List<CardTriplet> allCards, int playerID, int betID);
 
     public void addAllCardsIfAbsent(List<CardTriplet> allCards, int playerID, int betID);

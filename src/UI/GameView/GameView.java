@@ -1,14 +1,17 @@
 package UI.GameView;
 
+import UI.ExceptionHandling.ExceptionDisplayer;
+import UI.GameView.Settings.LanguagePicker;
+import UI.GameView.Settings.StylePicker;
 import UI.Interfaces.Executor;
 import UI.Interfaces.GameViewInterface;
 import UI.Interfaces.NodeViewInterface;
+import UI.LanguageBundle;
 import UI.Selectors.ActionSelector;
 import UI.Selectors.SelectorType;
 import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
 import java.util.List;
@@ -19,26 +22,21 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private MainPlayerView myMainPlayer;
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
+    private HandView myCommons;
+    private ExceptionDisplayer myExceptionDisplayer;
+    private LanguageBundle myLanguageBundle;
+    private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
-    private static final String DEFAULT_CSS = "lobbySunrise.css";
-    private static final String DARK_MODE_CSS = "DarkMode.css";
-    private String myStyleSheet;
-
-    public GameView() {
+    public GameView(List<String> styleSheets, List<String> languages) {
         myBorderPane = new BorderPane();
         myOtherPlayers = new OtherPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
-
         myMainPlayer = new MainPlayerView();
         myBorderPane.setBottom(myMainPlayer.getView());
-
-        myBorderPane.getStylesheets().add(DEFAULT_CSS);
-
-        Button tempDarkMode = new Button();
-        tempDarkMode.setOnAction(e -> updateStyleSheet(DARK_MODE_CSS));
-        tempDarkMode.setText("DARKMODE!");
-        myBorderPane.setRight(tempDarkMode);
-        myStyleSheet = DEFAULT_CSS;
+        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
+        myBorderPane.setRight(new StylePicker(styleSheets, e -> updateStyleSheet(e)).getView());
+        myBorderPane.setRight(new LanguagePicker(languages, e -> updateLanguage(e)).getView());
+        //myExceptionDisplayer = new ExceptionDisplayer(null, null, null);
     }
 
     public BorderPane getView() {
@@ -53,6 +51,22 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     @Override
     public void addCard(CardTriplet cardInfo, int playerID, int betID) {
         getPlayerView(playerID).addCard(cardInfo, betID);
+    }
+
+    @Override
+    public void renderCommonCards(List<CardTriplet> hand) {
+        myCommons = new HandView(hand);
+        myBorderPane.setCenter(myCommons.getView());
+    }
+
+    @Override
+    public void addCommonCard(CardTriplet cardInfo) {
+        myCommons.addCard(cardInfo);
+    }
+
+    @Override
+    public void showCommonCard(int cardID) {
+        myCommons.showCard(cardID);
     }
 
     @Override
@@ -82,7 +96,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void addBet(List<CardTriplet> handInfo, double wager, int playerID, int betID) {
-        getPlayerView(playerID).addBet(handInfo, wager, betID);
+        getPlayerView(playerID).addBet(handInfo, wager, betID, myLanguageBundle);
     }
 
     @Override
@@ -125,7 +139,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void renderAdversary(List<CardTriplet> hand) {
-        System.out.println("RENDERING");
         myAdversary = new HandView(hand);
         myBorderPane.setTop(myAdversary.getView());
     }
@@ -138,7 +151,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void addPlayer(String name, int playerId, double bankroll) {
-        myOtherPlayers.addPlayer(name, playerId, bankroll);
+        myOtherPlayers.addPlayer(name, playerId, bankroll, myLanguageBundle);
     }
 
     @Override
@@ -187,9 +200,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     private void updateStyleSheet(String newStylesheet) {
-        myBorderPane.getStylesheets().remove(myStyleSheet);
-        System.out.println("add");
+        myBorderPane.getStylesheets().clear();
         myBorderPane.getStylesheets().add(newStylesheet);
-        myStyleSheet = newStylesheet;
+    }
+
+    private void updateLanguage(String newLanguage) {
+        myLanguageBundle.setLanguage(newLanguage);
+        myMainPlayer.updateLanguage();
     }
 }

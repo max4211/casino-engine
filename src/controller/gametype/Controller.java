@@ -200,8 +200,10 @@ public abstract class Controller implements ControllerInterface {
     //TODO add in gameview method to show communal cards
     protected void updateCommunalCards() {
         List<Card> communalCards = this.myTable.getCommunalLCards();
-        Generator.createTripletList(communalCards);
-//        this.myGameView.showCommunalCards(communalCards);
+        List<CardTriplet> tripletList = Generator.createTripletList(communalCards);
+        for (Card c: communalCards)
+            System.out.printf("adding common card: %s\n", c.toString());
+        this.myGameView.renderCommonCards(tripletList);
     }
 
     protected void updateBankrolls() {

@@ -37,9 +37,11 @@ public class CardView implements NodeViewInterface, TaggableInterface {
 
     // TODO: make this data driven!
     private static final Color showingColor = Color.web("FF6464");
+    private static final String CARD_VIEW_CSS_ID = "card-view";
 
     public CardView(CardTriplet cardInfo) {
         myCard = new VBox();
+        myCard.setId(CARD_VIEW_CSS_ID);
         myID = cardInfo.getID();
         myFormatter.formatFixedVBox(myCard, CARD_HEIGHT, CARD_WIDTH);
         createCardNodes(cardInfo.getValue(), cardInfo.getSuit());

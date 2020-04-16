@@ -2,6 +2,7 @@ package UI.GameView;
 
 import UI.Interfaces.NodeViewInterface;
 import UI.Interfaces.TaggableInterface;
+import UI.LanguageBundle;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.HBox;
@@ -13,24 +14,23 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
 
     private List<BetView> myBets;
     private PlayerInfoView myInfo;
-
     private HBox myView;
     private Formatter myFormatter;
 
     private int myID;
 
-    public PlayerView(String name, int ID, double bankroll) {
+    public PlayerView(String name, int ID, double bankroll, LanguageBundle languageBundle) {
         myView = new HBox();
         myFormatter = new Formatter();
         myFormatter.formatUnfixedLeft(myView);
         myID = ID;
         myBets = new ArrayList<>();
-        myInfo = new PlayerInfoView(name, bankroll);
+        myInfo = new PlayerInfoView(name, bankroll, languageBundle);
         myView.getChildren().add(myInfo.getView());
     }
 
-    public void addBet(List<CardTriplet> hand, double wager, int betID) {
-        BetView addedBetView = new BetView(hand, wager, betID);
+    public void addBet(List<CardTriplet> hand, double wager, int betID, LanguageBundle languageBundle) {
+        BetView addedBetView = new BetView(hand, wager, betID, languageBundle);
         myBets.add(addedBetView);
         myView.getChildren().add(addedBetView.getView());
     }
@@ -89,5 +89,9 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
 
     public void hideCard(int betID, int cardID) {
         getBet(betID).hideCard(cardID);
+    }
+
+    public void updateLanguage() {
+        myInfo.updateLanguage();
     }
 }

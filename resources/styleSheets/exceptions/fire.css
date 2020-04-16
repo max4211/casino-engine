@@ -15,7 +15,7 @@
 
 .dialog-pane:header .header-panel .label{
     -fx-text-fill: #514c6e;
-    -fx-font-size:15;
+    -fx-font-size: 20;
 }
 
 .dialog-pane .image{

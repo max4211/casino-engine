@@ -1,8 +1,8 @@
 package UI.LobbyView;
 
-import UI.ExceptionHandling.ExceptionHandler;
+import UI.ExceptionHandling.ExceptionDisplayer;
 import UI.Interfaces.NodeViewInterface;
-import exceptions.NullFileException;
+import UI.LanguageBundle;
 import javafx.scene.layout.FlowPane;
 import ooga.GameConstructor;
 
@@ -22,6 +22,9 @@ public class LobbyView implements NodeViewInterface {
     private static final String STANDARD = "Standard";
 
     private static final String FLOWPANE_CSS_ID = "full-lobby";
+
+    private LanguageBundle myLanguageBundle;
+    private ExceptionDisplayer myExceptionDisplayer;
 
     public LobbyView(String styleSheet, List<Map<String, String>> generalInfo, List<Map<String, File>> files) {
         myFlowPane = new FlowPane();
@@ -51,7 +54,7 @@ public class LobbyView implements NodeViewInterface {
     private void createGame(Map<String, File> myXMLFiles) {
         for (String xmlType : myXMLFiles.keySet()) {
             if (myXMLFiles.get(xmlType) == null) {
-                ExceptionHandler.displayException(new NullFileException(xmlType));
+                //ExceptionDisplayer.displayException(new NullFileException(xmlType));
                 File newXml = XMLChooser.getXMLFile(xmlType);
                 if (newXml == null) return;
                 myXMLFiles.put(xmlType, newXml);

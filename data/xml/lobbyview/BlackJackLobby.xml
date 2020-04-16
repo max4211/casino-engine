@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Lobby>
-    <LobbyStylesheet>lobbySunrise.css</LobbyStylesheet>
-    <ErrorStylesheet>lobbySunrise.css</ErrorStylesheet>
-    <ErrorIcon>icon.jpg</ErrorIcon>
+    <LobbyStylesheet>sunrise.css</LobbyStylesheet>
+    <ErrorStylesheet>fire.css</ErrorStylesheet>
+    <ErrorIcon>exceptionIcon.png</ErrorIcon>
     <Bundle>
         <Name>Blackjack</Name>
         <Type>Standard</Type>
