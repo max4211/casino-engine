@@ -6,6 +6,7 @@ import Utility.Generator;
 import Utility.StringPair;
 import actionFactory.Action;
 import actionFactory.ActionFactory;
+import controller.bundles.ControllerBundle;
 import controller.enums.Cardshow;
 import controller.enums.Competition;
 import controller.enums.EntryBet;
@@ -38,6 +39,10 @@ public class AdversaryController extends Controller {
                       Cardshow cardshow, Goal goal) {
         super(table, gameView, entryBet, playerActions, dealerAction,
                 handClassifier, betEvaluator, cardshow, goal);
+    }
+
+    public AdversaryController(ControllerBundle bundle) {
+        super(bundle);
     }
 
     @Override
