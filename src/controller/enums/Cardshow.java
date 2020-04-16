@@ -1,4 +1,4 @@
-package controller;
+package controller.enums;
 
 import java.util.function.BiConsumer;
 

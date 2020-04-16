@@ -1,9 +1,12 @@
 package ooga;
 
 import UI.GameView.GameView;
-import controller.Controller;
+import controller.gametype.Controller;
 import Utility.StringPair;
-import controller.*;
+import controller.enums.Cardshow;
+import controller.enums.Competition;
+import controller.enums.EntryBet;
+import controller.enums.Goal;
 import engine.dealer.Dealer;
 import engine.dealer.Deck;
 import engine.evaluator.bet.BetEvaluator;

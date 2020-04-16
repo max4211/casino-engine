@@ -1,4 +1,4 @@
-package controller;
+package controller.interfaces;
 
 import engine.bet.Bet;
 import engine.player.Player;

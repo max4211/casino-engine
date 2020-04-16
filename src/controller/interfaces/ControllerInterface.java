@@ -1,4 +1,4 @@
-package controller;
+package controller.interfaces;
 
 import Utility.CardTriplet;
 import engine.bet.Bet;

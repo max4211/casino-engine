@@ -1,4 +1,4 @@
-package controller;
+package controller.gametype;
 
 import UI.GameView.GameView;
 import Utility.CardTriplet;
@@ -6,12 +6,17 @@ import Utility.Generator;
 import Utility.StringPair;
 import actionFactory.Action;
 import actionFactory.ActionFactory;
+import controller.enums.Cardshow;
+import controller.enums.Competition;
+import controller.enums.EntryBet;
+import controller.enums.Goal;
+import controller.interfaces.ControllerInterface;
+import controller.interfaces.GarbageCollect;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.evaluator.bet.BetEvaluator;
 import engine.evaluator.handclassifier.HandClassifier;
-import engine.hand.PlayerHand;
 import engine.player.Player;
 import engine.table.Table;
 import exceptions.ReflectionException;
@@ -19,8 +24,6 @@ import exceptions.ReflectionException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class Controller implements ControllerInterface {
 
@@ -37,8 +40,6 @@ public class Controller implements ControllerInterface {
     private final Competition myCompetition;
     private Cardshow myCardshow;
     private Goal myGoal;
-
-    private static final int SLEEP_TIME = 2000;
 
     // TODO - refactor into data files (in adversary construction?)
     private static final int ADVERSARY_MIN = 17;

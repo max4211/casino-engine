@@ -1,7 +1,7 @@
 package engine.table;
 
 import Utility.StringPair;
-import controller.EntryBet;
+import controller.enums.EntryBet;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
@@ -9,7 +9,6 @@ import engine.player.Player;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public interface TableInterface {

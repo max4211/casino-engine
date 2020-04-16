@@ -1,7 +1,7 @@
 package engine.table;
 
 import Utility.StringPair;
-import controller.EntryBet;
+import controller.enums.EntryBet;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
