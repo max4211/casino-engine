@@ -18,6 +18,11 @@ public interface XMLParseInterface {
         return e.getElementsByTagName(tag).item(0).getTextContent();
     }
 
+    static String getElement(Node n, String tag) {
+        Element e = (Element) n;
+        return e.getElementsByTagName(tag).item(0).getTextContent();
+    }
+
     static String getSingleTag(Document d, String tag) {
         final int ZERO = 0;
         return d.getElementsByTagName(tag).item(ZERO).getTextContent();
