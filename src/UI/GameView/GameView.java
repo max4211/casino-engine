@@ -1,13 +1,14 @@
 package UI.GameView;
 
 import UI.Interfaces.GameViewInterface;
+import UI.Interfaces.NodeViewInterface;
 import UI.Selectors.ActionSelector;
+import UI.Selectors.SelectorType;
 import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import UI.Interfaces.NodeViewInterface;
 
 import java.util.List;
 
@@ -22,7 +23,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private static final String DEFAULT_CSS = PATH_TO_STYLESHEETS + "Normal.css";
     private static final String DARK_MODE_CSS = PATH_TO_STYLESHEETS + "DarkMode.css";
     private String myStyleSheet;
-
 
     public GameView() {
         myBorderPane = new BorderPane();
@@ -131,8 +131,8 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void renderTable(String file) {
-        TableView table = new TableView(file);
-        myBorderPane.setCenter(table.getView());
+        //TableView table = new TableView(file);
+        //myBorderPane.setCenter(table.getView());
     }
 
     @Override
@@ -157,16 +157,19 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public double selectWager(double minBet, double maxBet) {
+        myMainPlayer.waitUntilReady(SelectorType.WAGER);
         return WagerSelector.selectWager(minBet, maxBet);
     }
 
     @Override
     public String selectAction(List<String> actions) {
+        myMainPlayer.waitUntilReady(SelectorType.ACTION);
         return ActionSelector.selectAction(actions);
     }
 
     @Override
-    public void displayError(Exception ex) {
+    public void displayException(Exception ex) {
+        System.out.println("called");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(ex.getLocalizedMessage());
         alert.showAndWait();

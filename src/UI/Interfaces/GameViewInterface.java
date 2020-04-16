@@ -54,7 +54,7 @@ public interface GameViewInterface {
 
     public void clearAdversary();
 
-    public void displayError(Exception ex);
+    public void displayException(Exception ex);
 
     public void addCard(CardTriplet cardInfo, int playerID, int betID);
 
