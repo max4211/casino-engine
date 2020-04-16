@@ -81,7 +81,6 @@ public class mainTester extends Application {
         return gameView;
     }
 
-    // TODO - refactor game code into non static objects, currently running through main must be static
     public static void main (String[] args) {
         launch(args);
     }

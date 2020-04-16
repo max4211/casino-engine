@@ -99,8 +99,6 @@ public abstract class Controller implements ControllerInterface {
 
     protected abstract void computePayoffs();
 
-    protected abstract void invokeCompetition();
-
     // TODO - refactor gameview to validating elements as they are received
     protected void addCardToPlayer(Player p) {
         for (Bet b: p.getBets()) {
@@ -179,6 +177,13 @@ public abstract class Controller implements ControllerInterface {
                     this.myGameView.addCardIfAbsent(cardTriplet, playerID, betID);
                 }
             }
+        }
+    }
+
+    protected void updateBankrolls() {
+        for (Player p: this.myTable.getPlayers()) {
+            p.cashBets();
+            this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
     }
 

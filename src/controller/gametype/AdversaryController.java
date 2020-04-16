@@ -49,6 +49,7 @@ public class AdversaryController extends Controller {
         promptForActions();
         garbageCollect();
         computePayoffs();
+        updateBankrolls();
         showGameViewRestart();
         restartGame();
     }
@@ -107,13 +108,10 @@ public class AdversaryController extends Controller {
                 this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
                 System.out.printf("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
             }
-            p.cashBets();
-            this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
     }
 
-    @Override
-    protected void invokeCompetition() {
+    private void invokeCompetition() {
         this.myAdversary.playHand(
                 (card) -> this.myGameView.showAdversaryCard(card),
                 (triplet) -> this.myGameView.addAdversaryCard(triplet),
