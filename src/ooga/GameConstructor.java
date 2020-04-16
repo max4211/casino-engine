@@ -31,11 +31,12 @@ public class GameConstructor {
     private final File handFile ;
     private final File viewFile;
 
-    private static final String DECK_KEY = "deck";
-    private static final String GAME_KEY = "game";
-    private static final String PLAYER_KEY = "players";
-    private static final String HAND_KEY = "hands";
-    private static final String VIEW_KEY = "view";
+    //TODO: duplication
+    private static final String DECK_KEY = "Deck";
+    private static final String GAME_KEY = "Game";
+    private static final String PLAYER_KEY = "Players";
+    private static final String HAND_KEY = "Hands";
+    private static final String VIEW_KEY = "View";
 
     public GameConstructor(Map<String, File> myFiles) {
         deckFile = myFiles.get(DECK_KEY);

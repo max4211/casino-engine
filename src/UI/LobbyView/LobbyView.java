@@ -16,18 +16,15 @@ public class LobbyView implements NodeViewInterface {
     private static final String TYPE_TAG = "Type";
     private static final String ICON_TAG = "Icon";
 
-    private static final String DECK_TAG = "Deck";
-    private static final String GAME_TAG = "Game";
-    private static final String HAND_TAG = "Hands";
-    private static final String PLAYER_TAG = "Players";
-    private static final String VIEW_TAG = "View";
-
     private static final String CUSTOM = "Custom";
     private static final String STANDARD = "Standard";
 
+    private static final String PATH_TO_CSS = "styleSheets/";
+
     public LobbyView(String styleSheet, List<Map<String, String>> generalInfo, List<Map<String, File>> files) {
         myFlowPane = new FlowPane();
-        myFlowPane.getStylesheets().add(styleSheet);
+        System.out.println(styleSheet);
+        myFlowPane.getStylesheets().add(PATH_TO_CSS + styleSheet);
 
         for (int i = 0; i < generalInfo.size(); i++) {
             Map<String, String> tempGeneralInfo = generalInfo.get(i);
