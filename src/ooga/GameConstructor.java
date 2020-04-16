@@ -114,6 +114,7 @@ public class GameConstructor {
             Constructor ctor = clazz.getConstructor(ControllerBundle.class, Map.class);
             return (Controller) ctor.newInstance(myBundle, myParams);
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("unable to create controller");
             throw new ReflectionException(e);
         }
