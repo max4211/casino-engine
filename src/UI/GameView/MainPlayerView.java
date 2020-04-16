@@ -58,4 +58,8 @@ public class MainPlayerView implements NodeViewInterface, TaggableInterface {
     public void waitUntilReady(SelectorType mySelectionType) {
         SelectorReadyInput.pauseUntilReady(myView, mySelectionType);
     }
+
+    public void updateLanguage() {
+        if (myPlayer != null) myPlayer.updateLanguage();
+    }
 }

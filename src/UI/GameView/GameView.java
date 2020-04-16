@@ -5,6 +5,7 @@ import UI.GameView.Settings.StylePicker;
 import UI.Interfaces.Executor;
 import UI.Interfaces.GameViewInterface;
 import UI.Interfaces.NodeViewInterface;
+import UI.LanguageBundle;
 import UI.Selectors.ActionSelector;
 import UI.Selectors.SelectorType;
 import UI.Selectors.WagerSelector;
@@ -12,7 +13,6 @@ import Utility.CardTriplet;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameView implements GameViewInterface, NodeViewInterface {
@@ -22,6 +22,9 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
 
+    private LanguageBundle myLanguageBundle;
+    private static final int DEFAULT_LANGUAGE_INDEX = 0;
+
     public GameView(List<String> styleSheets, List<String> languages) {
         myBorderPane = new BorderPane();
         myOtherPlayers = new OtherPlayersView();
@@ -29,16 +32,9 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myMainPlayer = new MainPlayerView();
         myBorderPane.setBottom(myMainPlayer.getView());
 
-        ArrayList allchoices = new ArrayList();
-        allchoices.add("Dark");
-        allchoices.add("Coral");
-        allchoices.add("Light");
-
-        ArrayList allLanguages = new ArrayList();
-        allLanguages.add("English");
-        allLanguages.add("Spanish");
-        myBorderPane.setRight(new StylePicker(allchoices, e -> updateStyleSheet(e)).getView());
-        myBorderPane.setRight(new LanguagePicker(allLanguages, e -> updateLanguage(e)).getView());
+        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
+        myBorderPane.setRight(new StylePicker(styleSheets, e -> updateStyleSheet(e)).getView());
+        myBorderPane.setRight(new LanguagePicker(languages, e -> updateLanguage(e)).getView());
     }
 
     public BorderPane getView() {
@@ -82,7 +78,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void addBet(List<CardTriplet> handInfo, double wager, int playerID, int betID) {
-        getPlayerView(playerID).addBet(handInfo, wager, betID);
+        getPlayerView(playerID).addBet(handInfo, wager, betID, myLanguageBundle);
     }
 
     @Override
@@ -138,7 +134,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void addPlayer(String name, int playerId, double bankroll) {
-        myOtherPlayers.addPlayer(name, playerId, bankroll);
+        myOtherPlayers.addPlayer(name, playerId, bankroll, myLanguageBundle);
     }
 
     @Override
@@ -192,6 +188,8 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     private void updateLanguage(String newLanguage) {
-        System.out.println(newLanguage);
+        //TODO: errors no longer static, label formatting
+        myLanguageBundle.setLanguage(newLanguage);
+        myMainPlayer.updateLanguage();
     }
 }

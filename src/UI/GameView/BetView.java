@@ -2,6 +2,7 @@ package UI.GameView;
 
 import UI.Interfaces.TaggableInterface;
 import UI.Interfaces.NodeViewInterface;
+import UI.LanguageBundle;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.VBox;
@@ -25,7 +26,7 @@ public class BetView implements NodeViewInterface, TaggableInterface {
 
     private Formatter myFormatter;
 
-    public BetView(List<CardTriplet> hand, double wager, int id) {
+    public BetView(List<CardTriplet> hand, double wager, int id, LanguageBundle languageBundle) {
         myView = new VBox();
         myFormatter = new Formatter();
         numberOfCards = hand.size();
@@ -37,7 +38,7 @@ public class BetView implements NodeViewInterface, TaggableInterface {
         myFormatter.formatFixedVBox(myView, HEIGHT, initialWidth);
 
         myHand = new HandView(hand);
-        myWager = new WagerView(wager);
+        myWager = new WagerView(wager, languageBundle);
 
         myView.getChildren().addAll(myHand.getView(), myWager.getView());
     }

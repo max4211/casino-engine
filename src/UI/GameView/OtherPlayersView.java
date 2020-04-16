@@ -1,6 +1,7 @@
 package UI.GameView;
 
 import UI.Interfaces.NodeViewInterface;
+import UI.LanguageBundle;
 import Utility.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
@@ -28,8 +29,8 @@ OtherPlayersView implements NodeViewInterface {
     }
 
     // TODO: duplication here
-    public void addPlayer(String name, int playerID, double bankroll) {
-        PlayerView addedPlayerView = new PlayerView(name, playerID, bankroll);
+    public void addPlayer(String name, int playerID, double bankroll, LanguageBundle languageBundle) {
+        PlayerView addedPlayerView = new PlayerView(name, playerID, bankroll, languageBundle);
         addPlayer(addedPlayerView);
     }
 

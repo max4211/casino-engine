@@ -5,11 +5,17 @@ import Utility.CardTriplet;
 import Utility.Generator;
 import Utility.StringPair;
 import actionFactory.Action;
+import actionFactory.ActionFactory;
+import controller.bundles.ControllerBundle;
 import controller.enums.Cardshow;
+import controller.enums.Competition;
 import controller.enums.EntryBet;
 import controller.enums.Goal;
+import controller.interfaces.ControllerInterface;
+import controller.interfaces.GarbageCollect;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
+import engine.dealer.Card;
 import engine.evaluator.bet.BetEvaluator;
 import engine.evaluator.handclassifier.HandClassifier;
 import engine.player.Player;
@@ -33,6 +39,10 @@ public class AdversaryController extends Controller {
                       Cardshow cardshow, Goal goal) {
         super(table, gameView, entryBet, playerActions, dealerAction,
                 handClassifier, betEvaluator, cardshow, goal);
+    }
+
+    public AdversaryController(ControllerBundle bundle) {
+        super(bundle);
     }
 
     @Override

@@ -1,56 +1,74 @@
 package UI.GameView;
 
 import UI.Interfaces.NodeViewInterface;
+import UI.LanguageBundle;
 import Utility.Formatter;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-
-import java.util.ResourceBundle;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 
 public class PlayerInfoView implements NodeViewInterface {
 
-    private VBox myDetails;
-    private Formatter myFormatter;
+    private VBox myDetailsBox;
+    private HBox myNameBox;
+    private HBox myBankBox;
 
-    private static final double CORNER_RADIUS = 5;
-    private static final Color backgroundColor = Color.web("F3B6FF");
+    private Formatter myFormatter;
 
     private static final String NAME_KEY = "Name";
     private static final String BANK_KEY = "Bank";
-    private static final int BANK_INDEX = 1;
 
     // TODO: MAKE A UTILITY CLASS WITH THESE VALUES
     private static final double CARD_HEIGHT = 100;
     private static final double WAGER_HEIGHT = 20;
     private static final double VIEW_WIDTH = 100;
 
-    private static final String RESOURCE_LANGUAGE = "English";
-    private ResourceBundle myResources = ResourceBundle.getBundle(RESOURCE_LANGUAGE);
+    private static final int RESOURCE_TEXT_INDEX = 0;
+    private static final int BANK_NUMBER_INDEX = 1;
+
+    private static LanguageBundle myLanguageBundle;
+
     private static final String PLAYER_INFO_CSS_ID = "player-info";
 
     // TODO: noticing some similarities with WagerView, overlap
-    public PlayerInfoView(String name, double bankroll) {
-        myDetails = new VBox();
-        myDetails.setId(PLAYER_INFO_CSS_ID);
+    public PlayerInfoView(String name, double bankroll, LanguageBundle languageBundle) {
+        myDetailsBox = new VBox();
+        myDetailsBox.setId(PLAYER_INFO_CSS_ID);
         myFormatter = new Formatter();
-        myFormatter.formatFixedVBox(myDetails, CARD_HEIGHT + WAGER_HEIGHT, VIEW_WIDTH);
-        myDetails.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(CORNER_RADIUS), null)));
+        myFormatter.formatFixedVBox(myDetailsBox, CARD_HEIGHT + WAGER_HEIGHT, VIEW_WIDTH);
+        myLanguageBundle = languageBundle;
 
+        createHBox(myNameBox, NAME_KEY, name);
+        createHBox(myBankBox, BANK_KEY, String.valueOf(bankroll));
 
-        Label nameLabel = new Label(myResources.getString(NAME_KEY).concat(name));
-        myDetails.getChildren().add(nameLabel);
-        myDetails.setVgrow(nameLabel, Priority.ALWAYS);
-        updateBankroll(bankroll);
+        myDetailsBox.setVgrow(myNameBox, Priority.ALWAYS);
+        myDetailsBox.setVgrow(myBankBox, Priority.ALWAYS);
+    }
+
+    private void createHBox(HBox rawHBox, String bundleKey, String userInput) {
+        rawHBox = new HBox();
+        rawHBox.getChildren().add(new Label(myLanguageBundle.getBundle().getString(NAME_KEY)));
+        Label nameInputLabel = new Label(userInput);
+        rawHBox.getChildren().add(nameInputLabel);
+        rawHBox.setHgrow(nameInputLabel, Priority.ALWAYS);
+        myDetailsBox.getChildren().add(rawHBox);
     }
 
     public VBox getView() {
-        return myDetails;
+        return myDetailsBox;
+    }
+
+    public void updateLanguage() {
+        myNameBox.getChildren().remove(RESOURCE_TEXT_INDEX);
+        myNameBox.getChildren().add(RESOURCE_TEXT_INDEX, new Label(myLanguageBundle.getBundle().getString(NAME_KEY)));
+        myBankBox.getChildren().remove(RESOURCE_TEXT_INDEX);
+        myBankBox.getChildren().add(RESOURCE_TEXT_INDEX, new Label(myLanguageBundle.getBundle().getString(BANK_KEY)));
     }
 
     public void updateBankroll(double amount) {
-        if (myDetails.getChildren().size() == 2) myDetails.getChildren().remove(BANK_INDEX);
-        myDetails.getChildren().add(new Label(myResources.getString(BANK_KEY) + amount));
+        if (myBankBox.getChildren().size() == 2) myBankBox.getChildren().remove(BANK_NUMBER_INDEX);
+        myBankBox.getChildren().add(BANK_NUMBER_INDEX, new Label(String.valueOf(amount)));
     }
 }
 
