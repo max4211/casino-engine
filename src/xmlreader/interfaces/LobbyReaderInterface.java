@@ -10,7 +10,8 @@ public interface LobbyReaderInterface {
      * Get meta parameters (for now just link to stylesheet)
      * @return
      */
-    String getStylesheet();
+    String getLobbyStylesheet();
+    String getErrorStylesheet();
 
     /**
      * Get a list of maps for all icon arguments
