@@ -1,6 +1,6 @@
 package ooga;
 
-import UI.ExceptionHandling.ExceptionHandler;
+import UI.ExceptionHandling.ExceptionDisplayer;
 import UI.LobbyView.LobbyView;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -31,7 +31,7 @@ public class Main extends Application {
             String myLobbyCSS = myLobbyReader.getLobbyStylesheet();
             String myErrorCSS = myLobbyReader.getErrorStylesheet();
             String myErrorIcon = myLobbyReader.getErrorIcon();
-            ExceptionHandler.setStyleSheet(myErrorIcon, myErrorCSS);
+            ExceptionDisplayer.setStyleSheet(myErrorIcon, myErrorCSS);
             List<Map<String, String>> myLobbyInfo = myLobbyReader.getBundleArguments();
             List<Map<String, File>> myLobbyFiles = myLobbyReader.getFileTags();
             myLobbyView = new LobbyView(myLobbyCSS, myLobbyInfo, myLobbyFiles);

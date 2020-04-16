@@ -1,5 +1,6 @@
 package UI.GameView;
 
+import UI.ExceptionHandling.ExceptionDisplayer;
 import UI.GameView.Settings.LanguagePicker;
 import UI.GameView.Settings.StylePicker;
 import UI.Interfaces.Executor;
@@ -22,7 +23,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
     private HandView myCommons;
-
+    private ExceptionDisplayer myExceptionDisplayer;
     private LanguageBundle myLanguageBundle;
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
@@ -32,10 +33,10 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myBorderPane.setLeft(myOtherPlayers.getView());
         myMainPlayer = new MainPlayerView();
         myBorderPane.setBottom(myMainPlayer.getView());
-
-        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
         myBorderPane.setRight(new StylePicker(styleSheets, e -> updateStyleSheet(e)).getView());
         myBorderPane.setRight(new LanguagePicker(languages, e -> updateLanguage(e)).getView());
+        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
+        //myExceptionDisplayer = new ExceptionDisplayer(null, null, null);
     }
 
     public BorderPane getView() {
