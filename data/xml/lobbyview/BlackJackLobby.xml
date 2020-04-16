@@ -17,5 +17,6 @@
         <Name>Custom Game</Name>
         <Type>Custom</Type>
         <Icon>QuestionMark.jpg</Icon>
+        <Deck>data/xml/deck/guy.xml</Deck>
     </Bundle>
 </Lobby>
