@@ -12,6 +12,7 @@ public interface LobbyReaderInterface {
      */
     String getLobbyStylesheet();
     String getErrorStylesheet();
+    String getErrorIcon();
 
     /**
      * Get a list of maps for all icon arguments

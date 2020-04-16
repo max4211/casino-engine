@@ -1,9 +1,13 @@
 package ooga;
 
 import UI.GameView.GameView;
-import controller.Controller;
+import controller.gametype.AdversaryController;
+import controller.gametype.Controller;
 import Utility.StringPair;
-import controller.*;
+import controller.enums.Cardshow;
+import controller.enums.Competition;
+import controller.enums.EntryBet;
+import controller.enums.Goal;
 import engine.dealer.Dealer;
 import engine.dealer.Deck;
 import engine.evaluator.bet.BetEvaluator;
@@ -65,9 +69,9 @@ public class mainTester extends Application {
         Cardshow myCardShow = Cardshow.valueOf(gameReader.getCardShow().toUpperCase());
         Goal myGoal = Goal.valueOf(gameReader.getGoal().toUpperCase());
 
-        return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction,
+        return new AdversaryController(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction,
                 myHandClassifier, myBetEvaluator,
-                myCompetition, myCardShow, myGoal);
+                myCardShow, myGoal);
     }
 
     // TODO - give game view parameters form the XML file
@@ -77,7 +81,6 @@ public class mainTester extends Application {
         return gameView;
     }
 
-    // TODO - refactor game code into non static objects, currently running through main must be static
     public static void main (String[] args) {
         launch(args);
     }

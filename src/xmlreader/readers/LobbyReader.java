@@ -22,6 +22,7 @@ public class LobbyReader implements LobbyReaderInterface  {
 
     private static final String LOBBY_STYLESHEET = "LobbyStylesheet";
     private static final String ERROR_STYLESHEET = "ErrorStylesheet";
+    private static final String ERROR_ICON = "ErrorIcon";
 
     private static final String BUNDLE_TAG = "Bundle";
     private static final String NAME_TAG = "Name";
@@ -51,6 +52,11 @@ public class LobbyReader implements LobbyReaderInterface  {
     @Override
     public String getErrorStylesheet() {
         return XMLParseInterface.getSingleTag(myDocument, ERROR_STYLESHEET);
+    }
+
+    @Override
+    public String getErrorIcon() {
+        return XMLParseInterface.getSingleTag(myDocument, ERROR_ICON);
     }
 
     @Override

@@ -2,7 +2,13 @@ package ooga;
 
 import UI.GameView.GameView;
 import Utility.StringPair;
-import controller.*;
+import controller.enums.Cardshow;
+import controller.enums.Competition;
+import controller.enums.EntryBet;
+import controller.enums.Goal;
+import controller.gametype.AdversaryController;
+import controller.gametype.Controller;
+import engine.adversary.Adversary;
 import engine.dealer.Dealer;
 import engine.dealer.Deck;
 import engine.evaluator.bet.BetEvaluator;
@@ -66,10 +72,6 @@ public class GameConstructor {
 
             Table myTable = constructTable(gameReader, playerReader, deckReader);
             GameView myGameView = constructGameView(viewReader);
-            // TODO - this is view related, worked in main because that had a primary stage but now we don't
-            // Maybe pass primary stage in?
-//        primaryStage.setScene(new Scene(myGameView.getView(), viewReader.getScreenWidth(), viewReader.getScreenWidth()));
-//        primaryStage.show();
 
             Controller myController = constructController(gameReader, handReader, myTable, myGameView);
             myController.startGame();
@@ -113,9 +115,9 @@ public class GameConstructor {
         Cardshow myCardShow = Cardshow.valueOf(gameReader.getCardShow().toUpperCase());
         Goal myGoal = Goal.valueOf(gameReader.getGoal().toUpperCase());
 
-        return new Controller(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction,
+        return new AdversaryController(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction,
                 myHandClassifier, myBetEvaluator,
-                myCompetition, myCardShow, myGoal);
+                myCardShow, myGoal);
     }
 
     // TODO - give game view parameters form the XML file
