@@ -75,7 +75,7 @@ public class Controller implements ControllerInterface {
     }
 
     private void showGameViewRestart() {
-        this.myGameView.promptNewGame(() -> this.restartGame());
+        this.myGameView.promptNewGame(this::restartGame);
     }
 
     private void restartGame() {
