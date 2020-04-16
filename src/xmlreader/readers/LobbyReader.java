@@ -17,11 +17,11 @@ public class LobbyReader implements LobbyReaderInterface  {
     private static final String NAME_TAG = "Name";
     private static final String ICON_TAG = "Icon";
 
-    private static final String DECK_TAG = "DeckFile";
-    private static final String GAME_TAG = "GameFile";
-    private static final String HAND_TAG = "HandFile";
-    private static final String PLAYER_TAG = "PlayerFIle";
-    private static final String VIEW_TAG = "ViewFile";
+    private static final String DECK_TAG = "Deck";
+    private static final String GAME_TAG = "Game";
+    private static final String HAND_TAG = "Hands";
+    private static final String PLAYER_TAG = "Players";
+    private static final String VIEW_TAG = "View";
 
     public LobbyReader(File file) throws IOException, SAXException, ParserConfigurationException {
         myDocument = XMLGeneratorInterface.createDocument(file);
