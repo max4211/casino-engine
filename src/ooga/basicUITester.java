@@ -26,7 +26,8 @@ public class basicUITester extends Application {
         primaryStage.setTitle("UI Tester");
         BorderPane root = new BorderPane();
 
-        ExceptionHandler.displayException("exceptionIcon.png", "lobbySunrise.css", new NullFileException("deck"));
+        ExceptionHandler.setStyleSheet("exceptionIcon.png", "fire.css");
+        ExceptionHandler.displayException(new NullFileException("deck"));
 //        testCards(root);
 //        testBets(root);
 //        testPlayers(root);

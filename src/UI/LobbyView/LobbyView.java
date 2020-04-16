@@ -52,7 +52,9 @@ public class LobbyView implements NodeViewInterface {
         for (String xmlType : myXMLFiles.keySet()) {
             if (myXMLFiles.get(xmlType) == null) {
                 ExceptionHandler.displayException(new NullFileException(xmlType));
-                myXMLFiles.put(xmlType, XMLChooser.getXMLFile(xmlType));
+                File newXml = XMLChooser.getXMLFile(xmlType);
+                if (newXml == null) return;
+                myXMLFiles.put(xmlType, newXml);
             }
         }
         GameConstructor newGame = new GameConstructor(myXMLFiles);

@@ -2,10 +2,3 @@
     -fx-background-color: linear-gradient(#74b1ff, rgba(146, 219, 203, 0.87), #dddddd);
 }
 
-.dialog-pane {
-    -fx-background-color: #cd6881;
-    -fx-font-family: "American Typewriter";
-    -fx-font-size: 20;
-    -fx-text-fill: rgba(48, 0, 255, 0);
-}
-

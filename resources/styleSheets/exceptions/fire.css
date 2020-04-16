@@ -1,0 +1,35 @@
+.dialog-pane {
+    -fx-background-color: #cd6881;
+    -fx-font-family: "American Typewriter";
+    -fx-font-size: 20;
+    -fx-text-fill: rgba(48, 0, 255, 0);
+}
+
+.dialog-pane > .button-bar > .container {
+    -fx-background-color: pink;
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color: #f4ff5f;
+}
+
+.dialog-pane:header .header-panel .label{
+    -fx-text-fill: #514c6e;
+    -fx-font-size:15;
+}
+
+.dialog-pane .image{
+    background-image: url("exceptionIcon.png");
+}
+.dialog-pane .button{
+    -fx-background-color: #fff5c6;
+    -fx-alignment: center;
+    -fx-text-fill: #ff416d;
+    -fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
+}
+
+.dialog-pane .button:hover{
+    -fx-background-color:white;
+    -fx-text-fill:black;
+    -fx-font-weight:bold;
+}
