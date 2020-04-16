@@ -1,5 +1,6 @@
 package UI.GameView;
 
+import UI.GameView.Settings.LanguagePicker;
 import UI.GameView.Settings.StylePicker;
 import UI.Interfaces.Executor;
 import UI.Interfaces.GameViewInterface;
@@ -21,7 +22,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
 
-    public GameView(List<String> styleSheets) {
+    public GameView(List<String> styleSheets, List<String> languages) {
         myBorderPane = new BorderPane();
         myOtherPlayers = new OtherPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
@@ -32,8 +33,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         allchoices.add("Dark");
         allchoices.add("Coral");
         allchoices.add("Light");
-        myBorderPane.setRight(new StylePicker(allchoices, e -> updateStyleSheet(e)).getView());
 
+        ArrayList allLanguages = new ArrayList();
+        allLanguages.add("English");
+        allLanguages.add("Spanish");
+        myBorderPane.setRight(new StylePicker(allchoices, e -> updateStyleSheet(e)).getView());
+        myBorderPane.setRight(new LanguagePicker(allLanguages, e -> updateLanguage(e)).getView());
     }
 
     public BorderPane getView() {
@@ -184,5 +189,9 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private void updateStyleSheet(String newStylesheet) {
         myBorderPane.getStylesheets().clear();
         myBorderPane.getStylesheets().add(newStylesheet);
+    }
+
+    private void updateLanguage(String newLanguage) {
+        System.out.println(newLanguage);
     }
 }

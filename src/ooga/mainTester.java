@@ -76,7 +76,7 @@ public class mainTester extends Application {
 
     // TODO - give game view parameters form the XML file
     private static GameView constructGameView() {
-        GameView gameView = new GameView(null);
+        GameView gameView = new GameView(null, null);
         gameView.renderTable("StandardBJTable.jpeg");
         return gameView;
     }

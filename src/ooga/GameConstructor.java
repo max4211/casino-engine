@@ -8,7 +8,6 @@ import controller.enums.EntryBet;
 import controller.enums.Goal;
 import controller.gametype.AdversaryController;
 import controller.gametype.Controller;
-import engine.adversary.Adversary;
 import engine.dealer.Dealer;
 import engine.dealer.Deck;
 import engine.evaluator.bet.BetEvaluator;
@@ -122,7 +121,7 @@ public class GameConstructor {
 
     // TODO - give game view parameters form the XML file
     private static GameView constructGameView(ViewReader viewReader) {
-        GameView gameView = new GameView(null);
+        GameView gameView = new GameView(null, null);
         Stage newGameStage = new Stage();
         newGameStage.setScene(new Scene(gameView.getView(), viewReader.getScreenWidth(), viewReader.getScreenWidth()));
         gameView.renderTable("StandardBJTable.jpeg");
