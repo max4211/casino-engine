@@ -2,10 +2,8 @@ package engine.evaluator.bet;
 
 import engine.bet.Bet;
 import engine.evaluator.handevaluator.HandEvaluator;
-import engine.hand.ClassifiedHand;
-import engine.hand.PlayerHand;
 import engine.hand.HandOutcome;
-import org.jetbrains.annotations.NotNull;
+import engine.hand.PlayerHand;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -25,9 +23,8 @@ public class BetEvaluator implements BetEvaluatorInterface {
     }
 
     @Override
-    public void evaluateBets(@NotNull List<Bet> bets) {
+    public void evaluateBets(List<Bet> bets) {
         PriorityQueue<Bet> pq = new PriorityQueue<>(bets.size(), new BetComparator());
-        pq.addAll(bets);
         assignSortedBets(pq);
     }
 
