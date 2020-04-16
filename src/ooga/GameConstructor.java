@@ -111,8 +111,8 @@ public class GameConstructor {
         try {
             String controllerPath = createControllerPath(myCompetition);
             Class clazz = Class.forName(controllerPath);
-            Constructor ctor = clazz.getConstructor(ControllerBundle.class);
-            return (Controller) ctor.newInstance(myBundle);
+            Constructor ctor = clazz.getConstructor(ControllerBundle.class, Map.class);
+            return (Controller) ctor.newInstance(myBundle, myParams);
         } catch (Exception e) {
             System.out.println("unable to create controller");
             throw new ReflectionException(e);

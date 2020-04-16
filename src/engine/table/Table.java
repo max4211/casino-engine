@@ -124,7 +124,7 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public Adversary createAdversary(int min) {
+    public Adversary createAdversary(double min) {
         this.myAdversary = new Adversary(min);
         giveAdversaryCard();
         giveAdversaryCard();

@@ -33,7 +33,7 @@ public class AdversaryController extends Controller {
 
     // TODO - refactor into data files (in adversary construction?)
     private static final String MINIMUM_TAG = "Minimum";
-    private int ADVERSARY_MIN = 17;
+    private double ADVERSARY_MIN;
 
     @Deprecated
     public AdversaryController(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, StringPair dealerAction,
@@ -53,7 +53,7 @@ public class AdversaryController extends Controller {
     }
 
     private void assignParams(Map<String, String> params) {
-
+        this.ADVERSARY_MIN = Double.parseDouble(params.get(MINIMUM_TAG));
     }
 
     @Override

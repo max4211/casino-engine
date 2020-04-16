@@ -23,6 +23,7 @@ public class GameReader implements GameReaderInterface {
     private static final String XML_EXTENSION = ".xml";
 
     private static final String NAME_TAG = "Name";
+    private static final String TEXT_NODE = "#text";
 
     private static final String ENTRY_TAG = "EntryBet";
     private static final String DEALERACTION_TAG = "DealerAction";
@@ -73,13 +74,14 @@ public class GameReader implements GameReaderInterface {
 
     @Override
     public Map<String, String> getCompetition() {
-        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
         Map<String, String> map = new HashMap<>();
         NodeList nodeList = XMLParseInterface.getNodeList(myDocument, COMPETITION_TAG);
         NodeList childNodes = nodeList.item(ZERO).getChildNodes();
-        for (int i = 0; i < childNodes.getLength(); i ++) {
-            Node n = nodeList.item(i);
-            map.put(n.getNodeName(), n.getTextContent());
+        Node child = childNodes.item(ZERO);
+        while (child.getNextSibling() != null) {
+            child = child.getNextSibling();
+            if (!child.getNodeName().equals(TEXT_NODE))
+                map.put(child.getNodeName(), child.getTextContent());
         }
         return map;
     }
