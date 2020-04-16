@@ -2,7 +2,6 @@ package Utility;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -28,10 +27,11 @@ public class Formatter {
         rawVBox.setAlignment(Pos.CENTER);
     }
 
-    public void formatIconView(ImageView rawImageView) {
-        rawImageView.setFitWidth(IMAGE_FIT_WIDTH);
-        rawImageView.setFitHeight(IMAGE_FIT_HEIGHT);
+    public void formatIconView(Button rawIconView) {
+        rawIconView.setPrefHeight(100);
+        rawIconView.setPrefWidth(100);
     }
+
     // TODO: duplication here, talk to DUVALL
     public void formatUnfixedCenter(VBox rawVBox) {
         setMaxBounds(rawVBox);

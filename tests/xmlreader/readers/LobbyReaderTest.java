@@ -27,7 +27,7 @@ class LobbyReaderTest {
     void getStylesheet() throws ParserConfigurationException, SAXException, IOException {
         final String filename = "data/xml/lobbyview/BlackJackLobby.xml";
         LobbyReader reader = new LobbyReader(filename);
-        String result = reader.getStylesheet();
+        String result = reader.getLobbyStylesheet();
         String expected = "#7454c4";
         assertEquals(expected, result);
     }

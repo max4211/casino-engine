@@ -27,7 +27,7 @@ public class Main extends Application {
         LobbyView myLobbyView;
         try {
             LobbyReader myLobbyReader = new LobbyReader(PATH_TO_LOBBY_XML + LOBBY_XML_FILE);
-            String myLobbyCSS = myLobbyReader.getStylesheet();
+            String myLobbyCSS = myLobbyReader.getLobbyStylesheet();
             List<Map<String, String>> myLobbyInfo = myLobbyReader.getBundleArguments();
             List<Map<String, File>> myLobbyFiles = myLobbyReader.getFileTags();
             myLobbyView = new LobbyView(myLobbyCSS, myLobbyInfo, myLobbyFiles);

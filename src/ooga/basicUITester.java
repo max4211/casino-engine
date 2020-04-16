@@ -1,15 +1,16 @@
 package ooga;
 
+import UI.ExceptionHandling.ExceptionHandler;
 import UI.GameView.BetView;
 import UI.GameView.CardView;
-import UI.GameView.GameView;
 import UI.GameView.PlayerView;
 import UI.Selectors.ActionSelector;
 import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
+import exceptions.NullFileException;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -25,8 +26,8 @@ public class basicUITester extends Application {
         primaryStage.setTitle("UI Tester");
         BorderPane root = new BorderPane();
 
-        GameView gv = new GameView();
-        gv.displayException(new Exception());
+        ExceptionHandler.setStyleSheet("exceptionIcon.png", "fire.css");
+        ExceptionHandler.displayException(new NullFileException("deck"));
 //        testCards(root);
 //        testBets(root);
 //        testPlayers(root);

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Lobby>
-    <Stylesheet>Normal.css</Stylesheet>
+    <LobbyStylesheet>lobbySunrise.css</LobbyStylesheet>
+    <ErrorStylesheet>lobbySunrise.css</ErrorStylesheet>
     <Bundle>
         <Name>Blackjack</Name>
         <Type>Standard</Type>
-        <Icon>BlackJackIcon.png</Icon>
+        <Icon>Black_Jack-512.png</Icon>
         <Files>
             <Deck>data/xml/deck/standard.xml</Deck>
             <Game>data/xml/game/blackjackGame_v2.xml</Game>
@@ -16,6 +17,6 @@
     <Bundle>
         <Name>Custom Game</Name>
         <Type>Custom</Type>
-        <Icon>QuestionMark.jpg</Icon>
+        <Icon>mouseIcon.png</Icon>
     </Bundle>
 </Lobby>

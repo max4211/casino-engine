@@ -10,8 +10,8 @@ public class CustomGameIcon extends GameIcon {
 
     private Set<String> myNeededXMLs;
 
-    public CustomGameIcon(String imageFile, Consumer<Map<String, File>> myFileAccepter, Set<String> neededXMLs) {
-        super(imageFile, myFileAccepter);
+    public CustomGameIcon(String imageFile, String gameName, Consumer<Map<String, File>> myFileAccepter, Set<String> neededXMLs) {
+        super(imageFile, gameName, myFileAccepter);
         myNeededXMLs = neededXMLs;
     }
 
