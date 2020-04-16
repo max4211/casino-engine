@@ -1,8 +1,10 @@
 package UI;
 
+import UI.Selectors.LanguageBundleInterface;
+
 import java.util.ResourceBundle;
 
-public class LanguageBundle {
+public class LanguageBundle implements LanguageBundleInterface {
 
     private String myLanguage;
     private ResourceBundle myResources;
@@ -16,11 +18,13 @@ public class LanguageBundle {
         this.myResources = ResourceBundle.getBundle(this.myLanguage);
     }
 
+    @Override
     public void setLanguage(String language) {
         this.myLanguage = language;
         assignBundle();
     }
 
+    @Override
     public ResourceBundle getBundle() {
         return this.myResources;
     }
