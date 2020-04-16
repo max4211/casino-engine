@@ -26,11 +26,11 @@ public class LobbyView implements NodeViewInterface {
         ALL_XMLS.add("view");
 
         Map<String, File> BLACKJACK_XMLS = new HashMap<>();
-        BLACKJACK_XMLS.put("deck", new File("src/data/deck/standard.xml"));
-        BLACKJACK_XMLS.put("game", new File("src/data/game/blackjackGame_v2.xml"));
-        BLACKJACK_XMLS.put("players", new File("src/data/players/players.xml"));
-        BLACKJACK_XMLS.put("hands", new File("src/data/hands/hands.xml"));
-        BLACKJACK_XMLS.put("view", new File("src/data/view/view.xml"));
+        BLACKJACK_XMLS.put("deck", new File("data/xml/deck/standard.xml"));
+        BLACKJACK_XMLS.put("game", new File("data/xml/game/blackjackGame_v2.xml"));
+        BLACKJACK_XMLS.put("players", new File("data/xml/players/players.xml"));
+        BLACKJACK_XMLS.put("hands", new File("data/xml/hands/hands.xml"));
+        BLACKJACK_XMLS.put("view", new File("data/xml/view/view.xml"));
 
         CustomGameIcon myButton = new CustomGameIcon("QuestionMark.jpg", c -> createGame(c), ALL_XMLS);
         StandardGameIcon myButton2 = new StandardGameIcon("BlackJackIcon.png", c -> createGame(c), BLACKJACK_XMLS);
