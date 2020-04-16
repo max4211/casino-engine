@@ -17,6 +17,7 @@ public class ExceptionHandler {
     private static final String BUTTON_MESSAGE = "Got it!";
 
     public static void displayException(Exception ex) {
+        myDisplay.setContentText(ex.getMessage());
         myDisplay.showAndWait();
     }
 
