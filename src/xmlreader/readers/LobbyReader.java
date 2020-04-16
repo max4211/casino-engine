@@ -9,6 +9,7 @@ import xmlreader.interfaces.XMLParseInterface;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,18 +37,43 @@ public class LobbyReader implements LobbyReaderInterface  {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
     }
 
-
-    public String getName() {
-        return XMLParseInterface.getSingleTag(myDocument, NAME_TAG);
-    }
-
     @Override
     public String getStylesheet() {
         return null;
     }
 
     @Override
-    public List<Map<String, String>> getIconArgumetns() {
+    public List<Map<String, String>> getBundleArguments() {
+        List<Map<String, String>> list = new ArrayList<>();
         return null;
     }
+
+    private String getName() {
+        return XMLParseInterface.getSingleTag(myDocument, NAME_TAG);
+    }
+
+    private String getIcon() {
+        return XMLParseInterface.getSingleTag(myDocument, ICON_TAG);
+    }
+
+    private String getDeckFile() {
+        return XMLParseInterface.getSingleTag(myDocument, DECK_TAG);
+    }
+
+    private String getGameFile() {
+        return XMLParseInterface.getSingleTag(myDocument, GAME_TAG);
+    }
+
+    private String getHandFile() {
+        return XMLParseInterface.getSingleTag(myDocument, HAND_TAG);
+    }
+
+    private String getPlayerFile() {
+        return XMLParseInterface.getSingleTag(myDocument, PLAYER_TAG);
+    }
+
+    private String getViewFile() {
+        return XMLParseInterface.getSingleTag(myDocument, VIEW_TAG);
+    }
+
 }
