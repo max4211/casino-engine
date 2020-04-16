@@ -2,6 +2,7 @@ package ooga;
 
 import UI.GameView.BetView;
 import UI.GameView.CardView;
+import UI.GameView.GameView;
 import UI.GameView.PlayerView;
 import UI.Selectors.ActionSelector;
 import UI.Selectors.WagerSelector;
@@ -24,7 +25,9 @@ public class basicUITester extends Application {
         primaryStage.setTitle("UI Tester");
         BorderPane root = new BorderPane();
 
-        testCards(root);
+        GameView gv = new GameView();
+        gv.displayException(new Exception());
+//        testCards(root);
 //        testBets(root);
 //        testPlayers(root);
 //        testSelectors(root);

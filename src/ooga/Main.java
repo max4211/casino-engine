@@ -23,11 +23,11 @@ public class Main extends Application {
             primaryStage.setScene(myScene);
             primaryStage.show();
         } else {
-            final String deckFile = "src/data/deck/standard.xml";
-            final String gameFile = "src/data/game/blackjackGame_v2.xml";
-            final String playerFile = "src/data/players/players.xml";
-            final String handFile = "src/data/hands/hands.xml";
-            final String viewFile = "src/data/view/view.xml";
+            final String deckFile = "data/xml/deck/standard.xml";
+            final String gameFile = "data/xml/game/blackjackGame_v2.xml";
+            final String playerFile = "data/xml/players/players.xml";
+            final String handFile = "data/xml/hands/hands.xml";
+            final String viewFile = "data/xml/view/view.xml";
             GameConstructor gtor = new GameConstructor(deckFile, gameFile, playerFile, handFile, viewFile);
         }
     }
