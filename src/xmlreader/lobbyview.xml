@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Game>
+    <Name>Blackjack</Name>
+    <Icon>blackjack.jpg</Icon>
+    <Files>
+        <DeckFile></DeckFile>
+        <GameFile></GameFile>
+        <HandFile></HandFile>
+        <PlayerFile></PlayerFile>
+        <ViewFile></ViewFile>
+    </Files>
+</Game>
