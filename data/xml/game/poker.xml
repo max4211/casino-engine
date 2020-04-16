@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Game>
+    <Competition>
+        <Type>Group</Type>
+        <Ante>25</Ante>
+    </Competition>
+    <TableMin>5</TableMin>
+    <TableMax>200</TableMax>
+    <CardShow>Active</CardShow>
+    <Goal>Tournament</Goal>
+    <Actions>
+        <EntryBet>Generic</EntryBet>
+        <DealerAction>
+            <Type>Individual</Type>
+            <Quantity>2</Quantity>
+        </DealerAction>
+        <PlayerAction>
+            <Name>Stay</Name>
+        </PlayerAction>
+        <PlayerAction>
+            <Name>Bet</Name>
+        </PlayerAction>
+        <PlayerAction>
+            <Name>Raise</Name>
+        </PlayerAction>
+        <PlayerAction>
+            <Name>Call</Name>
+        </PlayerAction>
+    </Actions>
+</Game>

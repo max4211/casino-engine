@@ -16,6 +16,18 @@
         </Files>
     </Bundle>
     <Bundle>
+        <Name>Poker</Name>
+        <Type>Standard</Type>
+        <Icon>poker-cards.png</Icon>
+        <Files>
+            <Deck>data/xml/deck/standard.xml</Deck>
+            <Game>data/xml/game/poker.xml</Game>
+            <Hands>data/xml/hands/hands.xml</Hands>
+            <Players>data/xml/players/players.xml</Players>
+            <View>data/xml/view/view.xml</View>
+        </Files>
+    </Bundle>
+    <Bundle>
         <Name>Custom Game</Name>
         <Type>Custom</Type>
         <Icon>mouseIcon.png</Icon>

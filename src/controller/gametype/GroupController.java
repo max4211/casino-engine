@@ -1,43 +1,27 @@
 package controller.gametype;
 
-import UI.GameView.GameView;
-import Utility.CardTriplet;
-import Utility.Generator;
-import Utility.StringPair;
 import actionFactory.Action;
-import actionFactory.ActionFactory;
 import controller.bundles.ControllerBundle;
-import controller.enums.Cardshow;
-import controller.enums.Competition;
-import controller.enums.EntryBet;
-import controller.enums.Goal;
-import controller.interfaces.ControllerInterface;
-import controller.interfaces.GarbageCollect;
-import engine.adversary.Adversary;
 import engine.bet.Bet;
-import engine.dealer.Card;
-import engine.evaluator.bet.BetEvaluator;
-import engine.evaluator.handclassifier.HandClassifier;
 import engine.player.Player;
-import engine.table.Table;
 import exceptions.ReflectionException;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class GroupController extends Controller {
 
-    @Deprecated
-    public GroupController(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, StringPair dealerAction,
-                               HandClassifier handClassifier, BetEvaluator betEvaluator,
-                               Cardshow cardshow, Goal goal) {
-        super(table, gameView, entryBet, playerActions, dealerAction,
-                handClassifier, betEvaluator, cardshow, goal);
+    private static final String ANTE_TAG = "Ante";
+    private double myAnte;
+
+    public GroupController(ControllerBundle bundle, Map<String, String> params) {
+        super(bundle);
+        assignParams(params);
     }
 
-    public GroupController(ControllerBundle bundle) {
-        super(bundle);
+    private void assignParams(Map<String, String> params) {
+        this.myAnte = Double.parseDouble(params.get(ANTE_TAG));
     }
 
     @Override
@@ -56,12 +40,9 @@ public class GroupController extends Controller {
     @Override
     protected void promptForEntryBet() {
         for (Player p: this.myTable.getPlayers()) {
-            this.myGameView.setMainPlayer(p.getID());
-            double min = this.myTable.getTableMin();
-            double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
-            double wager = this.myGameView.selectWager(min, max);
-            Bet b = this.myTable.placeEntryBet(p.getID(), this.myEntryBet, wager);
-            this.myGameView.addBet(new ArrayList<>(), wager, p.getID(), b.getID());
+            Bet b = new Bet(myAnte);
+            p.placeBet(b);
+            this.myGameView.addBet(new ArrayList<>(), myAnte, p.getID(), b.getID());
             this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
     }

@@ -35,18 +35,6 @@ public class AdversaryController extends Controller {
     private static final String MINIMUM_TAG = "Minimum";
     private double ADVERSARY_MIN;
 
-    @Deprecated
-    public AdversaryController(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, StringPair dealerAction,
-                      HandClassifier handClassifier, BetEvaluator betEvaluator,
-                      Cardshow cardshow, Goal goal) {
-        super(table, gameView, entryBet, playerActions, dealerAction,
-                handClassifier, betEvaluator, cardshow, goal);
-    }
-
-    public AdversaryController(ControllerBundle bundle) {
-        super(bundle);
-    }
-
     public AdversaryController(ControllerBundle bundle, Map<String, String> params) {
         super(bundle);
         assignParams(params);
