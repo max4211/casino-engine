@@ -1,5 +1,6 @@
 package UI.GameView;
 
+import UI.GameView.Settings.StylePicker;
 import UI.Interfaces.Executor;
 import UI.Interfaces.GameViewInterface;
 import UI.Interfaces.NodeViewInterface;
@@ -8,9 +9,9 @@ import UI.Selectors.SelectorType;
 import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameView implements GameViewInterface, NodeViewInterface {
@@ -20,25 +21,18 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
 
-    private static final String DEFAULT_CSS = "lobbySunrise.css";
-    private static final String DARK_MODE_CSS = "DarkMode.css";
-    private String myStyleSheet;
-
-    public GameView() {
+    public GameView(List<String> styleSheets) {
         myBorderPane = new BorderPane();
         myOtherPlayers = new OtherPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
-
         myMainPlayer = new MainPlayerView();
         myBorderPane.setBottom(myMainPlayer.getView());
 
-        myBorderPane.getStylesheets().add(DEFAULT_CSS);
+        ArrayList allchoices = new ArrayList();
+        allchoices.add("DarkMode.css");
+        allchoices.add("sunrise.css");
+        myBorderPane.setRight(new StylePicker(allchoices, e -> updateStyleSheet(e)).getView());
 
-        Button tempDarkMode = new Button();
-        tempDarkMode.setOnAction(e -> updateStyleSheet(DARK_MODE_CSS));
-        tempDarkMode.setText("DARKMODE!");
-        myBorderPane.setRight(tempDarkMode);
-        myStyleSheet = DEFAULT_CSS;
     }
 
     public BorderPane getView() {
@@ -187,9 +181,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     private void updateStyleSheet(String newStylesheet) {
-        myBorderPane.getStylesheets().remove(myStyleSheet);
-        System.out.println("add");
+        myBorderPane.getStylesheets().clear();
         myBorderPane.getStylesheets().add(newStylesheet);
-        myStyleSheet = newStylesheet;
     }
 }

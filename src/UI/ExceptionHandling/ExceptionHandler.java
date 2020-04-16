@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 
 public class ExceptionHandler {
 
-
     private static Alert myDisplay = new Alert(Alert.AlertType.WARNING);
     private static String myLanguage = "English";
     private static final ResourceBundle myResources = ResourceBundle.getBundle(myLanguage);

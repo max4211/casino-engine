@@ -120,7 +120,7 @@ public class GameConstructor {
 
     // TODO - give game view parameters form the XML file
     private static GameView constructGameView(ViewReader viewReader) {
-        GameView gameView = new GameView();
+        GameView gameView = new GameView(null);
         Stage newGameStage = new Stage();
         newGameStage.setScene(new Scene(gameView.getView(), viewReader.getScreenWidth(), viewReader.getScreenWidth()));
         gameView.renderTable("StandardBJTable.jpeg");

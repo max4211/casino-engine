@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Lobby>
-    <LobbyStylesheet>lobbySunrise.css</LobbyStylesheet>
-    <ErrorStylesheet>lobbySunrise.css</ErrorStylesheet>
+    <LobbyStylesheet>sunrise.css</LobbyStylesheet>
+    <ErrorStylesheet>fire.css</ErrorStylesheet>
     <Bundle>
         <Name>Blackjack</Name>
         <Type>Standard</Type>

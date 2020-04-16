@@ -16,7 +16,7 @@ class GameViewTest extends DukeApplicationTest {
     private GameView myGameView;
 
     public void start(Stage primaryStage) {
-        myGameView = new GameView();
+        myGameView = new GameView(null);
         Scene addedScene = new Scene(myGameView.getView(), SCENE_WIDTH, SCENE_HEIGHT);
         primaryStage.setScene(addedScene);
         primaryStage.show();
