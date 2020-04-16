@@ -87,9 +87,8 @@ public abstract class Controller implements ControllerInterface {
     }
 
     protected void renderPlayers() {
-        for (Player p: this.myTable.getPlayers()) {
+        for (Player p: this.myTable.getPlayers())
             this.myGameView.addPlayer(p.getName(), p.getID(), p.getBankroll());
-        }
     }
 
     protected void promptForEntryBet() {
