@@ -147,7 +147,7 @@ public class GameConstructor {
     // TODO - give game view parameters form the XML file
     private GameView constructGameView(ViewReader viewReader) {
         List<String> languages = viewReader.getLanguages();
-        List<String> stylesheets = viewReader.getLanguages();
+        List<String> stylesheets = viewReader.getStylesheets();
         GameView gameView = new GameView();
 //        GameView gameView = new GameView(languages, stylesheets);
         Stage newGameStage = new Stage();
