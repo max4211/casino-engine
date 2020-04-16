@@ -9,13 +9,18 @@ import xmlreader.interfaces.XMLParseInterface;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 public class LobbyReader implements LobbyReaderInterface  {
 
     private static Document myDocument;
 
+    private static final String STYLESHEET_TAG = "Stylesheet";
+
     private static final String NAME_TAG = "Name";
     private static final String ICON_TAG = "Icon";
+    private static final String Bundle = "Bundle";
 
     private static final String DECK_TAG = "Deck";
     private static final String GAME_TAG = "Game";
@@ -31,38 +36,18 @@ public class LobbyReader implements LobbyReaderInterface  {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
     }
 
-    @Override
+
     public String getName() {
         return XMLParseInterface.getSingleTag(myDocument, NAME_TAG);
     }
 
     @Override
-    public String getIcon() {
-        return XMLParseInterface.getSingleTag(myDocument, ICON_TAG);
+    public String getStylesheet() {
+        return null;
     }
 
     @Override
-    public String getDeckFile() {
-        return XMLParseInterface.getSingleTag(myDocument, DECK_TAG);
-    }
-
-    @Override
-    public String getGameFile() {
-        return XMLParseInterface.getSingleTag(myDocument, GAME_TAG);
-    }
-
-    @Override
-    public String getHandFile() {
-        return XMLParseInterface.getSingleTag(myDocument, HAND_TAG);
-    }
-
-    @Override
-    public String getPlayerFile() {
-        return XMLParseInterface.getSingleTag(myDocument, PLAYER_TAG);
-    }
-
-    @Override
-    public String getViewFile() {
-        return XMLParseInterface.getSingleTag(myDocument, VIEW_TAG);
+    public List<Map<String, String>> getIconArgumetns() {
+        return null;
     }
 }

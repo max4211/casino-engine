@@ -1,22 +1,37 @@
 package xmlreader.interfaces;
 
+import java.util.List;
+import java.util.Map;
+
 public interface LobbyReaderInterface {
 
     /**
-     * Get XML String elements for creating the mini view in lobby view
+     * Get meta parameters (for now just link to stylesheet)
      * @return
      */
-    String getName();
-    String getIcon();
+    String getStylesheet();
 
     /**
-     * Get XML String elements for all file pointers
+     * Get a list of maps for all icon arguments
      * @return
      */
-    String getDeckFile();
-    String getGameFile();
-    String getHandFile();
-    String getPlayerFile();
-    String getViewFile();
+    List<Map<String, String>> getIconArgumetns();
+
+//    /**
+//     * Get XML String elements for creating the mini view in lobby view
+//     * @return
+//     */
+//    String getName();
+//    String getIcon();
+//
+//    /**
+//     * Get XML String elements for all file pointers
+//     * @return
+//     */
+//    String getDeckFile();
+//    String getGameFile();
+//    String getHandFile();
+//    String getPlayerFile();
+//    String getViewFile();
 
 }
