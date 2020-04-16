@@ -8,8 +8,8 @@ public class StandardGameIcon extends GameIcon {
 
     private Map<String, File> myFiles;
 
-    public StandardGameIcon(String imageFile, Consumer<Map<String, File>> myFileAccepter, Map<String, File> xmlFiles) {
-        super(imageFile, myFileAccepter);
+    public StandardGameIcon(String imageFile, String gameName, Consumer<Map<String, File>> myFileAccepter, Map<String, File> xmlFiles) {
+        super(imageFile, gameName, myFileAccepter);
         myFiles = xmlFiles;
     }
 

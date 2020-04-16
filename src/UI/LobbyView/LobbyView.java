@@ -18,13 +18,15 @@ public class LobbyView implements NodeViewInterface {
 
     private static final String CUSTOM = "Custom";
     private static final String STANDARD = "Standard";
+    private static final String DEFAULT_CSS = "lobbySunrise.css";
 
-    private static final String PATH_TO_CSS = "styleSheets/";
+    private static final String FLOWPANE_CSS_ID = "full-lobby";
+    private static final String ICONVIEW_CSS_ID = "image-view";
 
     public LobbyView(String styleSheet, List<Map<String, String>> generalInfo, List<Map<String, File>> files) {
         myFlowPane = new FlowPane();
-        System.out.println(styleSheet);
-        myFlowPane.getStylesheets().add(PATH_TO_CSS + styleSheet);
+        myFlowPane.setId(FLOWPANE_CSS_ID);
+        myFlowPane.getStylesheets().add(styleSheet);
 
         for (int i = 0; i < generalInfo.size(); i++) {
             Map<String, String> tempGeneralInfo = generalInfo.get(i);
@@ -33,10 +35,11 @@ public class LobbyView implements NodeViewInterface {
             String gameType = generalInfo.get(i).get(TYPE_TAG);
             GameIcon tempIcon = null;
             if (gameType.equals(CUSTOM)) {
-                tempIcon = new CustomGameIcon(tempGeneralInfo.get(ICON_TAG), e -> createGame(e), tempFiles.keySet());
+                tempIcon = new CustomGameIcon(tempGeneralInfo.get(ICON_TAG), tempGeneralInfo.get(NAME_TAG), e -> createGame(e), tempFiles.keySet());
             } else if (gameType.equals(STANDARD)) {
-                tempIcon = new StandardGameIcon(tempGeneralInfo.get(ICON_TAG), e -> createGame(e), tempFiles);
+                tempIcon = new StandardGameIcon(tempGeneralInfo.get(ICON_TAG), tempGeneralInfo.get(NAME_TAG), e -> createGame(e), tempFiles);
             }
+            tempIcon.getView().setId(ICONVIEW_CSS_ID);
             myFlowPane.getChildren().add(tempIcon.getView());
         }
     }

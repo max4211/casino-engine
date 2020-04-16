@@ -20,9 +20,8 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
 
-    private static final String PATH_TO_STYLESHEETS = "././UI/StyleSheets/";
-    private static final String DEFAULT_CSS = "Normal.css";
-    private static final String DARK_MODE_CSS = PATH_TO_STYLESHEETS + "DarkMode.css";
+    private static final String DEFAULT_CSS = "lobbySunrise.css";
+    private static final String DARK_MODE_CSS = "DarkMode.css";
     private String myStyleSheet;
 
     public GameView() {
@@ -34,6 +33,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myBorderPane.setBottom(myMainPlayer.getView());
 
         myBorderPane.getStylesheets().add(DEFAULT_CSS);
+
         Button tempDarkMode = new Button();
         tempDarkMode.setOnAction(e -> updateStyleSheet(DARK_MODE_CSS));
         tempDarkMode.setText("DARKMODE!");
@@ -188,6 +188,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     private void updateStyleSheet(String newStylesheet) {
         myBorderPane.getStylesheets().remove(myStyleSheet);
+        System.out.println("add");
         myBorderPane.getStylesheets().add(newStylesheet);
         myStyleSheet = newStylesheet;
     }
