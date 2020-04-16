@@ -2,13 +2,11 @@ package ooga;
 
 import UI.GameView.GameView;
 import Utility.StringPair;
+import controller.bundles.ControllerBundle;
 import controller.enums.Cardshow;
-import controller.enums.Competition;
 import controller.enums.EntryBet;
 import controller.enums.Goal;
-import controller.gametype.AdversaryController;
 import controller.gametype.Controller;
-import engine.adversary.Adversary;
 import engine.dealer.Dealer;
 import engine.dealer.Deck;
 import engine.evaluator.bet.BetEvaluator;
@@ -17,6 +15,7 @@ import engine.evaluator.handevaluator.HandEvaluator;
 import engine.player.Player;
 import engine.player.PlayerList;
 import engine.table.Table;
+import exceptions.ReflectionException;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
@@ -25,11 +24,15 @@ import xmlreader.readers.*;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 public class GameConstructor {
+
+    private static final String CONTROLLER_PATH = "controller.gametype";
+    private static final String CONTROLLER_SUFFX = "Controller";
 
     private final File deckFile;
     private final File gameFile;
@@ -81,13 +84,13 @@ public class GameConstructor {
 
     }
 
-    private static Collection<Player> createPlayerList(PlayerReader playerReader) {
+    private Collection<Player> createPlayerList(PlayerReader playerReader) {
         Collection<Utility.Pair> playerCollection = playerReader.getPlayers();
         PlayerList myPlayers = new PlayerList(playerCollection);
         return myPlayers.getPlayers();
     }
 
-    private static Table constructTable(GameReader gameReader, PlayerReader playerReader, DeckReader deckReader) {
+    private Table constructTable(GameReader gameReader, PlayerReader playerReader, DeckReader deckReader) {
         Collection<Player> playerList = createPlayerList(playerReader);
         List<StringPair> deckList = deckReader.getDeck();
         double tableMin = gameReader.getTableMin();
@@ -99,8 +102,23 @@ public class GameConstructor {
         return myTable;
     }
 
-    private static Controller constructController(GameReader gameReader, HandReader handReader, Table myTable, GameView myGameView) {
+    private Controller constructController(GameReader gameReader, HandReader handReader, Table table, GameView gameView) {
+        String myCompetition = gameReader.getCompetition();
+        ControllerBundle myBundle = createControllerBundle(gameReader, handReader, table, gameView);
 
+        try {
+            String controllerPath = createControllerPath(myCompetition);
+            Class clazz = Class.forName(controllerPath);
+            Constructor ctor = clazz.getConstructor(ControllerBundle.class);
+            return (Controller) ctor.newInstance(myBundle);
+        } catch (Exception e) {
+            System.out.println("unable to create controller");
+            throw new ReflectionException(e);
+        }
+
+    }
+
+    private ControllerBundle createControllerBundle(GameReader gameReader, HandReader handReader, Table table, GameView gameView) {
         Collection<String> myPlayerActions = gameReader.getPlayerAction();
         StringPair myDealerAction = gameReader.getDealerAction();
         Collection<String> myWinningHands = handReader.getWinningHands();
@@ -111,17 +129,21 @@ public class GameConstructor {
 
         // TODO - add validation to enum constants
         EntryBet myEntryBet = EntryBet.valueOf(gameReader.getEntryBet().toUpperCase());
-        Competition myCompetition = Competition.valueOf(gameReader.getCompetition().toUpperCase());
         Cardshow myCardShow = Cardshow.valueOf(gameReader.getCardShow().toUpperCase());
         Goal myGoal = Goal.valueOf(gameReader.getGoal().toUpperCase());
 
-        return new AdversaryController(myTable, myGameView, myEntryBet, myPlayerActions, myDealerAction,
+        return new ControllerBundle(
+                table, gameView, myEntryBet, myPlayerActions, myDealerAction,
                 myHandClassifier, myBetEvaluator,
                 myCardShow, myGoal);
     }
 
+    private String createControllerPath(String competition) {
+        return String.format("%s.%s%s", CONTROLLER_PATH, competition, CONTROLLER_SUFFX);
+    }
+
     // TODO - give game view parameters form the XML file
-    private static GameView constructGameView(ViewReader viewReader) {
+    private GameView constructGameView(ViewReader viewReader) {
         GameView gameView = new GameView();
         Stage newGameStage = new Stage();
         newGameStage.setScene(new Scene(gameView.getView(), viewReader.getScreenWidth(), viewReader.getScreenWidth()));

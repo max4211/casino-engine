@@ -6,6 +6,7 @@ import Utility.Generator;
 import Utility.StringPair;
 import actionFactory.Action;
 import actionFactory.ActionFactory;
+import controller.bundles.ControllerBundle;
 import controller.enums.Cardshow;
 import controller.enums.Competition;
 import controller.enums.EntryBet;
@@ -56,6 +57,20 @@ public abstract class Controller implements ControllerInterface {
         this.myBetEvaluator = betEvaluator;
         this.myCardshow = cardshow;
         this.myGoal = goal;
+        renderPlayers();
+    }
+
+    public Controller(ControllerBundle bundle) {
+        this.myTable = bundle.getTable();
+        this.myGameView = bundle.getGameView();
+        this.myEntryBet = bundle.getEntryBet();
+        this.myPlayerActions = bundle.getPlayerActions();
+        this.myDealerAction = bundle.getDealerAction();
+        this.myFactory = new ActionFactory();
+        this.myHandClassifier =  bundle.getHandClassifier();
+        this.myBetEvaluator = bundle.getBetEvaluator();
+        this.myCardshow = bundle.getCardShow();
+        this.myGoal = bundle.getGoal();
         renderPlayers();
     }
 
