@@ -70,18 +70,18 @@ public class Controller implements ControllerInterface {
         promptForActions();
         garbageCollect();
         computePayoffs();
+        showGameViewRestart();
         restartGame();
     }
 
+    private void showGameViewRestart() {
+        this.myGameView.promptNewGame(() -> this.restartGame());
+    }
+
     private void restartGame() {
-        try {
-            Thread.sleep(SLEEP_TIME);
-            this.myGameView.clearAllBets();
-            this.myGameView.clearAdversary();
-            this.startGame();
-        } catch (Exception e) {
-            System.exit(0);
-        }
+        this.myGameView.clearAllBets();
+        this.myGameView.clearAdversary();
+        this.startGame();
     }
 
     private void renderPlayers() {
