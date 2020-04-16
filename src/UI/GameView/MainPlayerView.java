@@ -2,10 +2,9 @@ package UI.GameView;
 
 import UI.Interfaces.NodeViewInterface;
 import UI.Interfaces.TaggableInterface;
-import UI.Selectors.SelectorButton;
+import UI.Selectors.SelectorReadyInput;
 import UI.Selectors.SelectorType;
 import Utility.Formatter;
-import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
@@ -64,9 +63,6 @@ public class MainPlayerView implements NodeViewInterface, TaggableInterface {
     }
 
     public void waitUntilReady(SelectorType mySelectionType) {
-        SelectorButton addedButton = new SelectorButton(myView, mySelectionType);
-        myView.getChildren().add(addedButton.getView());
-        Platform.enterNestedEventLoop(addedButton);
+        SelectorReadyInput.pauseUntilReady(myView, mySelectionType);
     }
-
 }

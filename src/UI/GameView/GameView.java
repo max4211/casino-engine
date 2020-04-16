@@ -129,8 +129,8 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void renderTable(String file) {
-        TableView table = new TableView(file);
-        myBorderPane.setCenter(table.getView());
+        //TableView table = new TableView(file);
+        //myBorderPane.setCenter(table.getView());
     }
 
     @Override

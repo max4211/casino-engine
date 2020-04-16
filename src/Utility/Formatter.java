@@ -11,8 +11,9 @@ public class Formatter {
     private static final double CORNER_RADIUS = 5;
     private static final int IMAGE_FIT_WIDTH = 100;
     private static final int IMAGE_FIT_HEIGHT = 100;
-    private static final int BUTTON_HEIGHT = 100;
+
     private static final double CARD_HEIGHT = 100;
+    private static final double WAGER_HEIGHT = 20;
 
 
     public Formatter() {}
@@ -53,7 +54,7 @@ public class Formatter {
     }
 
     public void formatSelectorButton(Button rawButton) {
-        rawButton.setPrefHeight(CARD_HEIGHT);
+        rawButton.setPrefHeight(CARD_HEIGHT + WAGER_HEIGHT);
     }
 
     private void setMaxBounds(Pane rawPane) {
