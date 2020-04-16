@@ -40,19 +40,10 @@ public interface GameReaderInterface {
     Collection<String> getPlayerAction();
 
     /**
-     * Takes the current settings in a game and saves it to an XML file.
-     * Properties saved include color scheme for the game, number of players, and current deck.
-     * Basic implementation will not support changing in-game actions or bet heirarchy, but extensions past basic visual customizations can be implemented later.
-     *
-     * @param fileName is the name of the XML file to save the preferences to
-     */
-    void savePreferences(String fileName);
-
-    /**
-     * Get the type of competition for the game in raw string format
+     * Get the competition parameters for this type of game
      * @return
      */
-    String getCompetition();
+    Map<String, String> getCompetition();
 
     /**
      * Get table limits to help organize bet structure

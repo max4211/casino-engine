@@ -41,6 +41,7 @@ public class GameConstructor {
     private final File viewFile;
 
     //TODO: duplication
+    private static final String TYPE_KEY = "Type";
     private static final String DECK_KEY = "Deck";
     private static final String GAME_KEY = "Game";
     private static final String PLAYER_KEY = "Players";
@@ -103,7 +104,8 @@ public class GameConstructor {
     }
 
     private Controller constructController(GameReader gameReader, HandReader handReader, Table table, GameView gameView) {
-        String myCompetition = gameReader.getCompetition();
+        Map<String, String> myParams = gameReader.getCompetition();
+        String myCompetition = myParams.get(TYPE_KEY);
         ControllerBundle myBundle = createControllerBundle(gameReader, handReader, table, gameView);
 
         try {

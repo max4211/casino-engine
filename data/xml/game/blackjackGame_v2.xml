@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Game>
-    <Competition>Adversary</Competition>
+    <Competition>
+        <Type>Adversary</Type>
+        <Minimum>17</Minimum>
+    </Competition>
     <TableMin>5</TableMin>
     <TableMax>200</TableMax>
     <CardShow>All</CardShow>

@@ -25,15 +25,17 @@ import exceptions.ReflectionException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class AdversaryController extends Controller {
 
     private Adversary myAdversary;
 
     // TODO - refactor into data files (in adversary construction?)
-    private static final int ADVERSARY_MIN = 17;
+    private static final String MINIMUM_TAG = "Minimum";
+    private int ADVERSARY_MIN = 17;
 
-    // TODO refactor items into a map of objects
+    @Deprecated
     public AdversaryController(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, StringPair dealerAction,
                       HandClassifier handClassifier, BetEvaluator betEvaluator,
                       Cardshow cardshow, Goal goal) {
@@ -43,6 +45,15 @@ public class AdversaryController extends Controller {
 
     public AdversaryController(ControllerBundle bundle) {
         super(bundle);
+    }
+
+    public AdversaryController(ControllerBundle bundle, Map<String, String> params) {
+        super(bundle);
+        assignParams(params);
+    }
+
+    private void assignParams(Map<String, String> params) {
+
     }
 
     @Override

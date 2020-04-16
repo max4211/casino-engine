@@ -72,13 +72,16 @@ public class GameReader implements GameReaderInterface {
     }
 
     @Override
-    public void savePreferences(String fileName) {
-
-    }
-
-    @Override
-    public String getCompetition() {
-        return myDocument.getElementsByTagName(COMPETITION_TAG).item(ZERO).getTextContent();
+    public Map<String, String> getCompetition() {
+        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
+        Map<String, String> map = new HashMap<>();
+        NodeList nodeList = XMLParseInterface.getNodeList(myDocument, COMPETITION_TAG);
+        NodeList childNodes = nodeList.item(ZERO).getChildNodes();
+        for (int i = 0; i < childNodes.getLength(); i ++) {
+            Node n = nodeList.item(i);
+            map.put(n.getNodeName(), n.getTextContent());
+        }
+        return map;
     }
 
     @Override

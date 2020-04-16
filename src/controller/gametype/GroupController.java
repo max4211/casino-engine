@@ -6,6 +6,7 @@ import Utility.Generator;
 import Utility.StringPair;
 import actionFactory.Action;
 import actionFactory.ActionFactory;
+import controller.bundles.ControllerBundle;
 import controller.enums.Cardshow;
 import controller.enums.Competition;
 import controller.enums.EntryBet;
@@ -27,12 +28,16 @@ import java.util.List;
 
 public class GroupController extends Controller {
 
-    // TODO refactor items into a map of objects
+    @Deprecated
     public GroupController(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, StringPair dealerAction,
                                HandClassifier handClassifier, BetEvaluator betEvaluator,
                                Cardshow cardshow, Goal goal) {
         super(table, gameView, entryBet, playerActions, dealerAction,
                 handClassifier, betEvaluator, cardshow, goal);
+    }
+
+    public GroupController(ControllerBundle bundle) {
+        super(bundle);
     }
 
     @Override
