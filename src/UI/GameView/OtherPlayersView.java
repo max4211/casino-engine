@@ -65,4 +65,10 @@ OtherPlayersView implements NodeViewInterface {
     public VBox getView() {
         return myPlayers;
     }
+
+    public void updateLanguage() {
+        for (PlayerView tempPlayer : allPlayers) {
+            tempPlayer.updateLanguage();
+        }
+    }
 }

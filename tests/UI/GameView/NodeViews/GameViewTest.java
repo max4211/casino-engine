@@ -24,7 +24,6 @@ class GameViewTest extends DukeApplicationTest {
 
     @Test
     void testStandardBlackJack() {
-        myGameView.renderTable("StandardBJTable.jpeg");
         myGameView.addPlayer("Eric", 1, 1000);
         myGameView.addPlayer("Max", 2, 2000);
         myGameView.addPlayer("Duvall", 3, 3000);

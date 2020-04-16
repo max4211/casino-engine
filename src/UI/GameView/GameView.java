@@ -144,12 +144,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public void renderTable(String file) {
-        //TableView table = new TableView(file);
-        //myBorderPane.setCenter(table.getView());
-    }
-
-    @Override
     public void addPlayer(String name, int playerId, double bankroll) {
         myOtherPlayers.addPlayer(name, playerId, bankroll, myLanguageBundle);
     }
@@ -207,5 +201,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private void updateLanguage(String newLanguage) {
         myLanguageBundle.setLanguage(newLanguage);
         myMainPlayer.updateLanguage();
+        myOtherPlayers.updateLanguage();
     }
 }
