@@ -25,7 +25,7 @@ public class BetEvaluator implements BetEvaluatorInterface {
     }
 
     @Override
-    public void evaluateBets(@NotNull List<Bet> bets) {
+    public void evaluateBets(List<Bet> bets) {
         PriorityQueue<Bet> pq = new PriorityQueue<>(bets.size(), new BetComparator());
         pq.addAll(bets);
         assignSortedBets(pq);
