@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Lobby>
+    <Color>#7454c4</Color>
     <Tag>
         <Name>Blackjack</Name>
-        <Icon>blackjack.jpg</Icon>
+        <Type>Standard</Type>
+        <Icon>blackJackIcon.jpg</Icon>
         <Files>
             <DeckFile>data/xml/deck/standard.xml</DeckFile>
             <GameFile>data/xml/game/blackjackGame_v2.xml</GameFile>
@@ -10,5 +12,10 @@
             <PlayerFile>data/xml/players/players.xml</PlayerFile>
             <ViewFile>data/xml/view/view.xml</ViewFile>
         </Files>
+    </Tag>
+    <Tag>
+        <Name>Custom Game</Name>
+        <Type>Custom</Type>
+        <Icon>QuestionMark.jpg</Icon>
     </Tag>
 </Lobby>
