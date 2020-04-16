@@ -21,6 +21,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private MainPlayerView myMainPlayer;
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
+    private HandView myCommons;
 
     private LanguageBundle myLanguageBundle;
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
@@ -49,6 +50,22 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     @Override
     public void addCard(CardTriplet cardInfo, int playerID, int betID) {
         getPlayerView(playerID).addCard(cardInfo, betID);
+    }
+
+    @Override
+    public void renderCommonCards(List<CardTriplet> hand) {
+        myCommons = new HandView(hand);
+        myBorderPane.setCenter(myCommons.getView());
+    }
+
+    @Override
+    public void addCommonCard(CardTriplet cardInfo) {
+        myCommons.addCard(cardInfo);
+    }
+
+    @Override
+    public void showCommonCard(int cardID) {
+        myCommons.showCard(cardID);
     }
 
     @Override
@@ -121,7 +138,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void renderAdversary(List<CardTriplet> hand) {
-        System.out.println("RENDERING");
         myAdversary = new HandView(hand);
         myBorderPane.setTop(myAdversary.getView());
     }
