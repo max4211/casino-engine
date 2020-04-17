@@ -59,5 +59,6 @@ public class MainPlayerView implements NodeViewInterface, TaggableInterface {
 
     public void updateLanguage() {
         if (myPlayer != null) myPlayer.updateLanguage();
+        myReadyButton.updateLanguage();
     }
 }

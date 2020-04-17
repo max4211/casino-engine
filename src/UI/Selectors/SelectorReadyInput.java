@@ -2,6 +2,7 @@ package UI.Selectors;
 
 import UI.LanguageBundle;
 import Utility.Formatter;
+import Utility.HashNoise;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -12,6 +13,11 @@ public class SelectorReadyInput {
     private static final String ACTION_TEXT_KEY = "ActionReadyButton";
     private static final String WAGER_TEXT_KEY = "WagerReadyButton";
     private static final String NEW_GAME_TEXT_KEY = "NewGameReadyButton";
+
+    private Button myButton;
+    private Pane myParent;
+    private SelectorType myType;
+
     private boolean isPaused;
     private Formatter myFormatter;
 
@@ -22,28 +28,26 @@ public class SelectorReadyInput {
         isPaused = false;
     }
 
-    public void pauseUntilReady(Pane parent, SelectorType myType) {
-        Button pauseButton = new Button();
-        Object nestedLoopKey = this;
-        pauseButton.setText(myLanguageBundle.getBundle().getString(getKey(myType)));
-        myFormatter.formatSelectorButton(pauseButton);
-        pauseButton.setOnAction(e -> {
-            parent.getChildren().remove(pauseButton);
+    public void pauseUntilReady(Pane parent, SelectorType type) {
+        myButton = new Button();
+        myParent = parent;
+        myType = type;
+        int nestedLoopKey = HashNoise.addNoise(this);
+        myButton.setText(myLanguageBundle.getBundle().getString(getKey(myType)));
+        myFormatter.formatSelectorButton(myButton);
+        myButton.setOnAction(e -> {
+            parent.getChildren().remove(myButton);
             Platform.exitNestedEventLoop(nestedLoopKey, null);
             isPaused = false;
         });
-        parent.getChildren().add(pauseButton);
+        parent.getChildren().add(myButton);
         isPaused = true;
         Platform.enterNestedEventLoop(nestedLoopKey);
     }
 
-    public boolean isPaused() {
-        return isPaused;
-    }
-
-    public void renderAgain(Pane parent, SelectorType myType) {
-        Platform.exitNestedEventLoop(this, null);
-        pauseUntilReady(parent, myType);
+    public void updateLanguage() {
+        //if (isPaused) myButton.fire();
+        //pauseUntilReady(myParent, myType);
     }
 
     private String getKey(SelectorType type) {
