@@ -49,7 +49,7 @@ public class PlayerInfoView implements NodeViewInterface {
 
     private HBox createHBox(String bundleKey, String userInput) {
         HBox returnedHBox = new HBox();
-        returnedHBox.getChildren().add(new Label(myLanguageBundle.getBundle().getString(NAME_KEY)));
+        returnedHBox.getChildren().add(new Label(myLanguageBundle.getBundle().getString(bundleKey)));
         Label nameInputLabel = new Label(userInput);
         returnedHBox.getChildren().add(nameInputLabel);
         returnedHBox.setHgrow(nameInputLabel, Priority.ALWAYS);

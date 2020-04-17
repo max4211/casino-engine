@@ -13,6 +13,7 @@ import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import java.util.List;
 
@@ -34,8 +35,10 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myMainPlayer = new MainPlayerView();
         myBorderPane.setBottom(myMainPlayer.getView());
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
-        myBorderPane.setRight(new StylePicker(styleSheets, e -> updateStyleSheet(e)).getView());
-        myBorderPane.setRight(new LanguagePicker(languages, e -> updateLanguage(e)).getView());
+        VBox tempHolder = new VBox();
+        tempHolder.getChildren().add(new StylePicker(styleSheets, e -> updateStyleSheet(e)).getView());
+        tempHolder.getChildren().add(new LanguagePicker(languages, e -> updateLanguage(e)).getView());
+        myBorderPane.setRight(tempHolder);
         //myExceptionDisplayer = new ExceptionDisplayer(null, null, null);
     }
 
@@ -144,12 +147,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public void renderTable(String file) {
-        //TableView table = new TableView(file);
-        //myBorderPane.setCenter(table.getView());
-    }
-
-    @Override
     public void addPlayer(String name, int playerId, double bankroll) {
         myOtherPlayers.addPlayer(name, playerId, bankroll, myLanguageBundle);
     }
@@ -191,6 +188,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void promptNewGame(Executor startNewGame) {
+        myMainPlayer.waitUntilReady(SelectorType.ACTION);
         startNewGame.run();
     }
 
@@ -207,5 +205,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private void updateLanguage(String newLanguage) {
         myLanguageBundle.setLanguage(newLanguage);
         myMainPlayer.updateLanguage();
+        myOtherPlayers.updateLanguage();
     }
 }

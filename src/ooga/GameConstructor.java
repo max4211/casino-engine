@@ -151,7 +151,6 @@ public class GameConstructor {
         GameView gameView = new GameView(stylesheets, languages);
         Stage newGameStage = new Stage();
         newGameStage.setScene(new Scene(gameView.getView(), viewReader.getScreenWidth(), viewReader.getScreenWidth()));
-        gameView.renderTable("StandardBJTable.jpeg");
         newGameStage.show();
         return gameView;
     }

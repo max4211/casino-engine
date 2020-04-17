@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface GameViewInterface {
 
-    public void renderTable(String file);
-
     public void addCardIfAbsent(CardTriplet cardInfo, int playerID, int betID);
 
     public void removeCard(int playerID, int betID, int cardID);
