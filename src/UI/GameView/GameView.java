@@ -38,9 +38,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private static final int DEFAULT_CSS_INDEX = 0;
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
+    private static final String BORDER_PANE_ID = "game-border-pane";
+
     public GameView(List<String> styleSheets, List<String> languages) {
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
         myBorderPane = new BorderPane();
+        myBorderPane.setId(BORDER_PANE_ID);
         myOtherPlayers = new OtherPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
         myMainPlayer = new MainPlayerView(myLanguageBundle);
