@@ -130,7 +130,7 @@ public class Table implements TableInterface {
     }
 
     @Override
-    public List<Card> getCommunalLCards() {
+    public List<Card> getCommunalCards() {
         return this.myCommunalCards;
     }
 

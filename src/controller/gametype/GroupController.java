@@ -32,6 +32,7 @@ public class GroupController extends Controller {
             performDealerAction(s);
             updatePlayerHands();
             updateCommunalCards();
+            showCommonCards();
             promptForActions();
         }
         computePayoffs();
