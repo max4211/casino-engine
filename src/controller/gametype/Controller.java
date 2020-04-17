@@ -67,17 +67,7 @@ public abstract class Controller implements ControllerInterface {
             this.myGameView.addPlayer(p.getName(), p.getID(), p.getBankroll());
     }
 
-    protected void promptForEntryBet() {
-        for (Player p: this.myTable.getPlayers()) {
-            this.myGameView.setMainPlayer(p.getID());
-            double min = this.myTable.getTableMin();
-            double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
-            double wager = this.myGameView.selectWager(min, max);
-            Bet b = this.myTable.placeEntryBet(p.getID(), this.myEntryBet, wager);
-            this.myGameView.addBet(new ArrayList<>(), wager, p.getID(), b.getID());
-            this.myGameView.setBankRoll(p.getBankroll(), p.getID());
-        }
-    }
+    protected abstract void promptForEntryBet();
 
     protected void performDealerAction(StringPair dealerAction) {
         this.myTable.performDealerAction(dealerAction);

@@ -18,6 +18,7 @@ public interface GroupActionInterface {
      * @param tableMin the table minimum
      * @param tableMax the table maximum
      * @param currentBet the current bet that has been placed on the table (to match)
+     * @throws ActionException if the action cannot be created
      */
     void execute(Player p, Bet b,
                  WagerSelector selectWager, Consumer<Double> setTableBet, Consumer<Bet> activatePlayers,

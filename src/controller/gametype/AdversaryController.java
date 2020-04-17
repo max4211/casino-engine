@@ -9,6 +9,7 @@ import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.player.Player;
+import exceptions.ActionException;
 import exceptions.ReflectionException;
 
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class AdversaryController extends Controller {
                 addCardToPlayer(p);
                 this.myGameView.setWager(b.getWager(), p.getID(), b.getID());
                 this.myGameView.setBankRoll(p.getBankroll(), p.getID());
-            } catch (ReflectionException e) {
+            } catch (ReflectionException | ActionException e) {
                 this.myGameView.displayException(e);
             }
         }
