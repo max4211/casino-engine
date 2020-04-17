@@ -3,7 +3,7 @@ package UI.GameView;
 import UI.ExceptionHandling.ExceptionDisplayer;
 import UI.GameView.Settings.LanguagePicker;
 import UI.GameView.Settings.StylePicker;
-import UI.Interfaces.Executor;
+import UI.Interfaces.GameCaller;
 import UI.Interfaces.GameViewInterface;
 import UI.Interfaces.NodeViewInterface;
 import UI.LanguageBundle;
@@ -11,7 +11,6 @@ import UI.Selectors.ActionSelector;
 import UI.Selectors.SelectorType;
 import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -19,13 +18,21 @@ import java.util.List;
 
 public class GameView implements GameViewInterface, NodeViewInterface {
 
+    private static final String NO_ACTION_INPUT = "";
+    private static final double NO_WAGER_INPUT = -1;
+
     private BorderPane myBorderPane;
     private MainPlayerView myMainPlayer;
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
     private HandView myCommons;
-    private ExceptionDisplayer myExceptionDisplayer;
+
     private LanguageBundle myLanguageBundle;
+    private ExceptionDisplayer myExceptionDisplayer;
+    //FIXME: create a general constructor!
+    private ActionSelector myActionSelector;
+    private WagerSelector myWagerSelector;
+
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
     public GameView(List<String> styleSheets, List<String> languages) {
@@ -36,6 +43,8 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myBorderPane.setBottom(myMainPlayer.getView());
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
         myExceptionDisplayer = new ExceptionDisplayer("exceptionIcon.png", "fire.css", myLanguageBundle);
+        myWagerSelector = new WagerSelector(myLanguageBundle);
+        myActionSelector = new ActionSelector(myLanguageBundle);
 
         VBox tempHolder = new VBox();
         tempHolder.getChildren().add(new StylePicker(styleSheets, e -> updateStyleSheet(e)).getView());
@@ -168,26 +177,28 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     @Override
     public double selectWager(double minBet, double maxBet) {
         myMainPlayer.waitUntilReady(SelectorType.WAGER);
-        return WagerSelector.selectWager(minBet, maxBet);
+        double chosenWager = myWagerSelector.selectWager(minBet, maxBet, e -> displayException(e));
+        if (chosenWager != NO_WAGER_INPUT) return chosenWager;
+        return selectWager(minBet, maxBet);
     }
 
     @Override
     public String selectAction(List<String> actions) {
         myMainPlayer.waitUntilReady(SelectorType.ACTION);
-        return ActionSelector.selectAction(actions);
+        String actionChosen = myActionSelector.selectAction(actions, e -> displayException(e));
+        if (!actionChosen.equals(NO_ACTION_INPUT)) return actionChosen;
+        return selectAction(actions);
     }
 
     @Override
     public void displayException(Exception ex) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText(ex.getLocalizedMessage());
-        alert.showAndWait();
+        myExceptionDisplayer.displayException(ex);
     }
 
     @Override
-    public void promptNewGame(Executor startNewGame) {
+    public void promptNewGame(GameCaller startNewGame) {
         myMainPlayer.waitUntilReady(SelectorType.NEWGAME);
-        startNewGame.run();
+        startNewGame.startNewGame();
     }
 
     private PlayerView getPlayerView(int playerID) {

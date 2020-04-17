@@ -2,8 +2,6 @@ package ooga;
 
 import UI.GameView.CardView;
 import UI.GameView.GameView;
-import UI.Selectors.ActionSelector;
-import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -122,18 +120,5 @@ public class basicUITester extends Application {
     }
 
     private void testSelectors(BorderPane p) {
-        p.getChildren().clear();
-        List<String> noActions = new ArrayList<>();
-        System.out.println(ActionSelector.selectAction(noActions));
-
-        List<String> someActions = new ArrayList<>();
-        someActions.add("Split");
-        someActions.add("Hit");
-        someActions.add("Fold");
-        System.out.println(ActionSelector.selectAction(someActions));
-
-        System.out.println(WagerSelector.selectWager(0, 100));
-        System.out.println(WagerSelector.selectWager(50, 50));
-        System.out.println(WagerSelector.selectWager(20, 10));
     }
 }
