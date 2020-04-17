@@ -101,7 +101,7 @@ public class GroupController extends Controller {
                 summary = summary + String.format("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
             }
         }
-//        this.myGameView.displayText(summary);
+        this.myGameView.displayText(summary);
     }
 
     private List<Bet> createListOfBets() {
