@@ -35,11 +35,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myMainPlayer = new MainPlayerView();
         myBorderPane.setBottom(myMainPlayer.getView());
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
+        myExceptionDisplayer = new ExceptionDisplayer("exceptionIcon.png", "fire.css", myLanguageBundle);
+
         VBox tempHolder = new VBox();
         tempHolder.getChildren().add(new StylePicker(styleSheets, e -> updateStyleSheet(e)).getView());
         tempHolder.getChildren().add(new LanguagePicker(languages, e -> updateLanguage(e)).getView());
         myBorderPane.setRight(tempHolder);
-        //myExceptionDisplayer = new ExceptionDisplayer(null, null, null);
     }
 
     public BorderPane getView() {
