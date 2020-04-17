@@ -1,4 +1,4 @@
-package UI.GameView.NodeViews;
+package UI.LobbyView;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

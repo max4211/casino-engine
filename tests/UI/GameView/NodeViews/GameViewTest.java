@@ -1,9 +1,10 @@
 package UI.GameView.NodeViews;
 
 import UI.GameView.GameView;
+import UI.LobbyView.DukeApplicationTest;
 import Utility.CardTriplet;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import ooga.Main;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,11 +16,9 @@ class GameViewTest extends DukeApplicationTest {
     private static final int SCENE_HEIGHT = 1000;
     private GameView myGameView;
 
-    public void start(Stage primaryStage) {
-        myGameView = new GameView(null, null);
-        Scene addedScene = new Scene(myGameView.getView(), SCENE_WIDTH, SCENE_HEIGHT);
-        primaryStage.setScene(addedScene);
-        primaryStage.show();
+    @BeforeEach
+    public void setUp() throws Exception {
+        launch(Main.class);
     }
 
     @Test

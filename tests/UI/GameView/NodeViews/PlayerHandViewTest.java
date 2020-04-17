@@ -1,4 +1,4 @@
-package GameView.NodeViews;
+package UI.GameView.NodeViews;
 
 import UI.GameView.CardView;
 import UI.GameView.HandView;
