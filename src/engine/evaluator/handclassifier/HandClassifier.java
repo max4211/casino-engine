@@ -27,7 +27,6 @@ public class HandClassifier implements HandClassifierInterface {
 
     @Override
     public void classifyHand(PlayerHand h) {
-//        printHand(h);
         if (checkLosingHand(h)) {
             return;
         } else {
@@ -73,6 +72,7 @@ public class HandClassifier implements HandClassifierInterface {
         return 0;
     }
 
+    // TODO - refactor hand classifier into command design pattern, create hand then evalute if true
     private boolean isBlackjack(PlayerHand h) {
         return ((sumCards(h) == 21) && (h.getCards().size() == 2));
     }
@@ -92,6 +92,11 @@ public class HandClassifier implements HandClassifierInterface {
             suits.add(card.getSuit());
         }
         return suits.size() == 1;
+    }
+
+    private boolean isStraight(PlayerHand h) {
+        PriorityQueue<Card> pq = new PriorityQueue<>(h.getCards().size());
+        return false;
     }
 
     private double sumCards(PlayerHand h) {

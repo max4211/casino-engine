@@ -188,4 +188,14 @@ public class Table implements TableInterface {
         return null;
     }
 
+    public int totalActivePlayers() {
+        int count = 0;
+        for (Player p: this.myPlayers) {
+            for (Bet b: p.getActiveBets())
+                if (b.isGameActive())
+                    count ++;
+        }
+        return count;
+    }
+
 }

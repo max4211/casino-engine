@@ -31,6 +31,8 @@ public class GroupController extends Controller {
     public void startGame() {
         promptForEntryBet();
         for (StringPair s: this.myDealerAction) {
+            if (this.myTable.totalActivePlayers() <= 1)
+                break;
             resetRound();
             performDealerAction(s);
             updatePlayerHands();
@@ -78,7 +80,7 @@ public class GroupController extends Controller {
                 classifyHand(b);
                 this.myGameView.setWager(b.getWager(), p.getID(), b.getID());
                 this.myGameView.setBankRoll(p.getBankroll(), p.getID());
-                garbageCollect();
+                garbageCollect(p, b);
             } catch (ReflectionException e) {
                 this.myGameView.displayException(e);
                 System.out.println(e);
@@ -95,7 +97,7 @@ public class GroupController extends Controller {
     private List<Bet> createListOfBets() {
         List<Bet> list = new ArrayList<>();
         for (Player p: this.myTable.getPlayers()) {
-            list.addAll(p.getBets());
+            list.addAll(p.getActiveBets());
             this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
         return list;

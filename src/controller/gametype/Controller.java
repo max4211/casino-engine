@@ -15,6 +15,7 @@ import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.evaluator.bet.BetEvaluator;
 import engine.evaluator.handclassifier.HandClassifier;
+import engine.hand.PlayerHand;
 import engine.player.Player;
 import engine.table.Table;
 
@@ -89,6 +90,11 @@ public abstract class Controller implements ControllerInterface {
         GarbageCollect.clearLosers(this.myTable.getPlayers(), (pid, bid) -> this.myGameView.removeBet(pid, bid));
     }
 
+    protected void garbageCollect(Player p, Bet b) {
+        if (b.getHand().isLoser() || !b.isGameActive())
+            this.myGameView.removeBet(p.getID(), b.getID());
+    }
+
     protected abstract void computePayoffs();
 
     // TODO - refactor gameview to validating elements as they are received
@@ -121,9 +127,10 @@ public abstract class Controller implements ControllerInterface {
 
     protected void showAllCards() {
         for (Player p: this.myTable.getPlayers()) {
-            for (Bet b: p.getBets()) {
-                for (Card c: b.getHand().getCards()) {
-                    this.myGameView.showCard(p.getID(), b.getID(), c.getID());
+            for (Bet b: p.getActiveBets()) {
+                if (b.isGameActive()) {
+                    for (Card c: b.getHand().getCards())
+                        this.myGameView.showCard(p.getID(), b.getID(), c.getID());
                 }
             }
         }
@@ -131,7 +138,7 @@ public abstract class Controller implements ControllerInterface {
 
     protected void showActiveCards(Player p) {
         hideCards(p);
-        for (Bet b: p.getBets()) {
+        for (Bet b: p.getActiveBets()) {
             for (Card c: b.getHand().getCards()) {
                 this.myGameView.showCard(p.getID(), b.getID(), c.getID());
             }
@@ -142,7 +149,7 @@ public abstract class Controller implements ControllerInterface {
         for (Player player: this.myTable.getPlayers()) {
             if (!(player.getID() == p.getID())) {
                 System.out.printf("%s is active, hiding %s's cards\n", p.getName(), player.getName());
-                for (Bet b: player.getBets()) {
+                for (Bet b: player.getActiveBets()) {
                     for (Card c: b.getHand().getCards()) {
                         this.myGameView.addCardIfAbsent(Generator.createCardTriplet(c), player.getID(), b.getID());
                         this.myGameView.hideCard(player.getID(), b.getID(), c.getID());
@@ -162,7 +169,7 @@ public abstract class Controller implements ControllerInterface {
     protected void updatePlayerHands() {
         for (Player p: this.myTable.getPlayers()) {
             int playerID = p.getID();
-            for (Bet b: p.getBets()) {
+            for (Bet b: p.getActiveBets()) {
                 int betID = b.getID();
                 for (Card c: b.getHand().getCards()) {
                     CardTriplet cardTriplet = Generator.createCardTriplet(c);
