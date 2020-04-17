@@ -23,14 +23,15 @@ public class LobbyView implements NodeViewInterface {
     private static final String STANDARD = "Standard";
 
     private static final String FLOWPANE_CSS_ID = "full-lobby";
+    private static final int DEFAULT_CSS_INDEX = 0;
 
     private LanguageBundle myLanguageBundle;
     private ExceptionDisplayer myExceptionDisplayer;
 
-    public LobbyView(String styleSheet, String errorIcon, String errorCSS, List<Map<String, String>> generalInfo, List<Map<String, File>> files) {
+    public LobbyView(List<String> styleSheets, List<String> languages, String errorIcon, String errorCSS, List<Map<String, String>> generalInfo, List<Map<String, File>> files) {
         myFlowPane = new FlowPane();
         myFlowPane.setId(FLOWPANE_CSS_ID);
-        myFlowPane.getStylesheets().add(styleSheet);
+        myFlowPane.getStylesheets().add(styleSheets.get(DEFAULT_CSS_INDEX));
 
         //FIXME: this is bad
         myLanguageBundle = new LanguageBundle("English");
