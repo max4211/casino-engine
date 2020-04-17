@@ -18,18 +18,18 @@ public class SelectorReadyInput {
     private Pane myParent;
     private SelectorType myType;
 
-    private boolean isPaused;
+    private static final String BUTTON_CSS_ID = "ready-button";
     private Formatter myFormatter;
 
     private LanguageBundle myLanguageBundle;
     public SelectorReadyInput(LanguageBundle languageBundle) {
         myLanguageBundle = languageBundle;
         myFormatter = new Formatter();
-        isPaused = false;
     }
 
     public void pauseUntilReady(Pane parent, SelectorType type) {
         myButton = new Button();
+        myButton.setId(BUTTON_CSS_ID);
         myParent = parent;
         myType = type;
         int nestedLoopKey = HashNoise.addNoise(this);
@@ -38,10 +38,8 @@ public class SelectorReadyInput {
         myButton.setOnAction(e -> {
             parent.getChildren().remove(myButton);
             Platform.exitNestedEventLoop(nestedLoopKey, null);
-            isPaused = false;
         });
         parent.getChildren().add(myButton);
-        isPaused = true;
         Platform.enterNestedEventLoop(nestedLoopKey);
     }
 
