@@ -180,7 +180,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void displayException(Exception ex) {
-        System.out.println("called");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(ex.getLocalizedMessage());
         alert.showAndWait();
@@ -188,7 +187,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void promptNewGame(Executor startNewGame) {
-        myMainPlayer.waitUntilReady(SelectorType.ACTION);
+        myMainPlayer.waitUntilReady(SelectorType.NEWGAME);
         startNewGame.run();
     }
 

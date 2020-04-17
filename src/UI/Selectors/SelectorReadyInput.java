@@ -14,6 +14,7 @@ public class SelectorReadyInput {
     private static final ResourceBundle myResources = ResourceBundle.getBundle(RESOURCE_LANGUAGE);
     private static final String ACTION_TEXT_KEY = "ActionReadyButton";
     private static final String WAGER_TEXT_KEY = "WagerReadyButton";
+    private static final String NEW_GAME_TEXT_KEY = "NewGameReadyButton";
     private static final Formatter myFormatter = new Formatter();
 
     public static void pauseUntilReady(Pane parent, SelectorType myType) {
@@ -33,6 +34,7 @@ public class SelectorReadyInput {
     private static String getKey(SelectorType type) {
         if (type.equals(SelectorType.ACTION)) return ACTION_TEXT_KEY;
         else if (type.equals(SelectorType.WAGER)) return WAGER_TEXT_KEY;
+        else if (type.equals(SelectorType.NEWGAME)) return NEW_GAME_TEXT_KEY;
         return null;
     }
 }
