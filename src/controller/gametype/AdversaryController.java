@@ -54,6 +54,7 @@ public class AdversaryController extends Controller {
             promptForActions();
             garbageCollect();
         }
+        showAllAdversaryCards();
         computePayoffs();
         updateBankrolls();
         showGameViewRestart();
@@ -76,7 +77,19 @@ public class AdversaryController extends Controller {
         this.myAdversary = this.myTable.createAdversary(ADVERSARY_MIN);
         List<CardTriplet> list = Generator.createTripletList(this.myAdversary.getHand());
         this.myGameView.renderAdversary(list);
-        this.myGameView.showAdversaryCard(this.myAdversary.getCard().getID());
+        showAdversaryCard(this.myAdversary.getCard());
+    }
+
+    private void showAdversaryCard(Card c) {
+//        this.myGameView.addAdversaryCard(Generator.createCardTriplet(c));
+        this.myGameView.showAdversaryCard(c.getID());
+    }
+
+    private void showAllAdversaryCards() {
+        this.myGameView.renderAdversary(Generator.createTripletList(this.myAdversary.getHand()));
+        List<Card> list = this.myAdversary.getHand().getCards();
+        for (Card c: list)
+            showAdversaryCard(c);
     }
 
     @Override
@@ -95,7 +108,6 @@ public class AdversaryController extends Controller {
                 this.myGameView.setBankRoll(p.getBankroll(), p.getID());
             } catch (ReflectionException e) {
                 this.myGameView.displayException(e);
-                System.out.println(e);
             }
         }
     }
