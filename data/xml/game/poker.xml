@@ -18,6 +18,14 @@
             <Type>Communal</Type>
             <Quantity>3</Quantity>
         </DealerAction>
+        <DealerAction>
+            <Type>Communal</Type>
+            <Quantity>1</Quantity>
+        </DealerAction>
+        <DealerAction>
+            <Type>Communal</Type>
+            <Quantity>1</Quantity>
+        </DealerAction>
         <PlayerAction>
             <Name>Stay</Name>
         </PlayerAction>

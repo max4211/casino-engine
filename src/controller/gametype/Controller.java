@@ -51,13 +51,7 @@ public abstract class Controller implements ControllerInterface {
     }
 
     protected void showGameViewRestart() {
-        try {
-            Thread.sleep(3000);
-        } catch (Exception e) {
-            ;
-        }
         this.myGameView.promptNewGame(this::restartGame);
-
     }
 
     protected void restartGame() {
@@ -180,11 +174,18 @@ public abstract class Controller implements ControllerInterface {
 
     //TODO add in gameview method to show communal cards
     protected void updateCommunalCards() {
-        List<Card> communalCards = this.myTable.getCommunalLCards();
+        List<Card> communalCards = this.myTable.getCommunalCards();
         List<CardTriplet> tripletList = Generator.createTripletList(communalCards);
         for (Card c: communalCards)
             System.out.printf("adding common card: %s\n", c.toString());
         this.myGameView.renderCommonCards(tripletList);
+    }
+
+    //TODO parametrize common card show
+    protected void showCommonCards() {
+        List<Card> communalCards = this.myTable.getCommunalCards();
+        for (Card c: communalCards)
+            this.myGameView.showCommonCard(c.getID());
     }
 
     protected void updateBankrolls() {

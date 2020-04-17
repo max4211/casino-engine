@@ -84,7 +84,7 @@ public interface TableInterface {
      * Get a list of commmunal cards at the table
      * @return
      */
-    List<Card> getCommunalLCards();
+    List<Card> getCommunalCards();
 
     /**
      * Called to reset the game to its appropriate state
