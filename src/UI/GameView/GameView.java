@@ -188,6 +188,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void promptNewGame(Executor startNewGame) {
+        myMainPlayer.waitUntilReady(SelectorType.ACTION);
         startNewGame.run();
     }
 
