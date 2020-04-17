@@ -77,17 +77,19 @@ public class AdversaryController extends Controller {
         this.myAdversary = this.myTable.createAdversary(ADVERSARY_MIN);
         List<CardTriplet> list = Generator.createTripletList(this.myAdversary.getHand());
         this.myGameView.renderAdversary(list);
-        showAdversaryCard(this.myAdversary.getCard().getID());
+        showAdversaryCard(this.myAdversary.getCard());
     }
 
-    private void showAdversaryCard(int cID) {
-        this.myGameView.showAdversaryCard(cID);
+    private void showAdversaryCard(Card c) {
+//        this.myGameView.addAdversaryCard(Generator.createCardTriplet(c));
+        this.myGameView.showAdversaryCard(c.getID());
     }
 
     private void showAllAdversaryCards() {
+        this.myGameView.renderAdversary(Generator.createTripletList(this.myAdversary.getHand()));
         List<Card> list = this.myAdversary.getHand().getCards();
         for (Card c: list)
-            showAdversaryCard(c.getID());
+            showAdversaryCard(c);
     }
 
     @Override
