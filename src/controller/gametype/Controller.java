@@ -51,13 +51,7 @@ public abstract class Controller implements ControllerInterface {
     }
 
     protected void showGameViewRestart() {
-        try {
-            Thread.sleep(3000);
-        } catch (Exception e) {
-            ;
-        }
         this.myGameView.promptNewGame(this::restartGame);
-
     }
 
     protected void restartGame() {
