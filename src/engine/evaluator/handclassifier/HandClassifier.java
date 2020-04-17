@@ -94,9 +94,24 @@ public class HandClassifier implements HandClassifierInterface {
         return suits.size() == 1;
     }
 
+    // TODO - implement straight (refactor into separate class
+    // TODO - add in communal cards into classificaiton
     private boolean isStraight(PlayerHand h) {
         PriorityQueue<Card> pq = new PriorityQueue<>(h.getCards().size());
         return false;
+    }
+
+    private boolean isPair(PlayerHand h) {
+        Set<Double> set = new HashSet<>();
+        for (Card c: h.getCards()) {
+            if (set.contains(c.getValue()))
+                return true;
+        }
+        return false;
+    }
+
+    private boolean isHighCard(PlayerHand h) {
+        return true;
     }
 
     private double sumCards(PlayerHand h) {

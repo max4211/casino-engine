@@ -9,4 +9,7 @@
     <WinningHand>
         <Name>Pair</Name>
     </WinningHand>
+    <WinningHand>
+        <Name>HighCard</Name>
+    </WinningHand>
 </Game>
