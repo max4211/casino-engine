@@ -6,6 +6,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,15 +23,6 @@ class LobbyReaderTest {
     private static final String HAND_TAG = "Hands";
     private static final String PLAYER_TAG = "Players";
     private static final String VIEW_TAG = "View";
-
-    @Test
-    void getStylesheet() throws ParserConfigurationException, SAXException, IOException {
-        final String filename = "data/xml/lobbyview/BlackJackLobby.xml";
-        LobbyReader reader = new LobbyReader(filename);
-        String result = reader.getLobbyStylesheet();
-        String expected = "#7454c4";
-        assertEquals(expected, result);
-    }
 
     @Test
     void getBundleArguments() throws ParserConfigurationException, SAXException, IOException {
@@ -65,5 +57,27 @@ class LobbyReaderTest {
         assertEquals(null, customMap.get(VIEW_TAG));
         assertEquals(new File("data/xml/deck/guy.xml"), customMap.get(DECK_TAG));
 
+    }
+
+    @Test
+    void getLobbyStylesheet() throws ParserConfigurationException, SAXException, IOException {
+        final String filename = "data/xml/lobbyview/BlackJackLobby.xml";
+        LobbyReader reader = new LobbyReader(filename);
+        List<String> result = reader.getLobbyStylesheet();
+        List<String> expected = new ArrayList<String>(List.of("" +
+                "sunruse.css", "ice.css"));
+        for (int i = 0; i < result.size(); i ++)
+            assertEquals(expected.get(i), result.get(i));
+    }
+
+    @Test
+    void getLobbyLanguages() throws ParserConfigurationException, SAXException, IOException {
+        final String filename = "data/xml/lobbyview/BlackJackLobby.xml";
+        LobbyReader reader = new LobbyReader(filename);
+        List<String> result = reader.getLobbyLanguages();
+        List<String> expected = new ArrayList<String>(List.of("" +
+                "English", "Spanish"));
+        for (int i = 0; i < result.size(); i ++)
+            assertEquals(expected.get(i), result.get(i));
     }
 }

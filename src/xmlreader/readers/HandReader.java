@@ -33,11 +33,11 @@ public class HandReader implements HandReaderInterface {
 
     @Override
     public Collection<String> getWinningHands() {
-        return XMLParseInterface.getXMLList(myDocument, WINNINGHAND_TAG, NAME_TAG);
+        return XMLParseInterface.getXMLCollection(myDocument, WINNINGHAND_TAG, NAME_TAG);
     }
 
     @Override
     public Collection<String> getLosingHands() {
-        return XMLParseInterface.getXMLList(myDocument, LOSINGHAND_TAG, NAME_TAG);
+        return XMLParseInterface.getXMLCollection(myDocument, LOSINGHAND_TAG, NAME_TAG);
     }
 }

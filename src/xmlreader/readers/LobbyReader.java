@@ -20,7 +20,8 @@ public class LobbyReader implements LobbyReaderInterface  {
 
     private static Document myDocument;
 
-    private static final String LOBBY_STYLESHEET = "LobbyStylesheet";
+    private static final String LOBBY_STYLESHEET = "Stylesheet";
+    private static final String LANGUAGE_TAG = "Language";
     private static final String ERROR_STYLESHEET = "ErrorStylesheet";
     private static final String ERROR_ICON = "ErrorIcon";
 
@@ -45,8 +46,13 @@ public class LobbyReader implements LobbyReaderInterface  {
     }
 
     @Override
-    public String getLobbyStylesheet() {
-        return XMLParseInterface.getSingleTag(myDocument, LOBBY_STYLESHEET);
+    public List<String> getLobbyStylesheet() {
+        return XMLParseInterface.getXMLList(myDocument, LOBBY_STYLESHEET);
+    }
+
+    @Override
+    public List<String> getLobbyLanguages() {
+        return XMLParseInterface.getXMLList(myDocument, LANGUAGE_TAG);
     }
 
     @Override
