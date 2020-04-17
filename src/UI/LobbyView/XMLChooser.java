@@ -14,7 +14,7 @@ public class XMLChooser {
     public static File getXMLFile(String xmlFileType) {
         FileChooser result = new FileChooser();
         result.setInitialDirectory(new File(DIRECTORY_TO_XML + xmlFileType));
-        result.setSelectedExtensionFilter(new FileChooser.ExtensionFilter(ACCEPTED_XML_DESCRIPTION, ACCEPTED_XML_EXTENSION));
+        result.getExtensionFilters().add(new FileChooser.ExtensionFilter(ACCEPTED_XML_DESCRIPTION, ACCEPTED_XML_EXTENSION));
         return result.showOpenDialog(new Stage());
     }
 }

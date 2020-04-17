@@ -38,9 +38,15 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private static final int DEFAULT_CSS_INDEX = 0;
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
+    private static final String LANGUAGE_PICKER_ID = "language-combo-box";
+    private static final String CSS_PICKER_ID = "css-combo-box";
+
+    private static final String BORDER_PANE_ID = "game-border-pane";
+
     public GameView(List<String> styleSheets, List<String> languages) {
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
         myBorderPane = new BorderPane();
+        myBorderPane.setId(BORDER_PANE_ID);
         myOtherPlayers = new OtherPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
         myMainPlayer = new MainPlayerView(myLanguageBundle);
@@ -53,9 +59,11 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         VBox tempHolder = new VBox();
         tempHolder.setAlignment(Pos.TOP_RIGHT);
         LanguagePicker tempPicker1 = new LanguagePicker(languages, e -> updateLanguage(e));
+        tempPicker1.getView().setId(LANGUAGE_PICKER_ID);
         tempPicker1.getView().setPrefHeight(20);
         tempPicker1.getView().setPrefWidth(100);
         StylePicker tempPicker2 = new StylePicker(styleSheets, e -> updateStyleSheet(e));
+        tempPicker2.getView().setId(CSS_PICKER_ID);
         tempPicker2.getView().setPrefHeight(20);
         tempPicker2.getView().setPrefWidth(100);
         tempHolder.getChildren().addAll(tempPicker1.getView(), tempPicker2.getView());

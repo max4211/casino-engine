@@ -16,8 +16,10 @@ public class WagerSelector {
     private static final CharSequence MIN_STRING = "MIN";
     private static final CharSequence MAX_STRING = "MAX";
     private static final double NO_WAGER_INPUT = -1;
-
     private LanguageBundle myLanguageBundle;
+
+    private static final String SELECTOR_DIALOGUE_CSS_ID = "wager-dialogue-pane";
+    private static final String SELECTOR_TEXTINPUT_CSS_ID = "wager--text-input";
 
     public WagerSelector(LanguageBundle languageBundle) {
         myLanguageBundle = languageBundle;
@@ -55,6 +57,8 @@ public class WagerSelector {
         actionPrompt = actionPrompt.replace(MIN_STRING, String.valueOf(minBet));
         actionPrompt = actionPrompt.replace(MAX_STRING, String.valueOf(maxBet));
         betAmount.setContentText(actionPrompt);
+        betAmount.getDialogPane().setId(SELECTOR_DIALOGUE_CSS_ID);
+        betAmount.getEditor().setId(SELECTOR_TEXTINPUT_CSS_ID);
         return betAmount.showAndWait();
     }
 }

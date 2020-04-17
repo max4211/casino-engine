@@ -25,12 +25,27 @@ public abstract class GameIcon implements NodeViewInterface {
     private static final boolean BACKGROUNDFILL_COVER = false;
     private static final BackgroundSize FULL_BACKGROUND_SIZE = new BackgroundSize(FULL_BACKGROUND_FILL, FULL_BACKGROUND_FILL, FILL_AS_PERCENT, FILL_AS_PERCENT, BACKGROUNDFILL_CONTAIN, BACKGROUNDFILL_COVER);
 
+    private static final String BLACKJACK = "Blackjack";
+    private static final String BLACKJACK_ICON_ID = "blackJack-icon";
+    private static final String CUSTOM = "Custom Game";
+    private static final String CUSTOM_ICON_ID = "custom-icon";
+
     public GameIcon(String imageFile, String gameName, Consumer<Map<String, File>> myFileAccepter) {
 
         myGameIcon = new VBox();
         //TODO: move this into formatter
         myGameIcon.setAlignment(Pos.CENTER);
         Button myIconButton = new Button();
+
+        //FIXME: for testing
+        if (gameName.equals(BLACKJACK)) {
+            myIconButton.setId(BLACKJACK_ICON_ID);
+        }
+
+        if (gameName.equals(CUSTOM)) {
+            myIconButton.setId(CUSTOM_ICON_ID);
+        }
+
         Image icon = new Image(ICON_RESOURCE_FOLDER + imageFile);
         myIconButton.setBackground(new Background(new BackgroundImage(icon, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, FULL_BACKGROUND_SIZE)));
         myFormatter = new Formatter();
