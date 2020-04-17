@@ -11,6 +11,8 @@ import UI.Selectors.ActionSelector;
 import UI.Selectors.SelectorType;
 import UI.Selectors.WagerSelector;
 import Utility.CardTriplet;
+import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -33,6 +35,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private ActionSelector myActionSelector;
     private WagerSelector myWagerSelector;
 
+    private static final int DEFAULT_CSS_INDEX = 0;
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
     public GameView(List<String> styleSheets, List<String> languages) {
@@ -46,9 +49,16 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myWagerSelector = new WagerSelector(myLanguageBundle);
         myActionSelector = new ActionSelector(myLanguageBundle);
 
+        //FIXME: create a real holder for these!
         VBox tempHolder = new VBox();
-        tempHolder.getChildren().add(new StylePicker(styleSheets, e -> updateStyleSheet(e)).getView());
-        tempHolder.getChildren().add(new LanguagePicker(languages, e -> updateLanguage(e)).getView());
+        tempHolder.setAlignment(Pos.TOP_RIGHT);
+        LanguagePicker tempPicker1 = new LanguagePicker(languages, e -> updateLanguage(e));
+        tempPicker1.getView().setPrefHeight(20);
+        tempPicker1.getView().setPrefWidth(100);
+        StylePicker tempPicker2 = new StylePicker(styleSheets, e -> updateStyleSheet(e));
+        tempPicker2.getView().setPrefHeight(20);
+        tempPicker2.getView().setPrefWidth(100);
+        tempHolder.getChildren().addAll(tempPicker1.getView(), tempPicker2.getView());
         myBorderPane.setRight(tempHolder);
     }
 
@@ -199,6 +209,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     public void promptNewGame(GameCaller startNewGame) {
         myMainPlayer.waitUntilReady(SelectorType.NEWGAME);
         startNewGame.startNewGame();
+    }
+
+    public void displayText(String s) {
+        Alert display = new Alert(Alert.AlertType.INFORMATION);
+        display.setContentText(s);
+        display.showAndWait();
     }
 
     private PlayerView getPlayerView(int playerID) {
