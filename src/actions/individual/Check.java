@@ -10,7 +10,6 @@ public class Check extends IndividualAction {
 
     public Check() {
         super();
-        System.out.println("Created a check action");
     }
 
     @Override

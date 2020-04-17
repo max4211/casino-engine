@@ -33,6 +33,9 @@
             <Name>BetAction</Name>
         </PlayerAction>
         <PlayerAction>
+            <Name>Raise</Name>
+        </PlayerAction>
+        <PlayerAction>
             <Name>Call</Name>
         </PlayerAction>
         <PlayerAction>

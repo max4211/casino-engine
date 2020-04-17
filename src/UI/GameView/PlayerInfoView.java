@@ -42,7 +42,6 @@ public class PlayerInfoView implements NodeViewInterface {
         myNameBox = createHBox(NAME_KEY, name);
         myBankBox = createHBox(BANK_KEY, String.valueOf(bankroll));
 
-        System.out.println(myNameBox == null);
         myDetailsBox.setVgrow(myNameBox, Priority.ALWAYS);
         myDetailsBox.setVgrow(myBankBox, Priority.ALWAYS);
     }

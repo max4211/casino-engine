@@ -84,7 +84,6 @@ public class AdversaryController extends Controller {
     protected void promptForActions() {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
-            System.out.printf("player %s is acting\n", p.getName());
             this.myGameView.setMainPlayer(p.getID());
             cardShow(p);
             try {

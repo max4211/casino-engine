@@ -148,7 +148,6 @@ public abstract class Controller implements ControllerInterface {
     protected void hideCards(Player p) {
         for (Player player: this.myTable.getPlayers()) {
             if (!(player.getID() == p.getID())) {
-                System.out.printf("%s is active, hiding %s's cards\n", p.getName(), player.getName());
                 for (Bet b: player.getActiveBets()) {
                     for (Card c: b.getHand().getCards()) {
                         this.myGameView.addCardIfAbsent(Generator.createCardTriplet(c), player.getID(), b.getID());
@@ -183,8 +182,6 @@ public abstract class Controller implements ControllerInterface {
     protected void updateCommunalCards() {
         List<Card> communalCards = this.myTable.getCommunalCards();
         List<CardTriplet> tripletList = Generator.createTripletList(communalCards);
-        for (Card c: communalCards)
-            System.out.printf("adding common card: %s\n", c.toString());
         this.myGameView.renderCommonCards(tripletList);
     }
 

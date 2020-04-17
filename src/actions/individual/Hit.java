@@ -10,7 +10,6 @@ public class Hit extends IndividualAction {
 
     public Hit() {
         super();
-        System.out.println("Created a hit action");
     }
 
     @Override

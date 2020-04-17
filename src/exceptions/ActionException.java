@@ -7,6 +7,16 @@ public class ActionException extends RuntimeException {
 
     private String myMessage;
 
+    public ActionException(IndividualAction action) {
+        super();
+        setMessage(action);
+    }
+
+    public ActionException(GroupAction action) {
+        super();
+        setMessage(action);
+    }
+
     public ActionException(Exception e, IndividualAction action) {
         super(e.getCause());
         setMessage(action);

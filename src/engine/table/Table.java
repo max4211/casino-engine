@@ -170,7 +170,6 @@ public class Table implements TableInterface {
         for (int i = 1; i <= quantity; i ++) {
             Card c = this.myDealer.getCard();
             this.myCommunalCards.add(this.myDealer.getCard());
-            System.out.println("added communal card (%s) to communal card hand");
         }
     }
 

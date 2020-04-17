@@ -4,7 +4,9 @@ import Utility.StringPair;
 import actions.group.GroupAction;
 import controller.bundles.ControllerBundle;
 import engine.bet.Bet;
+import engine.dealer.Card;
 import engine.player.Player;
+import exceptions.ActionException;
 import exceptions.ReflectionException;
 
 import java.util.ArrayList;
@@ -83,7 +85,8 @@ public class GroupController extends Controller {
                 garbageCollect(p, b);
             } catch (ReflectionException e) {
                 this.myGameView.displayException(e);
-                System.out.println(e);
+            } catch (ActionException e) {
+                this.myGameView.displayException(e);
             }
         }
     }
@@ -98,9 +101,17 @@ public class GroupController extends Controller {
         List<Bet> list = new ArrayList<>();
         for (Player p: this.myTable.getPlayers()) {
             list.addAll(p.getActiveBets());
+            addCommunalCardsToBets(list);
             this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
         return list;
+    }
+
+    private void addCommunalCardsToBets(List<Bet> list) {
+        for (Bet b: list) {
+            for (Card c: this.myTable.getCommunalCards())
+                b.acceptCard(c);
+        }
     }
 
     private void setBetsActive(Bet initiator) {

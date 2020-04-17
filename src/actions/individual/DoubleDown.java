@@ -10,7 +10,6 @@ public class DoubleDown extends IndividualAction {
 
     public DoubleDown() {
         super();
-        System.out.println("Created a double down action");
     }
 
     @Override

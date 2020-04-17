@@ -6,9 +6,9 @@ import exceptions.ActionException;
 
 import java.util.function.Consumer;
 
-public class BetAction extends GroupAction {
+public class Raise extends GroupAction {
 
-    public BetAction() {
+    public Raise() {
         super();
     }
 
@@ -16,10 +16,14 @@ public class BetAction extends GroupAction {
     public void execute(Player p, Bet b,
                         WagerSelector selectWager, Consumer<Double> setTableBet, Consumer<Bet> activatePlayers,
                         double tableMin, double tableMax, double currentBet) throws ActionException {
-        double wager = selectWager.getBet(tableMin, tableMax);
+        if (currentBet == 0)
+            throw new ActionException(this);
+        double wager = selectWager.getBet(currentBet, tableMax);
+
         b.setWager(b.getWager() + wager);
         b.setRoundActive(false);
         activatePlayers.accept(b);
         setTableBet.accept(wager);
+
     }
 }

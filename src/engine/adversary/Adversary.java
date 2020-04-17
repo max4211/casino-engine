@@ -49,19 +49,14 @@ public class Adversary implements AdversaryInterface {
             Card c = getCard.get();
             this.acceptCard(c);
             CardTriplet ct = Generator.createCardTriplet(c);
-            System.out.printf("(ADVERSARY): add adversary card %s to view\n", c.toString());
             addCard.accept(ct);
-            System.out.printf("(ADVERSARY): show adversary card %s in view\n", c.toString());
             showCard.accept(c.getID());
         }
     }
 
     private void showMyCards(Consumer<Integer> showCard) {
-        for (Card c: this.myPlayerHand.getCards()) {
-            System.out.printf("(ADVERSARY): show adversary card %s in view\n", c.toString());
+        for (Card c: this.myPlayerHand.getCards())
             showCard.accept(c.getID());
-        }
-
     }
 
     public boolean wantsCards() {
