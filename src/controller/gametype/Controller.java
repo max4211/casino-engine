@@ -4,24 +4,19 @@ import UI.GameView.GameView;
 import Utility.CardTriplet;
 import Utility.Generator;
 import Utility.StringPair;
-import actionFactory.Action;
 import actionFactory.ActionFactory;
 import controller.bundles.ControllerBundle;
 import controller.enums.Cardshow;
-import controller.enums.Competition;
 import controller.enums.EntryBet;
 import controller.enums.Goal;
 import controller.interfaces.ControllerInterface;
 import controller.interfaces.GarbageCollect;
-import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.evaluator.bet.BetEvaluator;
 import engine.evaluator.handclassifier.HandClassifier;
-import engine.hand.PlayerHand;
 import engine.player.Player;
 import engine.table.Table;
-import exceptions.ReflectionException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,26 +36,6 @@ public abstract class Controller implements ControllerInterface {
     protected Cardshow myCardshow;
     protected Goal myGoal;
 
-    // TODO - refactor into data files (in adversary construction?)
-    private static final int ADVERSARY_MIN = 17;
-
-    // TODO refactor items into a map of objects
-    public Controller(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, List<StringPair> dealerAction,
-                      HandClassifier handClassifier, BetEvaluator betEvaluator,
-                      Cardshow cardshow, Goal goal) {
-        this.myTable = table;
-        this.myGameView = gameView;
-        this.myEntryBet = entryBet;
-        this.myPlayerActions = playerActions;
-        this.myDealerAction = dealerAction;
-        this.myFactory = new ActionFactory();
-        this.myHandClassifier =  handClassifier;
-        this.myBetEvaluator = betEvaluator;
-        this.myCardshow = cardshow;
-        this.myGoal = goal;
-        renderPlayers();
-    }
-
     public Controller(ControllerBundle bundle) {
         this.myTable = bundle.getTable();
         this.myGameView = bundle.getGameView();
@@ -76,7 +51,13 @@ public abstract class Controller implements ControllerInterface {
     }
 
     protected void showGameViewRestart() {
+        try {
+            Thread.sleep(3000);
+        } catch (Exception e) {
+            ;
+        }
         this.myGameView.promptNewGame(this::restartGame);
+
     }
 
     protected void restartGame() {

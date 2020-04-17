@@ -155,7 +155,9 @@ public class Table implements TableInterface {
 
     private void dealCommunalCard(int quantity) {
         for (int i = 1; i <= quantity; i ++) {
+            Card c = this.myDealer.getCard();
             this.myCommunalCards.add(this.myDealer.getCard());
+            System.out.println("added communal card (%s) to communal card hand");
         }
     }
 
