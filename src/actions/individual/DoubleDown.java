@@ -19,6 +19,6 @@ public class DoubleDown extends IndividualAction {
             throw new ActionException(this);
         target.setWager(target.getWager() * 2);
         target.acceptCard(getCard.get());
-        target.setGameActive(false);
+        target.setRoundActive(false);
     }
 }

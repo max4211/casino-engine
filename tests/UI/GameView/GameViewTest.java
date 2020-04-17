@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.service.query.EmptyNodeQueryException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameViewTest extends DukeApplicationTest {
 
