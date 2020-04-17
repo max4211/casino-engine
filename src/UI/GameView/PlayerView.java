@@ -93,5 +93,6 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
 
     public void updateLanguage() {
         myInfo.updateLanguage();
+        for (BetView tempBetView : myBets) tempBetView.updateLanguage();
     }
 }

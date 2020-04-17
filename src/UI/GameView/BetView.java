@@ -77,4 +77,6 @@ public class BetView implements NodeViewInterface, TaggableInterface {
     public boolean hasSameID(int ID) {
         return myID == ID;
     }
+
+    public void updateLanguage() {myWager.updateLanguage();}
 }

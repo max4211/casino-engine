@@ -11,6 +11,10 @@
         <Stylesheet>Dark</Stylesheet>
         <Stylesheet>Coral</Stylesheet>
     </Stylesheets>
+    <Errors>
+        <Icon>errorIcon.png</Icon>
+        <StyleSheet>fire.css</StyleSheet>
+    </Errors>
     <Dimensions>
         <Width>800</Width>
         <Height>800</Height>

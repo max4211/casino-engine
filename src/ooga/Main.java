@@ -30,10 +30,9 @@ public class Main extends Application {
             String myLobbyCSS = myLobbyReader.getLobbyStylesheet();
             String myErrorCSS = myLobbyReader.getErrorStylesheet();
             String myErrorIcon = myLobbyReader.getErrorIcon();
-            //ExceptionDisplayer.setStyleSheet(myErrorIcon, myErrorCSS);
             List<Map<String, String>> myLobbyInfo = myLobbyReader.getBundleArguments();
             List<Map<String, File>> myLobbyFiles = myLobbyReader.getFileTags();
-            myLobbyView = new LobbyView(myLobbyCSS, myLobbyInfo, myLobbyFiles);
+            myLobbyView = new LobbyView(myLobbyCSS, myErrorIcon, myErrorCSS, myLobbyInfo, myLobbyFiles);
             Scene myScene = new Scene(myLobbyView.getView(), 500, 400);
             primaryStage.setScene(myScene);
             primaryStage.show();

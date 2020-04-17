@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Lobby>
-    <LobbyStylesheet>sunrise.css</LobbyStylesheet>
+    <LobbyStyleSheets>
+        <LobbyStylesheet>sunrise.css</LobbyStylesheet>
+        <LobbyStylesheet>ice.css</LobbyStylesheet>
+    </LobbyStyleSheets>
+    <LobbbyLanguages>
+        <LobbbyLanguages>English</LobbbyLanguages>
+        <LobbbyLanguages>Spanish</LobbbyLanguages>
+    </LobbbyLanguages>
     <ErrorStylesheet>fire.css</ErrorStylesheet>
     <ErrorIcon>exceptionIcon.png</ErrorIcon>
     <Bundle>
