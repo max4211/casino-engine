@@ -2,8 +2,10 @@ package UI.GameView;
 
 import UI.DukeApplicationTest;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import ooga.Main;
 import org.junit.jupiter.api.Assertions;
@@ -17,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 class GameViewTest extends DukeApplicationTest {
 
     private FxRobot myRobot;
-
+    private BorderPane myGamePane;
     @BeforeEach
     public void setUp() throws Exception {
         launch(Main.class);
@@ -53,9 +55,33 @@ class GameViewTest extends DukeApplicationTest {
     }
 
     // Happy Path :)
+    @Test
     public void testColorPicking() {
-
+        ComboBox languagePicker = myRobot.lookup("#css-combo-box").query();
+        myRobot.clickOn(languagePicker);
+        myRobot.clickOn(1166, 208);
+        myGamePane = myRobot.lookup("#game-border-pane").query();
+        assertEquals(myGamePane.getStylesheets().size(), 1);
+        assertEquals(myGamePane.getStylesheets().get(0), "Coral.css");
     }
 
+    public void clickReadyforInput() {
+        Button readyButton = myRobot.lookup("#ready-button").queryButton();
+        myRobot.clickOn(readyButton);
+    }
 
+    //TODO: wait for backend to catch up
+    // Happy Path :)
+    @Test
+    public void testSimpleBlackJackHand() {
+        testColorPicking();
+        testGoodWagerInput();
+        testGoodWagerInput();
+        testGoodWagerInput();
+        for (int i = 0; i < 3; i++) {
+            clickReadyforInput();
+            myRobot.clickOn(1000, 440); // OK @ STAY
+        }
+        clickReadyforInput();
+    }
 }

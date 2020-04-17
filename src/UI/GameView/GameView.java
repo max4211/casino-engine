@@ -40,7 +40,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     private static final String LANGUAGE_PICKER_ID = "language-combo-box";
     private static final String CSS_PICKER_ID = "css-combo-box";
-    
+
     private static final String BORDER_PANE_ID = "game-border-pane";
 
     public GameView(List<String> styleSheets, List<String> languages) {
