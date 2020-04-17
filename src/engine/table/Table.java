@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
 
+// TODO - refactor table into group/adversary?
 public class Table implements TableInterface {
 
     private static final String DEAL_ACTION = "deal";
@@ -24,8 +25,10 @@ public class Table implements TableInterface {
     private List<Card> myCommunalCards;
     private Dealer myDealer;
 
-    private double myTableMin = 5;
-    private double myTableMax = 100;
+    private double myTableMin;
+    private double myTableMax;
+
+    private double myCurrentBet;
 
     private Adversary myAdversary;
 
@@ -101,7 +104,7 @@ public class Table implements TableInterface {
     public Player getNextPlayer() {
         for (Player p: this.myPlayers) {
             for (Bet b: p.getBets()) {
-                if (b.isActive()) {
+                if (b.isRoundActive() && b.isGameActive()) {
                     return p;
                 }
             }
@@ -138,6 +141,16 @@ public class Table implements TableInterface {
     public void restartGame() {
         this.myCommunalCards = new ArrayList<>();
         this.myDealer.shuffle();
+    }
+
+    @Override
+    public void setCurrentBet(double bet) {
+        this.myCurrentBet = bet;
+    }
+
+    @Override
+    public double getCurrentBet() {
+        return this.myCurrentBet;
     }
 
     // TODO - slower individual card dealing with animation (Sprint 3 task)

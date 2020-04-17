@@ -5,21 +5,18 @@ import engine.player.Player;
 
 import java.util.function.Consumer;
 
-public class BetAction extends GroupAction {
+public class Fold extends GroupAction {
 
-    public BetAction() {
+    public Fold() {
         super();
-        System.out.println("Created a bet action");
+        System.out.println("Created a fold action");
     }
 
     @Override
     public void execute(Player p, Bet b,
                         WagerSelector selectWager, Consumer<Double> setTableBet, Consumer<Bet> activatePlayers,
                         double tableMin, double tableMax, double currentBet) {
-        double wager = selectWager.getBet(tableMin, tableMax);
-        b.setWager(b.getWager() + wager);
-        b.setRoundActive(false);
-        activatePlayers.accept(b);
-        setTableBet.accept(wager);
+        b.getHand().setLoser(true);
+        b.setGameActive(false);
     }
 }

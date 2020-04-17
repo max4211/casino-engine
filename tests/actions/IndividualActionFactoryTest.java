@@ -16,9 +16,9 @@ class IndividualActionFactoryTest {
     @Test
     void testCreateAction() {
         ActionFactory factory = new ActionFactory();
-        IndividualAction hitTest = factory.createAction("Hit");
-        IndividualAction stayTest = factory.createAction("Stay");
-        IndividualAction doubleDownTest = factory.createAction("DoubleDown");
+        IndividualAction hitTest = factory.createIndividualAction("Hit");
+        IndividualAction stayTest = factory.createIndividualAction("Stay");
+        IndividualAction doubleDownTest = factory.createIndividualAction("DoubleDown");
         assertEquals(hitTest.getClass(), Hit.class);
         assertEquals(stayTest.getClass(), Stay.class);
         assertEquals(doubleDownTest.getClass(), DoubleDown.class);
@@ -28,7 +28,7 @@ class IndividualActionFactoryTest {
     @Test
     void testInvalidAction() {
         ActionFactory factory = new ActionFactory();
-        Exception e = assertThrows(RuntimeException.class, () -> factory.createAction("blah"));
+        Exception e = assertThrows(RuntimeException.class, () -> factory.createIndividualAction(("blah")));
         assertEquals(e.getClass(), ReflectionException.class);
         // TODO - test exception matches string
     }

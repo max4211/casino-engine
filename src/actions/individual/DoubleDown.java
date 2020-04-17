@@ -17,6 +17,6 @@ public class DoubleDown extends IndividualAction {
     public void execute(Player player, Bet target, Supplier<Card> getCard) {
         target.setWager(target.getWager() * 2);
         target.acceptCard(getCard.get());
-        target.setActive(false);
+        target.setGameActive(false);
     }
 }

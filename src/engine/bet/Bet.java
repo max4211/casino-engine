@@ -9,21 +9,24 @@ public class Bet implements BetInterface {
     private int myID;
     private PlayerHand myPlayerHand;
     private double myWager;
-    private boolean myActive;
+    private boolean myRoundActive;
+    private boolean myGameActive;
     private double myMultiplier = 2.0;
 
     public Bet(double wager) {
         this.myPlayerHand = new PlayerHand();
         this.myWager = wager;
         this.myID = HashNoise.addNoise(this);
-        this.myActive = true;
+        this.myRoundActive = true;
+        this.myGameActive = true;
     }
 
     public Bet(double wager, PlayerHand playerHand) {
         this.myPlayerHand = playerHand;
         this.myWager = wager;
         this.myID = HashNoise.addNoise(this);
-        this.myActive = true;
+        this.myRoundActive = true;
+        this.myGameActive = true;
     }
 
     @Override
@@ -47,13 +50,23 @@ public class Bet implements BetInterface {
     }
 
     @Override
-    public boolean isActive() {
-        return this.myActive;
+    public boolean isGameActive() {
+        return this.myGameActive;
     }
 
     @Override
-    public void setActive(boolean state) {
-        this.myActive = state;
+    public void setGameActive(boolean state) {
+        this.myGameActive = state;
+    }
+
+    @Override
+    public boolean isRoundActive() {
+        return this.myRoundActive;
+    }
+
+    @Override
+    public void setRoundActive(boolean state) {
+        this.myRoundActive = state;
     }
 
     @Override

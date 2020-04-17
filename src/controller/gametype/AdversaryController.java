@@ -84,10 +84,11 @@ public class AdversaryController extends Controller {
     protected void promptForActions() {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
+            System.out.printf("player %s is acting\n", p.getName());
             this.myGameView.setMainPlayer(p.getID());
             cardShow(p);
             try {
-                IndividualAction a = this.myFactory.createAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
+                IndividualAction a = this.myFactory.createIndividualAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();
                 a.execute(p, b, this.myTable.getDealCardMethod());
                 classifyHand(b);

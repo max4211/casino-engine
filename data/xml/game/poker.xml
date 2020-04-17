@@ -27,19 +27,16 @@
             <Quantity>1</Quantity>
         </DealerAction>
         <PlayerAction>
-            <Name>Stay</Name>
+            <Name>Check</Name>
         </PlayerAction>
         <PlayerAction>
-            <Name>Bet</Name>
-        </PlayerAction>
-        <PlayerAction>
-            <Name>Raise</Name>
-        </PlayerAction>
-        <PlayerAction>
-            <Name>Fold</Name>
+            <Name>BetAction</Name>
         </PlayerAction>
         <PlayerAction>
             <Name>Call</Name>
+        </PlayerAction>
+        <PlayerAction>
+            <Name>Fold</Name>
         </PlayerAction>
     </Actions>
 </Game>

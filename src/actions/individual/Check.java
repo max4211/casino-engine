@@ -15,7 +15,7 @@ public class Check extends IndividualAction {
 
     @Override
     public void execute(Player player, Bet target, Supplier<Card> getCard) {
-        target.setActive(false);
+        target.setGameActive(false);
     }
 
 }

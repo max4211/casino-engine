@@ -22,7 +22,7 @@
         <Files>
             <Deck>data/xml/deck/standard.xml</Deck>
             <Game>data/xml/game/poker.xml</Game>
-            <Hands>data/xml/hands/hands.xml</Hands>
+            <Hands>data/xml/hands/pokerHands.xml</Hands>
             <Players>data/xml/players/3players.xml</Players>
             <View>data/xml/view/view.xml</View>
         </Files>

@@ -155,7 +155,7 @@ public abstract class Controller implements ControllerInterface {
     protected void classifyHand(Bet b) {
         this.myHandClassifier.classifyHand(b.getHand());
         if (b.getHand().isLoser()) {
-            b.setActive(false);
+            b.setGameActive(false);
         }
     }
 

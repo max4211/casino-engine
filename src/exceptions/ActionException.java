@@ -1,16 +1,30 @@
 package exceptions;
 
+import actions.group.GroupAction;
+import actions.individual.IndividualAction;
+
 public class ActionException extends RuntimeException {
 
-    //TODO: Max, is this right?
+    private String myMessage;
 
-    private static final String EXCEPTION_MESSAGE = "ACTION EXCEPTION";
-    public ActionException(Exception e) {
-        super(EXCEPTION_MESSAGE);
+    public ActionException(Exception e, IndividualAction action) {
+        super(e.getCause());
+        setMessage(action);
     }
 
-    public ActionException() {
-        super(EXCEPTION_MESSAGE);
+    public ActionException(Exception e, GroupAction action) {
+        super(e.getCause());
+        setMessage(action);
     }
+
+    private void setMessage(Object action) {
+        String simpleName = action.getClass().getSimpleName();
+        this.myMessage = String.format("Sorry, could not create action %s, please try again", simpleName);
+    }
+
+    public String getMessage() {
+        return this.myMessage;
+    }
+
 
 }

@@ -33,13 +33,25 @@ public interface BetInterface {
      * Determines if bet is active
      * @return
      */
-    boolean isActive();
+    boolean isGameActive();
 
     /**
      * Called by action to modify active state
      * @param state
      */
-    void setActive(boolean state);
+    void setGameActive(boolean state);
+
+    /**
+     * Determines if bet is active
+     * @return
+     */
+    boolean isRoundActive();
+
+    /**
+     * Called by action to modify active state
+     * @param state
+     */
+    void setRoundActive(boolean state);
 
     /**
      * Set the wager to a new amount

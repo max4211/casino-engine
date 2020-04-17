@@ -64,7 +64,7 @@ public class Player implements PlayerInterface {
     @Override
     public Bet getNextBet() {
         for (Bet b: this.myBets) {
-            if (b.isActive()) {
+            if (b.isGameActive()) {
                 return b;
             }
         }

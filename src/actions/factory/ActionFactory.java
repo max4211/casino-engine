@@ -1,5 +1,6 @@
 package actions.factory;
 
+import actions.group.GroupAction;
 import actions.individual.IndividualAction;
 import exceptions.ReflectionException;
 
@@ -23,7 +24,7 @@ public class ActionFactory implements ActionFactoryInterface {
 
 
     @Override
-    public IndividualAction createAction(String action) {
+    public IndividualAction createIndividualAction(String action) {
         try {
             Class clazz = Class.forName(createActionPath(action));
             Constructor ctor = clazz.getConstructor();
@@ -33,7 +34,18 @@ public class ActionFactory implements ActionFactoryInterface {
         }
     }
 
-    private String createActionPath(String action) {
+    @Override
+    public GroupAction createGroupAction(String action) {
+        try {
+            Class clazz = Class.forName(createActionPath(action));
+            Constructor ctor = clazz.getConstructor();
+            return (GroupAction) ctor.newInstance();
+        } catch (Exception e) {
+            throw new ReflectionException(e);
+        }
+    }
+
+    protected String createActionPath(String action) {
         return String.format("%s.%s.%s", ACTION_PATH, ACTION_TYPE, action);
     }
 

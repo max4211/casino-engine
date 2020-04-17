@@ -90,4 +90,16 @@ public interface TableInterface {
      * Called to reset the game to its appropriate state
      */
     void restartGame();
+
+    /**
+     * Get the current bet value that needs to be set
+     * @param bet
+     */
+    void setCurrentBet(double bet);
+
+    /**
+     * Fetch the current bet value that needs to be matched
+     * @return
+     */
+    double getCurrentBet();
 }
