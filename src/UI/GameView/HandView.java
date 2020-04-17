@@ -20,12 +20,12 @@ public class HandView implements NodeViewInterface {
         myFormatter.formatUnfixedCenter(myHand);
         myCards = new ArrayList<>();
 
-            for (CardTriplet cardInfo : allCards) {
-                CardView tempCardView = new CardView(cardInfo);
-                myCards.add(tempCardView);
-                myHand.getChildren().add(tempCardView.getView());
-            }
+        for (CardTriplet cardInfo : allCards) {
+            CardView tempCardView = new CardView(cardInfo);
+            myCards.add(tempCardView);
+            myHand.getChildren().add(tempCardView.getView());
         }
+    }
 
 
     //TODO: copy this? make this unmodifiable...
