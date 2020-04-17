@@ -95,6 +95,13 @@ public class GroupController extends Controller {
     protected void computePayoffs() {
         List<Bet> allBets = createListOfBets();
         this.myBetEvaluator.evaluateBets(allBets);
+        String summary = "";
+        for (Player p: this.myTable.getPlayers()) {
+            for (Bet b: p.getBets()) {
+                summary = summary + String.format("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
+            }
+        }
+//        this.myGameView.displayText(summary);
     }
 
     private List<Bet> createListOfBets() {

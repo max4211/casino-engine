@@ -103,14 +103,16 @@ public class AdversaryController extends Controller {
 
     @Override
     protected void computePayoffs() {
+        String summary = "";
         invokeCompetition();
         this.myHandClassifier.classifyHand(this.myAdversary.getHand());
         for (Player p: this.myTable.getPlayers()) {
             for (Bet b: p.getBets()) {
                 this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
-                System.out.printf("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
+                summary = summary + String.format("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
             }
         }
+//        this.myGameView.displayString(summary);
     }
 
     private void invokeCompetition() {
