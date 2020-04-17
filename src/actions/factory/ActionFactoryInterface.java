@@ -1,4 +1,6 @@
-package actionFactory;
+package actions.factory;
+
+import actions.individual.IndividualAction;
 
 public interface ActionFactoryInterface {
 
@@ -7,5 +9,5 @@ public interface ActionFactoryInterface {
      * @param action is the string name denoting the appropriate action to create
      * @return the appropriate action (specified by String input
      */
-    Action createAction(String action);
+    IndividualAction createAction(String action);
 }

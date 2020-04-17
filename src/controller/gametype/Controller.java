@@ -4,7 +4,7 @@ import UI.GameView.GameView;
 import Utility.CardTriplet;
 import Utility.Generator;
 import Utility.StringPair;
-import actionFactory.ActionFactory;
+import actions.factory.ActionFactory;
 import controller.bundles.ControllerBundle;
 import controller.enums.Cardshow;
 import controller.enums.EntryBet;
@@ -36,13 +36,13 @@ public abstract class Controller implements ControllerInterface {
     protected Cardshow myCardshow;
     protected Goal myGoal;
 
-    public Controller(ControllerBundle bundle) {
+    public Controller(ControllerBundle bundle, String actionType) {
         this.myTable = bundle.getTable();
         this.myGameView = bundle.getGameView();
         this.myEntryBet = bundle.getEntryBet();
         this.myPlayerActions = bundle.getPlayerActions();
         this.myDealerAction = bundle.getDealerAction();
-        this.myFactory = new ActionFactory();
+        this.myFactory = new ActionFactory(actionType);
         this.myHandClassifier =  bundle.getHandClassifier();
         this.myBetEvaluator = bundle.getBetEvaluator();
         this.myCardshow = bundle.getCardShow();

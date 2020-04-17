@@ -1,7 +1,7 @@
 package controller.gametype;
 
 import Utility.StringPair;
-import actionFactory.Action;
+import actions.individual.IndividualAction;
 import controller.bundles.ControllerBundle;
 import engine.bet.Bet;
 import engine.player.Player;
@@ -13,11 +13,12 @@ import java.util.Map;
 
 public class GroupController extends Controller {
 
+    private static final String ACTION_TYPE = "group";
     private static final String ANTE_TAG = "Ante";
     private double myAnte;
 
     public GroupController(ControllerBundle bundle, Map<String, String> params) {
-        super(bundle);
+        super(bundle, ACTION_TYPE);
         assignParams(params);
     }
 
@@ -57,7 +58,7 @@ public class GroupController extends Controller {
             this.myGameView.setMainPlayer(p.getID());
             cardShow(p);
             try {
-                Action a = this.myFactory.createAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
+                IndividualAction a = this.myFactory.createAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();
                 a.execute(p, b, this.myTable.getDealCardMethod());
                 classifyHand(b);

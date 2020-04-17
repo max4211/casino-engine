@@ -1,19 +1,24 @@
-package actionFactory;
+package actions;
 
+import actions.factory.ActionFactory;
+import actions.individual.DoubleDown;
+import actions.individual.Hit;
+import actions.individual.IndividualAction;
+import actions.individual.Stay;
 import exceptions.ReflectionException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ActionFactoryTest {
+class IndividualActionFactoryTest {
 
     // HAPPY PATH :)
     @Test
     void testCreateAction() {
         ActionFactory factory = new ActionFactory();
-        Action hitTest = factory.createAction("Hit");
-        Action stayTest = factory.createAction("Stay");
-        Action doubleDownTest = factory.createAction("DoubleDown");
+        IndividualAction hitTest = factory.createAction("Hit");
+        IndividualAction stayTest = factory.createAction("Stay");
+        IndividualAction doubleDownTest = factory.createAction("DoubleDown");
         assertEquals(hitTest.getClass(), Hit.class);
         assertEquals(stayTest.getClass(), Stay.class);
         assertEquals(doubleDownTest.getClass(), DoubleDown.class);

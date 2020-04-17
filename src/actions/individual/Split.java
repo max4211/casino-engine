@@ -1,4 +1,4 @@
-package actionFactory;
+package actions.individual;
 
 import engine.bet.Bet;
 import engine.dealer.Card;
@@ -7,7 +7,7 @@ import engine.player.Player;
 
 import java.util.function.Supplier;
 
-public class Split extends Action {
+public class Split extends IndividualAction {
 
     public Split() {
         super();
