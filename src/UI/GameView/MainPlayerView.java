@@ -2,6 +2,7 @@ package UI.GameView;
 
 import UI.Interfaces.NodeViewInterface;
 import UI.Interfaces.TaggableInterface;
+import UI.LanguageBundle;
 import UI.Selectors.SelectorReadyInput;
 import UI.Selectors.SelectorType;
 import Utility.Formatter;
@@ -13,18 +14,15 @@ public class MainPlayerView implements NodeViewInterface, TaggableInterface {
     private PlayerView myPlayer;
     private HBox myView;
     private Formatter myFormatter;
-    private boolean isReadyForAction;
-    private static final boolean READY = true;
-    private static final boolean NOT_READY = false;
-
+    private SelectorReadyInput myReadyButton;
 
     private static final Pos MAIN_PLAYER_ALIGNMENT = Pos.CENTER;
 
-    public MainPlayerView() {
+    public MainPlayerView(LanguageBundle languageBundle) {
         myView = new HBox();
         myFormatter = new Formatter();
         myFormatter.formatUnfixedCenter(myView);
-        isReadyForAction = false;
+        myReadyButton = new SelectorReadyInput(languageBundle);
     }
 
     public void setMainPlayer(PlayerView newMainPlayer) {
@@ -56,7 +54,7 @@ public class MainPlayerView implements NodeViewInterface, TaggableInterface {
     }
 
     public void waitUntilReady(SelectorType mySelectionType) {
-        SelectorReadyInput.pauseUntilReady(myView, mySelectionType);
+        myReadyButton.pauseUntilReady(myView, mySelectionType);
     }
 
     public void updateLanguage() {

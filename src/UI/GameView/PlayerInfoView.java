@@ -3,9 +3,9 @@ package UI.GameView;
 import UI.Interfaces.NodeViewInterface;
 import UI.LanguageBundle;
 import Utility.Formatter;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class PlayerInfoView implements NodeViewInterface {
@@ -41,9 +41,6 @@ public class PlayerInfoView implements NodeViewInterface {
 
         myNameBox = createHBox(NAME_KEY, name);
         myBankBox = createHBox(BANK_KEY, String.valueOf(bankroll));
-
-        myDetailsBox.setVgrow(myNameBox, Priority.ALWAYS);
-        myDetailsBox.setVgrow(myBankBox, Priority.ALWAYS);
     }
 
     private HBox createHBox(String bundleKey, String userInput) {
@@ -51,7 +48,7 @@ public class PlayerInfoView implements NodeViewInterface {
         returnedHBox.getChildren().add(new Label(myLanguageBundle.getBundle().getString(bundleKey)));
         Label nameInputLabel = new Label(userInput);
         returnedHBox.getChildren().add(nameInputLabel);
-        returnedHBox.setHgrow(nameInputLabel, Priority.ALWAYS);
+        returnedHBox.setAlignment(Pos.CENTER);
         myDetailsBox.getChildren().add(returnedHBox);
         return returnedHBox;
     }

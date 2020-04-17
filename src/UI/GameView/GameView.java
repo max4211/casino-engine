@@ -36,12 +36,12 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
     public GameView(List<String> styleSheets, List<String> languages) {
+        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
         myBorderPane = new BorderPane();
         myOtherPlayers = new OtherPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
-        myMainPlayer = new MainPlayerView();
+        myMainPlayer = new MainPlayerView(myLanguageBundle);
         myBorderPane.setBottom(myMainPlayer.getView());
-        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
         myExceptionDisplayer = new ExceptionDisplayer("exceptionIcon.png", "fire.css", myLanguageBundle);
         myWagerSelector = new WagerSelector(myLanguageBundle);
         myActionSelector = new ActionSelector(myLanguageBundle);
