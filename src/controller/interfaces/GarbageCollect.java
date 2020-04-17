@@ -12,7 +12,7 @@ public interface GarbageCollect {
 
     static void clearLosers(Collection<Player> players, BiConsumer<Integer, Integer> removeViewBet) {
         for (Player p: players) {
-            for (Bet b: p.getBets()) {
+            for (Bet b: p.getActiveBets()) {
                 if (b.getHand().isLoser()) {
                     removeViewBet.accept(p.getID(), b.getID());
                 }

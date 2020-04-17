@@ -10,7 +10,9 @@ public interface LobbyReaderInterface {
      * Get meta parameters (for now just link to stylesheet)
      * @return
      */
-    String getLobbyStylesheet();
+    List<String> getLobbyStylesheet();
+    List<String> getLobbyLanguages();
+
     String getErrorStylesheet();
     String getErrorIcon();
 

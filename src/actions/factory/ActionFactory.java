@@ -1,35 +1,52 @@
-package actionFactory;
+package actions.factory;
 
+import actions.group.GroupAction;
+import actions.individual.IndividualAction;
 import exceptions.ReflectionException;
 
 import java.lang.reflect.Constructor;
-import java.util.List;
 
 /**
  * Attempting to mimic a "static class" behavior
  */
 public class ActionFactory implements ActionFactoryInterface {
 
-    private static final String ACTION_FACTORY = "actionFactory";
+    private static final String ACTION_PATH = "actions";
+    private String ACTION_TYPE;
 
     public ActionFactory() {
 
     }
 
+    public ActionFactory(String type) {
+        this.ACTION_TYPE = type;
+    }
+
 
     @Override
-    public Action createAction(String action) {
+    public IndividualAction createIndividualAction(String action) {
         try {
             Class clazz = Class.forName(createActionPath(action));
             Constructor ctor = clazz.getConstructor();
-            return (Action) ctor.newInstance();
+            return (IndividualAction) ctor.newInstance();
         } catch (Exception e) {
             throw new ReflectionException(e);
         }
     }
 
-    private String createActionPath(String action) {
-        return String.format("%s.%s", ACTION_FACTORY, action);
+    @Override
+    public GroupAction createGroupAction(String action) {
+        try {
+            Class clazz = Class.forName(createActionPath(action));
+            Constructor ctor = clazz.getConstructor();
+            return (GroupAction) ctor.newInstance();
+        } catch (Exception e) {
+            throw new ReflectionException(e);
+        }
+    }
+
+    protected String createActionPath(String action) {
+        return String.format("%s.%s.%s", ACTION_PATH, ACTION_TYPE, action);
     }
 
     /** Max's team code for reflection example within their execution (shows how to invoke a method)

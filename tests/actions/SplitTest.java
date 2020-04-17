@@ -1,5 +1,6 @@
-package actionFactory;
+package actions;
 
+import actions.individual.Split;
 import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.player.Player;

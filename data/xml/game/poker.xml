@@ -6,7 +6,7 @@
     </Competition>
     <TableMin>5</TableMin>
     <TableMax>200</TableMax>
-    <CardShow>All</CardShow>
+    <CardShow>Active</CardShow>
     <Goal>Tournament</Goal>
     <Actions>
         <EntryBet>Generic</EntryBet>
@@ -27,19 +27,19 @@
             <Quantity>1</Quantity>
         </DealerAction>
         <PlayerAction>
-            <Name>Stay</Name>
+            <Name>Check</Name>
         </PlayerAction>
         <PlayerAction>
-            <Name>Bet</Name>
+            <Name>BetAction</Name>
         </PlayerAction>
         <PlayerAction>
             <Name>Raise</Name>
         </PlayerAction>
         <PlayerAction>
-            <Name>Fold</Name>
+            <Name>Call</Name>
         </PlayerAction>
         <PlayerAction>
-            <Name>Call</Name>
+            <Name>Fold</Name>
         </PlayerAction>
     </Actions>
 </Game>

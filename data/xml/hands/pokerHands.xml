@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Game>
+    <WinningHand>
+        <Name>Flush</Name>
+    </WinningHand>
+    <WinningHand>
+        <Name>Straight</Name>
+    </WinningHand>
+    <WinningHand>
+        <Name>Pair</Name>
+    </WinningHand>
+</Game>

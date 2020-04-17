@@ -1,29 +1,18 @@
 package controller.gametype;
 
-import UI.GameView.GameView;
 import Utility.CardTriplet;
 import Utility.Generator;
 import Utility.StringPair;
-import actionFactory.Action;
-import actionFactory.ActionFactory;
+import actions.individual.IndividualAction;
 import controller.bundles.ControllerBundle;
-import controller.enums.Cardshow;
-import controller.enums.Competition;
-import controller.enums.EntryBet;
-import controller.enums.Goal;
-import controller.interfaces.ControllerInterface;
-import controller.interfaces.GarbageCollect;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
-import engine.evaluator.bet.BetEvaluator;
-import engine.evaluator.handclassifier.HandClassifier;
 import engine.player.Player;
-import engine.table.Table;
+import exceptions.ActionException;
 import exceptions.ReflectionException;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -32,11 +21,12 @@ public class AdversaryController extends Controller {
     private Adversary myAdversary;
 
     // TODO - refactor into data files (in adversary construction?)
+    private static final String ACTION_TYPE = "individual";
     private static final String MINIMUM_TAG = "Minimum";
     private double ADVERSARY_MIN;
 
     public AdversaryController(ControllerBundle bundle, Map<String, String> params) {
-        super(bundle);
+        super(bundle, ACTION_TYPE);
         assignParams(params);
     }
 
@@ -81,7 +71,6 @@ public class AdversaryController extends Controller {
     }
 
     private void showAdversaryCard(Card c) {
-//        this.myGameView.addAdversaryCard(Generator.createCardTriplet(c));
         this.myGameView.showAdversaryCard(c.getID());
     }
 
@@ -99,14 +88,14 @@ public class AdversaryController extends Controller {
             this.myGameView.setMainPlayer(p.getID());
             cardShow(p);
             try {
-                Action a = this.myFactory.createAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
+                IndividualAction a = this.myFactory.createIndividualAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();
                 a.execute(p, b, this.myTable.getDealCardMethod());
                 classifyHand(b);
                 addCardToPlayer(p);
                 this.myGameView.setWager(b.getWager(), p.getID(), b.getID());
                 this.myGameView.setBankRoll(p.getBankroll(), p.getID());
-            } catch (ReflectionException e) {
+            } catch (ReflectionException | ActionException e) {
                 this.myGameView.displayException(e);
             }
         }

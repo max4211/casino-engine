@@ -1,13 +1,12 @@
-package actionFactory;
+package actions.individual;
 
 import engine.bet.Bet;
 import engine.dealer.Card;
-import engine.dealer.Dealer;
 import engine.player.Player;
 
 import java.util.function.Supplier;
 
-public class Stay extends Action {
+public class Stay extends IndividualAction {
 
     public Stay() {
         super();
@@ -15,6 +14,6 @@ public class Stay extends Action {
 
     @Override
     public void execute(Player player, Bet target, Supplier<Card> getCard) {
-        target.setActive(false);
+        target.setGameActive(false);
     }
 }

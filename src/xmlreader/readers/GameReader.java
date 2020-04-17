@@ -74,7 +74,7 @@ public class GameReader implements GameReaderInterface {
 
     @Override
     public Collection<String> getPlayerAction() {
-        return XMLParseInterface.getXMLList(myDocument, PLAYERACTION_TAG, NAME_TAG);
+        return XMLParseInterface.getXMLCollection(myDocument, PLAYERACTION_TAG, NAME_TAG);
     }
 
     @Override

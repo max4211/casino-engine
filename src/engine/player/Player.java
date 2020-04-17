@@ -38,13 +38,17 @@ public class Player implements PlayerInterface {
 
     @Override
     public List<Bet> getBets() {
+        return this.myBets;
+    }
+
+    public List<Bet> getActiveBets() {
         List<Bet> activeBets = new ArrayList<Bet>();
         for (Bet b: this.myBets) {
             if (!b.getHand().isLoser()) {
                 activeBets.add(b);
             }
         }
-        return this.myBets;
+        return activeBets;
     }
 
     @Override
@@ -64,7 +68,7 @@ public class Player implements PlayerInterface {
     @Override
     public Bet getNextBet() {
         for (Bet b: this.myBets) {
-            if (b.isActive()) {
+            if (b.isGameActive()) {
                 return b;
             }
         }

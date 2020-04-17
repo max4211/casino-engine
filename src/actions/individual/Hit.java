@@ -1,17 +1,15 @@
-package actionFactory;
+package actions.individual;
 
 import engine.bet.Bet;
 import engine.dealer.Card;
-import engine.dealer.Dealer;
 import engine.player.Player;
 
 import java.util.function.Supplier;
 
-public class Hit extends Action {
+public class Hit extends IndividualAction {
 
     public Hit() {
         super();
-        System.out.println("Created a hit action");
     }
 
     @Override

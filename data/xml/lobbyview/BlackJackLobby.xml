@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Lobby>
-    <LobbyStyleSheets>
-        <LobbyStylesheet>sunrise.css</LobbyStylesheet>
-        <LobbyStylesheet>ice.css</LobbyStylesheet>
-    </LobbyStyleSheets>
-    <LobbbyLanguages>
-        <LobbbyLanguages>English</LobbbyLanguages>
-        <LobbbyLanguages>Spanish</LobbbyLanguages>
-    </LobbbyLanguages>
+    <Stylesheets>
+        <Stylesheet>sunrise.css</Stylesheet>
+        <Stylesheet>ice.css</Stylesheet>
+    </Stylesheets>
+    <Languages>
+        <Language>English</Language>
+        <Language>Spanish</Language>
+    </Languages>
     <ErrorStylesheet>fire.css</ErrorStylesheet>
     <ErrorIcon>exceptionIcon.png</ErrorIcon>
     <Bundle>
@@ -29,7 +29,7 @@
         <Files>
             <Deck>data/xml/deck/standard.xml</Deck>
             <Game>data/xml/game/poker.xml</Game>
-            <Hands>data/xml/hands/hands.xml</Hands>
+            <Hands>data/xml/hands/pokerHands.xml</Hands>
             <Players>data/xml/players/3players.xml</Players>
             <View>data/xml/view/view.xml</View>
         </Files>
