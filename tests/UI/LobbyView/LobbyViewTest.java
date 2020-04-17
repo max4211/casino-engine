@@ -10,22 +10,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LobbyViewTest extends DukeApplicationTest {
 
-    private FlowPane myLobbyView;
+    private FlowPane myLobbyPane;
+    private I
     @BeforeEach
     public void setUp() throws Exception {
         launch(Main.class);
-        myLobbyView = new FxRobot().lookup("#full-lobby").query();
-
+        myLobbyPane = new FxRobot().lookup("#full-lobby").query();
+        my
     }
 
     @Test
     public void testCSSApplication() {
-        assertEquals(myLobbyView.getStylesheets().size(), 1);
-        assertEquals(myLobbyView.getStylesheets().get(0), "sunrise.css");
+        assertEquals(myLobbyPane.getStylesheets().size(), 1);
+        assertEquals(myLobbyPane.getStylesheets().get(0), "sunrise.css");
     }
 
     @Test
     public void testIconLoad() {
-
+        assertEquals();
     }
 }

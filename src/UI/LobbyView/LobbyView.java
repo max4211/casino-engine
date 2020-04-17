@@ -25,6 +25,9 @@ public class LobbyView implements NodeViewInterface {
     private static final String FLOWPANE_CSS_ID = "full-lobby";
     private static final int DEFAULT_CSS_INDEX = 0;
 
+    private static final String BLACKJACK = "BlackJack";
+    private static final String BLACKJACK_ICON_ID = "#BlackJack-ID";
+
     private LanguageBundle myLanguageBundle;
     private ExceptionDisplayer myExceptionDisplayer;
 
@@ -48,6 +51,8 @@ public class LobbyView implements NodeViewInterface {
             } else if (gameType.equals(STANDARD)) {
                 tempIcon = new StandardGameIcon(tempGeneralInfo.get(ICON_TAG), tempGeneralInfo.get(NAME_TAG), e -> createGame(e), tempFiles);
             }
+
+            if (tempGeneralInfo.get(NAME_TAG).equals(BLACKJACK)) tempIcon.getView().setId(BLACKJACK_ICON_ID);
             myFlowPane.getChildren().add(tempIcon.getView());
         }
 
