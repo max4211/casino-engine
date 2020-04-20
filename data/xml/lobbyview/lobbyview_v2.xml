@@ -5,8 +5,8 @@
         <Height>400</Height>
     </Dimensions>
     <Stylesheets>
-        <Stylesheet>sunrise.css</Stylesheet>
         <Stylesheet>ice.css</Stylesheet>
+        <Stylesheet>sunrise.css</Stylesheet>
     </Stylesheets>
     <Languages>
         <Language>English</Language>
