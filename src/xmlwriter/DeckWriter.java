@@ -5,7 +5,7 @@ import java.util.List;
 public class DeckWriter {
 
     private static final String FILENAME = "test.xml";
-    private static final List<String> SUITS = List.of("Hearts", "Spades", "Clubs", "Diamonds");
+    private static final List<String> SUITS = List.of("SOLID", "STUPID", "Lambda", "OOGA", "Breakout");
     private static final int MAX_VALUE = 11;
 
     public static void main (String[] args) {

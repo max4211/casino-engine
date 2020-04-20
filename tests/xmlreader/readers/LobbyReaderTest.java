@@ -26,7 +26,7 @@ class LobbyReaderTest {
 
     @Test
     void getBundleArguments() throws ParserConfigurationException, SAXException, IOException {
-        final String filename = "data/xml/lobbyview/BlackJackLobby.xml";
+        final String filename = "data/xml/lobbyview/lobbyview_v1.xml";
         LobbyReader reader = new LobbyReader(filename);
         List<Map<String, String>> bundleList = reader.getBundleArguments();
         Map<String, String> bjMap = bundleList.get(0);
@@ -43,7 +43,7 @@ class LobbyReaderTest {
 
     @Test
     void getFileArguments() throws ParserConfigurationException, SAXException, IOException {
-        final String filename = "data/xml/lobbyview/BlackJackLobby.xml";
+        final String filename = "data/xml/lobbyview/lobbyview_v1.xml";
         LobbyReader reader = new LobbyReader(filename);
         List<Map<String, File>> bundleList = reader.getFileTags();
         Map<String, File> bjMap = bundleList.get(0);
@@ -61,7 +61,7 @@ class LobbyReaderTest {
 
     @Test
     void getLobbyStylesheet() throws ParserConfigurationException, SAXException, IOException {
-        final String filename = "data/xml/lobbyview/BlackJackLobby.xml";
+        final String filename = "data/xml/lobbyview/lobbyview_v1.xml";
         LobbyReader reader = new LobbyReader(filename);
         List<String> result = reader.getLobbyStylesheet();
         List<String> expected = new ArrayList<String>(List.of("" +
@@ -72,7 +72,7 @@ class LobbyReaderTest {
 
     @Test
     void getLobbyLanguages() throws ParserConfigurationException, SAXException, IOException {
-        final String filename = "data/xml/lobbyview/BlackJackLobby.xml";
+        final String filename = "data/xml/lobbyview/lobbyview_v1.xml";
         LobbyReader reader = new LobbyReader(filename);
         List<String> result = reader.getLobbyLanguages();
         List<String> expected = new ArrayList<String>(List.of("" +

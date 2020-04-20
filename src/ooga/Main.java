@@ -16,7 +16,7 @@ import java.util.Map;
 public class Main extends Application {
 
     private static final String PATH_TO_LOBBY_XML = "data/xml/lobbyview/";
-    private static final String LOBBY_XML_FILE = "BlackJackLobby.xml";
+    private static final String LOBBY_XML_FILE = "lobbyview_v2.xml";
     private static final int EXIT_STATUS = 0;
     public static void main(String[] args) {
         launch(args);
