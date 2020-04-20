@@ -20,6 +20,7 @@ public class BetAction extends GroupAction {
         double max = Math.min(tableMax, p.getBankroll());
         double wager = selectWager.getBet(min, max);
         b.setWager(b.getWager() + wager);
+        p.updateBankroll(wager);
         b.setRoundActive(false);
         activatePlayers.accept(b);
         setTableBet.accept(wager);
