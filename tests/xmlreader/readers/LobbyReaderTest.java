@@ -33,12 +33,7 @@ class LobbyReaderTest {
         Map<String, String> customMap = bundleList.get(1);
         assertEquals("Blackjack", bjMap.get(NAME_TAG));
         assertEquals("Standard", bjMap.get(TYPE_TAG));
-        assertEquals("blackJackIcon.jpg", bjMap.get(ICON_TAG));
-
-        assertEquals("Custom Game", customMap.get(NAME_TAG));
-        assertEquals("Custom", customMap.get(TYPE_TAG));
-        assertEquals("QuestionMark.jpg", customMap.get(ICON_TAG));
-        assertEquals(null, customMap.get(VIEW_TAG));
+        assertEquals("Black_Jack-512.png", bjMap.get(ICON_TAG));
     }
 
     @Test
@@ -51,11 +46,8 @@ class LobbyReaderTest {
         assertEquals(new File("data/xml/deck/standard.xml"), bjMap.get(DECK_TAG));
         assertEquals(new File("data/xml/game/blackjackGame_v2.xml"), bjMap.get(GAME_TAG));
         assertEquals(new File("data/xml/hands/hands.xml"), bjMap.get(HAND_TAG));
-        assertEquals(new File("data/xml/players/players.xml"), bjMap.get(PLAYER_TAG));
+        assertEquals(new File("data/xml/players/3players.xml"), bjMap.get(PLAYER_TAG));
         assertEquals(new File("data/xml/view/view.xml"), bjMap.get(VIEW_TAG));
-
-        assertEquals(null, customMap.get(VIEW_TAG));
-        assertEquals(new File("data/xml/deck/guy.xml"), customMap.get(DECK_TAG));
 
     }
 
@@ -65,7 +57,7 @@ class LobbyReaderTest {
         LobbyReader reader = new LobbyReader(filename);
         List<String> result = reader.getLobbyStylesheet();
         List<String> expected = new ArrayList<String>(List.of("" +
-                "sunruse.css", "ice.css"));
+                "sunrise.css", "ice.css"));
         for (int i = 0; i < result.size(); i ++)
             assertEquals(expected.get(i), result.get(i));
     }
