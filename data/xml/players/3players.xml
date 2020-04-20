@@ -3,7 +3,7 @@
     <Players>
         <Player>
             <Name>Max</Name>
-            <Bankroll>1000</Bankroll>
+            <Bankroll>100</Bankroll>
         </Player>
         <Player>
             <Name>Eric</Name>

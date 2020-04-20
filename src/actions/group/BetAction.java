@@ -16,7 +16,9 @@ public class BetAction extends GroupAction {
     public void execute(Player p, Bet b,
                         WagerSelector selectWager, Consumer<Double> setTableBet, Consumer<Bet> activatePlayers,
                         double tableMin, double tableMax, double currentBet) throws ActionException {
-        double wager = selectWager.getBet(tableMin, tableMax);
+        double min = tableMin;
+        double max = Math.min(tableMax, p.getBankroll());
+        double wager = selectWager.getBet(min, max);
         b.setWager(b.getWager() + wager);
         b.setRoundActive(false);
         activatePlayers.accept(b);

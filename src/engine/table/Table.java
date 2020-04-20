@@ -54,6 +54,7 @@ public class Table implements TableInterface {
         System.out.println(s);
     }
 
+    // TODO - multiple entry bet types
     @Override
     public Bet placeEntryBet(int playerHash, EntryBet betType, double wager) {
         Player p = findPlayer(playerHash);
