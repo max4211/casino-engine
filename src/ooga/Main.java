@@ -16,7 +16,7 @@ import java.util.Map;
 public class Main extends Application {
 
     private static final String PATH_TO_LOBBY_XML = "data/xml/lobbyview/";
-    private static final String LOBBY_XML_FILE = "lobbyview_v2.xml";
+    private static final String LOBBY_XML_FILE = "lobbyview_v1.xml";
     private static final int EXIT_STATUS = 0;
     public static void main(String[] args) {
         launch(args);
@@ -34,7 +34,7 @@ public class Main extends Application {
             List<Map<String, String>> myLobbyInfo = myLobbyReader.getBundleArguments();
             List<Map<String, File>> myLobbyFiles = myLobbyReader.getFileTags();
             myLobbyView = new LobbyView(myLobbyCSS, myLobbyLanguages, myErrorIcon, myErrorCSS, myLobbyInfo, myLobbyFiles);
-            Scene myScene = new Scene(myLobbyView.getView(), 500, 400);
+            Scene myScene = new Scene(myLobbyView.getView(), myLobbyReader.getScreenWidth(), myLobbyReader.getScreenHeight());
             primaryStage.setScene(myScene);
             primaryStage.show();
         } catch (IOException | SAXException | ParserConfigurationException e) {

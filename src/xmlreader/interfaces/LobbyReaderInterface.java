@@ -7,6 +7,13 @@ import java.util.Map;
 public interface LobbyReaderInterface {
 
     /**
+     * Get dimensions of the screen
+     * @return
+     */
+    int getScreenWidth();
+    int getScreenHeight();
+
+    /**
      * Get meta parameters (for now just link to stylesheet)
      * @return
      */

@@ -30,6 +30,8 @@ public class LobbyReader implements LobbyReaderInterface  {
     private static final String TYPE_TAG = "Type";
     private static final String ICON_TAG = "Icon";
 
+    private static final String WIDTH_TAG = "Width";
+    private static final String HEIGHT_TAG = "Height";
 
     private static final String DECK_TAG = "Deck";
     private static final String GAME_TAG = "Game";
@@ -43,6 +45,16 @@ public class LobbyReader implements LobbyReaderInterface  {
 
     public LobbyReader(String file) throws IOException, SAXException, ParserConfigurationException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
+    }
+
+    @Override
+    public int getScreenWidth() {
+        return Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, WIDTH_TAG));
+    }
+
+    @Override
+    public int getScreenHeight() {
+        return Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, HEIGHT_TAG));
     }
 
     @Override

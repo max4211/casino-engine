@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Lobby>
+    <Dimensions>
+        <Width>600</Width>
+        <Height>400</Height>
+    </Dimensions>
     <Stylesheets>
         <Stylesheet>sunrise.css</Stylesheet>
         <Stylesheet>ice.css</Stylesheet>
