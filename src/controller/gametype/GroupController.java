@@ -42,6 +42,7 @@ public class GroupController extends Controller {
             showCommonCards();
             promptForActions();
         }
+        showAllCards();
         computePayoffs();
         updateBankrolls();
         showGameViewRestart();
