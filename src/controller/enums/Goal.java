@@ -12,4 +12,9 @@ public enum Goal {
         this.myType = type;
     }
 
+    @Override
+    public String toString() {
+        return this.myType;
+    }
+
 }

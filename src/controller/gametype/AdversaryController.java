@@ -46,6 +46,7 @@ public class AdversaryController extends Controller {
         }
         showAllAdversaryCards();
         computePayoffs();
+        showGoals();
         updateBankrolls();
         showGameViewRestart();
     }

@@ -5,11 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CashGameTest {
+class CashgameTest {
 
     class PlayerCollection {
 
@@ -35,7 +34,7 @@ class CashGameTest {
         pc.add(new Player("Eric", 1000));
         pc.add(new Player("Robert", 400));
         pc.add(new Player("Zoe", 12012));
-        Goal goal = new CashGame(pc::getPlayers);
+        Goal goal = new Cashgame(pc::getPlayers);
         String result = goal.evaluate();
         String expected = "Standings:\n" +
                 "1. Zoe (12012)\n" +

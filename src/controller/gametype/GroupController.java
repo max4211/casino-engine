@@ -44,6 +44,7 @@ public class GroupController extends Controller {
         }
         this.myCardshow.showAllCards();
         computePayoffs();
+        showGoals();
         updateBankrolls();
         showGameViewRestart();
     }

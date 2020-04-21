@@ -6,13 +6,13 @@ import java.util.Collection;
 import java.util.PriorityQueue;
 import java.util.function.Supplier;
 
-public class CashGame extends Goal {
+public class Cashgame extends Goal {
 
     private static final int ZERO = 0;
     private static final String STANDINGS = "Standings:";
     private static final String NEWLINE = "\n";
 
-    public CashGame(Supplier<Collection<Player>> getPlayers) {
+    public Cashgame(Supplier<Collection<Player>> getPlayers) {
         super(getPlayers);
     }
 

@@ -11,6 +11,7 @@ import controller.cardshow.CardShowFactory;
 import controller.enums.Cardshow;
 import controller.enums.EntryBet;
 import controller.enums.Goal;
+import controller.goal.GoalFactory;
 import controller.interfaces.ControllerInterface;
 import controller.interfaces.GarbageCollect;
 import engine.bet.Bet;
@@ -36,7 +37,7 @@ public abstract class Controller implements ControllerInterface {
 
     protected final EntryBet myEntryBet;
     protected CardShow myCardshow;
-    protected Goal myGoal;
+    protected controller.goal.Goal myGoal;
 
     public Controller(ControllerBundle bundle, String actionType) {
         this.myTable = bundle.getTable();
@@ -48,8 +49,17 @@ public abstract class Controller implements ControllerInterface {
         this.myHandClassifier =  bundle.getHandClassifier();
         this.myBetEvaluator = bundle.getBetEvaluator();
         this.myCardshow = createCardShow(bundle.getCardShow());
-        this.myGoal = bundle.getGoal();
+        this.myGoal = createGoal(bundle.getGoal());
         renderPlayers();
+    }
+
+    private controller.goal.Goal createGoal(Goal goal) {
+        try {
+            GoalFactory factory = new GoalFactory();
+            return (controller.goal.Goal) factory.create(goal.toString(), () -> this.myTable.getPlayers());
+        } catch (Exception e) {
+            throw new ReflectionException();
+        }
     }
 
     private CardShow createCardShow(Cardshow cardShow) {
@@ -147,6 +157,11 @@ public abstract class Controller implements ControllerInterface {
             p.cashBets();
             this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
+    }
+
+    // TODO - implement goal show
+    protected void showGoals() {
+        this.myGameView.displayText(this.myGoal.evaluate());
     }
 
 }
