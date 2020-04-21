@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Deck">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Title" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                <xs:element name="Authors" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                <xs:element name="Quantity" type="xs:int" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="Card" minOccurs="1" maxOccurs="100">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Value" type="xs:double" minOccurs="1" maxOccurs="1"></xs:element>
+                            <xs:element name="Suit" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

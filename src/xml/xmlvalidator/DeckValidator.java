@@ -1,10 +1,10 @@
 package xml.xmlvalidator;
 
-public class PlayerValidator extends Validator {
+public class DeckValidator extends Validator {
 
     private static final String VALIDATION_FILE = "data/schema/deckschema.xsd";
 
-    public PlayerValidator() {
+    public DeckValidator() {
         super(VALIDATION_FILE);
     }
 }

@@ -11,7 +11,8 @@ class PlayerValidatorTest {
     @Test
     void validate() {
         Validator playerValidator = new PlayerValidator();
-        String playerPath = "data/xml/players/players.xml";
+//        String playerPath = "data/xml/players/players.xml";
+        String playerPath = "data/xml/players/3players.xml";
         File playerFile = new File(playerPath);
         boolean result = playerValidator.validate(playerFile);
         boolean expected = true;
