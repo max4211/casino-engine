@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TournamentTest {
+class CashGameTest {
 
     class PlayerCollection {
 
@@ -33,16 +33,15 @@ class TournamentTest {
         PlayerCollection pc = new PlayerCollection();
         pc.add(new Player("Max", 500));
         pc.add(new Player("Eric", 1000));
-        pc.add(new Player("Robert", 0));
-        pc.add(new Player("Zoe", 0));
-        Tournament goal = new Tournament(pc::getPlayers);
+        pc.add(new Player("Robert", 400));
+        pc.add(new Player("Zoe", 12012));
+        Goal goal = new CashGame(pc::getPlayers);
         String result = goal.evaluate();
-        String expected = "Winners:\n" +
-                "1. Eric (1000)\n" +
-                "2. Max (500)\n" +
-                "Losers:\n" +
-                "1. Robert (0)\n" +
-                "2. Zoe (0)\n";
+        String expected = "Standings:\n" +
+                "1. Zoe (12012)\n" +
+                "2. Eric (1000)\n" +
+                "3. Max (500)\n" +
+                "4. Robert (400)\n";
         assertEquals(expected, result);
     }
 }
