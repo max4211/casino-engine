@@ -13,8 +13,7 @@ public enum Cardshow {
         this.myType = type;
     }
 
-    void showCards(BiConsumer<String, Integer> guy) {
-
-    }
+    @Override
+    public String toString() {return myType;}
 
 }

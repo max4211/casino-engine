@@ -86,7 +86,7 @@ public class AdversaryController extends Controller {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
             this.myGameView.setMainPlayer(p.getID());
-            cardShow(p);
+            this.myCardshow.show(p);
             try {
                 IndividualAction a = this.myFactory.createIndividualAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();

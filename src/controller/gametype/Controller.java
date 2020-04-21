@@ -6,6 +6,8 @@ import Utility.Generator;
 import Utility.StringPair;
 import actions.factory.ActionFactory;
 import controller.bundles.ControllerBundle;
+import controller.cardshow.CardShow;
+import controller.cardshow.CardShowFactory;
 import controller.enums.Cardshow;
 import controller.enums.EntryBet;
 import controller.enums.Goal;
@@ -15,11 +17,10 @@ import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.evaluator.bet.BetEvaluator;
 import engine.evaluator.handclassifier.HandClassifier;
-import engine.hand.PlayerHand;
 import engine.player.Player;
 import engine.table.Table;
+import exceptions.ReflectionException;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public abstract class Controller implements ControllerInterface {
     protected final BetEvaluator myBetEvaluator;
 
     protected final EntryBet myEntryBet;
-    protected Cardshow myCardshow;
+    protected CardShow myCardshow;
     protected Goal myGoal;
 
     public Controller(ControllerBundle bundle, String actionType) {
@@ -46,9 +47,22 @@ public abstract class Controller implements ControllerInterface {
         this.myFactory = new ActionFactory(actionType);
         this.myHandClassifier =  bundle.getHandClassifier();
         this.myBetEvaluator = bundle.getBetEvaluator();
-        this.myCardshow = bundle.getCardShow();
+        this.myCardshow = createCardShow(bundle.getCardShow());
         this.myGoal = bundle.getGoal();
         renderPlayers();
+    }
+
+    private CardShow createCardShow(Cardshow cardShow) {
+        try {
+            CardShowFactory factory = new CardShowFactory();
+            return factory.create(cardShow.toString(),
+                    () -> this.myTable.getPlayers(),
+                    (pid, bid, cid) -> this.myGameView.showCard(pid, bid, cid),
+                    (pid, bid, cid) -> this.myGameView.hideCard(pid, bid, cid),
+                    (triplet, pid, bid) -> this.myGameView.addCardIfAbsent(triplet, pid, bid));
+        } catch (Exception e) {
+            throw new ReflectionException();
+        }
     }
 
     protected void showGameViewRestart() {
@@ -75,7 +89,6 @@ public abstract class Controller implements ControllerInterface {
 
     protected abstract void promptForActions();
 
-    // TODO - clear out losers
     protected void garbageCollect() {
         GarbageCollect.clearLosers(this.myTable.getPlayers(), (pid, bid) -> this.myGameView.removeBet(pid, bid));
     }
@@ -87,63 +100,10 @@ public abstract class Controller implements ControllerInterface {
 
     protected abstract void computePayoffs();
 
-    // TODO - refactor gameview to validating elements as they are received
     protected void addCardToPlayer(Player p) {
         for (Bet b: p.getBets()) {
             for (Card c: b.getHand().getCards()) {
-//                this.myGameView.removeBet(p.getID(), b.getID());
-//                this.myGameView.addBet(createTripletList(b.getHand()), b.getWager(), p.getID(), b.getID());
-//                this.myGameView.removeCard(p.getID(), b.getID(), c.getID());
                 this.myGameView.addCardIfAbsent(Generator.createCardTriplet(c), p.getID(), b.getID());
-            }
-        }
-    }
-
-    // TODO - refactor cardshow and competition to reflection
-    protected void cardShow(Player p) {
-        if (isAllCardshow()) {
-            showAllCards();
-        } else if (isActiveCardshow()) {
-            showActiveCards(p);
-        }
-    }
-
-    protected boolean isAllCardshow() {
-        return this.myCardshow.equals(Cardshow.ALL);
-    }
-    protected boolean isActiveCardshow() {
-        return this.myCardshow.equals(Cardshow.ACTIVE);
-    }
-
-    protected void showAllCards() {
-        for (Player p: this.myTable.getPlayers()) {
-            for (Bet b: p.getActiveBets()) {
-                if (b.isGameActive()) {
-                    for (Card c: b.getHand().getCards())
-                        this.myGameView.showCard(p.getID(), b.getID(), c.getID());
-                }
-            }
-        }
-    }
-
-    protected void showActiveCards(Player p) {
-        hideCards(p);
-        for (Bet b: p.getActiveBets()) {
-            for (Card c: b.getHand().getCards()) {
-                this.myGameView.showCard(p.getID(), b.getID(), c.getID());
-            }
-        }
-    }
-
-    protected void hideCards(Player p) {
-        for (Player player: this.myTable.getPlayers()) {
-            if (!(player.getID() == p.getID())) {
-                for (Bet b: player.getActiveBets()) {
-                    for (Card c: b.getHand().getCards()) {
-                        this.myGameView.addCardIfAbsent(Generator.createCardTriplet(c), player.getID(), b.getID());
-                        this.myGameView.hideCard(player.getID(), b.getID(), c.getID());
-                    }
-                }
             }
         }
     }

@@ -42,7 +42,7 @@ public class GroupController extends Controller {
             showCommonCards();
             promptForActions();
         }
-        showAllCards();
+        this.myCardshow.showAllCards();
         computePayoffs();
         updateBankrolls();
         showGameViewRestart();
@@ -73,7 +73,7 @@ public class GroupController extends Controller {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
             this.myGameView.setMainPlayer(p.getID());
-            cardShow(p);
+            this.myCardshow.show(p);
             try {
                 GroupAction a = this.myFactory.createGroupAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();
