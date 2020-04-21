@@ -1,4 +1,4 @@
-package xmlreader.readers;
+package xml.xmlreader.readers;
 
 import Utility.StringPair;
 import org.w3c.dom.Document;
@@ -6,16 +6,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import xmlreader.interfaces.DeckReaderInterface;
-import xmlreader.interfaces.XMLGeneratorInterface;
-import xmlreader.interfaces.XMLParseInterface;
+import xml.xmlreader.interfaces.DeckReaderInterface;
+import xml.xmlreader.interfaces.XMLGeneratorInterface;
+import xml.xmlreader.interfaces.XMLParseInterface;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class DeckReader implements DeckReaderInterface {

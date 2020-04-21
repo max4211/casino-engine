@@ -1,4 +1,4 @@
-package xmlreader.interfaces;
+package xml.xmlreader.interfaces;
 
 import java.io.File;
 import java.util.List;

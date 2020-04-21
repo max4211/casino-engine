@@ -1,4 +1,4 @@
-package xmlreader.readers;
+package xml.xmlreader.readers;
 
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;

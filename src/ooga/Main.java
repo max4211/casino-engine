@@ -5,7 +5,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
-import xmlreader.readers.LobbyReader;
+import xml.xmlreader.readers.LobbyReader;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;

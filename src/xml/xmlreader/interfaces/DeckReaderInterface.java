@@ -1,8 +1,7 @@
-package xmlreader.interfaces;
+package xml.xmlreader.interfaces;
 
 import Utility.StringPair;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface DeckReaderInterface {

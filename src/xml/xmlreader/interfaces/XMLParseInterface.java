@@ -1,4 +1,4 @@
-package xmlreader.interfaces;
+package xml.xmlreader.interfaces;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

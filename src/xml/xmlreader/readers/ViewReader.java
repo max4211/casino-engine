@@ -1,13 +1,13 @@
-package xmlreader.readers;
+package xml.xmlreader.readers;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import xmlreader.interfaces.ViewReaderInterface;
-import xmlreader.interfaces.XMLGeneratorInterface;
-import xmlreader.interfaces.XMLParseInterface;
+import xml.xmlreader.interfaces.ViewReaderInterface;
+import xml.xmlreader.interfaces.XMLGeneratorInterface;
+import xml.xmlreader.interfaces.XMLParseInterface;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;

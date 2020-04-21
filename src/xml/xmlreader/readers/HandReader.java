@@ -1,10 +1,10 @@
-package xmlreader.readers;
+package xml.xmlreader.readers;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
-import xmlreader.interfaces.HandReaderInterface;
-import xmlreader.interfaces.XMLGeneratorInterface;
-import xmlreader.interfaces.XMLParseInterface;
+import xml.xmlreader.interfaces.HandReaderInterface;
+import xml.xmlreader.interfaces.XMLGeneratorInterface;
+import xml.xmlreader.interfaces.XMLParseInterface;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;

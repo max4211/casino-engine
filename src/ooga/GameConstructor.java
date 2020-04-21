@@ -19,7 +19,7 @@ import exceptions.ReflectionException;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
-import xmlreader.readers.*;
+import xml.xmlreader.readers.*;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
