@@ -7,7 +7,7 @@ import java.util.Map;
  * Module that translates XML-defined preferences into Java-friendly structures such as Maps and Lists.
  * Also saves preferences of a game including color scheme, XML rules, and number of players.
  */
-interface XMLParsingInterface {
+interface XMLParserInterface {
 
     /**
      * Method that translates the XML Deck tag to a List of Pair objects holding the Suit (String) and Value (Integer) for each Card.

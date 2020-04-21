@@ -1,3 +1,5 @@
+import java.util.Collection;
+
 /**
  * Module that allows Bets to be updated based on their winning or losing status and allows payout odds to be applied to wagers
  * Collections of Bets are fed in and their internal statuses are then updated according to the logic of the game

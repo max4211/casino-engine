@@ -14,5 +14,4 @@ public interface PlayerReaderInterface {
      */
     Collection<Pair> getPlayers();
 
-
 }

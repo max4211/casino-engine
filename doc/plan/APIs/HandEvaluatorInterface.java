@@ -1,3 +1,5 @@
+import engine.evaluator.handtype.Hand;
+
 /**
  * This small module implements the hierarchy given in the XML file by comparing already classified hands.
  * This is called in the Table to determine a winner in any given poker game.

@@ -1,3 +1,5 @@
+import engine.evaluator.handtype.Hand;
+
 /**
  * Small module that simply assigns classifiactions to undetermined Hand Objects.
  * Called by the Table to "Garbage Collect" hands that are classified as losing hands and then pass classified hands into the BetEvaluator

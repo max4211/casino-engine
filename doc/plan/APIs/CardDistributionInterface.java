@@ -1,3 +1,6 @@
+import engine.dealer.Card;
+import engine.dealer.CardNotFoundException;
+
 /**
  * Interface handling all Card distribution via a Dealer object. Card and Deck objects are interacted with internally.
  */

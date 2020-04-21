@@ -1,3 +1,9 @@
+import UI.GameView.BetView;
+import engine.dealer.Card;
+
+import java.io.File;
+import java.util.List;
+
 /**
  * External frontend API used to render a given game.
  * Called after a XML file is chosen in the UI.LobbyView.

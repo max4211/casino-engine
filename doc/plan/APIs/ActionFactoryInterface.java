@@ -1,10 +1,14 @@
+import engine.bet.Bet;
+
+import javax.swing.*;
+
 /**
  * Module that is tasked with producing Action objects via reflection and then executing them on Bets.
  * Actions update the statuses of Bets by changing their wagers, creating new bets, or turning the active status off (folding).
  * An ActionFactory is used to create these Actions and encapsulate the reflection.
  * Actions are then executed to change Bets.
  */
-public interface ActionFactory {
+public interface ActionFactoryInterface {
 
     /**
      * Creates an Action object based off a String through reflection
@@ -19,5 +23,5 @@ public interface ActionFactory {
      * Method is called on a concrete Action subclasses from the module.
      * @param target is the Bet object to implement the changes on
      */
-    public void executeAction(Bet target)
+    public void executeAction(Bet target);
 }
