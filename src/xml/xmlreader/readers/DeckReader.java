@@ -21,9 +21,8 @@ public class DeckReader implements DeckReaderInterface {
     private static Document myDocument;
     private static final int ZERO = 0;
 
-    private static final String DECK_TAG = "Deck";
     private static final String QUANTITY_TAG = "Quantity";
-    private static final String DECK_TYPE = "Type";
+    private static final String TYPE_TAG = "Type";
 
     private static final String CARD_TAG = "Card";
     private static final String SUIT_TAG = "Suit";
@@ -43,6 +42,11 @@ public class DeckReader implements DeckReaderInterface {
     public List<StringPair> getDeck() {
         int quantity = Integer.parseInt(XMLParseInterface.getSingleTag(this.myDocument, QUANTITY_TAG));
         return copyDeck(parseDeck(), quantity);
+    }
+
+    @Override
+    public String getType() {
+        return XMLParseInterface.getSingleTag(myDocument, TYPE_TAG);
     }
 
     private List<StringPair> copyDeck(List<StringPair> deck, int quantity) {

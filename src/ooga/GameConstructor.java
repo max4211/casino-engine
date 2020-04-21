@@ -7,8 +7,10 @@ import controller.enums.Cardshow;
 import controller.enums.EntryBet;
 import controller.enums.Goal;
 import controller.gametype.Controller;
+import controller.goal.GoalFactory;
 import engine.dealer.Dealer;
-import engine.dealer.Deck;
+import engine.deck.Deck;
+import engine.deck.DeckFactory;
 import engine.evaluator.bet.BetEvaluator;
 import engine.evaluator.handclassifier.HandClassifier;
 import engine.evaluator.handevaluator.HandEvaluator;
@@ -96,11 +98,21 @@ public class GameConstructor {
         List<StringPair> deckList = deckReader.getDeck();
         double tableMin = gameReader.getTableMin();
         double tableMax = gameReader.getTableMax();
-        Deck myDeck = new Deck(deckList);
+        String deckType = deckReader.getType();
+        Deck myDeck = createDeck(deckList, deckType);
         Dealer myDealer = new Dealer(myDeck);
         Table myTable = new Table(playerList, myDealer, tableMin, tableMax);
 
         return myTable;
+    }
+
+    private Deck createDeck(List<StringPair> deckList, String deckType) {
+        try {
+            DeckFactory factory = new DeckFactory();
+            return factory.createDeck(deckList, deckType);
+        } catch (Exception e) {
+            throw new ReflectionException();
+        }
     }
 
     private Controller constructController(GameReader gameReader, HandReader handReader, Table table, GameView gameView) {

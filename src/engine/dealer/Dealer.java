@@ -1,6 +1,9 @@
 package engine.dealer;
 
-public class Dealer implements DealerInterface {
+import engine.deck.Deck;
+import engine.deck.DeckInterface;
+
+public class Dealer implements DeckInterface {
 
     private Deck myDeck;
 

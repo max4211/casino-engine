@@ -1,14 +1,15 @@
-package engine.dealer;
+package engine.deck;
 
 import Utility.StringPair;
+import engine.dealer.Card;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Deck implements DealerInterface {
+public abstract class Deck implements DeckInterface {
 
-    private List<Card> myCurrentCards;
-    private List<Card> myBaseCards;
+    protected List<Card> myCurrentCards;
+    protected List<Card> myBaseCards;
 
     public Deck(List<StringPair> cards) {
         this.myBaseCards = new ArrayList<>();
@@ -24,16 +25,4 @@ public class Deck implements DealerInterface {
         this.myCurrentCards = this.myBaseCards;
     }
 
-    @Override
-    public Card getCard() {
-        int index = (int)(Math.random() * this.myCurrentCards.size());
-        Card c = this.myCurrentCards.get(index);
-        this.myCurrentCards.remove(index);
-        return c;
-    }
-
-    @Override
-    public Card getCard(Card c) {
-        return null;
-    }
 }

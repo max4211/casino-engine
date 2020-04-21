@@ -1,6 +1,9 @@
-package engine.dealer;
+package engine.deck;
 
-public interface DealerInterface {
+import engine.dealer.Card;
+import engine.dealer.CardNotFoundException;
+
+public interface DeckInterface {
 
     /**
      * Shuffles the deck to reset it back to its original starting value, essentially reverting the Deck back to its original state.

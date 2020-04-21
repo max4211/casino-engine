@@ -14,4 +14,10 @@ public interface DeckReaderInterface {
      */
     List<StringPair> getDeck();
 
+    /**
+     * Returns the type of deck, facilitates reflection within the GameConstructor to enable new game types (e.g. Craps/Roulettte)
+     * @return the type of deck
+     */
+    String getType();
+
 }

@@ -3,6 +3,7 @@
     <Title>Standard</Title>
     <Authors>Eric Doppelt and Max Smith</Authors>
     <Quantity>2</Quantity>
+    <Type>Replace</Type>
     <Card>
         <Value>1</Value>
         <Suit>Hearts</Suit>

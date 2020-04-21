@@ -6,6 +6,7 @@
                 <xs:element name="Title" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
                 <xs:element name="Authors" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
                 <xs:element name="Quantity" type="xs:int" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="Type" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
                 <xs:element name="Card" minOccurs="1" maxOccurs="100">
                     <xs:complexType>
                         <xs:sequence>

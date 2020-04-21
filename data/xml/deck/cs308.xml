@@ -3,6 +3,7 @@
     <Title>Standard</Title>
     <Authors>Max Smith</Authors>
     <Quantity>1</Quantity>
+    <Type>Remove</Type>
     <Card>
         <Value>1</Value>
         <Suit>SOLID</Suit>
