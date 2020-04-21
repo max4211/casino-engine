@@ -6,61 +6,47 @@ import java.util.List;
 
 public interface GameViewInterface {
 
-    public void addCardIfAbsent(CardTriplet cardInfo, int playerID, int betID);
+    void renderAdversary(List<CardTriplet> hand);
 
-    public void removeCard(int playerID, int betID, int cardID);
+    void showAdversaryCard(int cardId);
 
-    public void showCard(int playerID, int betID, int cardID);
+    void addAdversaryCard(CardTriplet cardID);
+
+    void clearAdversary();
+
+    void addCardIfAbsent(CardTriplet cardInfo, int playerID, int betID);
+
+    void showCard(int playerID, int betID, int cardID);
 
     void hideCard(int playerID, int betID, int cardID);
 
-    public void renderAdversary(List<CardTriplet> hand);
+    void addBet(List<CardTriplet> handInfo, double wager, int playerID, int betID);
 
-    public void showAdversaryCard(int cardId);
-
-    public void addAdversaryCard(CardTriplet cardID);
-
-    public void addBet(List<CardTriplet> handInfo, double wager, int playerID, int betID);
-
-    public void removeBet(int playerId, int betId);
-
-    public void addPlayer(String name, int playerId, double bankroll);
+    void removeBet(int playerId, int betId);
 
     void renderCommonCards(List<CardTriplet> hand);
 
-    void addCommonCard(CardTriplet cardInfo);
-
     void showCommonCard(int cardID);
 
-    public void addAllCards(List<CardTriplet> allCards, int playerID, int betID);
+    void addPlayer(String name, int playerId, double bankroll);
 
-    public void addAllCardsIfAbsent(List<CardTriplet> allCards, int playerID, int betID);
+    void setMainPlayer(int playerId);
 
-    public void removePlayer(int playerId);
+    double selectWager(double minBet, double maxBet);
 
-    public void setMainPlayer(int playerId);
+    void setWager(double newWager, int playerID, int BetID);
 
-    /**
-     * only works on main player
-     *
-     * @param minBet
-     * @param maxBet
-     */
-    public double selectWager(double minBet, double maxBet);
+    void setBankRoll(double newBankroll, int playerID);
 
-    public void setWager(double newWager, int playerID, int BetID);
+    String selectAction(List<String> allActions);
 
-    public void setBankRoll(double newBankroll, int playerID);
+    void clearAllBets();
 
-    public String selectAction(List<String> actions);
-
-    public void clearAllBets();
-
-    public void clearAdversary();
-
-    public void displayException(Exception ex);
-
-    public void addCard(CardTriplet cardInfo, int playerID, int betID);
+    void displayException(Exception ex);
 
     void promptNewGame(GameCaller startNewGame);
-}
+
+    void displayText(String s);
+
+    void setLoser(int betID);
+    }
