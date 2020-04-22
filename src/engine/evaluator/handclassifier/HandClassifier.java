@@ -17,8 +17,6 @@ public class HandClassifier implements HandClassifierInterface {
     private List<HandBundle> myLosingHands;
     private HandFactory myHandFactory;
 
-    private static final String IS_PREFIX = "is";
-
     public HandClassifier(List<HandBundle> winners, List<HandBundle> losers) {
         this.myWinningHands = winners;
         this.myLosingHands = losers;
@@ -87,48 +85,6 @@ public class HandClassifier implements HandClassifierInterface {
         return 0;
     }
 
-    // TODO - refactor hand classifier into command design pattern, create hand then evalute if true
-    private boolean isBlackjack(PlayerHand h) {
-        return ((sumCards(h) == 21) && (h.getCards().size() == 2));
-    }
-
-    private boolean isSumUnder22(PlayerHand h) {
-        return sumCards(h) < 22;
-    }
-
-    private boolean isSumOver21(PlayerHand h) {
-        return sumCards(h) > 21;
-    }
-
-    private boolean isFlush(PlayerHand h) {
-        List<Card> handCards = h.getCards();
-        Set<String> suits = new HashSet<>();
-        for (Card card: handCards) {
-            suits.add(card.getSuit());
-        }
-        return suits.size() == 1;
-    }
-
-    // TODO - implement straight (refactor into separate class
-    // TODO - add in communal cards into classificaiton
-    private boolean isStraight(PlayerHand h) {
-        PriorityQueue<Card> pq = new PriorityQueue<>(h.getCards().size());
-        return false;
-    }
-
-    private boolean isPair(PlayerHand h) {
-        Set<Double> set = new HashSet<>();
-        for (Card c: h.getCards()) {
-            if (set.contains(c.getValue()))
-                return true;
-        }
-        return false;
-    }
-
-    private boolean isHighCard(PlayerHand h) {
-        return true;
-    }
-
     private double sumCards(PlayerHand h) {
         List<Card> handCards = h.getCards();
         double sum = 0;
@@ -136,19 +92,6 @@ public class HandClassifier implements HandClassifierInterface {
             sum += card.getValue();
         }
         return sum;
-    }
-
-    private boolean reflectOnMethod(String name, PlayerHand h) {
-        try {
-            String methodName = IS_PREFIX + name;
-            Method method = this.getClass().getDeclaredMethod(methodName, PlayerHand.class);
-            Object o = method.invoke(this, h);
-            return (boolean) o;
-        } catch (Exception e) {
-            System.out.printf("Coder did not create hand type: %s, returning false\n", name);
-            return false;
-        }
-
     }
 
 }
