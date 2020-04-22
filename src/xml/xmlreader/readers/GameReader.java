@@ -39,12 +39,12 @@ public class GameReader implements GameReaderInterface {
     private static final String GOAL_TAG = "Goal";
 
     public GameReader(File file) throws IOException, SAXException, ParserConfigurationException {
-        this.myDocument = XMLGeneratorInterface.createDocument(file);
+        myDocument = XMLGeneratorInterface.createDocument(file);
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     public GameReader(String file) throws IOException, SAXException, ParserConfigurationException {
-        this.myDocument = XMLGeneratorInterface.createDocument(new File(file));
+        myDocument = XMLGeneratorInterface.createDocument(new File(file));
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 

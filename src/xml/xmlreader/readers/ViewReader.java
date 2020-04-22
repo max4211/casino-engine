@@ -29,12 +29,12 @@ public class ViewReader implements ViewReaderInterface {
     private static final String STYLESHEET_TAG = "Stylesheet";
 
     public ViewReader(File file) throws IOException, SAXException, ParserConfigurationException {
-        this.myDocument = XMLGeneratorInterface.createDocument(file);
+        myDocument = XMLGeneratorInterface.createDocument(file);
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     public ViewReader(String file) throws IOException, SAXException, ParserConfigurationException {
-        this.myDocument = XMLGeneratorInterface.createDocument(new File(file));
+        myDocument = XMLGeneratorInterface.createDocument(new File(file));
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 

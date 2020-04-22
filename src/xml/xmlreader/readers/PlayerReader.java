@@ -25,12 +25,12 @@ public class PlayerReader implements PlayerReaderInterface {
     private static final String BANKROLL_TAG = "Bankroll";
 
     public PlayerReader(File file) throws IOException, SAXException, ParserConfigurationException {
-        this.myDocument = XMLGeneratorInterface.createDocument(file);
+        myDocument = XMLGeneratorInterface.createDocument(file);
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     public PlayerReader(String file) throws IOException, SAXException, ParserConfigurationException {
-        this.myDocument = XMLGeneratorInterface.createDocument(new File(file));
+        myDocument = XMLGeneratorInterface.createDocument(new File(file));
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 

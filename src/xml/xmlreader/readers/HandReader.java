@@ -34,11 +34,11 @@ public class HandReader implements HandReaderInterface {
 
 
     public HandReader(File file) throws IOException, SAXException, ParserConfigurationException {
-        this.myDocument = XMLGeneratorInterface.createDocument(file);
+        myDocument = XMLGeneratorInterface.createDocument(file);
     }
 
     public HandReader(String file) throws IOException, SAXException, ParserConfigurationException {
-        this.myDocument = XMLGeneratorInterface.createDocument(new File(file));
+        myDocument = XMLGeneratorInterface.createDocument(new File(file));
     }
 
     @Override

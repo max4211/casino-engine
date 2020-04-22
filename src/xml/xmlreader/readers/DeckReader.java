@@ -29,18 +29,18 @@ public class DeckReader implements DeckReaderInterface {
     private static final String VALUE_TAG = "Value";
 
     public DeckReader(File file) throws IOException, SAXException, ParserConfigurationException {
-        this.myDocument = XMLGeneratorInterface.createDocument(file);
+        myDocument = XMLGeneratorInterface.createDocument(file);
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     public DeckReader(String file) throws IOException, SAXException, ParserConfigurationException {
-        this.myDocument = XMLGeneratorInterface.createDocument(new File(file));
+        myDocument = XMLGeneratorInterface.createDocument(new File(file));
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     @Override
     public List<StringPair> getDeck() {
-        int quantity = Integer.parseInt(XMLParseInterface.getSingleTag(this.myDocument, QUANTITY_TAG));
+        int quantity = Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, QUANTITY_TAG));
         return copyDeck(parseDeck(), quantity);
     }
 
@@ -60,7 +60,7 @@ public class DeckReader implements DeckReaderInterface {
 
     private List<StringPair> parseDeck() {
         List<StringPair> list = new ArrayList<>();
-        NodeList cardNodeList = this.myDocument.getElementsByTagName(CARD_TAG);
+        NodeList cardNodeList = myDocument.getElementsByTagName(CARD_TAG);
         for (int index = 0; index < cardNodeList.getLength(); index ++) {
             Node cardNode = cardNodeList.item(index);
             Element cardElement = (Element) cardNode;
