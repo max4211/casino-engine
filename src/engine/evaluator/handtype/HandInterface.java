@@ -1,4 +1,4 @@
-package engine.evaluator.handevaluator;
+package engine.evaluator.handtype;
 
 public interface HandInterface {
 

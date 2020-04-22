@@ -1,6 +1,9 @@
 package xml.xmlreader.readers;
 
+import Utility.handbundle.HandBundle;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import xml.xmlreader.interfaces.HandReaderInterface;
 import xml.xmlreader.interfaces.XMLGeneratorInterface;
@@ -9,17 +12,25 @@ import xml.xmlreader.interfaces.XMLParseInterface;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class HandReader implements HandReaderInterface {
 
     private static Document myDocument;
 
     private static final String NAME_TAG = "Name";
+    private static final String PARAMS_TAG = "Parameters";
+    private static final String MULTIPLIER_TAG = "Multiplier";
+    private static final String VIEWNAME_TAG = "ViewName";
+
+    private static final List<String> ALL_TAGS = new ArrayList<String>(List.of(
+            NAME_TAG, PARAMS_TAG, MULTIPLIER_TAG, VIEWNAME_TAG
+    ));
 
     private static final String WINNINGHAND_TAG = "WinningHand";
     private static final String LOSINGHAND_TAG = "LosingHand";
-    private static final String HAND_TAG = "Hand";
 
 
     public HandReader(File file) throws IOException, SAXException, ParserConfigurationException {
@@ -28,16 +39,35 @@ public class HandReader implements HandReaderInterface {
 
     public HandReader(String file) throws IOException, SAXException, ParserConfigurationException {
         this.myDocument = XMLGeneratorInterface.createDocument(new File(file));
-//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     @Override
-    public Collection<String> getWinningHands() {
-        return XMLParseInterface.getXMLCollection(myDocument, WINNINGHAND_TAG, NAME_TAG);
+    public List<HandBundle> getWinningHands() {
+        return parseBundle(WINNINGHAND_TAG);
     }
 
     @Override
-    public Collection<String> getLosingHands() {
-        return XMLParseInterface.getXMLCollection(myDocument, LOSINGHAND_TAG, NAME_TAG);
+    public List<HandBundle> getLosingHands() {
+        return parseBundle(LOSINGHAND_TAG);
+    }
+
+    private List<HandBundle> parseBundle(String handStatusTag) {
+        List<HandBundle> list = new ArrayList<>();
+        NodeList winningHands = XMLParseInterface.getNodeList(myDocument, handStatusTag);
+        for (int index = 0; index < winningHands.getLength(); index ++) {
+            Node n = winningHands.item(index);
+            List<String> bundleParams = new ArrayList<>();
+            for (String tag: ALL_TAGS) {
+                String s;
+                try {
+                    s = XMLParseInterface.getElement(n, tag);
+                } catch (Exception e) {
+                    s = "";
+                }
+                bundleParams.add(s);
+            }
+            list.add(new HandBundle(bundleParams));
+        }
+        return list;
     }
 }

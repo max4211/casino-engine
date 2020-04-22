@@ -19,4 +19,10 @@ public interface ClassifiedHandInterface {
      * @return
      */
     double getPower();
+
+    /**
+     * Called by bet eavluator to determine hand multipllier
+     * @return
+     */
+    double getMultiplier();
 }

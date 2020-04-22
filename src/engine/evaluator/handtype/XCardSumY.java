@@ -12,10 +12,18 @@ public class XCardSumY extends Hand {
 
     @Override
     public boolean evaluate() {
-        int count = 0;
+        double count = 0;
         for (Card c: this.myCards) {
             count += c.getValue();
         }
-        return (this.myCards.size() == this.myParams.get(0)) && (count == this.myParams.get(1));
+        return (cardCount()) && (sumEquivalence(count));
+    }
+
+    private boolean sumEquivalence(double count) {
+        return count == this.myParams.get(1);
+    }
+
+    private boolean cardCount() {
+        return this.myCards.size() == this.myParams.get(0);
     }
 }

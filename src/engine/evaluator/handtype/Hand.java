@@ -1,7 +1,6 @@
 package engine.evaluator.handtype;
 
 import engine.dealer.Card;
-import engine.evaluator.handevaluator.HandInterface;
 
 import java.util.List;
 

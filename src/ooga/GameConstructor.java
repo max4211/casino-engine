@@ -2,6 +2,7 @@ package ooga;
 
 import UI.GameView.GameView;
 import Utility.StringPair;
+import Utility.handbundle.HandBundle;
 import controller.bundles.ControllerBundle;
 import controller.enums.Cardshow;
 import controller.enums.EntryBet;
@@ -68,6 +69,7 @@ public class GameConstructor {
         createGame();
     }
 
+    // TODO - insert validation from schema before making game
     private void createGame() {
         try {
             GameReader gameReader = new GameReader(gameFile);
@@ -135,13 +137,12 @@ public class GameConstructor {
     private ControllerBundle createControllerBundle(GameReader gameReader, HandReader handReader, Table table, GameView gameView) {
         Collection<String> myPlayerActions = gameReader.getPlayerAction();
         List<StringPair> myDealerAction = gameReader.getDealerAction();
-        Collection<String> myWinningHands = handReader.getWinningHands();
-        Collection<String> myLosingHands = handReader.getLosingHands();
+        List<HandBundle> myWinningHands = handReader.getWinningHands();
+        List<HandBundle> myLosingHands = handReader.getLosingHands();
         HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);
         HandEvaluator myHandEvaluator = new HandEvaluator();
         BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
 
-        // TODO - add validation to enum constants
         EntryBet myEntryBet = EntryBet.valueOf(gameReader.getEntryBet().toUpperCase());
         Cardshow myCardShow = Cardshow.valueOf(gameReader.getCardShow().toUpperCase());
         Goal myGoal = Goal.valueOf(gameReader.getGoal().toUpperCase());
