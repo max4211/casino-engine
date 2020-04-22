@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Hands>
+    <WinningHand>
+        <Name>Blackjack</Name>
+        <Multiplier>Test</Multiplier>
+    </WinningHand>
+    <WinningHand>
+        <Name>SumUnder22</Name>
+        <Multiplier>1.0</Multiplier>
+    </WinningHand>
+    <LosingHand>
+        <Name>SumOver21</Name>
+    </LosingHand>
+    <!--    <WinningHand>-->
+    <!--        <Name>XCardSumY</Name>-->
+    <!--        <Parameters>2, 21</Parameters>-->
+    <!--        <Multiplier>1.5</Multiplier>-->
+    <!--        <ViewName>Blackjack</ViewName>-->
+    <!--    </WinningHand>-->
+    <!--    <WinningHand>-->
+    <!--        <Name>SumUnderX</Name>-->
+    <!--        <Parameters>22</Parameters>-->
+    <!--        <Muliplier>1.0</Muliplier>-->
+    <!--    </WinningHand>-->
+    <!--    <LosingHand>-->
+    <!--        <Name>SumOver21</Name>-->
+    <!--    </LosingHand>-->
+</Hands>

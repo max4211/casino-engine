@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Lobby">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Dimensions" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Width" type="xs:double" minOccurs="1" maxOccurs="1"></xs:element>
+                            <xs:element name="Height" type="xs:double" minOccurs="1" maxOccurs="1"></xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Stylesheets" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Stylesheet" type="xs:string" minOccurs="1" maxOccurs="unbounded"></xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Languages" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Language" type="xs:string" minOccurs="1" maxOccurs="unbounded"></xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ErrorStylesheet" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="ErrorIcon" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="Bundle" minOccurs="1" maxOccurs="100">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                            <xs:element name="Type" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                            <xs:element name="Icon" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                            <xs:element name="Files" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Deck"></xs:element>
+                                        <xs:element name="Game"></xs:element>
+                                        <xs:element name="Hands"></xs:element>
+                                        <xs:element name="Players"></xs:element>
+                                        <xs:element name="View"></xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

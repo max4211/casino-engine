@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Game>
+<Hands>
     <WinningHand>
         <Name>Flush</Name>
     </WinningHand>
@@ -12,4 +12,4 @@
     <WinningHand>
         <Name>HighCard</Name>
     </WinningHand>
-</Game>
+</Hands>
