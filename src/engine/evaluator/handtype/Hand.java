@@ -4,9 +4,7 @@ import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.evaluator.handevaluator.HandEvaluator;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public abstract class Hand implements HandInterface {
 
@@ -20,6 +18,16 @@ public abstract class Hand implements HandInterface {
     public Hand(List<Card> cards, List<Double> params) {
         this.myCards = cards;
         this.myParams = params;
+    }
+
+    protected Map<Double, Integer> countOccurences() {
+        Map<Double, Integer> map = new HashMap<>();
+        for (Card c: this.myCards) {
+            double value = c.getValue();
+            map.putIfAbsent(value, ZERO);
+            map.put(value, map.get(value) + ONE);
+        }
+        return map;
     }
 
     protected PriorityQueue<Card> sortCards(Comparator comparator) {

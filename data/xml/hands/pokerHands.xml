@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Hands>
     <WinningHand>
+        <Name>XCardPair</Name>
+        <Parameters>4</Parameters>
+    </WinningHand>
+    <WinningHand>
         <Name>Flush</Name>
     </WinningHand>
     <WinningHand>
         <Name>Straight</Name>
     </WinningHand>
     <WinningHand>
-        <Name>Pair</Name>
+        <Name>XCardPair</Name>
+        <Parameters>3</Parameters>
+    </WinningHand>
+    <WinningHand>
+        <Name>XCardPair</Name>
+        <Parameters>2</Parameters>
     </WinningHand>
     <WinningHand>
         <Name>HighCard</Name>

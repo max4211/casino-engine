@@ -58,13 +58,14 @@ public class HandClassifier implements HandClassifierInterface {
     }
 
     private boolean checkWinningHand(PlayerHand h) {
-        for (HandBundle bundle: this.myWinningHands) {
+        for (int rank = 0; rank < this.myWinningHands.size(); rank ++) {
+            HandBundle bundle =  this.myWinningHands.get(rank);
             String s = bundle.getName();
             try {
                 Hand hand = this.myHandFactory.createHand(bundle, h.getCards());
                 if (hand.evaluate()) {
-                    // TODO - update rank and power
-                    h.classifyHand(new ClassifiedHand(bundle, 0, 0));
+                    // TODO - update power
+                    h.classifyHand(new ClassifiedHand(bundle, rank, 0));
                     return true;
                 }
             } catch (ReflectionException e) {
