@@ -6,8 +6,8 @@ import javafx.stage.Stage;
 
 public class WebTester extends Application {
 
-    private static final int WIDTH = 500;
-    private static final int HEIGHT = 500;
+    private static final int WIDTH = 800;
+    private static final int HEIGHT = 800;
 
     public static void main(String[] args) {
         launch(args);

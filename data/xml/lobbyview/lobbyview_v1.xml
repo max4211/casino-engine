@@ -39,18 +39,6 @@
         </Files>
     </Bundle>
     <Bundle>
-        <Name>TestPoker</Name>
-        <Type>Standard</Type>
-        <Icon>poker-cards.png</Icon>
-        <Files>
-            <Deck>data/xml/deck/standard.xml</Deck>
-            <Game>data/xml/game/basic_poker.xml</Game>
-            <Hands>data/xml/hands/pokerHands.xml</Hands>
-            <Players>data/xml/players/3players.xml</Players>
-            <View>data/xml/view/view.xml</View>
-        </Files>
-    </Bundle>
-    <Bundle>
         <Name>Custom Game</Name>
         <Type>Custom</Type>
         <Icon>mouseIcon.png</Icon>

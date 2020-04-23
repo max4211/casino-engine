@@ -91,3 +91,8 @@ body {
 .nav-sidebar ul li a:hover {
     background-color: #222;
 }
+
+.home-image div {
+    display: block;
+    padding: 200px 200px;
+}
