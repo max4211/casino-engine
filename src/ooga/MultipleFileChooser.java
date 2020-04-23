@@ -13,14 +13,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.List;
 
 public class MultipleFileChooser extends Application {
-
-    private List<File> fileList;
-    private static final String ACCEPTED_XML_DESCRIPTION = "All XMLs";
-    private static final String ACCEPTED_XML_EXTENSION = "*.xml";
-    private static final String DIRECTORY_TO_XML = System.getProperty("user.dir") + "/data/xml/";
 
     public static void main(String[] args) {
         launch(args);
@@ -37,19 +31,9 @@ public class MultipleFileChooser extends Application {
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                // Set extension filter
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setInitialDirectory(new File(DIRECTORY_TO_XML));
-                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(ACCEPTED_XML_DESCRIPTION, ACCEPTED_XML_EXTENSION));
-
-                /* Show open file dialog to select multiple files. */
-                fileList = fileChooser.showOpenMultipleDialog(null);
-                if (fileList != null && fileList.size() > 0) {
-                    labelFile.getChildren().clear();
-                    for (File file : fileList) {
-                        labelFile.getChildren().add(new Label(file.getPath()));
-                    }
+                MultipleXMLChooser chooser = new MultipleXMLChooser();
+                for (File file : chooser.getFileList()) {
+                    labelFile.getChildren().add(new Label(file.getPath()));
                 }
             }
         });
