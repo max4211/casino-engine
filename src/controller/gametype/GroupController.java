@@ -26,7 +26,12 @@ public class GroupController extends Controller {
     public GroupController(ControllerBundle bundle, Map<String, String> params) {
         super(bundle, ACTION_TYPE);
         assignParams(params);
-        myPot = new Pot();
+        createPot();
+    }
+
+    private void createPot() {
+        this.myPot = new Pot();
+        this.myGameView.renderPot(this.myPot.getPot(), "pot.png");
     }
 
     private void assignParams(Map<String, String> params) {
@@ -101,7 +106,7 @@ public class GroupController extends Controller {
         List<Bet> allBets = createListOfBets();
         for (Bet b: allBets)
             this.myPot.add(b.getWager());
-//        this.myGameView.updatePot(this.myPot.getPot());
+        this.myGameView.setPot(this.myPot.getPot());
     }
 
     @Override
