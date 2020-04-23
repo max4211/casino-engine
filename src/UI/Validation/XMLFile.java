@@ -3,7 +3,7 @@ package UI.Validation;
 public enum XMLFile {
     DECK,
     VIEW,
-    PLAYER,
+    PLAYERS,
     GAME,
-    HAND
+    HANDS
 }
