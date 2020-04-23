@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class MultipleFileChooser extends Application {
+public class MultipleXMLTest extends Application {
 
     public static void main(String[] args) {
         launch(args);

@@ -16,7 +16,6 @@ public class MultipleXMLChooser {
 
     private List<File > myFileList;
 
-
     public MultipleXMLChooser() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File(DIRECTORY_TO_XML));
