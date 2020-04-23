@@ -28,7 +28,7 @@ public class LobbyView implements NodeViewInterface {
     private LanguageBundle myLanguageBundle;
     private ExceptionDisplayer myExceptionDisplayer;
 
-    public LobbyView(List<String> styleSheets, List<String> languages, String errorIcon, String errorCSS, List<Map<String, String>> generalInfo, List<Map<String, File>> files) {
+    public LobbyView(List<String> styleSheets, List<String> languages, String errorIcon, String errorCSS, List<Map<String, String>> generalInfo, List<List<File>> files) {
         myFlowPane = new FlowPane();
         myFlowPane.setId(FLOWPANE_CSS_ID);
         myFlowPane.getStylesheets().add(styleSheets.get(DEFAULT_CSS_INDEX));
@@ -39,15 +39,10 @@ public class LobbyView implements NodeViewInterface {
 
         for (int i = 0; i < generalInfo.size(); i++) {
             Map<String, String> tempGeneralInfo = generalInfo.get(i);
-            Map<String, File> tempFiles = files.get(i);
+            List<File> tempFiles = files.get(i);
 
             String gameType = generalInfo.get(i).get(TYPE_TAG);
-            GameIcon tempIcon = null;
-            if (gameType.equals(CUSTOM)) {
-                tempIcon = new CustomGameIcon(tempGeneralInfo.get(ICON_TAG), tempGeneralInfo.get(NAME_TAG), e -> createGame(e), tempFiles.keySet());
-            } else if (gameType.equals(STANDARD)) {
-                tempIcon = new StandardGameIcon(tempGeneralInfo.get(ICON_TAG), tempGeneralInfo.get(NAME_TAG), e -> createGame(e), tempFiles);
-            }
+            GameIcon tempIcon = new GameIcon(tempGeneralInfo.get(ICON_TAG), tempGeneralInfo.get(NAME_TAG), tempFiles);
             myFlowPane.getChildren().add(tempIcon.getView());
         }
     }

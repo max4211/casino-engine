@@ -5,25 +5,26 @@ import Utility.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import xml.xmlvalidator.MasterValidator;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public abstract class GameIcon implements NodeViewInterface {
+public class GameIcon implements NodeViewInterface {
 
     private VBox myGameIcon;
     private Formatter myFormatter;
+    private List<File> myFiles;
 
     //TODO: duplicated in CardView
-
     private static final String BLACKJACK = "Blackjack";
     private static final String BLACKJACK_ICON_ID = "blackJack-icon";
     private static final String CUSTOM = "Custom Game";
     private static final String CUSTOM_ICON_ID = "custom-icon";
 
-    public GameIcon(String imageFile, String gameName, Consumer<Map<String, File>> myFileAccepter) {
-
+    public GameIcon(String imageFile, String gameName, List<File> files) {
         myGameIcon = new VBox();
         //TODO: move this into formatter
         myGameIcon.setAlignment(Pos.CENTER);
@@ -40,8 +41,11 @@ public abstract class GameIcon implements NodeViewInterface {
 
         myFormatter = new Formatter();
         myFormatter.formatGameIconView(myIconButton.getView());
-        myGameIcon.setOnMouseClicked(e -> {
-            myFileAccepter.accept(getFiles());
+
+        this.myFiles = files;
+        this.myGameIcon.setOnMouseClicked(e -> {
+            // TODO - set mouse clicked event (route to validator
+            new MasterValidator(this.myFiles);
         });
 
         //TODO: move this to formatting
@@ -54,5 +58,7 @@ public abstract class GameIcon implements NodeViewInterface {
         return myGameIcon;
     }
 
-    protected abstract Map<String, File> getFiles();
+    public List<File> getFiles() {
+        return this.myFiles;
+    }
 }

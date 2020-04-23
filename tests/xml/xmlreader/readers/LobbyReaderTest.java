@@ -40,15 +40,13 @@ class LobbyReaderTest {
     void getFileArguments() throws ParserConfigurationException, SAXException, IOException {
         final String filename = "data/xml/lobbyview/lobbyview_v1.xml";
         LobbyReader reader = new LobbyReader(filename);
-        List<Map<String, File>> bundleList = reader.getFileTags();
-        Map<String, File> bjMap = bundleList.get(0);
-        Map<String, File> customMap = bundleList.get(1);
-        assertEquals(new File("data/xml/deck/standard.xml"), bjMap.get(DECK_TAG));
-        assertEquals(new File("data/xml/game/blackjackGame_v2.xml"), bjMap.get(GAME_TAG));
-        assertEquals(new File("data/xml/hands/hands.xml"), bjMap.get(HAND_TAG));
-        assertEquals(new File("data/xml/players/3players.xml"), bjMap.get(PLAYER_TAG));
-        assertEquals(new File("data/xml/view/view.xml"), bjMap.get(VIEW_TAG));
-
+        List<List<File>> bundleList = reader.getFileTags();
+        List<File> bjFiles = bundleList.get(0);
+        assertEquals(new File("data/xml/deck/standard.xml"), bjFiles.get(0));
+        assertEquals(new File("data/xml/game/blackjackGame_v2.xml"), bjFiles.get(1));
+        assertEquals(new File("data/xml/hands/hands.xml"), bjFiles.get(2));
+        assertEquals(new File("data/xml/players/3players.xml"), bjFiles.get(3));
+        assertEquals(new File("data/xml/view/view.xml"), bjFiles.get(4));
     }
 
     @Test

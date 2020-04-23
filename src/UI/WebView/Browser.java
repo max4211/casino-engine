@@ -15,7 +15,6 @@ public class Browser implements BrowserInterface {
 
     private WebView myWebView;
     private WebEngine myWebEngine;
-    private TextField myURLDisplay;
 
     public Browser() {
         this.myWebView = new WebView();

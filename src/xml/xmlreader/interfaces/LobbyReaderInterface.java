@@ -33,6 +33,6 @@ public interface LobbyReaderInterface {
      * Get a list of maps for all file arguments
      * @return
      */
-    List<Map<String, File>> getFileTags();
+    List<List<File>> getFileTags();
 
 }

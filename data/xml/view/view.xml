@@ -2,6 +2,10 @@
 <View>
     <Title>Blackjack</Title>
     <Authors>Eric Doppelt and Max Smith</Authors>
+    <Dimensions>
+        <Width>800</Width>
+        <Height>800</Height>
+    </Dimensions>
     <Languages>
         <Language>English</Language>
         <Language>Spanish</Language>
@@ -15,8 +19,4 @@
         <Icon>errorIcon.png</Icon>
         <StyleSheet>fire.css</StyleSheet>
     </Errors>
-    <Dimensions>
-        <Width>800</Width>
-        <Height>800</Height>
-    </Dimensions>
 </View>

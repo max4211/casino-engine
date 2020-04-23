@@ -32,7 +32,7 @@ public class Main extends Application {
             String myErrorCSS = myLobbyReader.getErrorStylesheet();
             String myErrorIcon = myLobbyReader.getErrorIcon();
             List<Map<String, String>> myLobbyInfo = myLobbyReader.getBundleArguments();
-            List<Map<String, File>> myLobbyFiles = myLobbyReader.getFileTags();
+            List<List<File>> myLobbyFiles = myLobbyReader.getFileTags();
             myLobbyView = new LobbyView(myLobbyCSS, myLobbyLanguages, myErrorIcon, myErrorCSS, myLobbyInfo, myLobbyFiles);
             Scene myScene = new Scene(myLobbyView.getView(), myLobbyReader.getScreenWidth(), myLobbyReader.getScreenHeight());
             primaryStage.setScene(myScene);

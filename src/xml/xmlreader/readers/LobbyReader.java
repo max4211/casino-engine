@@ -89,12 +89,12 @@ public class LobbyReader implements LobbyReaderInterface  {
     }
 
     @Override
-    public List<Map<String, File>> getFileTags() {
-        List<Map<String, File>> list = new ArrayList<>();
+    public List<List<File>> getFileTags() {
+        List<List<File>> list = new ArrayList<>();
         NodeList nodeList = XMLParseInterface.getNodeList(myDocument, BUNDLE_TAG);
         for (int index = 0; index < nodeList.getLength(); index ++) {
             Node node = nodeList.item(index);
-            list.add(createFilesMap(node));
+            list.add(createFilesList(node));
         }
         return list;
     }
@@ -108,17 +108,18 @@ public class LobbyReader implements LobbyReaderInterface  {
         return map;
     }
 
-    private Map<String, File> createFilesMap(Node n) {
-        Map<String, File> map = new HashMap<>();
+    private List<File> createFilesList(Node n) {
+        List<File> list = new ArrayList<>();
         List<String> tags = new ArrayList<>(List.of(DECK_TAG, GAME_TAG, HAND_TAG, PLAYER_TAG, VIEW_TAG));
         for (String tag: tags) {
             try {
-                map.put(tag, new File(getElementByTag(n, tag)));
+                list.add(new File(getElementByTag(n, tag)));
             } catch (Exception e) {
-                map.put(tag, null);
+                // TODO - likely file doesn't exist (or parse tag incorrect, validator ensures this is not true)
+                ;
             }
         }
-        return map;
+        return list;
     }
 
     private String getElementByTag(Node n, String tag) {
