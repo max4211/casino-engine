@@ -53,20 +53,8 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
         return myID == ID;
     }
 
-    public void addCard(CardTriplet cardInfo, int betID) {
-        getBet(betID).addCard(cardInfo);
-    }
-
     public void addCardIfAbsent(CardTriplet cardInfo, int betID) {
         getBet(betID).addCardIfAbsent(cardInfo);
-    }
-
-    public void removeCard(int betID, int cardID) {
-        for (BetView tempBetView : myBets) {
-            if (tempBetView.hasSameID(betID)) {
-                tempBetView.removeCard(cardID);
-            }
-        }
     }
 
     public void updateWager(int betID, double newWager) {getBet(betID).updateWager(newWager);}

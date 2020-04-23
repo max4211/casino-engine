@@ -80,19 +80,9 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public void addCard(CardTriplet cardInfo, int playerID, int betID) {
-        getPlayerView(playerID).addCard(cardInfo, betID);
-    }
-
-    @Override
     public void renderCommonCards(List<CardTriplet> hand) {
         myCommons = new HandView(hand);
         myBorderPane.setCenter(myCommons.getView());
-    }
-
-    @Override
-    public void addCommonCard(CardTriplet cardInfo) {
-        myCommons.addCard(cardInfo);
     }
 
     @Override
@@ -100,20 +90,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myCommons.showCard(cardID);
     }
 
-    @Override
-    public void addAllCards(List<CardTriplet> allCards, int playerID, int betID) {
-        for (CardTriplet cardInfo : allCards) getPlayerView(playerID).addCard(cardInfo, betID);
-    }
-
-    @Override
-    public void addAllCardsIfAbsent(List<CardTriplet> allCards, int playerID, int betID) {
-        for (CardTriplet cardInfo : allCards) getPlayerView(playerID).addCardIfAbsent(cardInfo, betID);
-    }
-
-    @Override
-    public void removeCard(int playerID, int betID, int cardID) {
-        getPlayerView(playerID).removeCard(betID, cardID);
-    }
 
     @Override
     public void showCard(int playerID, int betID, int cardID) {
@@ -177,12 +153,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myOtherPlayers.addPlayer(name, playerId, bankroll, myLanguageBundle);
     }
 
-    @Override
-    public void removePlayer(int playerId) {
-        if (myMainPlayer.holdsAPlayer() && myMainPlayer.hasSameID(playerId)) myMainPlayer.clear();
-        else if (myOtherPlayers.hasPlayerView(playerId)) myOtherPlayers.removePlayer(playerId);
-    }
-
     // TODO: fix this to avoid updating BorderPane all the time
     @Override
     public void setMainPlayer(int playerID) {
@@ -219,10 +189,26 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         startNewGame.startNewGame();
     }
 
+    @Override
     public void displayText(String s) {
         Alert display = new Alert(Alert.AlertType.INFORMATION);
         display.setContentText(s);
         display.showAndWait();
+    }
+
+    @Override
+    public void setLoser(int betID) {
+
+    }
+
+    @Override
+    public void renderPot(double initialPot) {
+        
+    }
+
+    @Override
+    public void setPot(double newPot) {
+
     }
 
     private PlayerView getPlayerView(int playerID) {
