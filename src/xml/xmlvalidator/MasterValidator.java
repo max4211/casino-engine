@@ -1,6 +1,7 @@
 package xml.xmlvalidator;
 
 import ooga.GameConstructor;
+import xml.xmlbundle.XMLBundle;
 
 import java.io.File;
 import java.util.HashMap;
@@ -9,13 +10,7 @@ import java.util.Map;
 
 public class MasterValidator {
 
-    private Map<String, File> myXMLFiles;
-
-    private static final String DECK_KEY = "Deck";
-    private static final String GAME_KEY = "Game";
-    private static final String PLAYER_KEY = "Players";
-    private static final String HAND_KEY = "Hands";
-    private static final String VIEW_KEY = "View";
+    private XMLBundle myXMLBundle;
 
     /**
      * Refactor to list of strings
@@ -24,7 +19,7 @@ public class MasterValidator {
      * @param fileList
      */
     public MasterValidator(List<File> fileList) {
-        this.myXMLFiles = new HashMap<String, File>();
+        this.myXMLBundle = new XMLBundle();
         validateFiles(fileList);
     }
 
@@ -33,7 +28,7 @@ public class MasterValidator {
     }
 
     private void createGame() {
-        new GameConstructor(myXMLFiles);
+        new GameConstructor(this.myXMLBundle.getXMLFiles());
     }
 
 
