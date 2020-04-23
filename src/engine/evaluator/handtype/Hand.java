@@ -15,6 +15,8 @@ public abstract class Hand implements HandInterface {
     protected final List<Card> myCards;
     protected final List<Double> myParams;
 
+    protected double myPower;
+
     public Hand(List<Card> cards, List<Double> params) {
         this.myCards = cards;
         this.myParams = params;
@@ -54,6 +56,22 @@ public abstract class Hand implements HandInterface {
             else
                 return 0;
         }
+    }
+
+    protected double sumCards() {
+        double sum = 0;
+        for (Card card: this.myCards)
+            sum += card.getValue();
+        return sum;
+    }
+
+    protected double getHighestCard() {
+        double greatest = 0;
+        for (Card c: this.myCards) {
+            if (c.getValue() > greatest)
+                greatest = c.getValue();
+        }
+        return greatest;
     }
 
 }

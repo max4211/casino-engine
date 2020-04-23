@@ -18,4 +18,9 @@ public class SumUnderX extends Hand {
         }
         return count < this.myParams.get(0);
     }
+
+    @Override
+    public double getPower() {
+        return sumCards();
+    }
 }

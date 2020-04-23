@@ -21,4 +21,9 @@ public class XCardPair extends Hand {
         }
         return false;
     }
+
+    @Override
+    public double getPower() {
+        return getHighestCard();
+    }
 }

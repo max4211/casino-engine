@@ -21,4 +21,9 @@ public class Flush extends Hand {
         }
         return true;
     }
+
+    @Override
+    public double getPower() {
+        return getHighestCard();
+    }
 }

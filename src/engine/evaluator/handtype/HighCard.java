@@ -14,4 +14,9 @@ public class HighCard extends Hand {
     public boolean evaluate() {
         return true;
     }
+
+    @Override
+    public double getPower() {
+        return getHighestCard();
+    }
 }

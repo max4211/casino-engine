@@ -5,6 +5,7 @@ import actions.group.GroupAction;
 import controller.bundles.ControllerBundle;
 import engine.bet.Bet;
 import engine.dealer.Card;
+import engine.hand.ClassifiedHand;
 import engine.player.Player;
 import exceptions.ActionException;
 import exceptions.ReflectionException;
@@ -85,9 +86,7 @@ public class GroupController extends Controller {
                 this.myGameView.setWager(b.getWager(), p.getID(), b.getID());
                 this.myGameView.setBankRoll(p.getBankroll(), p.getID());
                 garbageCollect(p, b);
-            } catch (ReflectionException e) {
-                this.myGameView.displayException(e);
-            } catch (ActionException e) {
+            } catch (ReflectionException | ActionException e) {
                 this.myGameView.displayException(e);
             }
         }
@@ -100,27 +99,32 @@ public class GroupController extends Controller {
         String summary = "";
         for (Player p: this.myTable.getPlayers()) {
             for (Bet b: p.getBets()) {
-                summary = summary + String.format("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
+                ClassifiedHand ch = b.getHand().getClassification();
+                summary = summary + String.format("%s's hand is a %s (%s)\n", p.getName(), ch.getName(), b.getHand().getOutcome().toString());
             }
         }
         this.myGameView.displayText(summary);
+    }
+
+    @Override
+    protected void classifyHand(Bet b) {
+        List<Card> fullHand = new ArrayList<Card>();
+        fullHand.addAll(b.getHand().getCards());
+        fullHand.addAll(this.myTable.getCommunalCards());
+        // TODO - pass in lambdas to hide bet abilities
+        this.myHandClassifier.classifyHand(fullHand, b.getHand());
+        if (b.getHand().isLoser()) {
+            b.setGameActive(false);
+        }
     }
 
     private List<Bet> createListOfBets() {
         List<Bet> list = new ArrayList<>();
         for (Player p: this.myTable.getPlayers()) {
             list.addAll(p.getActiveBets());
-            addCommunalCardsToBets(list);
             this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
         return list;
-    }
-
-    private void addCommunalCardsToBets(List<Bet> list) {
-        for (Bet b: list) {
-            for (Card c: this.myTable.getCommunalCards())
-                b.acceptCard(c);
-        }
     }
 
     private void setBetsActive(Bet initiator) {

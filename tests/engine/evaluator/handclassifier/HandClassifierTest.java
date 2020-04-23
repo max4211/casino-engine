@@ -35,7 +35,7 @@ class HandClassifierTest {
         ));
         for (Card c: cards)
             playerHand.acceptCard(c);
-        myHandClassifier.classifyHand(playerHand);
+        myHandClassifier.classifyHand(playerHand.getCards(), playerHand);
         String result = playerHand.getClassification().getName();
         String expected = "Bust";
         assertEquals(result, expected);
@@ -51,7 +51,7 @@ class HandClassifierTest {
         ));
         for (Card c: cards)
             playerHand.acceptCard(c);
-        myHandClassifier.classifyHand(playerHand);
+        myHandClassifier.classifyHand(playerHand.getCards(), playerHand);
         String result = playerHand.getClassification().getName();
         String expected = "Blackjack";
         assertEquals(result, expected);
@@ -67,7 +67,7 @@ class HandClassifierTest {
         ));
         for (Card c: cards)
             playerHand.acceptCard(c);
-        myHandClassifier.classifyHand(playerHand);
+        myHandClassifier.classifyHand(playerHand.getCards(), playerHand);
         String result = playerHand.getClassification().getName();
         String expected = "Sum Hand";
         assertEquals(expected, result);

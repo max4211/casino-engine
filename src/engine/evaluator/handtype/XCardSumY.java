@@ -26,4 +26,9 @@ public class XCardSumY extends Hand {
     private boolean cardCount() {
         return this.myCards.size() == this.myParams.get(0);
     }
+
+    @Override
+    public double getPower() {
+        return getHighestCard();
+    }
 }

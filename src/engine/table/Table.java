@@ -66,7 +66,6 @@ public class Table implements TableInterface {
         String actionType = dealerAction.getKey();
         int actionQuantity = Integer.parseInt(dealerAction.getValue());
         String methodName = DEAL_ACTION + actionType + DEAL_SUFFIX;
-        reflectOnMethod(methodName, int.class);
         try {
             Method method = this.getClass().getDeclaredMethod(methodName, int.class);
             method.invoke(this, actionQuantity);
@@ -172,10 +171,6 @@ public class Table implements TableInterface {
             Card c = this.myDealer.getCard();
             this.myCommunalCards.add(this.myDealer.getCard());
         }
-    }
-
-    private void reflectOnMethod(String s, Class clazz) {
-        System.out.printf("reflection on method: %s(%s)\n", s, clazz.getSimpleName());
     }
 
     // TODO - throw error instead of null when can't find player (shouldn't happen)

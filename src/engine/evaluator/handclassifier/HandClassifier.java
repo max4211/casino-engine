@@ -24,30 +24,21 @@ public class HandClassifier implements HandClassifierInterface {
     }
 
     @Override
-    public void classifyHand(PlayerHand h) {
-        if (checkLosingHand(h)) {
+    public void classifyHand(List<Card> cards, PlayerHand h) {
+        if (checkLosingHand(cards, h))
             return;
-        } else {
-            checkWinningHand(h);
-        }
+        else
+            checkWinningHand(cards, h);
     }
 
-    private void printHand(PlayerHand h) {
-        System.out.printf("\nprinting hand: ");
-        for (Card c: h.getCards()) {
-            System.out.printf("%s, ", c);
-        }
-    }
-
-    private boolean checkLosingHand(PlayerHand h) {
+    private boolean checkLosingHand(List<Card> cards, PlayerHand h) {
         for (HandBundle bundle: this.myLosingHands) {
             String s = bundle.getName();
             try {
-                Hand hand = this.myHandFactory.createHand(bundle, h.getCards());
+                Hand hand = this.myHandFactory.createHand(bundle, cards);
                 if (hand.evaluate()) {
                     h.setLoser(true);
-                    // TODO update rank and power
-                    h.classifyHand(new ClassifiedHand(bundle, 0, 0));
+                    // TODO - classify hand? Likely not necessary
                     return true;
                 }
             } catch (ReflectionException e) {
@@ -57,15 +48,15 @@ public class HandClassifier implements HandClassifierInterface {
         return false;
     }
 
-    private boolean checkWinningHand(PlayerHand h) {
+    private boolean checkWinningHand(List<Card> cards, PlayerHand h) {
         for (int rank = 0; rank < this.myWinningHands.size(); rank ++) {
             HandBundle bundle =  this.myWinningHands.get(rank);
             String s = bundle.getName();
             try {
-                Hand hand = this.myHandFactory.createHand(bundle, h.getCards());
+                Hand hand = this.myHandFactory.createHand(bundle, cards);
                 if (hand.evaluate()) {
                     // TODO - update power
-                    h.classifyHand(new ClassifiedHand(bundle, rank, 0));
+                    h.classifyHand(new ClassifiedHand(bundle, rank, hand.getPower()));
                     return true;
                 }
             } catch (ReflectionException e) {
@@ -86,13 +77,11 @@ public class HandClassifier implements HandClassifierInterface {
         return 0;
     }
 
-    private double sumCards(PlayerHand h) {
-        List<Card> handCards = h.getCards();
-        double sum = 0;
-        for (Card card: handCards) {
-            sum += card.getValue();
+    private void printHand(PlayerHand h) {
+        System.out.printf("\nprinting hand: ");
+        for (Card c: h.getCards()) {
+            System.out.printf("%s, ", c);
         }
-        return sum;
     }
 
 }

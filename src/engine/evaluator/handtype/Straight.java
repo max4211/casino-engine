@@ -35,4 +35,9 @@ public class Straight extends Hand {
         }
     }
 
+    @Override
+    public double getPower() {
+        return getHighestCard();
+    }
+
 }

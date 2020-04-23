@@ -118,12 +118,7 @@ public abstract class Controller implements ControllerInterface {
         }
     }
 
-    protected void classifyHand(Bet b) {
-        this.myHandClassifier.classifyHand(b.getHand());
-        if (b.getHand().isLoser()) {
-            b.setGameActive(false);
-        }
-    }
+    protected abstract void classifyHand(Bet b);
 
     protected void updatePlayerHands() {
         for (Player p: this.myTable.getPlayers()) {

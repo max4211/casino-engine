@@ -8,6 +8,7 @@ import controller.bundles.ControllerBundle;
 import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
+import engine.hand.ClassifiedHand;
 import engine.player.Player;
 import exceptions.ActionException;
 import exceptions.ReflectionException;
@@ -106,14 +107,22 @@ public class AdversaryController extends Controller {
     protected void computePayoffs() {
         String summary = "";
         invokeCompetition();
-        this.myHandClassifier.classifyHand(this.myAdversary.getHand());
+        this.myHandClassifier.classifyHand(this.myAdversary.getHand().getCards(), this.myAdversary.getHand());
         for (Player p: this.myTable.getPlayers()) {
             for (Bet b: p.getBets()) {
                 this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
-                summary = summary + String.format("%s's hand is a %s\n", p.getName(), b.getHand().getOutcome().toString());
+                ClassifiedHand ch = b.getHand().getClassification();
+                summary = summary + String.format("%s's hand is a %s (%s)\n", p.getName(), ch.getName(), b.getHand().getOutcome().toString());
             }
         }
         this.myGameView.displayText(summary);
+    }
+
+    @Override
+    protected void classifyHand(Bet b) {
+        this.myHandClassifier.classifyHand(b.getHand().getCards(), b.getHand());
+        if (b.getHand().isLoser())
+            b.setGameActive(false);
     }
 
     private void invokeCompetition() {

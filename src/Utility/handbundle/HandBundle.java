@@ -10,6 +10,8 @@ public class HandBundle implements HandBundleInterface{
     private static final int MULT_INDEX = 2;
     private static final int VIEW_INDEX = 3;
 
+    private static final String EMPTY_STRING = "";
+
     private final String myName;
     private final List<Double> myParams;
     private final double myMultiplier;
@@ -19,14 +21,20 @@ public class HandBundle implements HandBundleInterface{
         this.myName = name;
         this.myParams = parseParams(params);
         this.myMultiplier = parseMultiplier(multiplier);
-        this.myViewName = viewName;
+        this.myViewName = parseViewName(viewName);
     }
 
     public HandBundle(List<String> params) {
         this.myName = params.get(NAME_INDEX);
         this.myParams = parseParams(params.get(PARAMS_INDEX));
         this.myMultiplier = parseMultiplier(params.get(MULT_INDEX));
-        this.myViewName = params.get(VIEW_INDEX);
+        this.myViewName = parseViewName(params.get(VIEW_INDEX));
+    }
+
+    private String parseViewName(String viewName) {
+        if (viewName.equals(EMPTY_STRING))
+            viewName = this.myName;
+        return viewName;
     }
 
     // Default assigned is 1 x (logical)
