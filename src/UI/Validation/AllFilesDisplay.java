@@ -18,7 +18,6 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageUpdate
     private Map<XMLFile, FileDisplay> myFileDisplays;
 
     private LanguageBundle myLanguageBundle;
-    private static final String EQUAL_KEY = "Equal";
     private static final String LAUNCH_GAME_KEY = "LaunchGame";
     private static final boolean LAUNCH_BUTTON_DISABLE = true;
     private static final boolean LAUNCH_BUTTON_ENABLE = false;
