@@ -19,7 +19,7 @@ public class ClassifiedHand implements ClassifiedHandInterface {
     }
 
     public ClassifiedHand(HandBundle bundle, int rank, double power) {
-        this.myName = bundle.getViewName();
+        this.myName = String.format("%s (%1.1f)", bundle.getViewName(), power);
         this.myRank = rank;
         this.myPower = power;
         this.myMultiplier = bundle.getMultiplier();

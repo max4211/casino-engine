@@ -11,7 +11,8 @@ public class Bet implements BetInterface {
     private double myWager;
     private boolean myRoundActive;
     private boolean myGameActive;
-    private double myMultiplier = 2.0;
+    private double myProfit = 0;
+    private double myMultiplier = 1.0;
 
     public Bet(double wager) {
         this.myPlayerHand = new PlayerHand();
@@ -76,7 +77,12 @@ public class Bet implements BetInterface {
 
     @Override
     public double getPayoff() {
-        return this.myWager * this.myMultiplier;
+        return this.myWager * this.myMultiplier + this.myProfit;
+    }
+
+    @Override
+    public void setProfit(double profit) {
+        this.myProfit = profit;
     }
 
 

@@ -7,6 +7,7 @@ import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.hand.ClassifiedHand;
 import engine.player.Player;
+import engine.pot.Pot;
 import exceptions.ActionException;
 import exceptions.ReflectionException;
 
@@ -19,11 +20,13 @@ public class GroupController extends Controller {
     private static final String ACTION_TYPE = "group";
     private static final String ANTE_TAG = "Ante";
     private static final int ZERO = 0;
+    private Pot myPot;
     private double myAnte;
 
     public GroupController(ControllerBundle bundle, Map<String, String> params) {
         super(bundle, ACTION_TYPE);
         assignParams(params);
+        myPot = new Pot();
     }
 
     private void assignParams(Map<String, String> params) {
@@ -85,11 +88,20 @@ public class GroupController extends Controller {
                 classifyHand(b);
                 this.myGameView.setWager(b.getWager(), p.getID(), b.getID());
                 this.myGameView.setBankRoll(p.getBankroll(), p.getID());
+                updatePot();
                 garbageCollect(p, b);
             } catch (ReflectionException | ActionException e) {
                 this.myGameView.displayException(e);
             }
         }
+    }
+
+    private void updatePot() {
+        this.myPot.reset();
+        List<Bet> allBets = createListOfBets();
+        for (Bet b: allBets)
+            this.myPot.add(b.getWager());
+//        this.myGameView.updatePot(this.myPot.getPot());
     }
 
     @Override
@@ -104,6 +116,7 @@ public class GroupController extends Controller {
             }
         }
         this.myGameView.displayText(summary);
+        this.myPot.distributePot(allBets);
     }
 
     @Override

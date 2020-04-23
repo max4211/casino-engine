@@ -64,4 +64,9 @@ public interface BetInterface {
      * @return double value indicating payoff (multiplier?)
      */
     double getPayoff();
+
+    /**
+     * Called by pot/controller to set the profit of a bet
+     */
+    void setProfit(double profit);
 }
