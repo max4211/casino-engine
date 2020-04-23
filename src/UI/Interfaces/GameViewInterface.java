@@ -53,5 +53,5 @@ public interface GameViewInterface {
     void renderPot(double initialPot);
 
     void setPot(double newPot);
-    
+
     }

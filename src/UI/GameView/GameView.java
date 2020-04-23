@@ -201,6 +201,16 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     }
 
+    @Override
+    public void renderPot(double initialPot) {
+        
+    }
+
+    @Override
+    public void setPot(double newPot) {
+
+    }
+
     private PlayerView getPlayerView(int playerID) {
         if (myMainPlayer.holdsAPlayer() && myMainPlayer.hasSameID(playerID)) return myMainPlayer.getMainPlayer();
         return myOtherPlayers.getPlayerView(playerID);
