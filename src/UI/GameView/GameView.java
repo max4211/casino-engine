@@ -201,6 +201,10 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myPotView.setPot(newPot);
     }
 
+    public void classifyHand(String classification, int betID) {
+        
+    }
+
     private PlayerView getPlayerView(int playerID) {
         if (myMainPlayer.holdsAPlayer() && myMainPlayer.hasSameID(playerID)) return myMainPlayer.getMainPlayer();
         return myOtherPlayers.getPlayerView(playerID);
@@ -216,4 +220,5 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myMainPlayer.updateLanguage();
         myOtherPlayers.updateLanguage();
     }
+
 }

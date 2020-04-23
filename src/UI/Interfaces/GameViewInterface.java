@@ -48,6 +48,8 @@ public interface GameViewInterface {
 
     void displayText(String s);
 
+    void classifyHand(String classification, int betID);
+
     void setLoser(int betID);
 
     void renderPot(double initialPot, String potFile);
