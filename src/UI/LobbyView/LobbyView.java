@@ -58,6 +58,9 @@ public class LobbyView implements NodeViewInterface {
     }
 
     private void createGame(Map<String, File> myXMLFiles) {
+        // TODO - called validator with all files
+        // Validate file schema, general files (hand, deck, players...)
+        // Tell Eric - which file is wrong, why its wrong
         for (String xmlType : myXMLFiles.keySet()) {
             if (myXMLFiles.get(xmlType) == null) {
                 myExceptionDisplayer.displayException(new NullFileException(xmlType));

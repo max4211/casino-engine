@@ -8,8 +8,8 @@
     </WinningHand>
     <WinningHand>
         <Name>SumUnderX</Name>
+        <Multiplier>1.0</Multiplier>
         <Parameters>22</Parameters>
-        <Muliplier>1.0</Muliplier>
         <ViewName>Sum Hand</ViewName>
     </WinningHand>
     <LosingHand>

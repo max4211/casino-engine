@@ -2,14 +2,15 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="Game">
         <xs:complexType>
-            <xs:sequence>
+            <xs:all>
                 <xs:element name="Competition" minOccurs="1" maxOccurs="1">
                     <xs:complexType>
-                        <xs:sequence>
+                        <xs:all>
                             <xs:element name="Type" type="CompetitionType"/>
-                            <xs:any minOccurs="0" maxOccurs="unbounded"/>
-<!--                            TODO - Insert competition parameters-->
-                        </xs:sequence>
+                            <!--    TODO - generalize/restrict one or the other based on game type-->
+                            <xs:element name="Ante" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="Minimum" minOccurs="0" maxOccurs="1"/>
+                        </xs:all>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="TableMin" type="xs:double"/>
@@ -22,10 +23,10 @@
                             <xs:element name="EntryBet" type="EntryBetType"/>
                             <xs:element name="DealerAction" minOccurs="1" maxOccurs="unbounded">
                                 <xs:complexType>
-                                    <xs:sequence>
+                                    <xs:all>
                                         <xs:element name="Type" type="DealerActionType"/>
                                         <xs:element name="Quantity" type="xs:int"/>
-                                    </xs:sequence>
+                                    </xs:all>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="PlayerAction" minOccurs="1" maxOccurs="unbounded">
@@ -40,7 +41,7 @@
                     </xs:complexType>
                 </xs:element>
 
-            </xs:sequence>
+            </xs:all>
         </xs:complexType>
     </xs:element>
 

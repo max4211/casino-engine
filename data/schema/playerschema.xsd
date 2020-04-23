@@ -3,12 +3,12 @@
     <xs:element name="Players">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Player" minOccurs="1" maxOccurs="100">
+                <xs:element name="Player" minOccurs="1" maxOccurs="unbounded">
                     <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
-                            <xs:element name="Bankroll" type="xs:double" minOccurs="1" maxOccurs="1"></xs:element>
-                        </xs:sequence>
+                        <xs:all>
+                            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="Bankroll" type="xs:double" minOccurs="1" maxOccurs="1"/>
+                        </xs:all>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>

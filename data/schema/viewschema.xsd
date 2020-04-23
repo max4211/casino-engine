@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="View">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Title" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="Authors" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="Languages" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Language" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Stylesheets" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Stylesheet" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Errors" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Icon" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="StyleSheet" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Dimensions" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="Width" type="xs:double" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="Height" type="xs:double" minOccurs="1" maxOccurs="1"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

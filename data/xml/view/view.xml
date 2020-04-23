@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Game>
+<View>
     <Title>Blackjack</Title>
     <Authors>Eric Doppelt and Max Smith</Authors>
     <Languages>
@@ -19,4 +19,4 @@
         <Width>800</Width>
         <Height>800</Height>
     </Dimensions>
-</Game>
+</View>
