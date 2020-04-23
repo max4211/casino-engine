@@ -1,6 +1,7 @@
 package ooga;
 
 import UI.GameView.GameView;
+import UI.Validation.XMLFile;
 import Utility.StringPair;
 import Utility.handbundle.HandBundle;
 import controller.bundles.ControllerBundle;
@@ -45,18 +46,13 @@ public class GameConstructor {
 
     //TODO: duplication
     private static final String TYPE_KEY = "Type";
-    private static final String DECK_KEY = "Deck";
-    private static final String GAME_KEY = "Game";
-    private static final String PLAYER_KEY = "Players";
-    private static final String HAND_KEY = "Hands";
-    private static final String VIEW_KEY = "View";
 
-    public GameConstructor(Map<String, File> myFiles) {
-        deckFile = myFiles.get(DECK_KEY);
-        gameFile = myFiles.get(GAME_KEY);
-        playerFile = myFiles.get(PLAYER_KEY);
-        handFile = myFiles.get(HAND_KEY);
-        viewFile = myFiles.get(VIEW_KEY);
+    public GameConstructor(Map<XMLFile, File> myFiles) {
+        deckFile = myFiles.get(XMLFile.DECK);
+        gameFile = myFiles.get(XMLFile.GAME);
+        playerFile = myFiles.get(XMLFile.PLAYERS);
+        handFile = myFiles.get(XMLFile.HANDS);
+        viewFile = myFiles.get(XMLFile.VIEW);
         createGame();
     }
 

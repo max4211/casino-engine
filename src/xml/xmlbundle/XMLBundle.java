@@ -1,5 +1,6 @@
 package xml.xmlbundle;
 
+import UI.Validation.XMLFile;
 import xml.xmlreader.interfaces.XMLValidatorInterface;
 
 import java.io.File;
@@ -7,47 +8,43 @@ import java.util.*;
 
 public class XMLBundle implements XMLBundleInterface {
 
-    // TODO - use Eric's enum types
-    private static final String DECK_KEY = "Deck";
-    private static final String GAME_KEY = "Game";
-    private static final String PLAYER_KEY = "Players";
-    private static final String HAND_KEY = "Hands";
-    private static final String VIEW_KEY = "View";
-
-    private Map<String, File> myXMLFiles;
+    private Map<XMLFile, File> myXMLFiles;
 
     public XMLBundle() {
         this.myXMLFiles = new HashMap<>();
     }
 
     @Override
-    public Map<String, File> getXMLFiles() {
+    public Map<XMLFile, File> getXMLFiles() {
         return this.myXMLFiles;
     }
 
     @Override
-    public boolean needsFile(String tag) {
+    public boolean needsFile(XMLFile tag) {
         return !(this.myXMLFiles.containsKey(tag));
     }
 
     @Override
+    public boolean isComplete() {
+        return this.missingFiles().size() == 0;
+    }
+
+    @Override
     public void addFile(File file) {
-        String tag = XMLValidatorInterface.getMetaTag(file);
+        XMLFile tag = XMLFile.valueOf(XMLValidatorInterface.getMetaTag(file));
         this.myXMLFiles.put(tag, file);
     }
 
     @Override
-    public Set<String> missingFiles() {
-
-        return null;
+    public Set<XMLFile> missingFiles() {
+        Set<XMLFile> set = createFileSet();
+        for (XMLFile key: this.myXMLFiles.keySet())
+            set.remove(key);
+        return set;
     }
 
-    private Set<String> createFileSet() {
-        List<String> list = new ArrayList<>(List.of(
-//                DECK_KEY, GAME_KEY,
-        ));
-        return new HashSet<>();
+    private Set<XMLFile> createFileSet() {
+        return EnumSet.allOf(XMLFile.class);
     }
-
 
 }
