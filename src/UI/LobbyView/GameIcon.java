@@ -1,6 +1,9 @@
 package UI.LobbyView;
 
 import UI.Interfaces.NodeViewInterface;
+import UI.LanguageBundle;
+import UI.Validation.AllFilesDisplay;
+import UI.Validation.UpdateFilesDisplayInterface;
 import Utility.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -45,7 +48,11 @@ public class GameIcon implements NodeViewInterface {
         this.myFiles = files;
         this.myGameIcon.setOnMouseClicked(e -> {
             // TODO - set mouse clicked event (route to validator
-            new MasterValidator(this.myFiles);
+            LanguageBundle testBundle = new LanguageBundle("English");
+            String statusBundle= "StandardStatuses";
+            String iconBundle = "StandardXMLs";
+            AllFilesDisplay display = new AllFilesDisplay(testBundle, statusBundle, iconBundle);
+            new MasterValidator(this.myFiles, (file, status) -> display.updateStatus(file, status));
         });
 
         //TODO: move this to formatting

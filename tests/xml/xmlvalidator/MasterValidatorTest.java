@@ -20,7 +20,7 @@ class MasterValidatorTest {
         fileList.add(new File("data/xml/hands/pokerHands.xml"));
         fileList.add(new File("data/xml/players/3players.xml"));
         fileList.add(new File("data/xml/view/view.xml"));
-        MasterValidator masterValidator = new MasterValidator(fileList);
+//        MasterValidator masterValidator = new MasterValidator(fileList, );
     }
 
 }

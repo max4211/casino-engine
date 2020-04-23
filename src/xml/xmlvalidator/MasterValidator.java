@@ -1,5 +1,7 @@
 package xml.xmlvalidator;
 
+import UI.Validation.FileStatus;
+import UI.Validation.UpdateFilesDisplayInterface;
 import UI.Validation.XMLFile;
 import exceptions.XMLParseException;
 import ooga.GameConstructor;
@@ -15,6 +17,7 @@ public class MasterValidator {
 
     private XMLBundle myXMLBundle;
     private ValidatorFactory myFactory;
+    private UpdateFilesDisplayInterface myUpdate;
 
     /**
      * Needs a bundle of files, lambdas to interface with validator view (affirm, reject)
@@ -22,9 +25,10 @@ public class MasterValidator {
      * @param fileList
      * TODO - add ain calls to validator view for updating status
      */
-    public MasterValidator(List<File> fileList) {
+    public MasterValidator(List<File> fileList, UpdateFilesDisplayInterface update) {
         this.myXMLBundle = new XMLBundle();
         this.myFactory = new ValidatorFactory();
+        this.myUpdate = update;
         validateFiles(fileList);
     }
 
@@ -50,8 +54,10 @@ public class MasterValidator {
         for (File file: fileList) {
             try {
                 XMLFile tag = getTag(file);
-                if (bundleWantsFile(file, tag))
+                if (bundleWantsFile(file, tag)) {
                     this.myXMLBundle.addFile(file, tag);
+                    this.myUpdate.updateStatus(tag, FileStatus.VALID);
+                }
             } catch (XMLParseException ignored) {
                 ;
             }
