@@ -3,19 +3,31 @@
     <xs:element name="Hands">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="WinningHand" minOccurs="1" maxOccurs="100">
+                <xs:element name="WinningHand" minOccurs="1" maxOccurs="unbounded">
                     <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
-                            <xs:element name="Multiplier" type="xs:double" minOccurs="1" maxOccurs="1"></xs:element>
-                        </xs:sequence>
+                        <xs:all>
+                            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="Parameters" type="xs:string" minOccurs="0" maxOccurs="1"/>
+<!--                            TODO - update to space separated doubles (custom type?)-->
+<!--                                <xs:simpleType>-->
+<!--                                    <xs:restriction base="xs:string">-->
+<!--                                        <xs:pattern value="\d+ \d+ \d+"></xs:pattern>-->
+<!--                                    </xs:restriction>-->
+<!--                                </xs:simpleType>-->
+<!--                            </xs:element>-->
+                            <xs:element name="Multiplier" type="xs:double" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="ViewName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        </xs:all>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="LosingHand" minOccurs="1" maxOccurs="100">
+                <xs:element name="LosingHand" minOccurs="0" maxOccurs="unbounded">
                     <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
-                        </xs:sequence>
+                        <xs:all>
+                            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="Parameters" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="Multiplier" type="xs:double" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="ViewName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        </xs:all>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>

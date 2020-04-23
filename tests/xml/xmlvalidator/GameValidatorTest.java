@@ -27,9 +27,9 @@ class GameValidatorTest {
         String gamePath = "data/xml/game/bad_game.xml";
         File gameFile = new File(gamePath);
         try {
-            gameValidator.validate(gameFile);
+            boolean result = gameValidator.validate(gameFile);
         } catch (ValidatorException e) {
-            System.out.println(e.getMessage());
+            System.out.print(e.getMessage());
         }
     }
 
