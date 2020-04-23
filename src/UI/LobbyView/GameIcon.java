@@ -30,7 +30,7 @@ public class GameIcon implements NodeViewInterface {
         myGameIcon.setAlignment(Pos.CENTER);
         Icon myIconButton = new Icon(imageFile);
 
-        //FIXME: for testing
+        // FIXME: add reflection to IDs
         if (gameName.equals(BLACKJACK)) {
             myIconButton.getView().setId(BLACKJACK_ICON_ID);
         }

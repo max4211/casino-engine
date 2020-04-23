@@ -1,19 +1,18 @@
 package UI.Settings;
 
 import UI.LobbyView.Icon;
-
-import java.awt.*;
-import java.net.URL;
+import UI.WebView.Browser;
 
 public class HelpButton extends Icon {
 
-    private static final String WEBSITE_LINK = "https://www.casino308.com/#";
+    private static final int BROWSER_SIZE = 400;
 
     public HelpButton(String helpIconPath) {
         super(helpIconPath);
         myIcon.setOnMouseClicked(e -> {
             try {
-                Desktop.getDesktop().browse(new URL(WEBSITE_LINK).toURI());
+                Browser myBrowser = new Browser();
+                myBrowser.render();
             } catch (Exception ex) {
                //FIXME: throw an error here
             }
