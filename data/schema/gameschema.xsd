@@ -92,6 +92,7 @@
             <xs:enumeration value="Split"/>
             <xs:enumeration value="DoubleDown"/>
             <xs:enumeration value="Stay"/>
+            <xs:enumeration value="Hit"/>
         </xs:restriction>
     </xs:simpleType>
 
