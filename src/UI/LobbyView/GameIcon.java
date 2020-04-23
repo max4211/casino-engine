@@ -5,6 +5,7 @@ import Utility.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import xml.xmlvalidator.MasterValidator;
 
 import java.io.File;
 import java.util.List;
@@ -44,7 +45,7 @@ public class GameIcon implements NodeViewInterface {
         this.myFiles = files;
         this.myGameIcon.setOnMouseClicked(e -> {
             // TODO - set mouse clicked event (route to validator
-//            myFileAccepter.accept(getFiles());
+            new MasterValidator(this.myFiles);
         });
 
         //TODO: move this to formatting
