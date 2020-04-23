@@ -19,9 +19,6 @@ public class LobbyView implements NodeViewInterface {
     private static final String TYPE_TAG = "Type";
     private static final String ICON_TAG = "Icon";
 
-    private static final String CUSTOM = "Custom";
-    private static final String STANDARD = "Standard";
-
     private static final String FLOWPANE_CSS_ID = "full-lobby";
     private static final int DEFAULT_CSS_INDEX = 0;
 

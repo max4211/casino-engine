@@ -47,12 +47,14 @@ public class GameIcon implements NodeViewInterface {
 
         this.myFiles = files;
         this.myGameIcon.setOnMouseClicked(e -> {
-            // TODO - set mouse clicked event (route to validator
+            // TODO - parametrize display in data
             LanguageBundle testBundle = new LanguageBundle("English");
             String statusBundle= "StandardStatuses";
             String iconBundle = "StandardXMLs";
             AllFilesDisplay display = new AllFilesDisplay(testBundle, statusBundle, iconBundle);
-            new MasterValidator(this.myFiles, (file, status) -> display.updateStatus(file, status));
+            new MasterValidator(this.myFiles,
+                    (file, status) -> display.updateStatus(file, status),
+                    (initializer) -> display.enableGameButton(initializer));
         });
 
         //TODO: move this to formatting
