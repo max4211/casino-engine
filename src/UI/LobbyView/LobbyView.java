@@ -43,6 +43,8 @@ public class LobbyView implements NodeViewInterface {
 
             String gameType = generalInfo.get(i).get(TYPE_TAG);
             GameIcon tempIcon = null;
+            // TODO - change this to reflection
+            // Reflect and make icon, send off to validator
             if (gameType.equals(CUSTOM)) {
                 tempIcon = new CustomGameIcon(tempGeneralInfo.get(ICON_TAG), tempGeneralInfo.get(NAME_TAG), e -> createGame(e), tempFiles.keySet());
             } else if (gameType.equals(STANDARD)) {

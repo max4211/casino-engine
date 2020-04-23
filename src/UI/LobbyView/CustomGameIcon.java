@@ -15,6 +15,8 @@ public class CustomGameIcon extends GameIcon {
         myNeededXMLs = neededXMLs;
     }
 
+    // TODO - get list of files from
+    // Immediately call file validator with a bundle of files
     @Override
     protected Map<String, File> getFiles() {
         Map<String, File> returnedMap = new HashMap<>();
