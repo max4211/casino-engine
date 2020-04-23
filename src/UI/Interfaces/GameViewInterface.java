@@ -49,4 +49,9 @@ public interface GameViewInterface {
     void displayText(String s);
 
     void setLoser(int betID);
+
+    void renderPot(double initialPot);
+
+    void setPot(double newPot);
+    
     }
