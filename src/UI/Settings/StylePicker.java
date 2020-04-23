@@ -1,4 +1,4 @@
-package UI.GameView.Settings;
+package UI.Settings;
 
 import java.util.List;
 import java.util.function.Consumer;

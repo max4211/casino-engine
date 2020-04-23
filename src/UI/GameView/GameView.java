@@ -1,8 +1,6 @@
 package UI.GameView;
 
 import UI.ExceptionHandling.ExceptionDisplayer;
-import UI.GameView.Settings.LanguagePicker;
-import UI.GameView.Settings.StylePicker;
 import UI.Interfaces.GameCaller;
 import UI.Interfaces.GameViewInterface;
 import UI.Interfaces.NodeViewInterface;
@@ -10,10 +8,11 @@ import UI.LanguageBundle;
 import UI.Selectors.ActionSelector;
 import UI.Selectors.SelectorType;
 import UI.Selectors.WagerSelector;
+import UI.Settings.SettingsBar;
 import Utility.CardTriplet;
-import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
@@ -23,30 +22,30 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private static final String NO_ACTION_INPUT = "";
     private static final double NO_WAGER_INPUT = -1;
 
+    private VBox myVBox;
     private BorderPane myBorderPane;
     private MainPlayerView myMainPlayer;
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
     private HandView myCommons;
+    private PotView myPotView;
 
+    private SettingsBar mySettingsBar;
     private LanguageBundle myLanguageBundle;
     private ExceptionDisplayer myExceptionDisplayer;
     //FIXME: create a general constructor!
     private ActionSelector myActionSelector;
     private WagerSelector myWagerSelector;
 
-    private static final int DEFAULT_CSS_INDEX = 0;
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
-
-    private static final String LANGUAGE_PICKER_ID = "language-combo-box";
-    private static final String CSS_PICKER_ID = "css-combo-box";
-
-    private static final String BORDER_PANE_ID = "game-border-pane";
+    private static final String GAME_CSS_ID = "game-box";
 
     public GameView(List<String> styleSheets, List<String> languages) {
+        myVBox = new VBox();
+        myVBox.setId(GAME_CSS_ID);
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
+
         myBorderPane = new BorderPane();
-        myBorderPane.setId(BORDER_PANE_ID);
         myOtherPlayers = new OtherPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
         myMainPlayer = new MainPlayerView(myLanguageBundle);
@@ -54,24 +53,14 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myExceptionDisplayer = new ExceptionDisplayer("exceptionIcon.png", "fire.css", myLanguageBundle);
         myWagerSelector = new WagerSelector(myLanguageBundle);
         myActionSelector = new ActionSelector(myLanguageBundle);
+        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, "construction.png", "information.png");
 
-        //FIXME: create a real holder for these!
-        VBox tempHolder = new VBox();
-        tempHolder.setAlignment(Pos.TOP_RIGHT);
-        LanguagePicker tempPicker1 = new LanguagePicker(languages, e -> updateLanguage(e));
-        tempPicker1.getView().setId(LANGUAGE_PICKER_ID);
-        tempPicker1.getView().setPrefHeight(20);
-        tempPicker1.getView().setPrefWidth(100);
-        StylePicker tempPicker2 = new StylePicker(styleSheets, e -> updateStyleSheet(e));
-        tempPicker2.getView().setId(CSS_PICKER_ID);
-        tempPicker2.getView().setPrefHeight(20);
-        tempPicker2.getView().setPrefWidth(100);
-        tempHolder.getChildren().addAll(tempPicker1.getView(), tempPicker2.getView());
-        myBorderPane.setRight(tempHolder);
+        myVBox.getChildren().addAll(mySettingsBar.getView(), myBorderPane);
+        myVBox.setVgrow(myBorderPane, Priority.ALWAYS);
     }
 
-    public BorderPane getView() {
-        return myBorderPane;
+    public VBox getView() {
+        return myVBox;
     }
 
     @Override
@@ -202,13 +191,14 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public void renderPot(double initialPot) {
-        
+    public void renderPot(double initialPot, String potFile) {
+        myPotView = new PotView(myLanguageBundle, initialPot, potFile);
+        myBorderPane.setRight(myPotView.getView());
     }
 
     @Override
     public void setPot(double newPot) {
-
+        myPotView.setPot(newPot);
     }
 
     private PlayerView getPlayerView(int playerID) {
@@ -217,8 +207,8 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     private void updateStyleSheet(String newStylesheet) {
-        myBorderPane.getStylesheets().clear();
-        myBorderPane.getStylesheets().add(newStylesheet);
+        myVBox.getStylesheets().clear();
+        myVBox.getStylesheets().add(newStylesheet);
     }
 
     private void updateLanguage(String newLanguage) {

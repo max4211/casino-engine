@@ -1,6 +1,10 @@
-.root {
+#game-box {
     -fx-background-color: linear-gradient(#e0ffe0, #50ddaf);
     -fx-base: #52d780;
+}
+
+#settings-bar {
+    -fx-background-color: derive(-fx-base, 10%);
 }
 
 .button {
