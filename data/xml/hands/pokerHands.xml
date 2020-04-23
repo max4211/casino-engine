@@ -3,6 +3,7 @@
     <WinningHand>
         <Name>XCardPair</Name>
         <Parameters>4</Parameters>
+        <ViewName>4 of a Kind</ViewName>
     </WinningHand>
     <WinningHand>
         <Name>Flush</Name>
@@ -13,10 +14,12 @@
     <WinningHand>
         <Name>XCardPair</Name>
         <Parameters>3</Parameters>
+        <ViewName>3 of a Kind</ViewName>
     </WinningHand>
     <WinningHand>
         <Name>XCardPair</Name>
         <Parameters>2</Parameters>
+        <ViewName>Pair</ViewName>
     </WinningHand>
     <WinningHand>
         <Name>HighCard</Name>
