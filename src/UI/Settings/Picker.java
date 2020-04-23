@@ -1,4 +1,4 @@
-package UI.GameView.Settings;
+package UI.Settings;
 
 import UI.Interfaces.NodeViewInterface;
 import javafx.collections.FXCollections;
