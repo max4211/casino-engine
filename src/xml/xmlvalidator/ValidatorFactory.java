@@ -6,7 +6,7 @@ import java.lang.reflect.Constructor;
 
 public class ValidatorFactory implements ValidatorFactoryInterface {
 
-    private static final String VALIDATOR_PATH = "src.xml.xmlvalidator";
+    private static final String VALIDATOR_PATH = "xml.xmlvalidator";
     private static final String VALIDATOR_SUFFIX = "Validator";
 
     private static final String DECK = "Deck";
@@ -31,6 +31,6 @@ public class ValidatorFactory implements ValidatorFactoryInterface {
     }
 
     private String createValidatorPath(String validator) {
-        return String.format("%s.%s.%s", VALIDATOR_PATH, validator, VALIDATOR_SUFFIX);
+        return String.format("%s.%s%s", VALIDATOR_PATH, validator, VALIDATOR_SUFFIX);
     }
 }

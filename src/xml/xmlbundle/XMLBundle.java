@@ -1,7 +1,6 @@
 package xml.xmlbundle;
 
 import UI.Validation.XMLFile;
-import xml.xmlreader.interfaces.XMLValidatorInterface;
 
 import java.io.File;
 import java.util.*;
@@ -26,17 +25,17 @@ public class XMLBundle implements XMLBundleInterface {
 
     @Override
     public boolean isComplete() {
-        return this.missingFiles().size() == 0;
+        return this.getMissingFiles().size() == 0;
     }
 
     @Override
-    public void addFile(File file) {
-        XMLFile tag = XMLFile.valueOf(XMLValidatorInterface.getMetaTag(file));
+    public void addFile(File file, XMLFile tag) {
         this.myXMLFiles.put(tag, file);
+        System.out.printf("Successfully added %s file to XMLBundle\n", tag.toString());
     }
 
     @Override
-    public Set<XMLFile> missingFiles() {
+    public Set<XMLFile> getMissingFiles() {
         Set<XMLFile> set = createFileSet();
         for (XMLFile key: this.myXMLFiles.keySet())
             set.remove(key);

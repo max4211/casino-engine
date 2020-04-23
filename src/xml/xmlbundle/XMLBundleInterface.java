@@ -14,7 +14,7 @@ public interface XMLBundleInterface {
 
     boolean isComplete();
 
-    void addFile(File file);
+    void addFile(File file, XMLFile tag);
 
-    Set<XMLFile> missingFiles();
+    Set<XMLFile> getMissingFiles();
 }

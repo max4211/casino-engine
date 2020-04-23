@@ -1,10 +1,10 @@
 package xml.xmlvalidator;
 
-public class HandValidator extends Validator {
+public class HandsValidator extends Validator {
 
     private static final String VALIDATION_FILE = "data/schema/handschema.xsd";
 
-    public HandValidator() {
+    public HandsValidator() {
         super(VALIDATION_FILE);
     }
 }

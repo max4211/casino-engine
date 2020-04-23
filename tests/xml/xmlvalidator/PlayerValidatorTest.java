@@ -10,7 +10,7 @@ class PlayerValidatorTest {
 
     @Test
     void validate() {
-        Validator playerValidator = new PlayerValidator();
+        Validator playerValidator = new PlayersValidator();
 //        String playerPath = "data/xml/players/players.xml";
         String playerPath = "data/xml/players/3players.xml";
         File playerFile = new File(playerPath);

@@ -11,7 +11,7 @@ class HandValidatorTest {
 
     @Test
     void validate() {
-        Validator handValidator = new HandValidator();
+        Validator handValidator = new HandsValidator();
 //        String handPath = "data/xml/hands/standard.xml";
         String handPath = "data/xml/hands/hands.xml";
         File handFile = new File(handPath);
@@ -22,7 +22,7 @@ class HandValidatorTest {
 
     @Test
     void validateError() {
-        Validator handValidator = new HandValidator();
+        Validator handValidator = new HandsValidator();
 //        String handPath = "data/xml/hands/standard.xml";
         String handPath = "data/xml/hands/bad_hand.xml";
         File handFile = new File(handPath);
