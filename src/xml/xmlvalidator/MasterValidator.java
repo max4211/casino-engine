@@ -21,14 +21,14 @@ public class MasterValidator {
     private XMLBundle myXMLBundle;
     private ValidatorFactory myFactory;
     private UpdateFilesDisplayInterface myUpdate;
-    private Consumer myCaller;
+    private Consumer<GameCaller> myCaller;
 
     /**
      * Lambda to show errors on front end and prompt new files
      * @param fileList
      * TODO - add parameter to activate button for game start
      */
-    public MasterValidator(List<File> fileList, UpdateFilesDisplayInterface update, Consumer caller) {
+    public MasterValidator(List<File> fileList, UpdateFilesDisplayInterface update, Consumer<GameCaller> caller) {
         this.myXMLBundle = new XMLBundle();
         this.myFactory = new ValidatorFactory();
         this.myUpdate = update;
@@ -45,7 +45,7 @@ public class MasterValidator {
         }
         System.out.println("all files validated, attempting to create game");
         // TODO - send off lambda to create button
-        myCaller.accept(() -> this.createGame());
+        this.myCaller.accept(this::createGame);
     }
 
     private void printMissingFiles() {
