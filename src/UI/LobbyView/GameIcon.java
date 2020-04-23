@@ -39,7 +39,7 @@ public abstract class GameIcon implements NodeViewInterface {
         }
 
         myFormatter = new Formatter();
-        myFormatter.formatIconView(myIconButton.getView());
+        myFormatter.formatGameIconView(myIconButton.getView());
         myGameIcon.setOnMouseClicked(e -> {
             myFileAccepter.accept(getFiles());
         });

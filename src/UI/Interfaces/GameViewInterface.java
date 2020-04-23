@@ -50,7 +50,7 @@ public interface GameViewInterface {
 
     void setLoser(int betID);
 
-    void renderPot(double initialPot);
+    void renderPot(double initialPot, String potFile);
 
     void setPot(double newPot);
 

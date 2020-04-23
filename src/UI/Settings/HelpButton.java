@@ -11,7 +11,7 @@ public class HelpButton extends Icon {
 
     public HelpButton(String helpIconPath) {
         super(helpIconPath);
-        myButton.setOnAction(e -> {
+        myIcon.setOnMouseClicked(e -> {
             try {
                 Desktop.getDesktop().browse(new URL(WEBSITE_LINK).toURI());
             } catch (Exception ex) {

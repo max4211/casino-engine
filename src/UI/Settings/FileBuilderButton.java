@@ -7,7 +7,7 @@ public class FileBuilderButton extends Icon {
 
     public FileBuilderButton(String constructorIconPath) {
         super((constructorIconPath));
-        myButton.setOnAction(e -> {
+        myIcon.setOnMouseClicked(e -> {
             FileEditorConstructor newFileEditor = new FileEditorConstructor();
         });
     }

@@ -2,6 +2,7 @@ package Utility;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -27,9 +28,9 @@ public class Formatter {
         rawVBox.setAlignment(Pos.CENTER);
     }
 
-    public void formatIconView(Button rawIconView) {
-        rawIconView.setPrefHeight(100);
-        rawIconView.setPrefWidth(100);
+    public void formatGameIconView(ImageView rawIconView) {
+        rawIconView.setFitWidth(100);
+        rawIconView.setFitHeight(100);
     }
 
     // TODO: duplication here, talk to DUVALL

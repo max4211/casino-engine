@@ -10,7 +10,6 @@ import UI.Selectors.SelectorType;
 import UI.Selectors.WagerSelector;
 import UI.Settings.SettingsBar;
 import Utility.CardTriplet;
-import Utility.Formatter;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
@@ -29,6 +28,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     private OtherPlayersView myOtherPlayers;
     private HandView myAdversary;
     private HandView myCommons;
+    private PotView myPotView;
 
     private SettingsBar mySettingsBar;
     private LanguageBundle myLanguageBundle;
@@ -36,13 +36,13 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     //FIXME: create a general constructor!
     private ActionSelector myActionSelector;
     private WagerSelector myWagerSelector;
-    private Formatter myFormatter;
-
 
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
-    private static final String GAME_CSS_ID = "game-border-pane";
+    private static final String GAME_CSS_ID = "game-box";
 
     public GameView(List<String> styleSheets, List<String> languages) {
+        myVBox = new VBox();
+        myVBox.setId(GAME_CSS_ID);
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
 
         myBorderPane = new BorderPane();
@@ -55,8 +55,6 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myActionSelector = new ActionSelector(myLanguageBundle);
         mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, "construction.png", "information.png");
 
-        myVBox = new VBox();
-        myVBox.setId(GAME_CSS_ID);
         myVBox.getChildren().addAll(mySettingsBar.getView(), myBorderPane);
         myVBox.setVgrow(myBorderPane, Priority.ALWAYS);
     }
@@ -193,13 +191,14 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public void renderPot(double initialPot) {
-        
+    public void renderPot(double initialPot, String potFile) {
+        myPotView = new PotView(myLanguageBundle, initialPot, potFile);
+        myBorderPane.setRight(myPotView.getView());
     }
 
     @Override
     public void setPot(double newPot) {
-
+        myPotView.setPot(newPot);
     }
 
     private PlayerView getPlayerView(int playerID) {
@@ -208,8 +207,8 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     private void updateStyleSheet(String newStylesheet) {
-        myBorderPane.getStylesheets().clear();
-        myBorderPane.getStylesheets().add(newStylesheet);
+        myVBox.getStylesheets().clear();
+        myVBox.getStylesheets().add(newStylesheet);
     }
 
     private void updateLanguage(String newLanguage) {
