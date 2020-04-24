@@ -3,6 +3,7 @@
     <xs:element name="Hands">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="CardsInHand" type="xs:int" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="WinningHand" minOccurs="1" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:all>

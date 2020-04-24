@@ -22,7 +22,7 @@ class HandClassifierTest {
         HandReader handReader = new HandReader(HAND_FILE);
         List<HandBundle> myWinningHands = handReader.getWinningHands();
         List<HandBundle> myLosingHands = handReader.getLosingHands();
-        return new HandClassifier(myWinningHands, myLosingHands);
+        return new HandClassifier(myWinningHands, myLosingHands, Integer.MAX_VALUE);
     }
 
     @Test

@@ -13,14 +13,16 @@ import java.util.*;
 
 public class HandClassifier implements HandClassifierInterface {
 
-    private List<HandBundle> myWinningHands;
-    private List<HandBundle> myLosingHands;
-    private HandFactory myHandFactory;
+    private final List<HandBundle> myWinningHands;
+    private final List<HandBundle> myLosingHands;
+    private final HandFactory myHandFactory;
+    private final int myCardsInHand;
 
-    public HandClassifier(List<HandBundle> winners, List<HandBundle> losers) {
+    public HandClassifier(List<HandBundle> winners, List<HandBundle> losers, int cardsInHand) {
         this.myWinningHands = winners;
         this.myLosingHands = losers;
         this.myHandFactory = new HandFactory();
+        this.myCardsInHand = cardsInHand;
     }
 
     @Override
@@ -38,50 +40,39 @@ public class HandClassifier implements HandClassifierInterface {
                 Hand hand = this.myHandFactory.createHand(bundle, cards);
                 if (hand.evaluate()) {
                     h.setLoser(true);
-                    // TODO - classify hand? Likely not necessary
+                    // TODO - classify hand? unnecessary
                     return true;
                 }
             } catch (ReflectionException e) {
+                // TODO - remove hand from list (with schema, will never happen)
                 System.out.println("could not reflect on losing hand");
             }
         }
         return false;
     }
 
-    private boolean checkWinningHand(List<Card> cards, PlayerHand h) {
+    private void checkWinningHand(List<Card> cards, PlayerHand h) {
         for (int rank = 0; rank < this.myWinningHands.size(); rank ++) {
             HandBundle bundle =  this.myWinningHands.get(rank);
             String s = bundle.getName();
             try {
+                checkAllCombinations(cards, bundle);
                 Hand hand = this.myHandFactory.createHand(bundle, cards);
                 if (hand.evaluate()) {
                     // TODO - update power
                     h.classifyHand(new ClassifiedHand(bundle, rank, hand.getPower()));
-                    return true;
+                    return;
                 }
             } catch (ReflectionException e) {
                 System.out.println("could not reflect on winning hand");
             }
         }
-        return true;
     }
 
-    private int indexOf(Collection<String> collection, String s) {
-        int count = 0;
-        Iterator iter = collection.iterator();
-        while (iter.hasNext()) {
-            if (iter.next().equals(s))
-                return count;
-            count ++;
-        }
-        return 0;
-    }
+    // TODO - try to make best hand out of best cards
+    // 7 choose 5 possible hands (21 cases, not too bad)
+    private void checkAllCombinations(List<Card> cards, HandBundle bundle) {
 
-    private void printHand(PlayerHand h) {
-        System.out.printf("\nprinting hand: ");
-        for (Card c: h.getCards()) {
-            System.out.printf("%s, ", c);
-        }
     }
 
 }

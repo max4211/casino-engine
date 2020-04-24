@@ -134,9 +134,7 @@ public class GameConstructor {
     private ControllerBundle createControllerBundle(GameReader gameReader, HandReader handReader, Table table, GameView gameView) {
         Collection<String> myPlayerActions = gameReader.getPlayerAction();
         List<StringPair> myDealerAction = gameReader.getDealerAction();
-        List<HandBundle> myWinningHands = handReader.getWinningHands();
-        List<HandBundle> myLosingHands = handReader.getLosingHands();
-        HandClassifier myHandClassifier = new HandClassifier(myWinningHands, myLosingHands);
+        HandClassifier myHandClassifier = createHandClassifier(handReader);
         HandEvaluator myHandEvaluator = new HandEvaluator();
         BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
 
@@ -148,6 +146,18 @@ public class GameConstructor {
                 table, gameView, myEntryBet, myPlayerActions, myDealerAction,
                 myHandClassifier, myBetEvaluator,
                 myCardShow, myGoal);
+    }
+
+    private HandClassifier createHandClassifier(HandReader handReader) {
+        List<HandBundle> myWinningHands = handReader.getWinningHands();
+        List<HandBundle> myLosingHands = handReader.getLosingHands();
+        int myCardsInHand = Integer.MAX_VALUE;
+        try {
+            myCardsInHand = handReader.getCardsInHand();
+        } catch (Exception ignored) {
+            ;
+        }
+        return new HandClassifier(myWinningHands, myLosingHands, myCardsInHand);
     }
 
     private String createControllerPath(String competition) {
