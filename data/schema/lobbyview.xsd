@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="Lobby">
         <xs:complexType>
             <xs:sequence>
@@ -27,6 +27,14 @@
                 </xs:element>
                 <xs:element name="ErrorStylesheet" type="xs:string" minOccurs="1" maxOccurs="1"/>
                 <xs:element name="IconProperties" type="IconPropertyType" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="AllFilesDisplay" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="FilesStatusBundle" type="StatusBundleType" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="FilesIconBundle" type="IconBundleType" minOccurs="1" maxOccurs="1"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="Bundle" minOccurs="1" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:all>
@@ -53,6 +61,18 @@
     <xs:simpleType name="IconPropertyType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="standardLobby"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="IconBundleType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="StandardXMLs"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="StatusBundleType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="StandardStatuses"/>
         </xs:restriction>
     </xs:simpleType>
 

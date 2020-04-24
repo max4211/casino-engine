@@ -35,4 +35,11 @@ public interface LobbyReaderInterface {
      */
     List<List<File>> getFileTags();
 
+    /**
+     * Get metadata that drives game starter all files display
+     * @return
+     */
+    String getFilesDisplayStatus();
+    String getFilesDisplayIcon();
+
 }

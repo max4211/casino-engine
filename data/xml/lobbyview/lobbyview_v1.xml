@@ -14,6 +14,10 @@
     </Languages>
     <ErrorStylesheet>Fire</ErrorStylesheet>
     <IconProperties>standardLobby</IconProperties>
+    <AllFilesDisplay>
+        <FilesStatusBundle>StandardStatuses</FilesStatusBundle>
+        <FilesIconBundle>StandardXMLs</FilesIconBundle>
+    </AllFilesDisplay>
     <Bundle>
         <Name>Blackjack</Name>
         <Icon>Black_Jack-512.png</Icon>

@@ -25,7 +25,8 @@ public class GameStarter implements StylizedNode, LanguageResponder {
 
     private static final String PATH_TO_ICON = "iconImages/runnableGameIcons/";
 
-    public GameStarter(String imageFile, String gameKey, List<File> files, Consumer<Exception> showException, LanguageBundle languageBundle) {
+    public GameStarter(String imageFile, String gameKey, List<File> files, Consumer<Exception> showException, LanguageBundle languageBundle,
+                       String filesDisplayIcon, String filesDisplayStatus) {
         myGameStarter = new VBox();
         Formatter.formatGameStarter(myGameStarter);
         StylizedNode.setStyleID(myGameStarter, this.getClass());
@@ -35,10 +36,7 @@ public class GameStarter implements StylizedNode, LanguageResponder {
 
         myFiles = files;
         myGameStarter.setOnMouseClicked(e -> {
-            // TODO - parametrize display in data
-            String statusBundle= "StandardStatuses";
-            String iconBundle = "StandardXMLs";
-            AllFilesDisplay display = new AllFilesDisplay(languageBundle, statusBundle, iconBundle);
+            AllFilesDisplay display = new AllFilesDisplay(languageBundle, filesDisplayStatus, filesDisplayIcon);
             new MasterValidator(myFiles,
                     (file, status) -> display.updateStatus(file, status),
                     (initializer) -> display.enableGameButton(initializer),

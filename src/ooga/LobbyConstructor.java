@@ -2,6 +2,7 @@ package ooga;
 
 import UI.LobbyView.LobbyView;
 import UI.LobbyView.XMLChooser;
+import Utility.StringPair;
 import exceptions.ValidatorException;
 import org.xml.sax.SAXException;
 import xml.xmlreader.readers.LobbyReader;
@@ -51,10 +52,14 @@ public class LobbyConstructor {
         String myIconProperties = myLobbyReader.getIconProperties();
         List<Map<String, String>> myLobbyInfo = myLobbyReader.getBundleArguments();
         List<List<File>> myLobbyFiles = myLobbyReader.getFileTags();
+        String filesDisplayIcon = myLobbyReader.getFilesDisplayIcon();
+        String filesDisplayStatus = myLobbyReader.getFilesDisplayStatus();
         this.myWidth = myLobbyReader.getScreenWidth();
         this.myHeight = myLobbyReader.getScreenHeight();
 
-        return new LobbyView(myLobbyCSS, myLobbyLanguages, myIconProperties, myErrorCSS, myLobbyInfo, myLobbyFiles);
+        return new LobbyView(myLobbyCSS, myLobbyLanguages, myIconProperties, myErrorCSS,
+                myLobbyInfo, myLobbyFiles,
+                filesDisplayIcon, filesDisplayStatus);
     }
 
     private boolean lobbyFileIsValid() {
