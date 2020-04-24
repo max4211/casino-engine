@@ -20,7 +20,7 @@ public class GameViewTester extends Application {
         css.add("Light");
         List<String> language = new ArrayList<>();
         language.add("English");
-        language.add("Spanish");
+        language.add    ("Spanish");
         String iconImages = "standardGame";
         String exceptionCSS = "fire";
         double width = 20;

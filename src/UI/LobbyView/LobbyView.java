@@ -19,8 +19,7 @@ public class LobbyView implements NodeViewInterface {
     FlowPane myFlowPane;
 
     private static final String PATH_TO_ICONS = "resources/iconImages/lobbyViewIcons/";
-    private static final String PATH_TO_LANGUAGE = "/languages/";
-    private static final String PATH_TO_CSS = "/styleSheets";
+    private static final String PATH_TO_STYLESHEETS = "styleSheets/lobby/";
 
     private static final String INFO_TAG = "Info";
     private static final String ERROR_TAG = "Error";
@@ -31,15 +30,18 @@ public class LobbyView implements NodeViewInterface {
     private static final String CSS_ID = "lobby-view";
     private static final int DEFAULT_CSS_INDEX = 0;
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
+
     private static final int VBOX_SPACING = 5;
+
     private LanguageBundle myLanguageBundle;
     private ExceptionDisplayer myExceptionDisplayer;
 
     public LobbyView(List<String> styleSheets, List<String> languages, String iconProperties, String errorCSS, List<Map<String, String>> generalInfo, List<List<File>> files) {
+
         myVBox = new VBox();
         myVBox.setId(CSS_ID);
         myVBox.setSpacing(VBOX_SPACING);
-        myVBox.getStylesheets().add(styleSheets.get(DEFAULT_CSS_INDEX));
+        updateCSS(styleSheets.get(DEFAULT_CSS_INDEX));
 
         ResourceBundle myIconResources = ResourceBundle.getBundle(iconProperties);
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
@@ -68,7 +70,7 @@ public class LobbyView implements NodeViewInterface {
 
     private void updateCSS(String newStyleSheet) {
         myVBox.getStylesheets().clear();
-        myVBox.getStylesheets().add(newStyleSheet);
+        myVBox.getStylesheets().add(PATH_TO_STYLESHEETS.concat(newStyleSheet));
     }
 
     private void updateLanguage(String newLanguage) {

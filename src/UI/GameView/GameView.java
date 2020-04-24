@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 
 public class GameView implements GameViewInterface, NodeViewInterface {
 
+    private static final String PATH_TO_STYLESHEETS = "styleSheets/game/";
     private static final String NO_ACTION_INPUT = "";
     private static final double NO_WAGER_INPUT = -1;
 
@@ -254,7 +255,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     private void updateStyleSheet(String newStylesheet) {
         myVBox.getStylesheets().clear();
-        myVBox.getStylesheets().add(newStylesheet);
+        myVBox.getStylesheets().add(PATH_TO_STYLESHEETS.concat(newStylesheet));
     }
 
     private void updateLanguage(String newLanguage) {
