@@ -17,8 +17,8 @@ public class AllFilesTester extends Application {
         String iconBundle = "StandardXMLs";
         AllFilesDisplay allFileDisplay = new AllFilesDisplay(testBundle, statusBundle, iconBundle);
 
-        allFileDisplay.updateStatus(XMLFile.DECK, FileStatus.VALID);
-        allFileDisplay.updateStatus(XMLFile.GAME, FileStatus.INVALID);
+        allFileDisplay.updateStatus(XMLFileType.DECK, FileStatus.VALID);
+        allFileDisplay.updateStatus(XMLFileType.GAME, FileStatus.INVALID);
 
         testBundle.setLanguage("Spanish");
         allFileDisplay.updateLanguage();

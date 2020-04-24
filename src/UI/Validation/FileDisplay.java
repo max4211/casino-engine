@@ -30,7 +30,7 @@ public class FileDisplay implements StylizedNode, LanguageResponder {
     private static final String PATH_TO_FILE_ICON_IMAGE = "iconImages/fileValidatorIcons/";
     private static final String PATH_TO_STATIC_ICONS = "iconImages/fileStatusIcons/";
 
-    public FileDisplay(String statusIconBundle, LanguageBundle languageBundle, XMLFile fileType, String fileIconName, String equalIconName) {
+    public FileDisplay(String statusIconBundle, LanguageBundle languageBundle, XMLFileType fileType, String fileIconName, String equalIconName) {
         myVBox = new VBox();
         StylizedNode.setStyleID(myVBox, this.getClass());
         myVBox.setAlignment(Pos.CENTER);
