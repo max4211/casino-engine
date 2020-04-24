@@ -9,7 +9,7 @@ public enum XMLFileType {
 
     private final String myType;
 
-    private XMLFileType(String type) {
+    XMLFileType(String type) {
         this.myType = type;
     }
 
