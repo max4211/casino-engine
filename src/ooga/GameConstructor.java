@@ -9,7 +9,6 @@ import controller.enums.Cardshow;
 import controller.enums.EntryBet;
 import controller.enums.Goal;
 import controller.gametype.Controller;
-import controller.goal.GoalFactory;
 import engine.dealer.Dealer;
 import engine.deck.Deck;
 import engine.deck.DeckFactory;
@@ -124,7 +123,6 @@ public class GameConstructor {
             Constructor ctor = clazz.getConstructor(ControllerBundle.class, Map.class);
             return (Controller) ctor.newInstance(myBundle, myParams);
         } catch (Exception e) {
-            System.out.println("unable to create controller");
             e.printStackTrace();
             throw new ReflectionException(e);
         }
