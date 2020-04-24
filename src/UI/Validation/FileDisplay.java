@@ -54,7 +54,7 @@ public class FileDisplay implements StylizedNode, LanguageResponder {
     }
 
     public void updateStatusIcon(FileStatus newStatus) {
-        String newIconName = myStatusIcons.getString(newStatus.name());
+        String newIconName = myStatusIcons.getString(newStatus.toString());
         String pathToNewIcon = formatStatusIconPath(newIconName);
         myStatusIcon.setIconImage(pathToNewIcon);
     }
@@ -90,7 +90,7 @@ public class FileDisplay implements StylizedNode, LanguageResponder {
         String statusIconBundlePath = formatStatusBundlePath(statusIconBundleName);
         myStatusIcons = ResourceBundle.getBundle(statusIconBundlePath);
 
-        String emptyStatusIconName = myStatusIcons.getString(FileStatus.EMPTY.name());
+        String emptyStatusIconName = myStatusIcons.getString(FileStatus.EMPTY.toString());
         String statusIconPath = formatStatusIconPath(emptyStatusIconName);
         myStatusIcon = new MutableIcon(statusIconPath);
         myFileIcons.getChildren().add(myStatusIcon.getView());
