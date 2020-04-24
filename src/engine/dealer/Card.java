@@ -8,7 +8,6 @@ public class Card implements CardInterface {
     private final String mySuit;
     private final double myValue;
     private final int myID;
-    private boolean isCommunal = false;
 
     private static final String SEPARATOR = " of ";
 
@@ -32,11 +31,6 @@ public class Card implements CardInterface {
     @Override
     public double getValue() {
         return myValue;
-    }
-
-    @Override
-    public void assignCommunal() {
-        this.isCommunal = true;
     }
 
     @Override

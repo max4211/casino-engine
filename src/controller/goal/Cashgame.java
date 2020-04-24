@@ -8,7 +8,6 @@ import java.util.function.Supplier;
 
 public class Cashgame extends Goal {
 
-    private static final int ZERO = 0;
     private static final String STANDINGS = "Standings:";
     private static final String NEWLINE = "\n";
 

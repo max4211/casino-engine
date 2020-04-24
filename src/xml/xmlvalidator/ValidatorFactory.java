@@ -9,12 +9,6 @@ public class ValidatorFactory implements ValidatorFactoryInterface {
     private static final String VALIDATOR_PATH = "xml.xmlvalidator";
     private static final String VALIDATOR_SUFFIX = "Validator";
 
-    private static final String DECK = "Deck";
-    private static final String GAME = "Game";
-    private static final String HAND = "Hand";
-    private static final String PLAYER = "Player";
-    private static final String VIEW = "View";
-
     public ValidatorFactory() {
 
     }

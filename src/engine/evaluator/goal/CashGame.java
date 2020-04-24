@@ -7,11 +7,8 @@ import java.util.List;
 
 public class CashGame extends Goal {
 
-    private double myTarget;
-
     public CashGame(List<Player> players, List<String> args) {
         super(players, args);
-        this.myTarget = Double.parseDouble(args.get(0));
     }
 
     @Override
