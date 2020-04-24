@@ -2,20 +2,18 @@ package xml.xmlvalidator;
 
 import UI.Interfaces.GameCaller;
 import UI.Validation.FileStatus;
+import UI.Validation.MultipleXMLChooser;
 import UI.Validation.UpdateFilesDisplayInterface;
 import UI.Validation.XMLFile;
 import exceptions.CustomEnumException;
 import exceptions.ValidatorException;
 import exceptions.XMLParseException;
 import ooga.GameConstructor;
-import UI.Validation.MultipleXMLChooser;
-import org.xml.sax.SAXException;
 import xml.xmlbundle.XMLBundle;
 import xml.xmlreader.interfaces.XMLValidatorInterface;
 
 import java.io.File;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Consumer;
 
 public class MasterValidator {
