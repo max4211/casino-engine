@@ -1,6 +1,6 @@
 package UI.Interfaces;
 
-public interface LanguageUpdater {
+public interface LanguageResponder {
 
     void updateLanguage();
 }
