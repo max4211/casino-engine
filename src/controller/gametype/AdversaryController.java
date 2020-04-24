@@ -92,13 +92,14 @@ public class AdversaryController extends Controller {
             this.myGameView.setMainPlayer(p.getID());
             this.myCardshow.show(p);
             try {
-                IndividualAction a = this.myFactory.createIndividualAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();
-                a.execute(p, b, this.myTable.getDealCardMethod());
                 classifyHand(b);
+                this.myGameView.classifyHand(b.getHand().getClassification().getName(), p.getID(), b.getID());
+                IndividualAction a = this.myFactory.createIndividualAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
+                a.execute(p, b, this.myTable.getDealCardMethod());
                 addCardToPlayer(p);
-                this.myGameView.setWager(b.getWager(), p.getID(), b.getID());
-                this.myGameView.setBankRoll(p.getBankroll(), p.getID());this.myGameView.classifyHand(b.getHand().getClassification().getName(), p.getID(), b.getID());
+                classifyHand(b);
+                postActionUpdates(p.getID(), p.getBankroll(), b);
             } catch (ReflectionException | ActionException e) {
                 this.myGameView.displayException(e);
             }
@@ -123,6 +124,8 @@ public class AdversaryController extends Controller {
         this.myHandClassifier.classifyHand(b.getHand().getCards(), b.getHand());
         if (b.getHand().isLoser())
             b.setGameActive(false);
+        ClassifiedHand ch = b.getHand().getClassification();
+        ch.setName(Double.toString(ch.getPower()));
     }
 
     @Override
