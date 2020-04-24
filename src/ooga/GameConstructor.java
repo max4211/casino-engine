@@ -18,6 +18,7 @@ import engine.evaluator.handevaluator.HandEvaluator;
 import engine.player.Player;
 import engine.player.PlayerList;
 import engine.table.Table;
+import exceptions.GeneralXMLException;
 import exceptions.ReflectionException;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -78,7 +79,7 @@ public class GameConstructor {
 
             Controller myController = constructController(gameReader, handReader, myTable, myGameView);
             myController.startGame();
-        } catch (SAXException | ParserConfigurationException |  IOException e) {
+        } catch (GeneralXMLException e) {
             System.out.println("sorry, could not create game at this time");
         }
 

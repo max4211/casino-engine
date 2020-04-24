@@ -6,7 +6,7 @@ import actions.individual.Hit;
 import actions.individual.IndividualAction;
 import actions.individual.Stay;
 import exceptions.ReflectionException;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

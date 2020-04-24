@@ -2,6 +2,7 @@ package ooga;
 
 import UI.LobbyView.LobbyView;
 import UI.Utilities.ScreenPosition;
+import exceptions.GeneralXMLException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -31,7 +32,7 @@ public class Main extends Application {
             primaryStage.setX(ScreenPosition.MIDDLE.getX() - width / TWO);
             primaryStage.setY(ScreenPosition.MIDDLE.getY());
             primaryStage.show();
-        } catch (IOException | SAXException | ParserConfigurationException e) {
+        } catch (GeneralXMLException e) {
             System.exit(EXIT_STATUS);
         }
     }

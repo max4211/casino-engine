@@ -9,6 +9,8 @@ import ooga.Main;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
+
+import static javafx.application.Application.launch;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PlayerInfoViewTest extends DukeApplicationTest {
