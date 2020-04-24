@@ -13,10 +13,6 @@ public class CardShowFactory implements CardShowFactoryInterface{
 
     private static final String CARDSHOW_PATH = "controller.cardshow";
 
-    public CardShowFactory() {
-
-    }
-
     @Override
     public CardShow create(String show, Supplier<Collection<Player>> getPlayers, ShowCardInView showCard, HideCardInView hideCard, AddCardToView addCard) {
         try {

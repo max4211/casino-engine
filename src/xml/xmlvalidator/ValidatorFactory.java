@@ -9,10 +9,6 @@ public class ValidatorFactory implements ValidatorFactoryInterface {
     private static final String VALIDATOR_PATH = "xml.xmlvalidator";
     private static final String VALIDATOR_SUFFIX = "Validator";
 
-    public ValidatorFactory() {
-
-    }
-
     @Override
     public Validator createValidator(String validator) {
         try {

@@ -25,4 +25,10 @@ public interface ClassifiedHandInterface {
      * @return
      */
     double getMultiplier();
+
+    /**
+     * Setter on name to override in certain instances where xml is not complete
+     * @param name
+     */
+    void setName(String name);
 }

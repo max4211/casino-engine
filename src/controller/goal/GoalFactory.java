@@ -11,10 +11,6 @@ public class GoalFactory implements GoalFactoryInterface {
 
     private static final String GOAL_PATH = "controller.goal";
 
-    public GoalFactory() {
-
-    }
-
     private String createGoalPath(String goal) {
         return String.format("%s.%s", GOAL_PATH, goal);
     }

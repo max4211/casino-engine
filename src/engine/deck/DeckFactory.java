@@ -12,10 +12,6 @@ public class DeckFactory implements DeckFactoryInterface{
     private static final String DECK_PATH = "engine.deck";
     private static final String DECK_SUFFIX = "Deck";
 
-    public DeckFactory() {
-
-    }
-
     @Override
     public Deck createDeck(List<StringPair> deckList, String deckType) {
         try {
