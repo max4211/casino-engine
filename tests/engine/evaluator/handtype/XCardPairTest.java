@@ -20,7 +20,7 @@ class XCardPairTest {
         List<Double> params = new ArrayList<>(List.of(4.));
         Hand hand = new XCardPair(cards, params);
         boolean expected = true;
-        boolean result = hand.evaluate();
+        boolean result = hand.evaluate(4);
         assertEquals(expected, result);
     }
 
@@ -34,7 +34,7 @@ class XCardPairTest {
         List<Double> params = new ArrayList<>(List.of(4.));
         Hand hand = new XCardPair(cards, params);
         boolean expected = false;
-        boolean result = hand.evaluate();
+        boolean result = hand.evaluate(4);
         assertEquals(expected, result);
     }
 }

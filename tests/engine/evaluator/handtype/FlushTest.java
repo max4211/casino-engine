@@ -4,7 +4,6 @@ import engine.dealer.Card;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +19,7 @@ class FlushTest {
         List<Double> params = new ArrayList<>();
         Hand hand = new Flush(cards, params);
         boolean expected = true;
-        boolean result = hand.evaluate();
+        boolean result = hand.evaluate(3);
         assertEquals(expected, result);
     }
 
@@ -33,7 +32,7 @@ class FlushTest {
         List<Double> params = new ArrayList<>();
         Hand hand = new Flush(cards, params);
         boolean expected = false;
-        boolean result = hand.evaluate();
+        boolean result = hand.evaluate(3);
         assertEquals(expected, result);
     }
 }

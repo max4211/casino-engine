@@ -20,6 +20,6 @@ class HandFactoryTest {
         ));
         Hand hand = factory.createHand(b, cards);
         assertEquals(hand.getClass(), SumOverX.class);
-        assertEquals(false, hand.evaluate());
+        assertEquals(false, hand.evaluate(3));
     }
 }

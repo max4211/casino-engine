@@ -63,6 +63,7 @@ public class GroupController extends Controller {
     protected void inRoundLoop(StringPair dealerAction) {
         resetRound();
         performDealerAction(dealerAction);
+        preClassifyHands();
         updatePlayerHands();
         updateCommunalCards();
         showCommonCards();

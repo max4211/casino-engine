@@ -11,7 +11,7 @@ public class SumOverX extends Hand {
     }
 
     @Override
-    public boolean evaluate() {
+    public boolean evaluate(int cardsInHand) {
         int count = 0;
         for (Card c: this.myCards) {
             count += c.getValue();

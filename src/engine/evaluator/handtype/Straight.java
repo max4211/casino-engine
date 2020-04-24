@@ -14,7 +14,7 @@ public class Straight extends Hand {
     }
 
     @Override
-    public boolean evaluate() {
+    public boolean evaluate(int cardsInHand) {
         PriorityQueue<Card> pq = sortCards(new ValueComparator());
         double difference = parseDifference();
         double lastValue = pq.poll().getValue();
@@ -24,7 +24,7 @@ public class Straight extends Hand {
                 return false;
             lastValue = nextValue;
         }
-        return true;
+        return this.myCards.size() == cardsInHand;
     }
 
     private double parseDifference() {

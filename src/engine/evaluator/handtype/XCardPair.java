@@ -12,7 +12,7 @@ public class XCardPair extends Hand {
     }
 
     @Override
-    public boolean evaluate() {
+    public boolean evaluate(int cardsInHand) {
         Map<Double, Integer> map = countOccurences();
         double count = this.myParams.get(ZERO);
         for (double d: map.keySet()) {

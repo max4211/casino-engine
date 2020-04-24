@@ -1,8 +1,6 @@
 package engine.evaluator.handtype;
 
 import engine.dealer.Card;
-import engine.evaluator.handtype.Hand;
-import engine.evaluator.handtype.XCardSumY;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -21,7 +19,7 @@ class XCardSumYTest {
         List<Double> params = Arrays.asList(2., 21.);
         Hand hand = new XCardSumY(cards, params);
         boolean expected = true;
-        boolean result = hand.evaluate();
+        boolean result = hand.evaluate(2);
         assertEquals(expected, result);
     }
 
@@ -33,7 +31,7 @@ class XCardSumYTest {
         List<Double> params = Arrays.asList(2., 21.);
         Hand hand = new XCardSumY(cards, params);
         boolean expected = false;
-        boolean result = hand.evaluate();
+        boolean result = hand.evaluate(2);
         assertEquals(expected, result);
     }
 

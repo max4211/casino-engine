@@ -11,7 +11,7 @@ public class HighCard extends Hand {
     }
 
     @Override
-    public boolean evaluate() {
+    public boolean evaluate(int cardsInHand) {
         return true;
     }
 

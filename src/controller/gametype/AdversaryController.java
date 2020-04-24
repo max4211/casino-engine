@@ -53,15 +53,6 @@ public class AdversaryController extends Controller {
         garbageCollect();
     }
 
-    private void preClassifyHands() {
-        for (Player p: this.myTable.getPlayers()) {
-            for (Bet b: p.getBets()) {
-                classifyHand(b);
-                this.myGameView.classifyHand(b.getHand().getClassification().getName(), p.getID(), b.getID());
-            }
-        }
-    }
-
     @Override
     protected void postRoundLoop() {
         evaluateBets();

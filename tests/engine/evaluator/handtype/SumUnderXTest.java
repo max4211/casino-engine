@@ -1,8 +1,6 @@
 package engine.evaluator.handtype;
 
 import engine.dealer.Card;
-import engine.evaluator.handtype.Hand;
-import engine.evaluator.handtype.SumUnderX;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -22,7 +20,7 @@ class SumUnderXTest {
         List<Double> params = Arrays.asList(25.);
         Hand hand = new SumUnderX(cards, params);
         boolean expected = true;
-        boolean result = hand.evaluate();
+        boolean result = hand.evaluate(3);
         assertEquals(expected, result);
     }
 

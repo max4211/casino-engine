@@ -12,14 +12,14 @@ public class Flush extends Hand {
     }
 
     @Override
-    public boolean evaluate() {
+    public boolean evaluate(int cardsInHand) {
         PriorityQueue<Card> pq = sortCards(new SuitComparator());
         String suit = pq.peek().getSuit();
         while (!(pq.isEmpty())) {
             if (!suit.equals(pq.poll().getSuit()))
                 return false;
         }
-        return true;
+        return this.myCards.size() == cardsInHand;
     }
 
     @Override

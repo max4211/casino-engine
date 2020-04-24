@@ -8,7 +8,6 @@ import engine.hand.ClassifiedHand;
 import engine.hand.PlayerHand;
 import exceptions.ReflectionException;
 
-import java.lang.reflect.Method;
 import java.util.*;
 
 public class HandClassifier implements HandClassifierInterface {
@@ -38,7 +37,7 @@ public class HandClassifier implements HandClassifierInterface {
             String s = bundle.getName();
             try {
                 Hand hand = this.myHandFactory.createHand(bundle, cards);
-                if (hand.evaluate()) {
+                if (hand.evaluate(this.myCardsInHand)) {
                     h.setLoser(true);
                     // TODO - classify hand? unnecessary
                     return true;
@@ -67,7 +66,7 @@ public class HandClassifier implements HandClassifierInterface {
             List<Card> list = combination.next();
             try {
                 Hand hand = this.myHandFactory.createHand(bundle, list);
-                if (hand.evaluate()) {
+                if (hand.evaluate(this.myCardsInHand)) {
                     // TODO - update power
                     h.classifyHand(new ClassifiedHand(bundle, rank, hand.getPower()));
                     return true;

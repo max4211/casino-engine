@@ -54,6 +54,15 @@ public abstract class Controller implements ControllerInterface {
         renderPlayers();
     }
 
+    protected void preClassifyHands() {
+        for (Player p: this.myTable.getPlayers()) {
+            for (Bet b: p.getBets()) {
+                classifyHand(b);
+                this.myGameView.classifyHand(b.getHand().getClassification().getName(), p.getID(), b.getID());
+            }
+        }
+    }
+
     protected abstract void inRoundLoop(StringPair dealerAction);
 
     protected abstract void postRoundLoop();

@@ -19,7 +19,7 @@ class StraightTest {
         List<Double> params = new ArrayList<>();
         Hand hand = new Straight(cards, params);
         boolean expected = true;
-        boolean result = hand.evaluate();
+        boolean result = hand.evaluate(3);
         assertEquals(expected, result);
     }
 
@@ -32,7 +32,7 @@ class StraightTest {
         List<Double> params = new ArrayList<>(List.of(2.));
         Hand hand = new Straight(cards, params);
         boolean expected = true;
-        boolean result = hand.evaluate();
+        boolean result = hand.evaluate(3);
         assertEquals(expected, result);
     }
 
@@ -45,7 +45,7 @@ class StraightTest {
         List<Double> params = new ArrayList<>();
         Hand hand = new Straight(cards, params);
         boolean expected = false;
-        boolean result = hand.evaluate();
+        boolean result = hand.evaluate(3);
         assertEquals(expected, result);
     }
 }

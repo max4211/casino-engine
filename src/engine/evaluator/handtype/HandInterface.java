@@ -5,8 +5,9 @@ public interface HandInterface {
     /**
      * Evaluate whether the hand is accurate or not
      * @return true or false for if hand is correct
+     * @param cardsInHand
      */
-    boolean evaluate();
+    boolean evaluate(int cardsInHand);
 
     /**
      * In classifying hand, a power score is given based on its relative strength within the hand class
