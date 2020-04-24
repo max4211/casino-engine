@@ -55,7 +55,7 @@ public class LobbyView implements StylizedNode {
 
         myFlowPane = new FlowPane();
         Formatter.formatGameStarterFlowPane(myFlowPane);
-        
+
         for (int i = 0; i < generalInfo.size(); i++) {
             Map<String, String> tempGeneralInfo = generalInfo.get(i);
             List<File> tempFiles = files.get(i);
