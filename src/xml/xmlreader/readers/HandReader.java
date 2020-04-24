@@ -1,6 +1,7 @@
 package xml.xmlreader.readers;
 
 import Utility.handbundle.HandBundle;
+import exceptions.GeneralXMLException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -33,11 +34,11 @@ public class HandReader implements HandReaderInterface {
     private static final String CARDSINHAND_TAG = "CardsInHand";
 
 
-    public HandReader(File file) throws IOException, SAXException, ParserConfigurationException {
+    public HandReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
     }
 
-    public HandReader(String file) throws IOException, SAXException, ParserConfigurationException {
+    public HandReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
     }
 

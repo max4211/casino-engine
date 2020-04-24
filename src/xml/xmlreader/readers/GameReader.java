@@ -1,5 +1,6 @@
 package xml.xmlreader.readers;
 
+import exceptions.GeneralXMLException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -38,14 +39,12 @@ public class GameReader implements GameReaderInterface {
     private static final String CARDSHOW_TAG = "CardShow";
     private static final String GOAL_TAG = "Goal";
 
-    public GameReader(File file) throws IOException, SAXException, ParserConfigurationException {
+    public GameReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
-//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
-    public GameReader(String file) throws IOException, SAXException, ParserConfigurationException {
+    public GameReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
-//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     @Override

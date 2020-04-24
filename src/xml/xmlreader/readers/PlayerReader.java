@@ -1,6 +1,7 @@
 package xml.xmlreader.readers;
 
 import Utility.Pair;
+import exceptions.GeneralXMLException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,12 +25,12 @@ public class PlayerReader implements PlayerReaderInterface {
     private static final String NAME_TAG = "Name";
     private static final String BANKROLL_TAG = "Bankroll";
 
-    public PlayerReader(File file) throws IOException, SAXException, ParserConfigurationException {
+    public PlayerReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
-    public PlayerReader(String file) throws IOException, SAXException, ParserConfigurationException {
+    public PlayerReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }

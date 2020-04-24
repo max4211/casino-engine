@@ -1,5 +1,6 @@
 package xml.xmlreader.readers;
 
+import exceptions.GeneralXMLException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -41,11 +42,11 @@ public class LobbyReader implements LobbyReaderInterface  {
     private static final String FILES_STATUS_BUNDLE = "FilesStatusBundle";
     private static final String FILES_ICON_BUNDLE = "FilesIconBundle";
 
-    public LobbyReader(File file) throws IOException, SAXException, ParserConfigurationException {
+    public LobbyReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
     }
 
-    public LobbyReader(String file) throws IOException, SAXException, ParserConfigurationException {
+    public LobbyReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
     }
 
