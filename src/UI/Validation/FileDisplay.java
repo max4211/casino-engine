@@ -1,6 +1,6 @@
 package UI.Validation;
 
-import UI.Interfaces.LanguageUpdater;
+import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.NodeViewInterface;
 import UI.LanguageBundle;
 import UI.LobbyView.Icon;
@@ -13,8 +13,9 @@ import javafx.scene.layout.VBox;
 import java.util.ResourceBundle;
 
 // TODO: discuss with max whether they should have access to the whole bundle; not a big deal either way!
-public class FileDisplay implements NodeViewInterface, LanguageUpdater {
+public class FileDisplay implements NodeViewInterface, LanguageResponder {
 
+    private static final String PATH_TO_LANGUAGE = "languages/";
     private VBox myVBox;
     private HBox myHBox;
     private MutableIcon myStatusIcon;

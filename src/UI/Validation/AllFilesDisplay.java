@@ -1,7 +1,7 @@
 package UI.Validation;
 
 import UI.Interfaces.GameCaller;
-import UI.Interfaces.LanguageUpdater;
+import UI.Interfaces.LanguageResponder;
 import UI.LanguageBundle;
 import Utility.ScreenPosition;
 import javafx.geometry.Pos;
@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 // TODO: add path to bundles
-public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageUpdater {
+public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageResponder {
 
     private VBox myVBox;
     private Button myLaunchButton;
