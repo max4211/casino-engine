@@ -20,7 +20,7 @@ public class BetView implements NodeViewInterface, TaggableInterface {
 
     // TODO: bind to handview
     private static final int CARD_WIDTH = 70;
-    private static final int HEIGHT = 20;
+    private static final int HEIGHT =40;
     private static final int DEFAULT_WIDTH = 112;
     private static final int EMPTY = 0;
     private int numberOfCards;

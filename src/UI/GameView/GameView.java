@@ -197,7 +197,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void renderPot(double initialPot, String potFile) {
-        myPotView = new PotView(myLanguageBundle, initialPot, potFile);
+        myPotView = new PotView(initialPot, potFile);
         myBorderPane.setRight(myPotView.getView());
     }
 

@@ -15,7 +15,7 @@ public class BetInfo implements NodeViewInterface, LanguageUpdater {
     private HBox myClassifierBox;
 
     //TODO: BIND THIS?
-    private static final double VIEW_HEIGHT = 60;
+    private static final double VIEW_HEIGHT = 40;
     private static final double MIN_VIEW_WIDTH = 106;
 
     private static final Formatter myFormatter = new Formatter();
