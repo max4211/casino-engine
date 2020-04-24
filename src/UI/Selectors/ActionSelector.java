@@ -25,7 +25,6 @@ public class ActionSelector {
         if (actions == null || actions.size() == 0) {
             throw new EmptyActionListException();
         }
-
         Optional<String> mySelection = getAction(actions);
         if (mySelection.isEmpty()) throw new NoUserInputException();
         else return mySelection.get();

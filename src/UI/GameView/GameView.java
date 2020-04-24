@@ -11,6 +11,7 @@ import UI.Selectors.WagerSelector;
 import UI.Settings.SettingsBar;
 import Utility.CardTriplet;
 import exceptions.EmptyActionListException;
+import exceptions.IncompatibleBetRestrictionException;
 import exceptions.NoUserInputException;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
@@ -175,7 +176,12 @@ public class GameView implements GameViewInterface, StylizedNode {
     @Override
     public double selectWager(double minBet, double maxBet) {
         myMainPlayer.waitUntilReady(SelectorType.WAGER);
-        double chosenWager = myWagerSelector.selectWager(minBet, maxBet, e -> displayException(e));
+        double chosenWager = NO_WAGER_INPUT;
+        try {
+            chosenWager = myWagerSelector.selectWager(minBet, maxBet);
+        } catch (IncompatibleBetRestrictionException | NoUserInputException e) {
+            myExceptionDisplayer.displayException(e);
+        }
         if (chosenWager != NO_WAGER_INPUT) return chosenWager;
         return selectWager(minBet, maxBet);
     }
