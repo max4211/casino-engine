@@ -6,9 +6,12 @@ import UI.LanguageBundle;
 import exceptions.IncompatibleBetRestrictionException;
 import exceptions.InvalidBetException;
 import exceptions.NoUserInputException;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextInputDialog;
+import javafx.util.converter.DoubleStringConverter;
 
 import java.util.Optional;
+import java.util.function.UnaryOperator;
 
 public class WagerSelector {
 
@@ -19,7 +22,7 @@ public class WagerSelector {
     private LanguageBundle myLanguageBundle;
 
     private static final String SELECTOR_DIALOGUE_CSS_ID = "wager-dialogue-pane";
-    private static final String SELECTOR_TEXTINPUT_CSS_ID = "wager--text-input";
+    private static final String SELECTOR_TEXT_INPUT_CSS_ID = "wager--text-input";
 
     public WagerSelector(LanguageBundle languageBundle) {
         myLanguageBundle = languageBundle;
@@ -58,7 +61,19 @@ public class WagerSelector {
         actionPrompt = actionPrompt.replace(MAX_STRING, String.valueOf(maxBet));
         betAmount.setContentText(actionPrompt);
         betAmount.getDialogPane().setId(SELECTOR_DIALOGUE_CSS_ID);
-        betAmount.getEditor().setId(SELECTOR_TEXTINPUT_CSS_ID);
+        betAmount.getEditor().setId(SELECTOR_TEXT_INPUT_CSS_ID);
+
+        UnaryOperator<TextFormatter.Change> doubleFilter = change -> {
+            String newText = change.getControlNewText();
+            System.out.println(newText);
+            if (newText.matches("^[0-9]*\\.?[0-9]*$")) {
+                System.out.println("ok");
+                return change;
+            }
+            return null;
+        };
+
+        betAmount.getEditor().setTextFormatter((new TextFormatter<Double>(new DoubleStringConverter(), 0., doubleFilter)));
         return betAmount.showAndWait();
     }
 }
