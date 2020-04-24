@@ -15,6 +15,10 @@ public class Formatter {
     private static final int GAME_STARTER_HEIGHT = 150;
     private static final int GAME_STARTER_WIDTH = 75;
 
+    private static final int FILE_ICON_VERTICAL_SPACING = 8;
+    private static final int GAP_BETWEEN_SETTINGS_AND_GAMESTARTERS = 10;
+
+
     public void formatFixedVBox(VBox rawVBox, double height, double width) {
         rawVBox.setMinHeight(height);
         rawVBox.setMaxHeight(height);
@@ -58,9 +62,22 @@ public class Formatter {
         rawButton.setPrefHeight(CARD_HEIGHT + WAGER_HEIGHT);
     }
 
+    public static void formatAllFilesDisplay(VBox rawVBox) {
+        rawVBox.setAlignment(Pos.CENTER);
+        rawVBox.setSpacing(FILE_ICON_VERTICAL_SPACING);
+    }
+
     private void setMaxBounds(Pane rawPane) {
         rawPane.setMaxWidth(Double.MAX_VALUE);
         rawPane.setMaxHeight(Double.MAX_VALUE);
+    }
+
+    public static void formatLobbyView(VBox rawVBox) {
+        rawVBox.setSpacing(GAP_BETWEEN_SETTINGS_AND_GAMESTARTERS);
+    }
+
+    public static void formatGameStarterFlowPane(FlowPane rawFlowPane) {
+        rawFlowPane.setAlignment(Pos.CENTER);
     }
 
     public void formatGrowingHBox(HBox rawHBox, double height, double minWidth) {

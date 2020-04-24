@@ -1,6 +1,6 @@
 package UI.Validation;
 
-public enum XMLFile {
+public enum XMLFileType {
     DECK("Deck"),
     VIEW("View"),
     PLAYERS("Players"),
@@ -9,7 +9,7 @@ public enum XMLFile {
 
     private final String myType;
 
-    private XMLFile(String type) {
+    private XMLFileType(String type) {
         this.myType = type;
     }
 

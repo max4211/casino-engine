@@ -4,7 +4,7 @@ import UI.Interfaces.GameCaller;
 import UI.Validation.FileStatus;
 import UI.Validation.MultipleXMLChooser;
 import UI.Validation.UpdateFilesDisplayInterface;
-import UI.Validation.XMLFile;
+import UI.Validation.XMLFileType;
 import exceptions.CustomEnumException;
 import exceptions.ValidatorException;
 import exceptions.XMLParseException;
@@ -52,7 +52,7 @@ public class MasterValidator {
     private void tryFileAdd(List<File> fileList) {
         for (File file: fileList) {
             try {
-                XMLFile tag = getTag(file);
+                XMLFileType tag = getTag(file);
                 if (needsFile(tag)) {
                     try {
                         if (isValidFile(file, tag)) {
@@ -71,27 +71,27 @@ public class MasterValidator {
         }
     }
 
-    private XMLFile getTag(File file) {
+    private XMLFileType getTag(File file) {
         try {
             String tag = XMLValidatorInterface.getMetaTag(file);
-            XMLFile enumTag = XMLFile.valueOf(tag.toUpperCase());
+            XMLFileType enumTag = XMLFileType.valueOf(tag.toUpperCase());
             return enumTag;
         } catch (Exception e) {
             throw new CustomEnumException(e);
         }
     }
 
-    private boolean needsFile(XMLFile tag) {
+    private boolean needsFile(XMLFileType tag) {
         return this.myXMLBundle.needsFile(tag);
     }
 
-    private boolean bundleWantsFile(File file, XMLFile tag) {
+    private boolean bundleWantsFile(File file, XMLFileType tag) {
         boolean needsFile = needsFile(tag);
         boolean validFile = isValidFile(file, tag);
         return needsFile && validFile;
     }
 
-    private boolean isValidFile(File file, XMLFile enumTag) throws ValidatorException {
+    private boolean isValidFile(File file, XMLFileType enumTag) throws ValidatorException {
         Validator validator = this.myFactory.createValidator(enumTag.toString());
         return validator.validate(file);
     }

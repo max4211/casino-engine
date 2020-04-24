@@ -3,9 +3,9 @@ package UI.Validation;
 import UI.Interfaces.GameCaller;
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
+import UI.Utilities.Formatter;
 import UI.Utilities.LanguageBundle;
 import UI.Utilities.ScreenPosition;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -15,47 +15,34 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-// TODO: add path to bundles
 public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageResponder {
 
     private VBox myVBox;
-    private Button myLaunchButton;
-    private Map<XMLFile, FileDisplay> myFileDisplays;
-
-    private static final int VBOX_SPACING = 8;
-
     private Stage myStage;
+    private Button myLaunchButton;
+    private Map<XMLFileType, FileDisplay> myFileDisplays;
+
+    private static final String PATH_TO_ICON_BUNDLE = "iconBundles/fileTypes/";
 
     private LanguageBundle myLanguageBundle;
     private static final String LAUNCH_GAME_KEY = "LaunchGame";
+    private static final String EQUAL_KEY = "Equals";
+
     private static final boolean LAUNCH_BUTTON_DISABLE = true;
     private static final boolean LAUNCH_BUTTON_ENABLE = false;
-
-    private static final String EQUAL_KEY = "EQUALS";
 
     private static final int HEIGHT = 375;
     private static final int WIDTH = 175;
     private static final double HALF_WIDTH = WIDTH / 2;
 
-    private static final String PATH_TO_ICON_BUNDLE = "iconBundles/fileTypes/";
 
-
-
-    public AllFilesDisplay(LanguageBundle languageBundle, String statusIconBundle, String fileIconProperties) {
+    public AllFilesDisplay(LanguageBundle languageBundle, String fileIconBundleName, String statusIconBundleName) {
         myVBox = new VBox();
         StylizedNode.setStyleID(myVBox, this.getClass());
-        myVBox.setAlignment(Pos.CENTER);
-        myVBox.setSpacing(VBOX_SPACING);
+        Formatter.formatAllFilesDisplay(myVBox);
         myLanguageBundle = languageBundle;
-        ResourceBundle myFileIconBundle = ResourceBundle.getBundle(PATH_TO_ICON_BUNDLE.concat(fileIconProperties));
-        String equalIcon = myFileIconBundle.getString(EQUAL_KEY);
-        myFileDisplays = new HashMap<>();
-        for (XMLFile fileType : XMLFile.values()) {
-            String addedFileImageName = myFileIconBundle.getString(fileType.name());
-            FileDisplay addedFileDisplay = new FileDisplay(statusIconBundle, languageBundle, fileType, addedFileImageName, equalIcon);
-            myFileDisplays.put(fileType, addedFileDisplay);
-            myVBox.getChildren().add(addedFileDisplay.getView());
-        }
+
+        createFileIcons(fileIconBundleName, statusIconBundleName);
 
         myLaunchButton = new Button();
         myLaunchButton.setDisable(LAUNCH_BUTTON_DISABLE);
@@ -71,7 +58,7 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
     }
 
     @Override
-    public void updateStatus(XMLFile type, FileStatus newStatus) {
+    public void updateStatus(XMLFileType type, FileStatus newStatus) {
         myFileDisplays.get(type).updateStatusIcon(newStatus);
     }
 
@@ -86,7 +73,29 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
 
     @Override
     public void updateLanguage() {
-        for (XMLFile tempFileType : XMLFile.values()) myFileDisplays.get(tempFileType).updateLanguage();
+        for (XMLFileType tempFileType : XMLFileType.values()) myFileDisplays.get(tempFileType).updateLanguage();
         myLaunchButton.setText(myLanguageBundle.getBundle().getString(LAUNCH_GAME_KEY));
+    }
+
+    private String formatIconBundlePath(String iconName) {
+        return PATH_TO_ICON_BUNDLE.concat(iconName);
+    }
+
+    private void createFileIcons(String fileIconBundle, String statusIconBundle) {
+        String iconBundlePath = formatIconBundlePath(fileIconBundle);
+        ResourceBundle myFileIconBundle = ResourceBundle.getBundle(iconBundlePath);
+        String equalImageName = myFileIconBundle.getString(EQUAL_KEY);
+
+        myFileDisplays = new HashMap<>();
+        for (XMLFileType fileType : XMLFileType.values()) {
+            String fileImageName = myFileIconBundle.getString(fileType.toString());
+            FileDisplay addedFileDisplay = new FileDisplay(statusIconBundle,
+                    myLanguageBundle,
+                    fileType,
+                    fileImageName,
+                    equalImageName);
+            myFileDisplays.put(fileType, addedFileDisplay);
+            myVBox.getChildren().add(addedFileDisplay.getView());
+        }
     }
 }

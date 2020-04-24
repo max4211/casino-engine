@@ -1,22 +1,25 @@
-package UI.LobbyView;
+package UI.IconFactories;
 
 import UI.Interfaces.StylizedNode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-// shell whose subclasses implement the onClick method
 public class Icon implements StylizedNode {
 
-    private static final int ICON_SIZE = 40;
+    private static final IconSize DEFAULT_ICON_SIZE = IconSize.NORMAL;
     protected ImageView myIcon;
 
     public Icon(String imageFile) {
+        this(imageFile, DEFAULT_ICON_SIZE);
+    }
+
+    public Icon(String imageFile, IconSize size) {
         myIcon = new ImageView();
         StylizedNode.setStyleID(myIcon, this.getClass());
-        Image myBackgroundImage = new Image(imageFile);
-        myIcon.setImage(myBackgroundImage);
-        myIcon.setFitHeight(ICON_SIZE);
-        myIcon.setFitWidth(ICON_SIZE);
+        Image myImage = new Image(imageFile);
+        myIcon.setImage(myImage);
+        myIcon.setFitHeight(size.getSize());
+        myIcon.setFitWidth(size.getSize());
     }
 
     public ImageView getView() {

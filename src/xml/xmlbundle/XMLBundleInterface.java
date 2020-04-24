@@ -1,6 +1,6 @@
 package xml.xmlbundle;
 
-import UI.Validation.XMLFile;
+import UI.Validation.XMLFileType;
 
 import java.io.File;
 import java.util.Map;
@@ -8,13 +8,13 @@ import java.util.Set;
 
 public interface XMLBundleInterface {
 
-    Map<XMLFile, File> getXMLFiles();
+    Map<XMLFileType, File> getXMLFiles();
 
-    boolean needsFile(XMLFile tag);
+    boolean needsFile(XMLFileType tag);
 
     boolean isComplete();
 
-    void addFile(File file, XMLFile tag);
+    void addFile(File file, XMLFileType tag);
 
-    Set<XMLFile> getMissingFiles();
+    Set<XMLFileType> getMissingFiles();
 }
