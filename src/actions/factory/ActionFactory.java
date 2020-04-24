@@ -12,16 +12,11 @@ import java.lang.reflect.Constructor;
 public class ActionFactory implements ActionFactoryInterface {
 
     private static final String ACTION_PATH = "actions";
-    private String ACTION_TYPE;
-
-    public ActionFactory() {
-
-    }
+    private final String myActionType;
 
     public ActionFactory(String type) {
-        this.ACTION_TYPE = type;
+        this.myActionType = type;
     }
-
 
     @Override
     public IndividualAction createIndividualAction(String action) {
@@ -46,22 +41,7 @@ public class ActionFactory implements ActionFactoryInterface {
     }
 
     protected String createActionPath(String action) {
-        return String.format("%s.%s.%s", ACTION_PATH, ACTION_TYPE, action);
+        return String.format("%s.%s.%s", ACTION_PATH, this.myActionType, action);
     }
-
-    /** Max's team code for reflection example within their execution (shows how to invoke a method)
-     *
-     *     private List<String> executeCommand(Command command) {
-     *         try {
-     *             Class superclazz = command.getClass().getSuperclass();
-     *             String name = EXECUTE + superclazz.getSimpleName();
-     *             Method method = this.getClass().getDeclaredMethod(name, superclazz); //Command.class
-     *             Object o = method.invoke(this, command);
-     *             return (List<String>) o;
-     *         } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException | NullPointerException e) {
-     *             throw new ReflectionException("Unable to apply Reflection in parser");
-     *         }
-     *     }
-     */
 
 }
