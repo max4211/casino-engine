@@ -19,7 +19,6 @@ import java.util.List;
 public class DeckReader implements DeckReaderInterface {
 
     private static Document myDocument;
-    private static final int ZERO = 0;
 
     private static final String QUANTITY_TAG = "Quantity";
     private static final String TYPE_TAG = "Type";

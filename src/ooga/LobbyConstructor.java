@@ -18,7 +18,7 @@ public class LobbyConstructor {
     private static final String LOBBY_PATH = "lobbyview";
 
     private File myLobbyFile;
-    private LobbyViewValidator myValidator;
+    private final LobbyViewValidator myValidator;
 
     private int myWidth = 300;
     private int myHeight = 500;

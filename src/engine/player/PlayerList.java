@@ -8,11 +8,12 @@ public class PlayerList implements ListInterface, PlayerListInterface, Iterator 
 
     private static final int DEFAULT_INDEX = 0;
 
-    private Collection<Player> myPlayerCollection;
+    private final Collection<Player> myPlayerCollection;
     private int myPlayerIndex;
 
     public PlayerList(Collection<Pair> playerCollection) {
         this.myPlayerCollection = new ArrayList<>();
+        this.myPlayerIndex = 0;
         for (Pair p: playerCollection) {
             String name = (String) p.getFirst();
             double bankroll = (double) p.getSecond();
