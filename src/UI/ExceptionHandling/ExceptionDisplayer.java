@@ -10,21 +10,19 @@ import javafx.scene.control.ButtonType;
 public class ExceptionDisplayer implements LanguageResponder {
 
     private Alert myDisplay;
-    private static final String ERROR_CONFIRMATION_KEY = "ErrorConfirmation";
     private LanguageBundle myLanguageBundle;
 
+    private static final String ERROR_CONFIRMATION_KEY = "ErrorConfirmation";
+    private static final String PATH_TO_ICONS = "iconImages/exceptionIcons/";
     private static final String PATH_TO_STYLESHEETS = "styleSheets/exceptions/";
     private static final String CSS_EXTENSION = ".css";
 
-    private static final String PATH_TO_ICONS = "iconImages/exceptionIcons/";
-
-
-
-    public ExceptionDisplayer(String icon, String cssFile, LanguageBundle languageBundle) {
+    public ExceptionDisplayer(String iconName, String cssFile, LanguageBundle languageBundle) {
         myDisplay = new Alert(Alert.AlertType.WARNING);
         StylizedNode.setStyleID(myDisplay.getDialogPane(), this.getClass());
-        setStyle(icon, cssFile);
         myLanguageBundle = languageBundle;
+        setImage(iconName);
+        setStyle(cssFile);
     }
 
     public void displayException(Exception ex) {
@@ -32,13 +30,20 @@ public class ExceptionDisplayer implements LanguageResponder {
         myDisplay.showAndWait();
     }
 
-    public void setStyle(String icon, String newStyleSheet) {
-        myDisplay.getDialogPane().getStylesheets().add(PATH_TO_STYLESHEETS.concat(newStyleSheet).concat(CSS_EXTENSION));
-        Icon newIcon = new Icon(PATH_TO_ICONS.concat(icon));
+    private void setImage(String iconName) {
+        String iconPath = PATH_TO_ICONS.concat(iconName);
+        Icon newIcon = new Icon(iconPath);
         myDisplay.getDialogPane().setGraphic(newIcon.getView());
     }
 
+    public void setStyle(String newStyleSheet) {
+        String cssFile = PATH_TO_STYLESHEETS.concat(newStyleSheet).concat(CSS_EXTENSION);
+        myDisplay.getDialogPane().getStylesheets().add(cssFile);
+    }
+
     public void updateLanguage() {
-        myDisplay.getButtonTypes().setAll(new ButtonType(myLanguageBundle.getBundle().getString(ERROR_CONFIRMATION_KEY)));
+        String newButtonMesage = myLanguageBundle.getBundle().getString(ERROR_CONFIRMATION_KEY);
+        ButtonType newButtonType = new ButtonType(newButtonMesage);
+        myDisplay.getButtonTypes().setAll(newButtonType);
     }
 }

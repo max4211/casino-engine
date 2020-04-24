@@ -15,7 +15,6 @@ public class ReadyButton {
     private static final String NEW_GAME_TEXT_KEY = "NewGameReadyButton";
 
     private Button myButton;
-    private SelectorType myType;
     private LanguageBundle myLanguageBundle;
 
     public ReadyButton(LanguageBundle languageBundle) {

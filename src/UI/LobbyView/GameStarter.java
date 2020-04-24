@@ -28,6 +28,7 @@ public class GameStarter implements StylizedNode, LanguageResponder {
 
     public GameStarter(String imageFile, String gameKey, List<File> files, Consumer<Exception> showException, LanguageBundle languageBundle) {
         myGameStarter = new VBox();
+        myFormatter = new Formatter();
         StylizedNode.setStyleID(myGameStarter, this.getClass());
         //TODO: move this into formatter
         myGameStarter.setAlignment(Pos.CENTER);
