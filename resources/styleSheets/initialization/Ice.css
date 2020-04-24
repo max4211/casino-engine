@@ -1,5 +1,5 @@
-.vbox {
-    -fx-base: linear-gradient(#74b1ff, rgba(100, 50, 201, 0.87), #dddddd);
+#lobby-view {
+    -fx-background-color: linear-gradient(#74b1ff, rgba(100, 50, 201, 0.87), #dddddd);
     -fx-font-family: "American Typewriter";
 }
 
