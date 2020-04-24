@@ -18,7 +18,6 @@ import java.util.List;
 public class ViewReader implements ViewReaderInterface {
 
     private static Document myDocument;
-    private static final int ZERO = 0;
 
     private static final String WIDTH_TAG = "Width";
     private static final String HEIGHT_TAG = "Height";
