@@ -16,6 +16,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class GameView implements GameViewInterface, NodeViewInterface {
 
@@ -36,6 +37,14 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     //FIXME: create a general constructor!
     private ActionSelector myActionSelector;
     private WagerSelector myWagerSelector;
+    private ResourceBundle myIconBundle;
+
+    private static final String ADVERSARY_KEY = "Adversary";
+    private static final String COMMON_CARD_KEY = "CommonCard";
+    private static final String INFO_KEY = "Info";
+    private static final String EXCEPTION_KEY = "Exception";
+    private static final String PLAYER_KEY = "Player";
+    private static final String POT_KEY = "Pot";
 
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
     private static final String GAME_CSS_ID = "game-box";
@@ -44,7 +53,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myVBox = new VBox();
         myVBox.setId(GAME_CSS_ID);
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
-
+        System.out.println(myLanguageBundle.getBundle().keySet());
         myBorderPane = new BorderPane();
         myOtherPlayers = new OtherPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
@@ -53,7 +62,29 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myExceptionDisplayer = new ExceptionDisplayer("exceptionIcon.png", "fire.css", myLanguageBundle);
         myWagerSelector = new WagerSelector(myLanguageBundle);
         myActionSelector = new ActionSelector(myLanguageBundle);
-        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, "construction.png", "information.png");
+        //FIXME: constructor
+        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, "information.png");
+
+        myVBox.getChildren().addAll(mySettingsBar.getView(), myBorderPane);
+        myVBox.setVgrow(myBorderPane, Priority.ALWAYS);
+    }
+
+    public GameView(List<String> styleSheets, List<String> languages, String iconImages, String exceptionCSS, double width, double height) {
+        myVBox = new VBox();
+        myVBox.setId(GAME_CSS_ID);
+        myVBox.setPrefWidth(width);
+        myVBox.setPrefHeight(height);
+        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
+        myIconBundle = ResourceBundle.getBundle(iconImages);
+        myBorderPane = new BorderPane();
+        myOtherPlayers = new OtherPlayersView();
+        myBorderPane.setLeft(myOtherPlayers.getView());
+        myMainPlayer = new MainPlayerView(myLanguageBundle);
+        myBorderPane.setBottom(myMainPlayer.getView());
+        myExceptionDisplayer = new ExceptionDisplayer(myIconBundle.getString(EXCEPTION_KEY), exceptionCSS, myLanguageBundle);
+        myWagerSelector = new WagerSelector(myLanguageBundle);
+        myActionSelector = new ActionSelector(myLanguageBundle);
+        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, myIconBundle.getString(INFO_KEY));
 
         myVBox.getChildren().addAll(mySettingsBar.getView(), myBorderPane);
         myVBox.setVgrow(myBorderPane, Priority.ALWAYS);
@@ -192,19 +223,17 @@ public class GameView implements GameViewInterface, NodeViewInterface {
 
     @Override
     public void setLoser(int playerID, int betID) {
-        System.out.println("d");
         getPlayerView(playerID).setLoser(betID);
     }
 
     @Override
     public void setWinner(int playeriD, int betID) {
-        System.out.println("e");
         getPlayerView(playeriD).setWinner(betID);
     }
 
     @Override
-    public void renderPot(double initialPot, String potFile) {
-        myPotView = new PotView(initialPot, potFile);
+    public void renderPot(double initialPot) {
+        myPotView = new PotView(initialPot, myIconBundle.getString(POT_KEY));
         myBorderPane.setRight(myPotView.getView());
     }
 
