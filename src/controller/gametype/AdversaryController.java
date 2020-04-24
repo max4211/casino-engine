@@ -21,7 +21,6 @@ public class AdversaryController extends Controller {
 
     private Adversary myAdversary;
 
-    // TODO - refactor into data files (in adversary construction?)
     private static final String ACTION_TYPE = "individual";
     private static final String MINIMUM_TAG = "Minimum";
     private double ADVERSARY_MIN;
@@ -49,8 +48,18 @@ public class AdversaryController extends Controller {
     protected void inRoundLoop(StringPair dealerAction) {
         performDealerAction(dealerAction);
         updatePlayerHands();
+        preClassifyHands();
         promptForActions();
         garbageCollect();
+    }
+
+    private void preClassifyHands() {
+        for (Player p: this.myTable.getPlayers()) {
+            for (Bet b: p.getBets()) {
+                classifyHand(b);
+                this.myGameView.classifyHand(b.getHand().getClassification().getName(), p.getID(), b.getID());
+            }
+        }
     }
 
     @Override
@@ -103,7 +112,6 @@ public class AdversaryController extends Controller {
             this.myCardshow.show(p);
             try {
                 Bet b = p.getNextBet();
-                classifyHand(b);
                 IndividualAction a = this.myFactory.createIndividualAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 a.execute(p, b, this.myTable.getDealCardMethod());
                 addCardToPlayer(p);

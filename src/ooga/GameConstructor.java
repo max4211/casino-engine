@@ -36,15 +36,13 @@ public class GameConstructor {
 
     private static final String CONTROLLER_PATH = "controller.gametype";
     private static final String CONTROLLER_SUFFX = "Controller";
+    private static final String TYPE_KEY = "Type";
 
     private final File deckFile;
     private final File gameFile;
     private final File playerFile;
     private final File handFile ;
     private final File viewFile;
-
-    //TODO: duplication
-    private static final String TYPE_KEY = "Type";
 
     public GameConstructor(Map<XMLFile, File> myFiles) {
         deckFile = myFiles.get(XMLFile.DECK);
