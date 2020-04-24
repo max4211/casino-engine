@@ -6,9 +6,12 @@ import UI.LanguageBundle;
 import exceptions.IncompatibleBetRestrictionException;
 import exceptions.InvalidBetException;
 import exceptions.NoUserInputException;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextInputDialog;
+import javafx.util.converter.DoubleStringConverter;
 
 import java.util.Optional;
+import java.util.function.UnaryOperator;
 
 public class WagerSelector {
 
@@ -20,6 +23,9 @@ public class WagerSelector {
 
     private static final String SELECTOR_DIALOGUE_CSS_ID = "wager-dialogue-pane";
     private static final String SELECTOR_TEXTINPUT_CSS_ID = "wager--text-input";
+
+    private static final String WAGER_INPUT_REGEX = "^[0-9]*\\.?[0-9]*$";
+    private static final Double DEFAULT_WAGER = 0.0;
 
     public WagerSelector(LanguageBundle languageBundle) {
         myLanguageBundle = languageBundle;
@@ -59,6 +65,17 @@ public class WagerSelector {
         betAmount.setContentText(actionPrompt);
         betAmount.getDialogPane().setId(SELECTOR_DIALOGUE_CSS_ID);
         betAmount.getEditor().setId(SELECTOR_TEXTINPUT_CSS_ID);
+
+        UnaryOperator<TextFormatter.Change> doubleFilter = change -> {
+            String newText = change.getControlNewText();
+            System.out.println(newText);
+            if (newText.matches(WAGER_INPUT_REGEX)) {
+                return change;
+            }
+            return null;
+        };
+
+        betAmount.getEditor().setTextFormatter((new TextFormatter<Double>(new DoubleStringConverter(), DEFAULT_WAGER, doubleFilter)));
         return betAmount.showAndWait();
     }
 }

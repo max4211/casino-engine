@@ -1,6 +1,7 @@
 package ooga;
 
 import UI.LobbyView.LobbyView;
+import Utility.ScreenPosition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -13,6 +14,7 @@ public class Main extends Application {
 
     private static final String LOBBY_XML_FILE = "data/xml/lobbyview/lobbyview_v1.xml";
     private static final int EXIT_STATUS = 0;
+    private static final int TWO = 2;
     public static void main(String[] args) {
         launch(args);
     }
@@ -26,6 +28,8 @@ public class Main extends Application {
             int height = myLobbyConstructor.getHeight();
             Scene myScene = new Scene(myLobbyView.getView(), width, height);
             primaryStage.setScene(myScene);
+            primaryStage.setX(ScreenPosition.MIDDLE.getX() - width / TWO);
+            primaryStage.setY(ScreenPosition.MIDDLE.getY());
             primaryStage.show();
         } catch (IOException | SAXException | ParserConfigurationException e) {
             System.exit(EXIT_STATUS);

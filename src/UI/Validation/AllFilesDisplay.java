@@ -3,6 +3,7 @@ package UI.Validation;
 import UI.Interfaces.GameCaller;
 import UI.Interfaces.LanguageUpdater;
 import UI.LanguageBundle;
+import Utility.ScreenPosition;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,8 +32,9 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageUpdate
 
     private static final int HEIGHT = 375;
     private static final int WIDTH = 175;
-    private static final int STARTING_X = 300;
-    private static final int STARTING_Y = 500;
+    private static final double HALF_WIDTH = WIDTH / 2;
+
+
 
     public AllFilesDisplay(LanguageBundle languageBundle, String statusIconBundle, String FileIconProperties) {
         myVBox = new VBox();
@@ -57,8 +59,8 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageUpdate
         Stage newStage = new Stage();
         Scene filesScene = new Scene(myVBox, WIDTH, HEIGHT);
         newStage.setScene(filesScene);
-        newStage.setX(STARTING_X);
-        newStage.setY(STARTING_Y);
+        newStage.setX(ScreenPosition.LEFT.getX() - HALF_WIDTH);
+        newStage.setY(ScreenPosition.LEFT.getY());
         newStage.show();
     }
 
