@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class Formatter {
 
@@ -18,6 +19,11 @@ public class Formatter {
     private static final int FILE_ICON_VERTICAL_SPACING = 8;
     private static final int GAP_BETWEEN_SETTINGS_AND_GAMESTARTERS = 10;
 
+    private static final int ALL_FILES_WIDTH = 175;
+    private static final int ALL_FILES_HEIGHT = 400;
+    private static final double HALF_ALL_FILES_WIDTH = ALL_FILES_WIDTH / 2;
+
+    private static final int FILE_ICON_SPACING = 5;
 
     public void formatFixedVBox(VBox rawVBox, double height, double width) {
         rawVBox.setMinHeight(height);
@@ -26,14 +32,6 @@ public class Formatter {
         rawVBox.setMinWidth(width);
         rawVBox.setMaxWidth(width);
 
-        rawVBox.setAlignment(Pos.CENTER);
-    }
-
-
-
-    // TODO: duplication here, talk to DUVALL
-    public void formatUnfixedCenter(VBox rawVBox) {
-        setMaxBounds(rawVBox);
         rawVBox.setAlignment(Pos.CENTER);
     }
 
@@ -62,9 +60,22 @@ public class Formatter {
         rawButton.setPrefHeight(CARD_HEIGHT + WAGER_HEIGHT);
     }
 
-    public static void formatAllFilesDisplay(VBox rawVBox) {
+    public static void formatAllFilesBox(VBox rawVBox) {
         rawVBox.setAlignment(Pos.CENTER);
         rawVBox.setSpacing(FILE_ICON_VERTICAL_SPACING);
+    }
+
+    public static void formatAllFilesStage(Stage rawStage) {
+        rawStage.setWidth(ALL_FILES_WIDTH);
+        rawStage.setHeight(ALL_FILES_HEIGHT);
+        rawStage.setX(ScreenPosition.LEFT.getX() - HALF_ALL_FILES_WIDTH);
+        rawStage.setY(ScreenPosition.LEFT.getY());
+    }
+
+    public static void formatFileDisplay(VBox fullDisplayBox, HBox iconBox) {
+        fullDisplayBox.setAlignment(Pos.CENTER);
+        iconBox.setAlignment(Pos.CENTER);
+        iconBox.setSpacing(FILE_ICON_SPACING);
     }
 
     private void setMaxBounds(Pane rawPane) {

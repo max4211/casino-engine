@@ -1,9 +1,10 @@
 package UI.Validation;
 
+import UI.IconFactories.Icon;
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
+import UI.Utilities.Formatter;
 import UI.Utilities.LanguageBundle;
-import UI.IconFactories.Icon;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -12,58 +13,90 @@ import javafx.scene.layout.VBox;
 
 import java.util.ResourceBundle;
 
-// TODO: discuss with max whether they should have access to the whole bundle; not a big deal either way!
 public class FileDisplay implements StylizedNode, LanguageResponder {
 
-    private static final String PATH_TO_LANGUAGE = "languages/";
-    private VBox myVBox;
-    private HBox myHBox;
+    private VBox myFullDisplay;
+    private HBox myFileIcons;
     private MutableIcon myStatusIcon;
 
-    private static final int ICON_SPACING = 5;
     private String myLanguageKey;
     private Label myFileTypeLabel;
     private LanguageBundle myLanguageBundle;
     private ResourceBundle myStatusIcons;
 
     private static final String PATH_TO_STATUS_ICON_BUNDLE = "iconBundles/fileStatuses/";
-    private static final String PATH_TO_FILE_ICON_IMAGE = "iconImages/fileValidatorIcons/";
-    private static final String PATH_TO_STATIC_ICONS = "iconImages/fileStatusIcons/";
+    private static final String PATH_TO_FILE_ICONS = "iconImages/fileValidatorIcons/";
+    private static final String PATH_TO_STATUS_ICONS = "iconImages/fileStatusIcons/";
 
-    public FileDisplay(String statusIconBundle, LanguageBundle languageBundle, XMLFileType fileType, String fileIconName, String equalIconName) {
-        myVBox = new VBox();
-        StylizedNode.setStyleID(myVBox, this.getClass());
-        myVBox.setAlignment(Pos.CENTER);
-        myHBox = new HBox();
-        myHBox.setSpacing(ICON_SPACING);
-        myHBox.setAlignment(Pos.CENTER);
+    public FileDisplay(String statusIconBundleName, LanguageBundle languageBundle, XMLFileType fileType, String fileIconName, String equalIconName) {
+        myFullDisplay = new VBox();
+        myFileIcons = new HBox();
+        Formatter.formatFileDisplay(myFullDisplay, myFileIcons);
+        StylizedNode.setStyleID(myFullDisplay, this.getClass());
 
         myLanguageBundle = languageBundle;
-        myLanguageKey = fileType.name();
-        myFileTypeLabel = new Label(myLanguageBundle.getBundle().getString(myLanguageKey));
-        myFileTypeLabel.setAlignment(Pos.CENTER);
-        myVBox.getChildren().add(myFileTypeLabel);
 
-        Icon myFileIcon = new Icon(PATH_TO_FILE_ICON_IMAGE.concat(fileIconName));
-        Icon myEqualIcon = new Icon(PATH_TO_FILE_ICON_IMAGE.concat(equalIconName));
+        createFileTypeLabel(fileType);
+        createFileIcons(fileIconName, equalIconName);
+        createStatusIcons(statusIconBundleName);
 
-        myStatusIcons = ResourceBundle.getBundle(PATH_TO_STATUS_ICON_BUNDLE.concat(statusIconBundle));
-        myStatusIcon = new MutableIcon(PATH_TO_STATIC_ICONS.concat(myStatusIcons.getString(FileStatus.EMPTY.name())));
-        myHBox.getChildren().addAll(myFileIcon.getView(), myEqualIcon.getView(), myStatusIcon.getView());
-        myVBox.getChildren().add(myHBox);
+        myFullDisplay.getChildren().add(myFileIcons);
     }
 
     @Override
     public Node getView() {
-        return myVBox;
+        return myFullDisplay;
     }
 
     @Override
     public void updateLanguage() {
-        myFileTypeLabel.setText(myLanguageBundle.getBundle().getString(myLanguageKey));
+        myFileTypeLabel.setText(getFileTypeTranslation());
     }
 
     public void updateStatusIcon(FileStatus newStatus) {
-        myStatusIcon.setIconImage(PATH_TO_STATIC_ICONS.concat(myStatusIcons.getString(newStatus.name())));
+        String newIconName = myStatusIcons.getString(newStatus.name());
+        String pathToNewIcon = formatStatusIconPath(newIconName);
+        myStatusIcon.setIconImage(pathToNewIcon);
+    }
+
+    private String formatFileIconPath(String iconName) {
+        return PATH_TO_FILE_ICONS.concat(iconName);
+    }
+
+    private String formatStatusIconPath(String iconName) {
+        return PATH_TO_STATUS_ICONS.concat(iconName);
+    }
+
+    private String formatStatusBundlePath(String bundleName) {
+        return PATH_TO_STATUS_ICON_BUNDLE.concat(bundleName);
+    }
+
+    private void createFileTypeLabel(XMLFileType fileType) {
+        myLanguageKey = fileType.name();
+        myFileTypeLabel = new Label(getFileTypeTranslation());
+        myFileTypeLabel.setAlignment(Pos.CENTER);
+        myFullDisplay.getChildren().add(myFileTypeLabel);
+    }
+
+    private void createFileIcons(String fileIconName, String equalIconName) {
+        String fileIconPath = formatFileIconPath(fileIconName);
+        Icon myFileIcon = new Icon(fileIconPath);
+        String equalIconPath = formatFileIconPath(equalIconName);
+        Icon myEqualIcon = new Icon(equalIconPath);
+        myFileIcons.getChildren().addAll(myFileIcon.getView(), myEqualIcon.getView());
+    }
+
+    private void createStatusIcons(String statusIconBundleName) {
+        String statusIconBundlePath = formatStatusBundlePath(statusIconBundleName);
+        myStatusIcons = ResourceBundle.getBundle(statusIconBundlePath);
+
+        String emptyStatusIconName = myStatusIcons.getString(FileStatus.EMPTY.name());
+        String statusIconPath = formatStatusIconPath(emptyStatusIconName);
+        myStatusIcon = new MutableIcon(statusIconPath);
+        myFileIcons.getChildren().add(myStatusIcon.getView());
+    }
+
+    private String getFileTypeTranslation() {
+        return myLanguageBundle.getBundle().getString(myLanguageKey);
     }
 }

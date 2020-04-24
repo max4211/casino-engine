@@ -5,7 +5,6 @@ import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
 import UI.Utilities.Formatter;
 import UI.Utilities.LanguageBundle;
-import UI.Utilities.ScreenPosition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -17,44 +16,30 @@ import java.util.ResourceBundle;
 
 public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageResponder {
 
-    private VBox myVBox;
+    private VBox myFilesBox;
     private Stage myStage;
-    private Button myLaunchButton;
     private Map<XMLFileType, FileDisplay> myFileDisplays;
 
     private static final String PATH_TO_ICON_BUNDLE = "iconBundles/fileTypes/";
-
-    private LanguageBundle myLanguageBundle;
-    private static final String LAUNCH_GAME_KEY = "LaunchGame";
     private static final String EQUAL_KEY = "Equals";
 
+    private LanguageBundle myLanguageBundle;
+
+    private Button myLaunchButton;
+    private static final String LAUNCH_GAME_KEY = "LaunchGame";
     private static final boolean LAUNCH_BUTTON_DISABLE = true;
     private static final boolean LAUNCH_BUTTON_ENABLE = false;
 
-    private static final int HEIGHT = 375;
-    private static final int WIDTH = 175;
-    private static final double HALF_WIDTH = WIDTH / 2;
-
-
     public AllFilesDisplay(LanguageBundle languageBundle, String fileIconBundleName, String statusIconBundleName) {
-        myVBox = new VBox();
-        StylizedNode.setStyleID(myVBox, this.getClass());
-        Formatter.formatAllFilesDisplay(myVBox);
+        myFilesBox = new VBox();
+        StylizedNode.setStyleID(myFilesBox, this.getClass());
+        Formatter.formatAllFilesBox(myFilesBox);
         myLanguageBundle = languageBundle;
 
         createFileIcons(fileIconBundleName, statusIconBundleName);
-
-        myLaunchButton = new Button();
-        myLaunchButton.setDisable(LAUNCH_BUTTON_DISABLE);
+        createLaunchButton();
         updateLanguage();
-        myVBox.getChildren().add(myLaunchButton);
-
-        myStage = new Stage();
-        Scene filesScene = new Scene(myVBox, WIDTH, HEIGHT);
-        myStage.setScene(filesScene);
-        myStage.setX(ScreenPosition.LEFT.getX() - HALF_WIDTH);
-        myStage.setY(ScreenPosition.LEFT.getY());
-        myStage.show();
+        renderDisplay();
     }
 
     @Override
@@ -81,21 +66,35 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
         return PATH_TO_ICON_BUNDLE.concat(iconName);
     }
 
-    private void createFileIcons(String fileIconBundle, String statusIconBundle) {
-        String iconBundlePath = formatIconBundlePath(fileIconBundle);
+    private void createFileIcons(String fileIconBundleName, String statusIconBundleName) {
+        String iconBundlePath = formatIconBundlePath(fileIconBundleName);
         ResourceBundle myFileIconBundle = ResourceBundle.getBundle(iconBundlePath);
         String equalImageName = myFileIconBundle.getString(EQUAL_KEY);
 
         myFileDisplays = new HashMap<>();
         for (XMLFileType fileType : XMLFileType.values()) {
             String fileImageName = myFileIconBundle.getString(fileType.toString());
-            FileDisplay addedFileDisplay = new FileDisplay(statusIconBundle,
+            FileDisplay addedFileDisplay = new FileDisplay(statusIconBundleName,
                     myLanguageBundle,
                     fileType,
                     fileImageName,
                     equalImageName);
             myFileDisplays.put(fileType, addedFileDisplay);
-            myVBox.getChildren().add(addedFileDisplay.getView());
+            myFilesBox.getChildren().add(addedFileDisplay.getView());
         }
+    }
+
+    private void createLaunchButton() {
+        myLaunchButton = new Button();
+        myLaunchButton.setDisable(LAUNCH_BUTTON_DISABLE);
+        myFilesBox.getChildren().add(myLaunchButton);
+    }
+
+    private void renderDisplay() {
+        myStage = new Stage();
+        Formatter.formatAllFilesStage(myStage);
+        Scene filesScene = new Scene(myFilesBox);
+        myStage.setScene(filesScene);
+        myStage.show();
     }
 }
