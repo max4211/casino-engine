@@ -21,7 +21,7 @@ public class PlayerInfoView implements NodeViewInterface {
 
     // TODO: MAKE A UTILITY CLASS WITH THESE VALUES
     private static final double CARD_HEIGHT = 100;
-    private static final double WAGER_HEIGHT = 20;
+    private static final double WAGER_HEIGHT = 40;
     private static final double VIEW_WIDTH = 100;
 
     private static final int RESOURCE_TEXT_INDEX = 0;
