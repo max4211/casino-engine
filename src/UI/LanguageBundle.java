@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 public class LanguageBundle implements LanguageBundleInterface {
 
+    private static final String PATH_TO_LANGUAGE = "languages/";
     private String myLanguage;
     private ResourceBundle myResources;
 
@@ -15,7 +16,7 @@ public class LanguageBundle implements LanguageBundleInterface {
     }
 
     private void assignBundle() {
-        this.myResources = ResourceBundle.getBundle(this.myLanguage);
+        this.myResources = ResourceBundle.getBundle(PATH_TO_LANGUAGE.concat(this.myLanguage));
     }
 
     @Override
