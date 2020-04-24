@@ -38,7 +38,7 @@ public class GameStarter implements StylizedNode, LanguageResponder {
 
         myFiles = files;
         myGameStarter.setOnMouseClicked(e -> {
-            AllFilesDisplay display = new AllFilesDisplay(languageBundle, filesDisplayStatus, filesDisplayIcon);
+            AllFilesDisplay display = new AllFilesDisplay(languageBundle, filesDisplayIcon, filesDisplayStatus);
             new MasterValidator(myFiles,
                     (file, status) -> display.updateStatus(file, status),
                     (initializer) -> display.enableGameButton(initializer),

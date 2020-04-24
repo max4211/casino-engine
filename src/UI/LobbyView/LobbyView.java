@@ -2,9 +2,9 @@ package UI.LobbyView;
 
 import UI.ExceptionDisplay.ExceptionDisplayer;
 import UI.Interfaces.StylizedNode;
-import UI.Utilities.LanguageBundle;
 import UI.Settings.SettingsBar;
-import javafx.geometry.Pos;
+import UI.Utilities.Formatter;
+import UI.Utilities.LanguageBundle;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
@@ -32,7 +32,6 @@ public class LobbyView implements StylizedNode {
     private static final int DEFAULT_CSS_INDEX = 0;
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
-    private static final int VBOX_SPACING = 5;
 
     private LanguageBundle myLanguageBundle;
     private List<GameStarter> myGameStarters;
@@ -44,8 +43,9 @@ public class LobbyView implements StylizedNode {
 
         myVBox = new VBox();
         StylizedNode.setStyleID(myVBox, this.getClass());
+        Formatter.formatLobbyView(myVBox);
+
         myGameStarters = new ArrayList<>();
-        myVBox.setSpacing(VBOX_SPACING);
         updateCSS(styleSheets.get(DEFAULT_CSS_INDEX));
         ResourceBundle myIconResources = ResourceBundle.getBundle(PATH_TO_ICON_BUNDLE.concat(iconProperties));
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
@@ -54,7 +54,8 @@ public class LobbyView implements StylizedNode {
         myVBox.getChildren().add(addedSettings.getView());
 
         myFlowPane = new FlowPane();
-        myFlowPane.setAlignment(Pos.CENTER);
+        Formatter.formatGameStarterFlowPane(myFlowPane);
+        
         for (int i = 0; i < generalInfo.size(); i++) {
             Map<String, String> tempGeneralInfo = generalInfo.get(i);
             List<File> tempFiles = files.get(i);
