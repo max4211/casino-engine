@@ -1,7 +1,7 @@
 package ooga;
 
 import UI.GameView.GameView;
-import UI.Validation.XMLFile;
+import UI.Validation.XMLFileType;
 import Utility.StringPair;
 import Utility.handbundle.HandBundle;
 import controller.bundles.ControllerBundle;
@@ -46,12 +46,12 @@ public class GameConstructor {
     //TODO: duplication
     private static final String TYPE_KEY = "Type";
 
-    public GameConstructor(Map<XMLFile, File> myFiles) {
-        deckFile = myFiles.get(XMLFile.DECK);
-        gameFile = myFiles.get(XMLFile.GAME);
-        playerFile = myFiles.get(XMLFile.PLAYERS);
-        handFile = myFiles.get(XMLFile.HANDS);
-        viewFile = myFiles.get(XMLFile.VIEW);
+    public GameConstructor(Map<XMLFileType, File> myFiles) {
+        deckFile = myFiles.get(XMLFileType.DECK);
+        gameFile = myFiles.get(XMLFileType.GAME);
+        playerFile = myFiles.get(XMLFileType.PLAYERS);
+        handFile = myFiles.get(XMLFileType.HANDS);
+        viewFile = myFiles.get(XMLFileType.VIEW);
         createGame();
     }
 
