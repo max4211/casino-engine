@@ -102,7 +102,7 @@ public abstract class Controller implements ControllerInterface {
     protected void garbageCollect() {
         GarbageCollect.clearLosers(this.myTable.getPlayers(),
                 (pid, bid) -> this.myGameView.removeBet(pid, bid),
-                (bid) -> this.myGameView.setLoser(bid));
+                (pid, bid) -> this.myGameView.setLoser(pid, bid));
     }
 
     protected void garbageCollect(Player p, Bet b) {

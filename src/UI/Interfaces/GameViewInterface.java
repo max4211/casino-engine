@@ -52,7 +52,9 @@ public interface GameViewInterface {
 
     void classifyHand(String classification, int playerID, int betID);
 
-    void setLoser(int betID);
+    void setLoser(int playerID, int betID);
+
+    void setWinner(int playeriD, int betID);
 
     void renderPot(double initialPot, String potFile);
 

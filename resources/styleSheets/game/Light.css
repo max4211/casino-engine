@@ -17,3 +17,12 @@
 #player-info:hover {
     -fx-background-color: derive(#b0ffe0, 5%);
 }
+
+
+#loser-bet-view {
+    -fx-background-color: derive(red, 20%);
+}
+
+#winner-bet-view {
+    -fx-background-color: derive(green, 20%);
+}
