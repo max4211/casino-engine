@@ -1,6 +1,7 @@
 package xml.xmlreader.readers;
 
 import Utility.StringPair;
+import exceptions.GeneralXMLException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -27,14 +28,12 @@ public class DeckReader implements DeckReaderInterface {
     private static final String SUIT_TAG = "Suit";
     private static final String VALUE_TAG = "Value";
 
-    public DeckReader(File file) throws IOException, SAXException, ParserConfigurationException {
+    public DeckReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
-//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
-    public DeckReader(String file) throws IOException, SAXException, ParserConfigurationException {
+    public DeckReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
-//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     @Override

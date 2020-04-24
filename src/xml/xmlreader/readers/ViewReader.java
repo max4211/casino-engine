@@ -1,5 +1,6 @@
 package xml.xmlreader.readers;
 
+import exceptions.GeneralXMLException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -30,12 +31,12 @@ public class ViewReader implements ViewReaderInterface {
     private static final String LANGUAGE_TAG = "Language";
     private static final String STYLESHEET_TAG = "Stylesheet";
 
-    public ViewReader(File file) throws IOException, SAXException, ParserConfigurationException {
+    public ViewReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
-    public ViewReader(String file) throws IOException, SAXException, ParserConfigurationException {
+    public ViewReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
 //        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
