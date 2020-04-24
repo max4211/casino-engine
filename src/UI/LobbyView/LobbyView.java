@@ -38,7 +38,9 @@ public class LobbyView implements StylizedNode {
     private List<GameStarter> myGameStarters;
     private ExceptionDisplayer myExceptionDisplayer;
 
-    public LobbyView(List<String> styleSheets, List<String> languages, String iconProperties, String errorCSS, List<Map<String, String>> generalInfo, List<List<File>> files) {
+    public LobbyView(List<String> styleSheets, List<String> languages, String iconProperties, String errorCSS,
+                     List<Map<String, String>> generalInfo, List<List<File>> files,
+                     String filesDisplayIcon, String filesDisplayStatus) {
 
         myVBox = new VBox();
         StylizedNode.setStyleID(myVBox, this.getClass());
@@ -62,7 +64,9 @@ public class LobbyView implements StylizedNode {
                     tempGeneralInfo.get(NAME_TAG),
                     tempFiles,
                     (ex) -> this.myExceptionDisplayer.displayException(ex),
-                    myLanguageBundle);
+                    myLanguageBundle,
+                    filesDisplayIcon,
+                    filesDisplayStatus);
 
             myFlowPane.getChildren().add(tempGameStarter.getView());
             myGameStarters.add(tempGameStarter);

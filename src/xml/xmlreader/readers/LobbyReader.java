@@ -38,6 +38,9 @@ public class LobbyReader implements LobbyReaderInterface  {
     private static final String PLAYER_TAG = "Players";
     private static final String VIEW_TAG = "View";
 
+    private static final String FILES_STATUS_BUNDLE = "FilesStatusBundle";
+    private static final String FILES_ICON_BUNDLE = "FilesIconBundle";
+
     public LobbyReader(File file) throws IOException, SAXException, ParserConfigurationException {
         myDocument = XMLGeneratorInterface.createDocument(file);
     }
@@ -96,6 +99,16 @@ public class LobbyReader implements LobbyReaderInterface  {
             list.add(createFilesList(node));
         }
         return list;
+    }
+
+    @Override
+    public String getFilesDisplayStatus() {
+        return XMLParseInterface.getSingleTag(myDocument, FILES_STATUS_BUNDLE);
+    }
+
+    @Override
+    public String getFilesDisplayIcon() {
+        return XMLParseInterface.getSingleTag(myDocument, FILES_ICON_BUNDLE);
     }
 
     private Map<String, String> createArgsMap(Node n) {
