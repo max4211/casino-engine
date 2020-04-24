@@ -92,7 +92,13 @@ body {
     background-color: #222;
 }
 
-.home-image div {
-    display: block;
-    padding: 200px 200px;
+.page-content {
+    width: 40%;
+    height: 70%;
+    display: inline-block;
+
+    padding: 100px 100px;
+    z-index: 50;
+    position: fixed;
+    top: 0;
 }
