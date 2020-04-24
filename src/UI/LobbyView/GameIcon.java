@@ -33,15 +33,7 @@ public class GameIcon implements NodeViewInterface {
         myGameIcon.setAlignment(Pos.CENTER);
         System.out.println(PATH_TO_ICON.concat(imageFile));
         Icon myIconButton = new Icon(PATH_TO_ICON.concat(imageFile));
-
-        // FIXME: add reflection to IDs, this is used for testing
-        if (gameName.equals(BLACKJACK)) {
-            myIconButton.getView().setId(BLACKJACK_ICON_ID);
-        }
-
-        if (gameName.equals(CUSTOM)) {
-            myIconButton.getView().setId(CUSTOM_ICON_ID);
-        }
+        tagIcon(myIconButton, gameName);
 
         myFormatter = new Formatter();
         myFormatter.formatGameIconView(myIconButton.getView());
@@ -59,9 +51,15 @@ public class GameIcon implements NodeViewInterface {
                     showException);
         });
 
-        //TODO: move this to formatting
-        Label myGameLabel = new Label(gameName);
-        myGameIcon.getChildren().addAll(myIconButton.getView(), myGameLabel);
+        myGameIcon.getChildren().addAll(myIconButton.getView(), new Label(gameName));
+    }
+
+    private void tagIcon(Icon icon, String name) {
+        // FIXME: add reflection to IDs, this is used for testing
+        if (name.equals(BLACKJACK))
+            icon.getView().setId(BLACKJACK_ICON_ID);
+        else if (name.equals(CUSTOM))
+            icon.getView().setId(CUSTOM_ICON_ID);
     }
 
     @Override
