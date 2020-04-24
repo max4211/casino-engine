@@ -3,6 +3,7 @@ package ooga;
 import UI.LobbyView.LobbyView;
 import UI.LobbyView.XMLChooser;
 import Utility.StringPair;
+import exceptions.GeneralXMLException;
 import exceptions.ValidatorException;
 import org.xml.sax.SAXException;
 import xml.xmlreader.readers.LobbyReader;
@@ -29,7 +30,7 @@ public class LobbyConstructor {
         this.myValidator = new LobbyViewValidator();
     }
 
-    public LobbyView getLobbyView() throws IOException, SAXException, ParserConfigurationException {
+    public LobbyView getLobbyView() throws GeneralXMLException {
         while (!(lobbyFileIsValid())) {
             this.myLobbyFile = XMLChooser.getGeneralFile(LOBBY_PATH);
         }
@@ -44,7 +45,7 @@ public class LobbyConstructor {
         return this.myHeight;
     }
 
-    private LobbyView constructLobbyView() throws ParserConfigurationException, SAXException, IOException {
+    private LobbyView constructLobbyView() throws GeneralXMLException {
         LobbyReader myLobbyReader = new LobbyReader(this.myLobbyFile);
         List<String> myLobbyCSS = myLobbyReader.getLobbyStylesheet();
         List<String> myLobbyLanguages = myLobbyReader.getLobbyLanguages();

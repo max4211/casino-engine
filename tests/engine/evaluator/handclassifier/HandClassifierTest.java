@@ -3,6 +3,7 @@ package engine.evaluator.handclassifier;
 import Utility.handbundle.HandBundle;
 import engine.dealer.Card;
 import engine.hand.PlayerHand;
+import exceptions.GeneralXMLException;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 import xml.xmlreader.readers.HandReader;
@@ -18,7 +19,7 @@ class HandClassifierTest {
 
     private static final String HAND_FILE = "data\\xml\\good\\HANDS_poker.xml";
 
-    private HandClassifier createClassifier() throws ParserConfigurationException, SAXException, IOException {
+    private HandClassifier createClassifier() throws GeneralXMLException {
         HandReader handReader = new HandReader(HAND_FILE);
         List<HandBundle> myWinningHands = handReader.getWinningHands();
         List<HandBundle> myLosingHands = handReader.getLosingHands();
@@ -26,7 +27,7 @@ class HandClassifierTest {
     }
 
     @Test
-    void testBust() throws IOException, SAXException, ParserConfigurationException {
+    void testBust() throws GeneralXMLException {
         HandClassifier myHandClassifier = createClassifier();
         PlayerHand playerHand = new PlayerHand();
         List<Card> cards = new ArrayList<Card>(List.of(
@@ -42,7 +43,7 @@ class HandClassifierTest {
     }
 
     @Test
-    void testBJ() throws IOException, SAXException, ParserConfigurationException {
+    void testBJ() throws GeneralXMLException {
         HandClassifier myHandClassifier = createClassifier();
         PlayerHand playerHand = new PlayerHand();
         List<Card> cards = new ArrayList<Card>(List.of(
@@ -58,7 +59,7 @@ class HandClassifierTest {
     }
 
     @Test
-    void testSum() throws IOException, SAXException, ParserConfigurationException {
+    void testSum() throws GeneralXMLException {
         HandClassifier myHandClassifier = createClassifier();
         PlayerHand playerHand = new PlayerHand();
         List<Card> cards = new ArrayList<Card>(List.of(
@@ -74,7 +75,7 @@ class HandClassifierTest {
     }
 
     @Test
-    void testFourOfAKind() throws IOException, SAXException, ParserConfigurationException {
+    void testFourOfAKind() throws GeneralXMLException {
         HandClassifier myHandClassifier = createClassifier();
         PlayerHand playerHand = new PlayerHand();
         List<Card> cards = new ArrayList<Card>(List.of(

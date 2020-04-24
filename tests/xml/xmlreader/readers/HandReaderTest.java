@@ -1,6 +1,7 @@
 package xml.xmlreader.readers;
 
 import Utility.handbundle.HandBundle;
+import exceptions.GeneralXMLException;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class HandReaderTest {
 
     @Test
-    void getWinningHands() throws ParserConfigurationException, SAXException, IOException {
+    void getWinningHands() throws GeneralXMLException {
         String file = "data/xml/hands/testgeneralhands.xml";
         HandReader myReader = new HandReader(file);
         List<HandBundle> bundles = myReader.getWinningHands();

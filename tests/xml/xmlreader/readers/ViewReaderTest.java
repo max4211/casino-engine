@@ -1,5 +1,6 @@
 package xml.xmlreader.readers;
 
+import exceptions.GeneralXMLException;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ViewReaderTest {
 
     @Test
-    void getLanguages() throws ParserConfigurationException, SAXException, IOException {
+    void getLanguages() throws GeneralXMLException {
         ViewReader vr = new ViewReader("data/xml/view/view.xml");
         List<String> result = vr.getLanguages();
         List<String> expected = new ArrayList<String>(List.of(
@@ -24,7 +25,7 @@ class ViewReaderTest {
     }
 
     @Test
-    void getStylesheets() throws ParserConfigurationException, SAXException, IOException {
+    void getStylesheets() throws GeneralXMLException {
         ViewReader vr = new ViewReader("data/xml/view/view.xml");
         List<String> result = vr.getStylesheets();
         List<String> expected = new ArrayList<String>(List.of(

@@ -1,5 +1,6 @@
 package xml.xmlreader.interfaces;
 
+import exceptions.GeneralXMLException;
 import exceptions.XMLParseException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -14,7 +15,7 @@ public interface XMLValidatorInterface {
         try {
             Document doc = XMLGeneratorInterface.createDocument(file);
             return doc.getDocumentElement().getTagName();
-        } catch (IOException | SAXException | ParserConfigurationException e) {
+        } catch (GeneralXMLException e) {
             throw new XMLParseException(e, file);
         }
     }
