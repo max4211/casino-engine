@@ -12,6 +12,7 @@ import UI.Settings.SettingsBar;
 import UI.Utilities.CardTriplet;
 import exceptions.EmptyActionListException;
 import exceptions.IncompatibleBetRestrictionException;
+import exceptions.InvalidBetException;
 import exceptions.NoUserInputException;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
@@ -179,7 +180,7 @@ public class GameView implements GameViewInterface, StylizedNode {
         double chosenWager = NO_WAGER_INPUT;
         try {
             chosenWager = myWagerSelector.selectWager(minBet, maxBet);
-        } catch (IncompatibleBetRestrictionException | NoUserInputException e) {
+        } catch (IncompatibleBetRestrictionException | NoUserInputException | InvalidBetException e) {
             myExceptionDisplayer.displayException(e);
         }
         if (chosenWager != NO_WAGER_INPUT) return chosenWager;

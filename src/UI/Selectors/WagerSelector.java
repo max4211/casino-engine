@@ -4,6 +4,7 @@ package UI.Selectors;
 import UI.Interfaces.StylizedNode;
 import UI.Utilities.LanguageBundle;
 import exceptions.IncompatibleBetRestrictionException;
+import exceptions.InvalidBetException;
 import exceptions.NoUserInputException;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextInputDialog;
@@ -26,12 +27,14 @@ public class WagerSelector {
         myLanguageBundle = languageBundle;
     }
 
-    public double selectWager(double minBet, double maxBet) throws IncompatibleBetRestrictionException, NoUserInputException {
+    public double selectWager(double minBet, double maxBet) throws IncompatibleBetRestrictionException, NoUserInputException, InvalidBetException {
         if (maxBet < minBet) throw new IncompatibleBetRestrictionException();
 
         Optional<String> mySelection = getWager(minBet, maxBet);
         if (mySelection.isEmpty()) throw new NoUserInputException();
-        return Double.parseDouble(mySelection.get());
+        Double inputtedWager = Double.parseDouble(mySelection.get());
+        if (inputtedWager > maxBet || inputtedWager < minBet) throw new InvalidBetException();
+        return inputtedWager;
     }
 
 
