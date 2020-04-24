@@ -1,4 +1,4 @@
-package UI.ExceptionHandling;
+package UI.ExceptionDisplay;
 
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;

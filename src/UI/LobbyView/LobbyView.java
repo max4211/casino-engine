@@ -1,6 +1,6 @@
 package UI.LobbyView;
 
-import UI.ExceptionHandling.ExceptionDisplayer;
+import UI.ExceptionDisplay.ExceptionDisplayer;
 import UI.Interfaces.StylizedNode;
 import UI.LanguageBundle;
 import UI.Settings.SettingsBar;

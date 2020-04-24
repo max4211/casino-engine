@@ -1,6 +1,6 @@
 package UI.GameView;
 
-import UI.ExceptionHandling.ExceptionDisplayer;
+import UI.ExceptionDisplay.ExceptionDisplayer;
 import UI.Interfaces.GameCaller;
 import UI.Interfaces.GameViewInterface;
 import UI.Interfaces.StylizedNode;
@@ -10,6 +10,8 @@ import UI.Selectors.SelectorType;
 import UI.Selectors.WagerSelector;
 import UI.Settings.SettingsBar;
 import Utility.CardTriplet;
+import exceptions.EmptyActionListException;
+import exceptions.NoUserInputException;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
@@ -179,11 +181,16 @@ public class GameView implements GameViewInterface, StylizedNode {
     }
 
     @Override
-    public String selectAction(List<String> actions) {
+    public String selectAction(List<String> allActions) {
         myMainPlayer.waitUntilReady(SelectorType.ACTION);
-        String actionChosen = myActionSelector.selectAction(actions, e -> displayException(e));
+        String actionChosen = NO_ACTION_INPUT;
+        try {
+            actionChosen = myActionSelector.selectAction(allActions);
+        } catch (EmptyActionListException | NoUserInputException e) {
+            myExceptionDisplayer.displayException(e);
+        }
         if (!actionChosen.equals(NO_ACTION_INPUT)) return actionChosen;
-        return selectAction(actions);
+        return selectAction(allActions);
     }
 
     @Override
