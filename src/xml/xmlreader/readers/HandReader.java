@@ -13,7 +13,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class HandReader implements HandReaderInterface {
@@ -31,6 +30,7 @@ public class HandReader implements HandReaderInterface {
 
     private static final String WINNINGHAND_TAG = "WinningHand";
     private static final String LOSINGHAND_TAG = "LosingHand";
+    private static final String CARDSINHAND_TAG = "CardsInHand";
 
 
     public HandReader(File file) throws IOException, SAXException, ParserConfigurationException {
@@ -49,6 +49,11 @@ public class HandReader implements HandReaderInterface {
     @Override
     public List<HandBundle> getLosingHands() {
         return parseBundle(LOSINGHAND_TAG);
+    }
+
+    @Override
+    public int getCardsInHand() {
+        return Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, CARDSINHAND_TAG));
     }
 
     private List<HandBundle> parseBundle(String handStatusTag) {

@@ -32,7 +32,7 @@ public abstract class Hand implements HandInterface {
         return map;
     }
 
-    protected PriorityQueue<Card> sortCards(Comparator comparator) {
+    protected PriorityQueue<Card> sortCards(Comparator<Card> comparator) {
         PriorityQueue<Card> pq = new PriorityQueue<>(this.myCards.size(), comparator);
         pq.addAll(this.myCards);
         return pq;
@@ -48,7 +48,7 @@ public abstract class Hand implements HandInterface {
     protected class ValueComparator implements Comparator<Card> {
         @Override
         public int compare(Card c1, Card c2) {
-            double diff = c1.getValue() - c2.getValue();
+            double diff = c2.getValue() - c1.getValue();
             if (diff > 0)
                 return 1;
             else if (diff < 0)

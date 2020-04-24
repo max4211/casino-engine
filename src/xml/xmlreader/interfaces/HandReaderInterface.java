@@ -2,7 +2,6 @@ package xml.xmlreader.interfaces;
 
 import Utility.handbundle.HandBundle;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface HandReaderInterface {
@@ -22,4 +21,6 @@ public interface HandReaderInterface {
      * @return a List of HandBundles containing the names of all Hands that can lose in a given game
      */
     List<HandBundle> getLosingHands();
+
+    int getCardsInHand();
 }

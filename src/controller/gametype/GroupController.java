@@ -95,6 +95,7 @@ public class GroupController extends Controller {
                 this.myGameView.setBankRoll(p.getBankroll(), p.getID());
                 updatePot();
                 garbageCollect(p, b);
+                this.myGameView.classifyHand(b.getHand().getClassification().getName(), p.getID(), b.getID());
             } catch (ReflectionException | ActionException e) {
                 this.myGameView.displayException(e);
             }

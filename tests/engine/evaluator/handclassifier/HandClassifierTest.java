@@ -16,13 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HandClassifierTest {
 
-    private static final String HAND_FILE = "data/xml/hands/testgeneralhands.xml";
+    private static final String HAND_FILE = "data\\xml\\good\\HANDS_poker.xml";
 
     private HandClassifier createClassifier() throws ParserConfigurationException, SAXException, IOException {
         HandReader handReader = new HandReader(HAND_FILE);
         List<HandBundle> myWinningHands = handReader.getWinningHands();
         List<HandBundle> myLosingHands = handReader.getLosingHands();
-        return new HandClassifier(myWinningHands, myLosingHands);
+        return new HandClassifier(myWinningHands, myLosingHands, handReader.getCardsInHand());
     }
 
     @Test
@@ -70,6 +70,27 @@ class HandClassifierTest {
         myHandClassifier.classifyHand(playerHand.getCards(), playerHand);
         String result = playerHand.getClassification().getName();
         String expected = "Sum Hand";
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void testFourOfAKind() throws IOException, SAXException, ParserConfigurationException {
+        HandClassifier myHandClassifier = createClassifier();
+        PlayerHand playerHand = new PlayerHand();
+        List<Card> cards = new ArrayList<Card>(List.of(
+                new Card("Hearts", 15),
+                new Card("spades", 4),
+                new Card("diamonds", 5),
+                new Card("checks", 3),
+                new Card("guys", 4),
+                new Card("compsci", 4),
+                new Card("lambda", 4)
+        ));
+        for (Card c: cards)
+            playerHand.acceptCard(c);
+        myHandClassifier.classifyHand(playerHand.getCards(), playerHand);
+        String result = playerHand.getClassification().getName();
+        String expected = "4 of a Kind (15.0)";
         assertEquals(expected, result);
     }
 }

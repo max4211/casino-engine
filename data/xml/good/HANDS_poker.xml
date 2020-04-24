@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Hands>
+    <CardsInHand>5</CardsInHand>
     <WinningHand>
         <Name>XCardPair</Name>
         <Parameters>4</Parameters>

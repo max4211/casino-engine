@@ -16,14 +16,16 @@ public class XCardPair extends Hand {
         Map<Double, Integer> map = countOccurences();
         double count = this.myParams.get(ZERO);
         for (double d: map.keySet()) {
-            if (map.get(d) >= count)
+            if (map.get(d) >= count) {
+                this.myPower = d;
                 return true;
+            }
         }
         return false;
     }
 
     @Override
     public double getPower() {
-        return getHighestCard();
+        return this.myPower;
     }
 }
