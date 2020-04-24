@@ -64,7 +64,6 @@ public class HandClassifier implements HandClassifierInterface {
         }
     }
 
-    // TODO - try to make best hand out of best cards
     // 7 choose 5 possible hands (21 cases, not too bad)
     private boolean checkAllCombinations(List<Card> cards, HandBundle bundle, PlayerHand h, int rank) {
         Combinations combination = new Combinations(cards, this.myCardsInHand);
