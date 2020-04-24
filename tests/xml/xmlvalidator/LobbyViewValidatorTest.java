@@ -13,7 +13,7 @@ class LobbyViewValidatorTest {
     void validate() {
         Validator lobbyViewValidator = new LobbyViewValidator();
 //        String lobbyViewPath = "data/xml/lobbyViews/standard.xml";
-        String lobbyViewPath = "data/xml/lobbyView/lobbyView_v1.xml";
+        String lobbyViewPath = "data/xml/lobbyview/lobbyview_v1.xml";
         File lobbyViewFile = new File(lobbyViewPath);
         boolean result = lobbyViewValidator.validate(lobbyViewFile);
         boolean expected = true;
@@ -24,7 +24,7 @@ class LobbyViewValidatorTest {
     void validateError() {
         Validator lobbyViewValidator = new LobbyViewValidator();
 //        String lobbyViewPath = "data/xml/lobbyViews/standard.xml";
-        String lobbyViewPath = "data/xml/lobbyViews/bad_lobbyView.xml";
+        String lobbyViewPath = "data/xml/lobbyview/lobbyview_bad.xml";
         File lobbyViewFile = new File(lobbyViewPath);
         try {
             lobbyViewValidator.validate(lobbyViewFile);

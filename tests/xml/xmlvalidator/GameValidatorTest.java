@@ -13,7 +13,7 @@ class GameValidatorTest {
     void validate() {
         Validator gameValidator = new GameValidator();
 //        String gamePath = "data/xml/games/standard.xml";
-        String gamePath = "data/xml/game/poker.xml";
+        String gamePath = "data/xml/good/GAME_pokerfull.xml";
         File gameFile = new File(gamePath);
         boolean result = gameValidator.validate(gameFile);
         boolean expected = true;
@@ -24,7 +24,7 @@ class GameValidatorTest {
     void validateError() {
         Validator gameValidator = new GameValidator();
 //        String gamePath = "data/xml/games/standard.xml";
-        String gamePath = "data/xml/game/bad_game.xml";
+        String gamePath = "data/xml/bad/GAME_missingentry.xml";
         File gameFile = new File(gamePath);
         try {
             boolean result = gameValidator.validate(gameFile);

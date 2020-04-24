@@ -12,7 +12,7 @@ class ViewValidatorTest {
     void validate() {
         Validator viewValidator = new ViewValidator();
 //        String viewPath = "data/xml/views/views.xml";
-        String viewPath = "data/xml/view/view.xml";
+        String viewPath = "data/xml/good/VIEW_basicview.xml";
         File viewFile = new File(viewPath);
         boolean result = viewValidator.validate(viewFile);
         boolean expected = true;

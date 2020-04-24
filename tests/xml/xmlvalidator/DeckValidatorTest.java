@@ -13,7 +13,7 @@ class DeckValidatorTest {
     void validate() {
         Validator deckValidator = new DeckValidator();
 //        String deckPath = "data/xml/decks/standard.xml";
-        String deckPath = "data/xml/deck/cs308.xml";
+        String deckPath = "data/xml/good/DECK_cs308.xml";
         File deckFile = new File(deckPath);
         boolean result = deckValidator.validate(deckFile);
         boolean expected = true;
@@ -24,7 +24,7 @@ class DeckValidatorTest {
     void validateError() {
         Validator deckValidator = new DeckValidator();
 //        String deckPath = "data/xml/decks/standard.xml";
-        String deckPath = "data/xml/deck/bad_deck.xml";
+        String deckPath = "data/xml/bad/DECK_missingentry.xml";
         File deckFile = new File(deckPath);
         try {
             deckValidator.validate(deckFile);

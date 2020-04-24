@@ -49,7 +49,6 @@ public class MasterValidator {
             } catch (NullPointerException e) {
                 this.myExceptionShow.accept(e);
             }
-
         }
         this.myCaller.accept(this::createGame);
     }
