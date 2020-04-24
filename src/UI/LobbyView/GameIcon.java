@@ -27,7 +27,7 @@ public class GameIcon implements NodeViewInterface {
     private static final String CUSTOM = "Custom Game";
     private static final String CUSTOM_ICON_ID = "custom-icon";
 
-    public GameIcon(String imageFile, String gameName, List<File> files) {
+    public GameIcon(String imageFile, String gameName, List<File> files, Consumer<Exception> showException) {
         myGameIcon = new VBox();
         //TODO: move this into formatter
         myGameIcon.setAlignment(Pos.CENTER);
@@ -54,7 +54,8 @@ public class GameIcon implements NodeViewInterface {
             AllFilesDisplay display = new AllFilesDisplay(testBundle, statusBundle, iconBundle);
             new MasterValidator(this.myFiles,
                     (file, status) -> display.updateStatus(file, status),
-                    (initializer) -> display.enableGameButton(initializer));
+                    (initializer) -> display.enableGameButton(initializer),
+                    showException);
         });
 
         //TODO: move this to formatting

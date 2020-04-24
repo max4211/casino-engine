@@ -39,7 +39,12 @@ public class LobbyView implements NodeViewInterface {
             List<File> tempFiles = files.get(i);
 
             String gameType = generalInfo.get(i).get(TYPE_TAG);
-            GameIcon tempIcon = new GameIcon(tempGeneralInfo.get(ICON_TAG), tempGeneralInfo.get(NAME_TAG), tempFiles);
+            GameIcon tempIcon = new GameIcon(
+                    tempGeneralInfo.get(ICON_TAG),
+                    tempGeneralInfo.get(NAME_TAG),
+                    tempFiles,
+                    (ex) -> this.myExceptionDisplayer.displayException(ex));
+
             myFlowPane.getChildren().add(tempIcon.getView());
         }
     }

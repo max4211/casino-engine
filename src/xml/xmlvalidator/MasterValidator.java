@@ -5,9 +5,11 @@ import UI.Validation.FileStatus;
 import UI.Validation.UpdateFilesDisplayInterface;
 import UI.Validation.XMLFile;
 import exceptions.CustomEnumException;
+import exceptions.ValidatorException;
 import exceptions.XMLParseException;
 import ooga.GameConstructor;
 import UI.Validation.MultipleXMLChooser;
+import org.xml.sax.SAXException;
 import xml.xmlbundle.XMLBundle;
 import xml.xmlreader.interfaces.XMLValidatorInterface;
 
@@ -22,17 +24,21 @@ public class MasterValidator {
     private ValidatorFactory myFactory;
     private UpdateFilesDisplayInterface myUpdate;
     private Consumer<GameCaller> myCaller;
+    private Consumer<Exception> myExceptionShow;
 
     /**
      * Lambda to show errors on front end and prompt new files
      * @param fileList
-     * TODO - add parameter to activate button for game start
      */
-    public MasterValidator(List<File> fileList, UpdateFilesDisplayInterface update, Consumer<GameCaller> caller) {
+    public MasterValidator(List<File> fileList,
+                           UpdateFilesDisplayInterface update,
+                           Consumer<GameCaller> caller,
+                           Consumer<Exception> showException) {
         this.myXMLBundle = new XMLBundle();
         this.myFactory = new ValidatorFactory();
         this.myUpdate = update;
         this.myCaller = caller;
+        this.myExceptionShow = showException;
         validateFiles(fileList);
     }
 
@@ -44,7 +50,6 @@ public class MasterValidator {
             tryFileAdd(chooser.getFileList());
         }
         System.out.println("all files validated, attempting to create game");
-        // TODO - send off lambda to create button
         this.myCaller.accept(this::createGame);
     }
 
@@ -60,16 +65,18 @@ public class MasterValidator {
             try {
                 XMLFile tag = getTag(file);
                 if (needsFile(tag)) {
-                    if (isValidFile(file, tag)) {
-                        this.myXMLBundle.addFile(file, tag);
-                        this.myUpdate.updateStatus(tag, FileStatus.VALID);
-                    } else {
+                    try {
+                        if (isValidFile(file, tag)) {
+                            this.myXMLBundle.addFile(file, tag);
+                            this.myUpdate.updateStatus(tag, FileStatus.VALID);
+                        }
+                    } catch (ValidatorException e) {
+                        this.myExceptionShow.accept(e);
                         this.myUpdate.updateStatus(tag, FileStatus.INVALID);
                     }
                 }
-            } catch (XMLParseException ignored) {
-                ;
-            } catch (CustomEnumException ignored) {
+            } catch (XMLParseException | CustomEnumException ignored) {
+                // TODO - throw invalid XML file exception
                 ;
             }
         }
@@ -95,7 +102,7 @@ public class MasterValidator {
         return needsFile && validFile;
     }
 
-    private boolean isValidFile(File file, XMLFile enumTag) {
+    private boolean isValidFile(File file, XMLFile enumTag) throws ValidatorException {
         Validator validator = this.myFactory.createValidator(enumTag.toString());
         return validator.validate(file);
     }
