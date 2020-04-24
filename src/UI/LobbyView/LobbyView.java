@@ -9,6 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -22,8 +23,6 @@ public class LobbyView implements StylizedNode {
     private static final String PATH_TO_ICON_BUNDLE = "iconBundles/lobbyBundles/";
     private static final String PATH_TO_ICON_IMAGE = "iconImages/lobbyIcons/";
 
-
-
     private static final String INFO_TAG = "Info";
     private static final String ERROR_TAG = "Error";
 
@@ -36,12 +35,14 @@ public class LobbyView implements StylizedNode {
     private static final int VBOX_SPACING = 5;
 
     private LanguageBundle myLanguageBundle;
+    private List<GameStarter> myGameStarters;
     private ExceptionDisplayer myExceptionDisplayer;
 
     public LobbyView(List<String> styleSheets, List<String> languages, String iconProperties, String errorCSS, List<Map<String, String>> generalInfo, List<List<File>> files) {
 
         myVBox = new VBox();
         StylizedNode.setStyleID(myVBox, this.getClass());
+        myGameStarters = new ArrayList<>();
         myVBox.setSpacing(VBOX_SPACING);
         updateCSS(styleSheets.get(DEFAULT_CSS_INDEX));
         System.out.println(iconProperties);
@@ -57,13 +58,15 @@ public class LobbyView implements StylizedNode {
             Map<String, String> tempGeneralInfo = generalInfo.get(i);
             List<File> tempFiles = files.get(i);
             tempGeneralInfo.get(ICON_TAG);
-            GameStarter tempIcon = new GameStarter(
+            GameStarter tempGameStarter = new GameStarter(
                     tempGeneralInfo.get(ICON_TAG),
                     tempGeneralInfo.get(NAME_TAG),
                     tempFiles,
-                    (ex) -> this.myExceptionDisplayer.displayException(ex));
+                    (ex) -> this.myExceptionDisplayer.displayException(ex),
+                    myLanguageBundle);
 
-            myFlowPane.getChildren().add(tempIcon.getView());
+            myFlowPane.getChildren().add(tempGameStarter.getView());
+            myGameStarters.add(tempGameStarter);
         }
 
         myVBox.getChildren().add(myFlowPane);
@@ -74,8 +77,10 @@ public class LobbyView implements StylizedNode {
         myVBox.getStylesheets().add(PATH_TO_STYLESHEETS.concat(newStyleSheet));
     }
 
-    private void updateLanguage(String newLanguage) {
+    public void updateLanguage(String newLanguage) {
         myLanguageBundle.setLanguage(newLanguage);
+        for (GameStarter tempGameStarter :myGameStarters) tempGameStarter.updateLanguage();
+        myExceptionDisplayer.updateLanguage();
     }
 
     @Override

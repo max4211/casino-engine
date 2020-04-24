@@ -37,7 +37,7 @@
         </Files>
     </Bundle>
     <Bundle>
-        <Name>Custom Game</Name>
+        <Name>Custom</Name>
         <Icon>mouseIcon.png</Icon>
     </Bundle>
 </Lobby>

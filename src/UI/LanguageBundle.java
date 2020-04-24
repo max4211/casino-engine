@@ -1,6 +1,6 @@
 package UI;
 
-import UI.Selectors.LanguageBundleInterface;
+import UI.Interfaces.LanguageBundleInterface;
 
 import java.util.ResourceBundle;
 

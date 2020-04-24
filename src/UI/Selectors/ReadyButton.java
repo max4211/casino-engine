@@ -1,5 +1,6 @@
 package UI.Selectors;
 
+import UI.Interfaces.StylizedNode;
 import UI.LanguageBundle;
 import Utility.Formatter;
 import Utility.HashNoise;
@@ -7,34 +8,27 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
-public class SelectorReadyInput {
-
+public class ReadyButton {
 
     private static final String ACTION_TEXT_KEY = "ActionReadyButton";
     private static final String WAGER_TEXT_KEY = "WagerReadyButton";
     private static final String NEW_GAME_TEXT_KEY = "NewGameReadyButton";
 
     private Button myButton;
-    private Pane myParent;
     private SelectorType myType;
-
-    private static final String BUTTON_CSS_ID = "ready-button";
-    private Formatter myFormatter;
-
     private LanguageBundle myLanguageBundle;
-    public SelectorReadyInput(LanguageBundle languageBundle) {
+
+    public ReadyButton(LanguageBundle languageBundle) {
         myLanguageBundle = languageBundle;
-        myFormatter = new Formatter();
+        myButton = new Button();
+        Formatter.formatSelectorButton(myButton);
+        StylizedNode.setStyleID(myButton, this.getClass());
     }
 
     public void pauseUntilReady(Pane parent, SelectorType type) {
-        myButton = new Button();
-        myButton.setId(BUTTON_CSS_ID);
-        myParent = parent;
-        myType = type;
         int nestedLoopKey = HashNoise.addNoise(this);
-        myButton.setText(myLanguageBundle.getBundle().getString(getKey(myType)));
-        myFormatter.formatSelectorButton(myButton);
+        String displayedKey = getDisplayKey(type);
+        myButton.setText(myLanguageBundle.getBundle().getString(displayedKey));
         myButton.setOnAction(e -> {
             parent.getChildren().remove(myButton);
             Platform.exitNestedEventLoop(nestedLoopKey, null);
@@ -43,12 +37,7 @@ public class SelectorReadyInput {
         Platform.enterNestedEventLoop(nestedLoopKey);
     }
 
-    public void updateLanguage() {
-        //if (isPaused) myButton.fire();
-        //pauseUntilReady(myParent, myType);
-    }
-
-    private String getKey(SelectorType type) {
+    private String getDisplayKey(SelectorType type) {
         if (type.equals(SelectorType.ACTION)) return ACTION_TEXT_KEY;
         else if (type.equals(SelectorType.WAGER)) return WAGER_TEXT_KEY;
         else if (type.equals(SelectorType.NEWGAME)) return NEW_GAME_TEXT_KEY;

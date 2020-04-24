@@ -244,6 +244,7 @@ public class GameView implements GameViewInterface, StylizedNode {
         myLanguageBundle.setLanguage(newLanguage);
         myMainPlayer.updateLanguage();
         myOtherPlayers.updateLanguage();
+        myExceptionDisplayer.updateLanguage();
     }
 
 }

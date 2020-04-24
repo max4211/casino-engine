@@ -3,7 +3,7 @@ package UI.GameView;
 import UI.Interfaces.StylizedNode;
 import UI.Interfaces.TaggableNode;
 import UI.LanguageBundle;
-import UI.Selectors.SelectorReadyInput;
+import UI.Selectors.ReadyButton;
 import UI.Selectors.SelectorType;
 import Utility.Formatter;
 import javafx.geometry.Pos;
@@ -14,7 +14,7 @@ public class MainPlayerView implements StylizedNode, TaggableNode {
     private PlayerView myPlayer;
     private HBox myView;
     private Formatter myFormatter;
-    private SelectorReadyInput myReadyButton;
+    private ReadyButton myReadyButton;
 
     private static final Pos MAIN_PLAYER_ALIGNMENT = Pos.CENTER;
 
@@ -22,7 +22,7 @@ public class MainPlayerView implements StylizedNode, TaggableNode {
         myView = new HBox();
         myFormatter = new Formatter();
         myFormatter.formatUnfixedCenter(myView);
-        myReadyButton = new SelectorReadyInput(languageBundle);
+        myReadyButton = new ReadyButton(languageBundle);
     }
 
     public void setMainPlayer(PlayerView newMainPlayer) {
@@ -59,6 +59,6 @@ public class MainPlayerView implements StylizedNode, TaggableNode {
 
     public void updateLanguage() {
         if (myPlayer != null) myPlayer.updateLanguage();
-        myReadyButton.updateLanguage();
+        // myReadyButton.updateLanguage();
     }
 }

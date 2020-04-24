@@ -1,5 +1,6 @@
 package UI.LobbyView;
 
+import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
 import UI.LanguageBundle;
 import UI.Validation.AllFilesDisplay;
@@ -13,30 +14,26 @@ import java.io.File;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class GameStarter implements StylizedNode {
+public class GameStarter implements StylizedNode, LanguageResponder {
 
     private VBox myGameStarter;
     private Formatter myFormatter;
     private List<File> myFiles;
+    private Label myGameLabel;
 
-    //TODO: duplicated in CardView
-    private static final String BLACKJACK = "Blackjack";
-    private static final String BLACKJACK_ICON_ID = "blackJack-icon";
-    private static final String CUSTOM = "Custom Game";
-    private static final String CUSTOM_ICON_ID = "custom-icon";
+    private LanguageBundle myLanguageBundle;
+    private final String myGameKey;
 
     private static final String PATH_TO_ICON = "iconImages/runnableGameIcons/";
 
-    public GameStarter(String imageFile, String gameName, List<File> files, Consumer<Exception> showException) {
+    public GameStarter(String imageFile, String gameKey, List<File> files, Consumer<Exception> showException, LanguageBundle languageBundle) {
         myGameStarter = new VBox();
         StylizedNode.setStyleID(myGameStarter, this.getClass());
         //TODO: move this into formatter
         myGameStarter.setAlignment(Pos.CENTER);
-        System.out.println(PATH_TO_ICON.concat(imageFile));
-        Icon myIconButton = new Icon(PATH_TO_ICON.concat(imageFile));
-        tagIcon(myIconButton, gameName);
 
-        myFormatter = new Formatter();
+        Icon myIconButton = new Icon(PATH_TO_ICON.concat(imageFile));
+
         myFormatter.formatGameIconView(myIconButton.getView());
 
         this.myFiles = files;
@@ -52,15 +49,12 @@ public class GameStarter implements StylizedNode {
                     showException);
         });
 
-        myGameStarter.getChildren().addAll(myIconButton.getView(), new Label(gameName));
-    }
-
-    private void tagIcon(Icon icon, String name) {
-        // FIXME: add reflection to IDs, this is used for testing
-        if (name.equals(BLACKJACK))
-            icon.getView().setId(BLACKJACK_ICON_ID);
-        else if (name.equals(CUSTOM))
-            icon.getView().setId(CUSTOM_ICON_ID);
+        myLanguageBundle = languageBundle;
+        myGameKey = gameKey;
+        myGameLabel = new Label();
+        myGameLabel.setAlignment(Pos.CENTER);
+        updateLanguage();
+        myGameStarter.getChildren().addAll(myIconButton.getView(), myGameLabel);
     }
 
     @Override
@@ -70,5 +64,10 @@ public class GameStarter implements StylizedNode {
 
     public List<File> getFiles() {
         return this.myFiles;
+    }
+
+    @Override
+    public void updateLanguage() {
+        myGameLabel.setText(myLanguageBundle.getBundle().getString(myGameKey));
     }
 }

@@ -13,9 +13,6 @@ public class Formatter {
     private static final double CARD_HEIGHT = 100;
     private static final double WAGER_HEIGHT = 20;
 
-
-    public Formatter() {}
-
     public void formatFixedVBox(VBox rawVBox, double height, double width) {
         rawVBox.setMinHeight(height);
         rawVBox.setMaxHeight(height);
@@ -52,7 +49,7 @@ public class Formatter {
         rawHBox.setAlignment(Pos.CENTER_LEFT);
     }
 
-    public void formatSelectorButton(Button rawButton) {
+    public static void formatSelectorButton(Button rawButton) {
         rawButton.setPrefHeight(CARD_HEIGHT + WAGER_HEIGHT);
     }
 

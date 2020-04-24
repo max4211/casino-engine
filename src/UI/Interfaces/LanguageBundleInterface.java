@@ -1,4 +1,4 @@
-package UI.Selectors;
+package UI.Interfaces;
 
 import java.util.ResourceBundle;
 
