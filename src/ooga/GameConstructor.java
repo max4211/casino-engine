@@ -44,7 +44,6 @@ public class GameConstructor {
     private final File handFile ;
     private final File viewFile;
 
-    //TODO: duplication
     private static final String TYPE_KEY = "Type";
 
     public GameConstructor(Map<XMLFileType, File> myFiles) {
