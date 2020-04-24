@@ -1,10 +1,12 @@
 package UI.LobbyView;
 
+import UI.IconFactories.Icon;
+import UI.IconFactories.IconSize;
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
+import UI.Utilities.Formatter;
 import UI.Utilities.LanguageBundle;
 import UI.Validation.AllFilesDisplay;
-import UI.Utilities.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -19,10 +21,10 @@ public class GameStarter implements StylizedNode, LanguageResponder {
     private VBox myGameStarter;
     private List<File> myFiles;
     private Label myGameLabel;
-
     private LanguageBundle myLanguageBundle;
     private final String myGameKey;
 
+    private static final IconSize GAME_ICON_SIZE = IconSize.LARGE;
     private static final String PATH_TO_ICON = "iconImages/runnableGameIcons/";
 
     public GameStarter(String imageFile, String gameKey, List<File> files, Consumer<Exception> showException, LanguageBundle languageBundle,
@@ -32,7 +34,7 @@ public class GameStarter implements StylizedNode, LanguageResponder {
         StylizedNode.setStyleID(myGameStarter, this.getClass());
 
         String iconFilePath = formatIconFilePath(imageFile);
-        Icon myIconButton = new Icon(iconFilePath);
+        Icon myIconButton = new Icon(iconFilePath, GAME_ICON_SIZE);
 
         myFiles = files;
         myGameStarter.setOnMouseClicked(e -> {

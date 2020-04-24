@@ -1,6 +1,6 @@
 package UI.Validation;
 
-import UI.LobbyView.Icon;
+import UI.IconFactories.Icon;
 import javafx.scene.image.Image;
 
 public class MutableIcon extends Icon {
