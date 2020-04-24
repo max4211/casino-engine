@@ -125,6 +125,7 @@ public class GameConstructor {
             return (Controller) ctor.newInstance(myBundle, myParams);
         } catch (Exception e) {
             System.out.println("unable to create controller");
+            e.printStackTrace();
             throw new ReflectionException(e);
         }
 
