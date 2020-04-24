@@ -1,7 +1,7 @@
 package UI.Validation;
 
 import UI.Interfaces.LanguageResponder;
-import UI.Interfaces.TaggedNode;
+import UI.Interfaces.StylizedNode;
 import UI.LanguageBundle;
 import UI.LobbyView.Icon;
 import javafx.geometry.Pos;
@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 import java.util.ResourceBundle;
 
 // TODO: discuss with max whether they should have access to the whole bundle; not a big deal either way!
-public class FileDisplay implements TaggedNode, LanguageResponder {
+public class FileDisplay implements StylizedNode, LanguageResponder {
 
     private static final String PATH_TO_LANGUAGE = "languages/";
     private VBox myVBox;
@@ -32,6 +32,7 @@ public class FileDisplay implements TaggedNode, LanguageResponder {
 
     public FileDisplay(String statusIconBundle, LanguageBundle languageBundle, XMLFile fileType, String fileIconName, String equalIconName) {
         myVBox = new VBox();
+        StylizedNode.setStyleID(myVBox, this.getClass());
         myVBox.setAlignment(Pos.CENTER);
         myHBox = new HBox();
         myHBox.setSpacing(ICON_SPACING);

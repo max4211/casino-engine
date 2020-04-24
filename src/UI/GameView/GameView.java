@@ -3,7 +3,7 @@ package UI.GameView;
 import UI.ExceptionHandling.ExceptionDisplayer;
 import UI.Interfaces.GameCaller;
 import UI.Interfaces.GameViewInterface;
-import UI.Interfaces.TaggedNode;
+import UI.Interfaces.StylizedNode;
 import UI.LanguageBundle;
 import UI.Selectors.ActionSelector;
 import UI.Selectors.SelectorType;
@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class GameView implements GameViewInterface, TaggedNode {
+public class GameView implements GameViewInterface, StylizedNode {
 
     private static final String PATH_TO_STYLESHEETS = "styleSheets/game/";
     private static final String PATH_TO_ICON_BUNDLE = "iconBundles/gameBundles/";
@@ -51,31 +51,10 @@ public class GameView implements GameViewInterface, TaggedNode {
     private static final String POT_KEY = "Pot";
 
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
-    private static final String GAME_CSS_ID = "game-box";
-
-    public GameView(List<String> styleSheets, List<String> languages) {
-        myVBox = new VBox();
-        myVBox.setId(GAME_CSS_ID);
-        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
-        System.out.println(myLanguageBundle.getBundle().keySet());
-        myBorderPane = new BorderPane();
-        myOtherPlayers = new OtherPlayersView();
-        myBorderPane.setLeft(myOtherPlayers.getView());
-        myMainPlayer = new MainPlayerView(myLanguageBundle);
-        myBorderPane.setBottom(myMainPlayer.getView());
-        myExceptionDisplayer = new ExceptionDisplayer("exceptionIcon.png", "fire.css", myLanguageBundle);
-        myWagerSelector = new WagerSelector(myLanguageBundle);
-        myActionSelector = new ActionSelector(myLanguageBundle);
-        //FIXME: constructor
-        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, PATH_TO_ICONS.concat("construction.png"));
-
-        myVBox.getChildren().addAll(mySettingsBar.getView(), myBorderPane);
-        myVBox.setVgrow(myBorderPane, Priority.ALWAYS);
-    }
 
     public GameView(List<String> styleSheets, List<String> languages, String iconImages, String exceptionCSS, double width, double height) {
         myVBox = new VBox();
-        myVBox.setId(GAME_CSS_ID);
+        StylizedNode.setStyleID(myVBox, this.getClass());
         myVBox.setPrefWidth(width);
         myVBox.setPrefHeight(height);
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
@@ -113,7 +92,6 @@ public class GameView implements GameViewInterface, TaggedNode {
     public void showCommonCard(int cardID) {
         myCommons.showCard(cardID);
     }
-
 
     @Override
     public void showCard(int playerID, int betID, int cardID) {
@@ -231,14 +209,13 @@ public class GameView implements GameViewInterface, TaggedNode {
     }
 
     @Override
-    public void setWinner(int playeriD, int betID) {
-        getPlayerView(playeriD).setWinner(betID);
+    public void setWinner(int playerID, int betID) {
+        getPlayerView(playerID).setWinner(betID);
     }
 
     @Override
     public void renderPot(double initialPot) {
-        myPotView = new PotView(initialPot, PATH_TO_ICONS.concat("redPot.png"));
-        //myPotView = new PotView(initialPot, myIconBundle.getString(POT_KEY));
+        myPotView = new PotView(initialPot, myIconBundle.getString(POT_KEY));
         myBorderPane.setRight(myPotView.getView());
     }
 

@@ -1,10 +1,8 @@
 package ooga;
 
 import UI.GameView.CardView;
-import UI.GameView.GameView;
 import Utility.CardTriplet;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -29,11 +27,11 @@ public class basicUITester extends Application {
         allLanguages.add("English");
         allLanguages.add("Spanish");
 
-        GameView root = new GameView(allchoices, allLanguages);
+        //GameView root = new GameView(allchoices, allLanguages);
 
 
-        primaryStage.setScene(new Scene(root.getView(), 500, 500));
-        primaryStage.show();
+        //primaryStage.setScene(new Scene(root.getView(), 500, 500));
+        //primaryStage.show();
     }
 
     private void testCards(BorderPane p) {

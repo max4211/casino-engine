@@ -1,6 +1,6 @@
 package UI.GameView;
 
-import UI.Interfaces.TaggedNode;
+import UI.Interfaces.StylizedNode;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.HBox;
@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HandView implements TaggedNode {
+public class HandView implements StylizedNode {
 
     private HBox myHand;
     private List<CardView> myCards;

@@ -1,4 +1,4 @@
-#game-box {
+#GameView {
     -fx-background-color: linear-gradient(#e0ffe0, #50ddaf);
     -fx-base: #52d780;
 }

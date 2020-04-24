@@ -1,7 +1,7 @@
 package UI.LobbyView;
 
 import UI.ExceptionHandling.ExceptionDisplayer;
-import UI.Interfaces.TaggedNode;
+import UI.Interfaces.StylizedNode;
 import UI.LanguageBundle;
 import UI.Settings.SettingsBar;
 import javafx.geometry.Pos;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class LobbyView implements TaggedNode {
+public class LobbyView implements StylizedNode {
 
     VBox myVBox;
     FlowPane myFlowPane;
@@ -30,7 +30,6 @@ public class LobbyView implements TaggedNode {
     private static final String NAME_TAG = "Name";
     private static final String ICON_TAG = "Icon";
 
-    private static final String CSS_ID = "lobby-view";
     private static final int DEFAULT_CSS_INDEX = 0;
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
@@ -42,7 +41,7 @@ public class LobbyView implements TaggedNode {
     public LobbyView(List<String> styleSheets, List<String> languages, String iconProperties, String errorCSS, List<Map<String, String>> generalInfo, List<List<File>> files) {
 
         myVBox = new VBox();
-        myVBox.setId(CSS_ID);
+        StylizedNode.setStyleID(myVBox, this.getClass());
         myVBox.setSpacing(VBOX_SPACING);
         updateCSS(styleSheets.get(DEFAULT_CSS_INDEX));
         System.out.println(iconProperties);
@@ -58,7 +57,7 @@ public class LobbyView implements TaggedNode {
             Map<String, String> tempGeneralInfo = generalInfo.get(i);
             List<File> tempFiles = files.get(i);
             tempGeneralInfo.get(ICON_TAG);
-            GameIcon tempIcon = new GameIcon(
+            GameStarter tempIcon = new GameStarter(
                     tempGeneralInfo.get(ICON_TAG),
                     tempGeneralInfo.get(NAME_TAG),
                     tempFiles,
