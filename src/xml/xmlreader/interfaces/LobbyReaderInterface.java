@@ -21,7 +21,7 @@ public interface LobbyReaderInterface {
     List<String> getLobbyLanguages();
 
     String getErrorStylesheet();
-    String getErrorIcon();
+    String getIconProperties();
 
     /**
      * Get a list of maps for all icon arguments

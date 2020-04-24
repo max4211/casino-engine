@@ -5,6 +5,7 @@
             <xs:all>
                 <xs:element name="Title" type="xs:string" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="Authors" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="IconBundle" type="xs:string" minOccurs="1" maxOccurs="1"/>
                 <xs:element name="Languages" minOccurs="1" maxOccurs="1">
                     <xs:complexType>
                         <xs:sequence>
@@ -22,8 +23,8 @@
                 <xs:element name="Errors" minOccurs="1" maxOccurs="1">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="Icon" type="xs:string" minOccurs="1" maxOccurs="1"/>
-                            <xs:element name="StyleSheet" type="xs:string" minOccurs="1" maxOccurs="1"/>
+
+                            <xs:element name="ErrorStyleSheet" type="xs:string" minOccurs="1" maxOccurs="1"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
