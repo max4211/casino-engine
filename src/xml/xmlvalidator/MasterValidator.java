@@ -39,7 +39,7 @@ public class MasterValidator {
     private void validateFiles(List<File> fileList) {
         tryFileAdd(fileList);
         while (!(this.myXMLBundle.isComplete())) {
-            printMissingFiles();
+//            printMissingFiles();
             MultipleXMLChooser chooser = new MultipleXMLChooser();
             tryFileAdd(chooser.getFileList());
         }
