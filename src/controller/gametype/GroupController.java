@@ -93,11 +93,9 @@ public class GroupController extends Controller {
                         (min, max) -> this.myGameView.selectWager(min, max), (wager) -> this.myTable.setCurrentBet(wager), this::setBetsActive,
                         this.myTable.getTableMin(), this.myTable.getTableMax(), this.myTable.getCurrentBet());
                 classifyHand(b);
-                this.myGameView.setWager(b.getWager(), p.getID(), b.getID());
-                this.myGameView.setBankRoll(p.getBankroll(), p.getID());
+                postActionUpdates(p.getID(), p.getBankroll(), b);
                 updatePot();
                 garbageCollect(p, b);
-                this.myGameView.classifyHand(b.getHand().getClassification().getName(), p.getID(), b.getID());
             } catch (ReflectionException | ActionException e) {
                 this.myGameView.displayException(e);
             }
@@ -133,9 +131,8 @@ public class GroupController extends Controller {
         fullHand.addAll(this.myTable.getCommunalCards());
         // TODO - pass in lambdas to hide bet abilities
         this.myHandClassifier.classifyHand(fullHand, b.getHand());
-        if (b.getHand().isLoser()) {
+        if (b.getHand().isLoser())
             b.setGameActive(false);
-        }
     }
 
     @Override

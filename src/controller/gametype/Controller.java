@@ -57,7 +57,7 @@ public abstract class Controller implements ControllerInterface {
     private controller.goal.Goal createGoal(Goal goal) {
         try {
             GoalFactory factory = new GoalFactory();
-            return (controller.goal.Goal) factory.create(goal.toString(), () -> this.myTable.getPlayers());
+            return factory.create(goal.toString(), () -> this.myTable.getPlayers());
         } catch (Exception e) {
             throw new ReflectionException();
         }
@@ -155,6 +155,12 @@ public abstract class Controller implements ControllerInterface {
         }
     }
 
+    protected void postActionUpdates(int pID, double pBankroll, Bet b) {
+        this.myGameView.setWager(b.getWager(), pID, b.getID());
+        this.myGameView.setBankRoll(pBankroll, pID);
+        this.myGameView.classifyHand(b.getHand().getClassification().getName(), pID, b.getID());
+    }
+
     protected abstract void evaluateBets();
 
     protected void showGoals() {
@@ -171,14 +177,10 @@ public abstract class Controller implements ControllerInterface {
     }
 
     private void updateVisualOutcome(int pID, int bID, HandOutcome outcome, String name) {
-        if (outcome.equals(HandOutcome.WIN)) {
+        if (outcome.equals(HandOutcome.WIN))
             this.myGameView.setWinner(pID, bID);
-            System.out.printf("In Controller, setting %s as winner\n", name);
-        } else if (outcome.equals(HandOutcome.LOSS)) {
+        else if (outcome.equals(HandOutcome.LOSS))
             this.myGameView.setLoser(pID, bID);
-            System.out.printf("In Controller, setting %s as loser\n", name);
-        }
-
     }
 
 }
