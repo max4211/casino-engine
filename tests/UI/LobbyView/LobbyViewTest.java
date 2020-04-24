@@ -34,7 +34,7 @@ class LobbyViewTest extends DukeApplicationTest {
     @Test
     public void testCSSApplication() {
         assertEquals(myLobbyPane.getStylesheets().size(), 1);
-        assertEquals(myLobbyPane.getStylesheets().get(0), "sunrise.css");
+        assertEquals(myLobbyPane.getStylesheets().get(0), "Sunrise.css");
     }
 
     // Happy Path :)
