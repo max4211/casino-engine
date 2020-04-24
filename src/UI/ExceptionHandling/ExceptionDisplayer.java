@@ -1,10 +1,9 @@
 package UI.ExceptionHandling;
 
 import UI.LanguageBundle;
+import UI.LobbyView.Icon;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class ExceptionDisplayer {
 
@@ -17,7 +16,7 @@ public class ExceptionDisplayer {
     public ExceptionDisplayer(String icon, String cssFile, LanguageBundle languageBundle) {
         myDisplay = new Alert(Alert.AlertType.WARNING);
         myDisplay.getDialogPane().setId(EXCEPTION_SHOWER_ID);
-        setStyleSheet(icon, cssFile);
+        setStyle(icon, cssFile);
         myLanguageBundle = languageBundle;
     }
 
@@ -26,11 +25,10 @@ public class ExceptionDisplayer {
         myDisplay.showAndWait();
     }
 
-    public void setStyleSheet(String icon, String newStyleSheet) {
+    public void setStyle(String icon, String newStyleSheet) {
         myDisplay.getDialogPane().getStylesheets().add(newStyleSheet);
-        Image newIcon = new Image(icon);
-        ImageView newGraphic = new ImageView(newIcon);
-        myDisplay.getDialogPane().setGraphic(newGraphic);
+        Icon newIcon = new Icon(icon);
+        myDisplay.getDialogPane().setGraphic(newIcon.getView());
     }
 
     private void updateLanguage() {
