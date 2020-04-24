@@ -43,21 +43,10 @@ public class GroupController extends Controller {
         promptForEntryBet();
         for (StringPair s: this.myDealerAction) {
             if (this.myTable.totalActivePlayers() <= 1)
-                break;
-            resetRound();
-            performDealerAction(s);
-            updatePlayerHands();
-            updateCommunalCards();
-            showCommonCards();
-            promptForActions();
+                return;
+            inRoundLoop(s);
         }
-        this.myCardshow.showAllCards();
-        evaluateBets();
-        updateWinnersLoser();
-        computePayoffs();
-        showGoals();
-        updateBankrolls();
-        showGameViewRestart();
+        postRoundLoop();
     }
 
     private void resetRound() {
@@ -68,6 +57,27 @@ public class GroupController extends Controller {
             }
         }
         this.myTable.setCurrentBet(ZERO);
+    }
+
+    @Override
+    protected void inRoundLoop(StringPair dealerAction) {
+        resetRound();
+        performDealerAction(dealerAction);
+        updatePlayerHands();
+        updateCommunalCards();
+        showCommonCards();
+        promptForActions();
+    }
+
+    @Override
+    protected void postRoundLoop() {
+        this.myCardshow.showAllCards();
+        evaluateBets();
+        updateWinnersLoser();
+        computePayoffs();
+        showGoals();
+        updateBankrolls();
+        showGameViewRestart();
     }
 
     @Override

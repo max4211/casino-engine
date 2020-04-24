@@ -54,6 +54,10 @@ public abstract class Controller implements ControllerInterface {
         renderPlayers();
     }
 
+    protected abstract void inRoundLoop(StringPair dealerAction);
+
+    protected abstract void postRoundLoop();
+
     private controller.goal.Goal createGoal(Goal goal) {
         try {
             GoalFactory factory = new GoalFactory();

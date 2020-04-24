@@ -40,11 +40,21 @@ public class AdversaryController extends Controller {
         promptForEntryBet();
         renderAdversary();
         for (StringPair s: this.myDealerAction) {
-            performDealerAction(s);
-            updatePlayerHands();
-            promptForActions();
-            garbageCollect();
+            inRoundLoop(s);
         }
+        postRoundLoop();
+    }
+
+    @Override
+    protected void inRoundLoop(StringPair dealerAction) {
+        performDealerAction(dealerAction);
+        updatePlayerHands();
+        promptForActions();
+        garbageCollect();
+    }
+
+    @Override
+    protected void postRoundLoop() {
         evaluateBets();
         showAllAdversaryCards();
         updateWinnersLoser();
