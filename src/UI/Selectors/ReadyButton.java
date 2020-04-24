@@ -1,8 +1,8 @@
 package UI.Selectors;
 
 import UI.Interfaces.StylizedNode;
-import UI.LanguageBundle;
-import Utility.Formatter;
+import UI.Utilities.LanguageBundle;
+import UI.Utilities.Formatter;
 import Utility.HashNoise;
 import javafx.application.Platform;
 import javafx.scene.control.Button;

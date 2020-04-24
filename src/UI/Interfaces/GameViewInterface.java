@@ -1,6 +1,6 @@
 package UI.Interfaces;
 
-import Utility.CardTriplet;
+import UI.Utilities.CardTriplet;
 
 import java.util.List;
 

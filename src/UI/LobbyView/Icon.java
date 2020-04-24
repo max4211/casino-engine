@@ -13,7 +13,6 @@ public class Icon implements StylizedNode {
     public Icon(String imageFile) {
         myIcon = new ImageView();
         StylizedNode.setStyleID(myIcon, this.getClass());
-        System.out.println(imageFile);
         Image myBackgroundImage = new Image(imageFile);
         myIcon.setImage(myBackgroundImage);
         myIcon.setFitHeight(ICON_SIZE);

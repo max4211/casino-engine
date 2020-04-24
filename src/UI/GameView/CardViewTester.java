@@ -1,6 +1,6 @@
 package UI.GameView;
 
-import Utility.CardTriplet;
+import UI.Utilities.CardTriplet;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

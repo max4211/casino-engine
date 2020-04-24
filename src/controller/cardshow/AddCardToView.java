@@ -1,6 +1,6 @@
 package controller.cardshow;
 
-import Utility.CardTriplet;
+import UI.Utilities.CardTriplet;
 
 @FunctionalInterface
 public interface AddCardToView {

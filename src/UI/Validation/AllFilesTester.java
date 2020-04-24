@@ -1,6 +1,6 @@
 package UI.Validation;
 
-import UI.LanguageBundle;
+import UI.Utilities.LanguageBundle;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

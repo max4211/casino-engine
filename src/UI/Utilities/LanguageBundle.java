@@ -1,4 +1,4 @@
-package UI;
+package UI.Utilities;
 
 import UI.Interfaces.LanguageBundleInterface;
 

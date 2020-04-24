@@ -2,7 +2,7 @@ package UI.ExceptionDisplay;
 
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
-import UI.LanguageBundle;
+import UI.Utilities.LanguageBundle;
 import UI.LobbyView.Icon;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -18,26 +18,26 @@ public class ExceptionDisplayer implements LanguageResponder {
     private static final String CSS_EXTENSION = ".css";
 
     public ExceptionDisplayer(String iconName, String cssFile, LanguageBundle languageBundle) {
-        myDisplay = new Alert(Alert.AlertType.WARNING);
-        StylizedNode.setStyleID(myDisplay.getDialogPane(), this.getClass());
-        myLanguageBundle = languageBundle;
+        this.myDisplay = new Alert(Alert.AlertType.WARNING);
+        StylizedNode.setStyleID(this.myDisplay.getDialogPane(), this.getClass());
+        this.myLanguageBundle = languageBundle;
         setImage(iconName);
         setStyle(cssFile);
     }
 
     public void displayException(Exception ex) {
-        myDisplay.setHeaderText(ex.getMessage());
+        this.myDisplay.setHeaderText(ex.getMessage());
         myDisplay.showAndWait();
     }
 
     private void setImage(String iconName) {
-        String iconPath = PATH_TO_ICONS.concat(iconName);
+        String iconPath = formatIconFilePath(iconName);
         Icon newIcon = new Icon(iconPath);
         myDisplay.getDialogPane().setGraphic(newIcon.getView());
     }
 
     public void setStyle(String newStyleSheet) {
-        String cssFile = PATH_TO_STYLESHEETS.concat(newStyleSheet).concat(CSS_EXTENSION);
+        String cssFile = formatCSSFilePath(newStyleSheet);
         myDisplay.getDialogPane().getStylesheets().add(cssFile);
     }
 
@@ -45,5 +45,13 @@ public class ExceptionDisplayer implements LanguageResponder {
         String newButtonMesage = myLanguageBundle.getBundle().getString(ERROR_CONFIRMATION_KEY);
         ButtonType newButtonType = new ButtonType(newButtonMesage);
         myDisplay.getButtonTypes().setAll(newButtonType);
+    }
+
+    private String formatCSSFilePath(String fileName) {
+        return PATH_TO_STYLESHEETS.concat(fileName).concat(CSS_EXTENSION);
+    }
+
+    private String formatIconFilePath(String fileName) {
+        return PATH_TO_ICONS.concat(fileName);
     }
 }

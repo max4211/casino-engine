@@ -1,7 +1,5 @@
 package UI.Validation;
 
-import Utility.CardTriplet;
-
 @FunctionalInterface
 public interface UpdateFilesDisplayInterface {
 

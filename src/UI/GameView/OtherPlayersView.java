@@ -1,8 +1,8 @@
 package UI.GameView;
 
 import UI.Interfaces.StylizedNode;
-import UI.LanguageBundle;
-import Utility.Formatter;
+import UI.Utilities.LanguageBundle;
+import UI.Utilities.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 

@@ -2,9 +2,9 @@ package UI.GameView;
 
 import UI.Interfaces.TaggableNode;
 import UI.Interfaces.StylizedNode;
-import UI.LanguageBundle;
-import Utility.CardTriplet;
-import Utility.Formatter;
+import UI.Utilities.LanguageBundle;
+import UI.Utilities.CardTriplet;
+import UI.Utilities.Formatter;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package engine.adversary;
 
-import Utility.CardTriplet;
+import UI.Utilities.CardTriplet;
 import Utility.Generator;
 import engine.dealer.Card;
 import engine.hand.PlayerHand;

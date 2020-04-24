@@ -1,10 +1,5 @@
 package controller.interfaces;
 
-import Utility.CardTriplet;
-import engine.bet.Bet;
-
-import java.util.function.Consumer;
-
 public interface ControllerInterface {
 
     /**

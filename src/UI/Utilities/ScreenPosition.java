@@ -1,4 +1,4 @@
-package Utility;
+package UI.Utilities;
 
 import javafx.stage.Screen;
 

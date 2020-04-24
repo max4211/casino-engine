@@ -2,10 +2,10 @@ package UI.GameView;
 
 import UI.Interfaces.StylizedNode;
 import UI.Interfaces.TaggableNode;
-import UI.LanguageBundle;
+import UI.Utilities.LanguageBundle;
 import UI.Selectors.ReadyButton;
 import UI.Selectors.SelectorType;
-import Utility.Formatter;
+import UI.Utilities.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 

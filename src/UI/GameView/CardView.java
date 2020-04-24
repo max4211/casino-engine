@@ -2,8 +2,8 @@ package UI.GameView;
 
 import UI.Interfaces.TaggableNode;
 import UI.Interfaces.StylizedNode;
-import Utility.CardTriplet;
-import Utility.Formatter;
+import UI.Utilities.CardTriplet;
+import UI.Utilities.Formatter;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.image.Image;
@@ -43,7 +43,6 @@ public class CardView implements StylizedNode, TaggableNode {
         myID = cardInfo.getID();
         myFormatter.formatFixedVBox(myCard, CARD_HEIGHT, CARD_WIDTH);
         createCardNodes(cardInfo.getValue(), cardInfo.getSuit());
-        System.out.println(PATH_TO_CARD_IMAGE.concat(cardImage));
         Image hiddenCardImage = new Image(PATH_TO_CARD_IMAGE.concat(cardImage));
         hiddenBackgroundImage = new BackgroundImage(hiddenCardImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, FULL_BACKGROUND_SIZE);
         hideCard();

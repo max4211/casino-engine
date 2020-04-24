@@ -2,9 +2,9 @@ package UI.LobbyView;
 
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
-import UI.LanguageBundle;
+import UI.Utilities.LanguageBundle;
 import UI.Validation.AllFilesDisplay;
-import Utility.Formatter;
+import UI.Utilities.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -17,7 +17,6 @@ import java.util.function.Consumer;
 public class GameStarter implements StylizedNode, LanguageResponder {
 
     private VBox myGameStarter;
-    private Formatter myFormatter;
     private List<File> myFiles;
     private Label myGameLabel;
 
@@ -28,23 +27,19 @@ public class GameStarter implements StylizedNode, LanguageResponder {
 
     public GameStarter(String imageFile, String gameKey, List<File> files, Consumer<Exception> showException, LanguageBundle languageBundle) {
         myGameStarter = new VBox();
-        myFormatter = new Formatter();
+        Formatter.formatGameStarter(myGameStarter);
         StylizedNode.setStyleID(myGameStarter, this.getClass());
-        //TODO: move this into formatter
-        myGameStarter.setAlignment(Pos.CENTER);
 
-        Icon myIconButton = new Icon(PATH_TO_ICON.concat(imageFile));
+        String iconFilePath = formatIconFilePath(imageFile);
+        Icon myIconButton = new Icon(iconFilePath);
 
-        myFormatter.formatGameIconView(myIconButton.getView());
-
-        this.myFiles = files;
-        this.myGameStarter.setOnMouseClicked(e -> {
+        myFiles = files;
+        myGameStarter.setOnMouseClicked(e -> {
             // TODO - parametrize display in data
-            LanguageBundle testBundle = new LanguageBundle("English");
             String statusBundle= "StandardStatuses";
             String iconBundle = "StandardXMLs";
-            AllFilesDisplay display = new AllFilesDisplay(testBundle, statusBundle, iconBundle);
-            new MasterValidator(this.myFiles,
+            AllFilesDisplay display = new AllFilesDisplay(languageBundle, statusBundle, iconBundle);
+            new MasterValidator(myFiles,
                     (file, status) -> display.updateStatus(file, status),
                     (initializer) -> display.enableGameButton(initializer),
                     showException);
@@ -58,13 +53,17 @@ public class GameStarter implements StylizedNode, LanguageResponder {
         myGameStarter.getChildren().addAll(myIconButton.getView(), myGameLabel);
     }
 
+    private String formatIconFilePath(String iconFileName) {
+        return PATH_TO_ICON.concat(iconFileName);
+    }
+
     @Override
     public VBox getView() {
         return myGameStarter;
     }
 
     public List<File> getFiles() {
-        return this.myFiles;
+        return myFiles;
     }
 
     @Override

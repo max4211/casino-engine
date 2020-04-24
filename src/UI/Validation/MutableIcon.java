@@ -10,7 +10,6 @@ public class MutableIcon extends Icon {
     }
 
     public void setIconImage(String newIconName) {
-        System.out.println(newIconName);
         Image newIconImage = new Image(newIconName);
         myIcon.setImage(newIconImage);
     }

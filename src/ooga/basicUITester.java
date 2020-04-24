@@ -1,6 +1,6 @@
 package ooga;
 
-import Utility.CardTriplet;
+import UI.Utilities.CardTriplet;
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;

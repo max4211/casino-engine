@@ -1,7 +1,7 @@
 package controller.gametype;
 
 import UI.GameView.GameView;
-import Utility.CardTriplet;
+import UI.Utilities.CardTriplet;
 import Utility.Generator;
 import Utility.StringPair;
 import actions.factory.ActionFactory;

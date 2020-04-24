@@ -1,8 +1,8 @@
 package UI.GameView;
 
 import UI.Interfaces.StylizedNode;
-import Utility.CardTriplet;
-import Utility.Formatter;
+import UI.Utilities.CardTriplet;
+import UI.Utilities.Formatter;
 import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;

@@ -2,7 +2,7 @@ package UI.LobbyView;
 
 import UI.ExceptionDisplay.ExceptionDisplayer;
 import UI.Interfaces.StylizedNode;
-import UI.LanguageBundle;
+import UI.Utilities.LanguageBundle;
 import UI.Settings.SettingsBar;
 import javafx.geometry.Pos;
 import javafx.scene.layout.FlowPane;
@@ -45,7 +45,6 @@ public class LobbyView implements StylizedNode {
         myGameStarters = new ArrayList<>();
         myVBox.setSpacing(VBOX_SPACING);
         updateCSS(styleSheets.get(DEFAULT_CSS_INDEX));
-        System.out.println(iconProperties);
         ResourceBundle myIconResources = ResourceBundle.getBundle(PATH_TO_ICON_BUNDLE.concat(iconProperties));
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
         myExceptionDisplayer = new ExceptionDisplayer(myIconResources.getString(ERROR_TAG), errorCSS, myLanguageBundle);

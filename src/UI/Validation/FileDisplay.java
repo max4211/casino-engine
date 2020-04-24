@@ -2,7 +2,7 @@ package UI.Validation;
 
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
-import UI.LanguageBundle;
+import UI.Utilities.LanguageBundle;
 import UI.LobbyView.Icon;
 import javafx.geometry.Pos;
 import javafx.scene.Node;

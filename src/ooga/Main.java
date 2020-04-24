@@ -1,7 +1,7 @@
 package ooga;
 
 import UI.LobbyView.LobbyView;
-import Utility.ScreenPosition;
+import UI.Utilities.ScreenPosition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

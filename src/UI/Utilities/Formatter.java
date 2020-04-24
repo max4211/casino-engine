@@ -1,8 +1,7 @@
-package Utility;
+package UI.Utilities;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -12,6 +11,9 @@ public class Formatter {
 
     private static final double CARD_HEIGHT = 100;
     private static final double WAGER_HEIGHT = 20;
+
+    private static final int GAME_STARTER_HEIGHT = 150;
+    private static final int GAME_STARTER_WIDTH = 75;
 
     public void formatFixedVBox(VBox rawVBox, double height, double width) {
         rawVBox.setMinHeight(height);
@@ -23,15 +25,18 @@ public class Formatter {
         rawVBox.setAlignment(Pos.CENTER);
     }
 
-    public void formatGameIconView(ImageView rawIconView) {
-        rawIconView.setFitWidth(100);
-        rawIconView.setFitHeight(100);
-    }
+
 
     // TODO: duplication here, talk to DUVALL
     public void formatUnfixedCenter(VBox rawVBox) {
         setMaxBounds(rawVBox);
         rawVBox.setAlignment(Pos.CENTER);
+    }
+
+    public static void formatGameStarter(VBox rawVBox) {
+        rawVBox.setAlignment(Pos.CENTER);
+        rawVBox.setPrefHeight(GAME_STARTER_HEIGHT);
+        rawVBox.setPrefWidth(GAME_STARTER_WIDTH);
     }
 
     public void formatUnfixedCenter(HBox rawHBox) {

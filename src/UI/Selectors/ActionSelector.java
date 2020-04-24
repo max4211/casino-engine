@@ -1,7 +1,7 @@
 package UI.Selectors;
 
 import UI.Interfaces.StylizedNode;
-import UI.LanguageBundle;
+import UI.Utilities.LanguageBundle;
 import exceptions.EmptyActionListException;
 import exceptions.NoUserInputException;
 import javafx.scene.control.ChoiceDialog;

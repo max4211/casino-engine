@@ -2,8 +2,8 @@ package UI.GameView;
 
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
-import UI.LanguageBundle;
-import Utility.Formatter;
+import UI.Utilities.LanguageBundle;
+import UI.Utilities.Formatter;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;

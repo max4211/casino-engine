@@ -1,6 +1,6 @@
 package controller.gametype;
 
-import Utility.CardTriplet;
+import UI.Utilities.CardTriplet;
 import Utility.Generator;
 import Utility.StringPair;
 import actions.individual.IndividualAction;

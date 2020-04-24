@@ -1,7 +1,7 @@
 package UI.Interfaces;
 
 @FunctionalInterface
-public interface ExceptionCaller {
+public interface ExceptionDisplayer {
 
     public void sendException(Exception ex);
 
