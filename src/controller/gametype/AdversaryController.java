@@ -45,7 +45,9 @@ public class AdversaryController extends Controller {
             promptForActions();
             garbageCollect();
         }
+        evaluateBets();
         showAllAdversaryCards();
+        updateWinnersLoser();
         computePayoffs();
         showGoals();
         updateBankrolls();
@@ -107,10 +109,8 @@ public class AdversaryController extends Controller {
     protected void computePayoffs() {
         StringBuilder summary = new StringBuilder();
         invokeCompetition();
-        this.myHandClassifier.classifyHand(this.myAdversary.getHand().getCards(), this.myAdversary.getHand());
         for (Player p: this.myTable.getPlayers()) {
             for (Bet b: p.getBets()) {
-                this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
                 ClassifiedHand ch = b.getHand().getClassification();
                 summary.append(String.format("%s's hand is a %s (%s)\n", p.getName(), ch.getName(), b.getHand().getOutcome().toString()));
             }
@@ -123,6 +123,16 @@ public class AdversaryController extends Controller {
         this.myHandClassifier.classifyHand(b.getHand().getCards(), b.getHand());
         if (b.getHand().isLoser())
             b.setGameActive(false);
+    }
+
+    @Override
+    protected void evaluateBets() {
+        this.myHandClassifier.classifyHand(this.myAdversary.getHand().getCards(), this.myAdversary.getHand());
+        for (Player p: this.myTable.getPlayers()) {
+            for (Bet b: p.getBets()) {
+                this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
+            }
+        }
     }
 
     private void invokeCompetition() {
