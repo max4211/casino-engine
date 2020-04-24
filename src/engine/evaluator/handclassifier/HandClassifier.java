@@ -44,6 +44,7 @@ public class HandClassifier implements HandClassifierInterface {
                     return true;
                 }
             } catch (ReflectionException e) {
+                this.myLosingHands.remove(bundle);
                 // TODO - remove hand from list (with schema, will never happen)
                 System.out.println("could not reflect on losing hand");
             }
@@ -54,13 +55,8 @@ public class HandClassifier implements HandClassifierInterface {
     private void checkWinningHand(List<Card> cards, PlayerHand h) {
         for (int rank = 0; rank < this.myWinningHands.size(); rank ++) {
             HandBundle bundle =  this.myWinningHands.get(rank);
-            String s = bundle.getName();
-            try {
-                if (checkAllCombinations(cards, bundle, h, rank))
-                    return;
-            } catch (ReflectionException e) {
-                System.out.println("could not reflect on winning hand");
-            }
+            if (checkAllCombinations(cards, bundle, h, rank))
+                return;
         }
     }
 
@@ -78,6 +74,8 @@ public class HandClassifier implements HandClassifierInterface {
                 }
             } catch (ReflectionException e) {
                 System.out.println("could not reflect on winning hand");
+                this.myWinningHands.remove(bundle);
+                return false;
             }
         }
         return false;
