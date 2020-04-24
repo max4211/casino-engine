@@ -3,7 +3,6 @@ package UI.LobbyView;
 import UI.Interfaces.NodeViewInterface;
 import UI.LanguageBundle;
 import UI.Validation.AllFilesDisplay;
-import UI.Validation.UpdateFilesDisplayInterface;
 import Utility.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -12,7 +11,6 @@ import xml.xmlvalidator.MasterValidator;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Consumer;
 
 public class GameIcon implements NodeViewInterface {
@@ -27,13 +25,16 @@ public class GameIcon implements NodeViewInterface {
     private static final String CUSTOM = "Custom Game";
     private static final String CUSTOM_ICON_ID = "custom-icon";
 
+    private static final String PATH_TO_ICON = "iconImages/runnableGameIcons/";
+
     public GameIcon(String imageFile, String gameName, List<File> files, Consumer<Exception> showException) {
         myGameIcon = new VBox();
         //TODO: move this into formatter
         myGameIcon.setAlignment(Pos.CENTER);
-        Icon myIconButton = new Icon(imageFile);
+        System.out.println(PATH_TO_ICON.concat(imageFile));
+        Icon myIconButton = new Icon(PATH_TO_ICON.concat(imageFile));
 
-        // FIXME: add reflection to IDs
+        // FIXME: add reflection to IDs, this is used for testing
         if (gameName.equals(BLACKJACK)) {
             myIconButton.getView().setId(BLACKJACK_ICON_ID);
         }

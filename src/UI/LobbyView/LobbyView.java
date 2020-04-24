@@ -18,8 +18,11 @@ public class LobbyView implements NodeViewInterface {
     VBox myVBox;
     FlowPane myFlowPane;
 
-    private static final String PATH_TO_ICONS = "resources/iconImages/lobbyViewIcons/";
     private static final String PATH_TO_STYLESHEETS = "styleSheets/lobby/";
+    private static final String PATH_TO_ICON_BUNDLE = "iconBundles/lobbyBundles/";
+    private static final String PATH_TO_ICON_IMAGE = "iconImages/lobbyIcons/";
+
+
 
     private static final String INFO_TAG = "Info";
     private static final String ERROR_TAG = "Error";
@@ -42,12 +45,11 @@ public class LobbyView implements NodeViewInterface {
         myVBox.setId(CSS_ID);
         myVBox.setSpacing(VBOX_SPACING);
         updateCSS(styleSheets.get(DEFAULT_CSS_INDEX));
-
-        ResourceBundle myIconResources = ResourceBundle.getBundle(iconProperties);
+        System.out.println(iconProperties);
+        ResourceBundle myIconResources = ResourceBundle.getBundle(PATH_TO_ICON_BUNDLE.concat(iconProperties));
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
-        System.out.println(myIconResources.getString(ERROR_TAG));
         myExceptionDisplayer = new ExceptionDisplayer(myIconResources.getString(ERROR_TAG), errorCSS, myLanguageBundle);
-        SettingsBar addedSettings = new SettingsBar(e -> updateCSS(e), styleSheets, e -> updateLanguage(e), languages, myIconResources.getString(INFO_TAG));
+        SettingsBar addedSettings = new SettingsBar(e -> updateCSS(e), styleSheets, e -> updateLanguage(e), languages, PATH_TO_ICON_IMAGE.concat(myIconResources.getString(INFO_TAG)));
         myVBox.getChildren().add(addedSettings.getView());
 
         myFlowPane = new FlowPane();
@@ -55,7 +57,7 @@ public class LobbyView implements NodeViewInterface {
         for (int i = 0; i < generalInfo.size(); i++) {
             Map<String, String> tempGeneralInfo = generalInfo.get(i);
             List<File> tempFiles = files.get(i);
-
+            tempGeneralInfo.get(ICON_TAG);
             GameIcon tempIcon = new GameIcon(
                     tempGeneralInfo.get(ICON_TAG),
                     tempGeneralInfo.get(NAME_TAG),

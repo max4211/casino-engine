@@ -12,6 +12,7 @@ public class Icon implements NodeViewInterface {
 
     public Icon(String imageFile) {
         myIcon = new ImageView();
+        System.out.println(imageFile);
         Image myBackgroundImage = new Image(imageFile);
         myIcon.setImage(myBackgroundImage);
         myIcon.setFitHeight(ICON_SIZE);

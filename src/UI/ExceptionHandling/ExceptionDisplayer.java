@@ -12,7 +12,7 @@ public class ExceptionDisplayer {
     private LanguageBundle myLanguageBundle;
 
     private static final String PATH_TO_STYLESHEETS = "styleSheets/exceptions/";
-
+    private static final String PATH_TO_ICONS = "iconImages/exceptionIcons/";
     private static final String EXCEPTION_SHOWER_ID = "exception-dialogue";
 
     public ExceptionDisplayer(String icon, String cssFile, LanguageBundle languageBundle) {
@@ -29,7 +29,7 @@ public class ExceptionDisplayer {
 
     public void setStyle(String icon, String newStyleSheet) {
         myDisplay.getDialogPane().getStylesheets().add(PATH_TO_STYLESHEETS.concat(newStyleSheet));
-        Icon newIcon = new Icon(icon);
+        Icon newIcon = new Icon(PATH_TO_ICONS.concat(icon));
         myDisplay.getDialogPane().setGraphic(newIcon.getView());
     }
 

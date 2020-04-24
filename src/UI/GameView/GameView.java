@@ -21,6 +21,8 @@ import java.util.ResourceBundle;
 public class GameView implements GameViewInterface, NodeViewInterface {
 
     private static final String PATH_TO_STYLESHEETS = "styleSheets/game/";
+    private static final String PATH_TO_ICONS = "iconImages/gameIcons/";
+
     private static final String NO_ACTION_INPUT = "";
     private static final double NO_WAGER_INPUT = -1;
 
@@ -64,7 +66,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myWagerSelector = new WagerSelector(myLanguageBundle);
         myActionSelector = new ActionSelector(myLanguageBundle);
         //FIXME: constructor
-        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, "information.png");
+        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, PATH_TO_ICONS.concat("construction.png"));
 
         myVBox.getChildren().addAll(mySettingsBar.getView(), myBorderPane);
         myVBox.setVgrow(myBorderPane, Priority.ALWAYS);

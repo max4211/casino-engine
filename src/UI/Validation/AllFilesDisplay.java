@@ -34,14 +34,16 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
     private static final int WIDTH = 175;
     private static final double HALF_WIDTH = WIDTH / 2;
 
+    private static final String PATH_TO_ICON_BUNDLE = "iconBundles/fileTypes/";
 
 
-    public AllFilesDisplay(LanguageBundle languageBundle, String statusIconBundle, String FileIconProperties) {
+
+    public AllFilesDisplay(LanguageBundle languageBundle, String statusIconBundle, String fileIconProperties) {
         myVBox = new VBox();
         myVBox.setAlignment(Pos.CENTER);
         myVBox.setSpacing(VBOX_SPACING);
         myLanguageBundle = languageBundle;
-        ResourceBundle myFileIconBundle = ResourceBundle.getBundle(FileIconProperties);
+        ResourceBundle myFileIconBundle = ResourceBundle.getBundle(PATH_TO_ICON_BUNDLE.concat(fileIconProperties));
         String equalIcon = myFileIconBundle.getString(EQUAL_KEY);
         myFileDisplays = new HashMap<>();
         for (XMLFile fileType : XMLFile.values()) {
