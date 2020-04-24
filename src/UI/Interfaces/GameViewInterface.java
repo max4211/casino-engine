@@ -56,7 +56,7 @@ public interface GameViewInterface {
 
     void setWinner(int playeriD, int betID);
 
-    void renderPot(double initialPot, String potFile);
+    void renderPot(double initialPot);
 
     void setPot(double newPot);
 
