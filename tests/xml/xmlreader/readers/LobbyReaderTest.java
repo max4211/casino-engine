@@ -55,7 +55,7 @@ class LobbyReaderTest {
         LobbyReader reader = new LobbyReader(filename);
         List<String> result = reader.getLobbyStylesheet();
         List<String> expected = new ArrayList<String>(List.of("" +
-                "sunrise.css", "ice.css"));
+                "Sunrise.css", "Ice.css"));
         for (int i = 0; i < result.size(); i ++)
             assertEquals(expected.get(i), result.get(i));
     }

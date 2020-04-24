@@ -25,8 +25,9 @@ public class CardView implements NodeViewInterface, TaggableInterface {
     private static final Formatter myFormatter = new Formatter();
 
     // TODO: make this data driven!
-    private String cardFilePath = "cardImages/fancyCardDown.png";
-    private Image cardImage = new Image(cardFilePath);
+    private static final String PATH_TO_CARD_IMAGE = "cardImages/";
+    private static final String DEFAULT_IMAGE = "fancyCardDown.png";
+    private Image cardImage = new Image(PATH_TO_CARD_IMAGE.concat(DEFAULT_IMAGE));
 
     private static final int FULL_BACKGROUND_FILL = 1;
     private static final boolean FILL_AS_PERCENT = true;
@@ -46,6 +47,11 @@ public class CardView implements NodeViewInterface, TaggableInterface {
         myFormatter.formatFixedVBox(myCard, CARD_HEIGHT, CARD_WIDTH);
         createCardNodes(cardInfo.getValue(), cardInfo.getSuit());
         hideCard();
+    }
+
+    public CardView(CardTriplet cardInfo, String pathToCardImage) {
+        this(cardInfo);
+        System.out.println(hiddenBackgroundImage);
     }
 
     //TODO: way to make this unmodifiable?

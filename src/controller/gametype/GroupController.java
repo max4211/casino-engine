@@ -31,7 +31,7 @@ public class GroupController extends Controller {
 
     private void createPot() {
         this.myPot = new Pot();
-        this.myGameView.renderPot(this.myPot.getPot(), "pot.png");
+        this.myGameView.renderPot(this.myPot.getPot());
     }
 
     private void assignParams(Map<String, String> params) {

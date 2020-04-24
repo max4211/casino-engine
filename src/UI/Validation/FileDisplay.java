@@ -1,6 +1,6 @@
 package UI.Validation;
 
-import UI.Interfaces.LanguageUpdater;
+import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.NodeViewInterface;
 import UI.LanguageBundle;
 import UI.LobbyView.Icon;
@@ -13,8 +13,9 @@ import javafx.scene.layout.VBox;
 import java.util.ResourceBundle;
 
 // TODO: discuss with max whether they should have access to the whole bundle; not a big deal either way!
-public class FileDisplay implements NodeViewInterface, LanguageUpdater {
+public class FileDisplay implements NodeViewInterface, LanguageResponder {
 
+    private static final String PATH_TO_LANGUAGE = "languages/";
     private VBox myVBox;
     private HBox myHBox;
     private MutableIcon myStatusIcon;
@@ -24,6 +25,10 @@ public class FileDisplay implements NodeViewInterface, LanguageUpdater {
     private Label myFileTypeLabel;
     private LanguageBundle myLanguageBundle;
     private ResourceBundle myStatusIcons;
+
+    private static final String PATH_TO_STATUS_ICON_BUNDLE = "iconBundles/fileStatuses/";
+    private static final String PATH_TO_FILE_ICON_IMAGE = "iconImages/fileValidatorIcons/";
+    private static final String PATH_TO_STATIC_ICONS = "iconImages/fileStatusIcons/";
 
     public FileDisplay(String statusIconBundle, LanguageBundle languageBundle, XMLFile fileType, String fileIconName, String equalIconName) {
         myVBox = new VBox();
@@ -38,11 +43,11 @@ public class FileDisplay implements NodeViewInterface, LanguageUpdater {
         myFileTypeLabel.setAlignment(Pos.CENTER);
         myVBox.getChildren().add(myFileTypeLabel);
 
-        Icon myFileIcon = new Icon(fileIconName);
-        Icon myEqualIcon = new Icon(equalIconName);
+        Icon myFileIcon = new Icon(PATH_TO_FILE_ICON_IMAGE.concat(fileIconName));
+        Icon myEqualIcon = new Icon(PATH_TO_FILE_ICON_IMAGE.concat(equalIconName));
 
-        myStatusIcons = ResourceBundle.getBundle(statusIconBundle);
-        myStatusIcon = new MutableIcon(myStatusIcons.getString(FileStatus.EMPTY.name()));
+        myStatusIcons = ResourceBundle.getBundle(PATH_TO_STATUS_ICON_BUNDLE.concat(statusIconBundle));
+        myStatusIcon = new MutableIcon(PATH_TO_STATIC_ICONS.concat(myStatusIcons.getString(FileStatus.EMPTY.name())));
         myHBox.getChildren().addAll(myFileIcon.getView(), myEqualIcon.getView(), myStatusIcon.getView());
         myVBox.getChildren().add(myHBox);
     }
@@ -58,6 +63,6 @@ public class FileDisplay implements NodeViewInterface, LanguageUpdater {
     }
 
     public void updateStatusIcon(FileStatus newStatus) {
-        myStatusIcon.setIconImage(myStatusIcons.getString(newStatus.name()));
+        myStatusIcon.setIconImage(PATH_TO_STATIC_ICONS.concat(myStatusIcons.getString(newStatus.name())));
     }
 }

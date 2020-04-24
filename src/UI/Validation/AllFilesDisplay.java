@@ -1,8 +1,9 @@
 package UI.Validation;
 
 import UI.Interfaces.GameCaller;
-import UI.Interfaces.LanguageUpdater;
+import UI.Interfaces.LanguageResponder;
 import UI.LanguageBundle;
+import Utility.ScreenPosition;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,7 +15,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 // TODO: add path to bundles
-public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageUpdater {
+public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageResponder {
 
     private VBox myVBox;
     private Button myLaunchButton;
@@ -31,15 +32,18 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageUpdate
 
     private static final int HEIGHT = 375;
     private static final int WIDTH = 175;
-    private static final int STARTING_X = 300;
-    private static final int STARTING_Y = 500;
+    private static final double HALF_WIDTH = WIDTH / 2;
 
-    public AllFilesDisplay(LanguageBundle languageBundle, String statusIconBundle, String FileIconProperties) {
+    private static final String PATH_TO_ICON_BUNDLE = "iconBundles/fileTypes/";
+
+
+
+    public AllFilesDisplay(LanguageBundle languageBundle, String statusIconBundle, String fileIconProperties) {
         myVBox = new VBox();
         myVBox.setAlignment(Pos.CENTER);
         myVBox.setSpacing(VBOX_SPACING);
         myLanguageBundle = languageBundle;
-        ResourceBundle myFileIconBundle = ResourceBundle.getBundle(FileIconProperties);
+        ResourceBundle myFileIconBundle = ResourceBundle.getBundle(PATH_TO_ICON_BUNDLE.concat(fileIconProperties));
         String equalIcon = myFileIconBundle.getString(EQUAL_KEY);
         myFileDisplays = new HashMap<>();
         for (XMLFile fileType : XMLFile.values()) {
@@ -57,8 +61,8 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageUpdate
         Stage newStage = new Stage();
         Scene filesScene = new Scene(myVBox, WIDTH, HEIGHT);
         newStage.setScene(filesScene);
-        newStage.setX(STARTING_X);
-        newStage.setY(STARTING_Y);
+        newStage.setX(ScreenPosition.LEFT.getX() - HALF_WIDTH);
+        newStage.setY(ScreenPosition.LEFT.getY());
         newStage.show();
     }
 

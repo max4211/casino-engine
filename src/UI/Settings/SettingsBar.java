@@ -16,14 +16,12 @@ public class SettingsBar implements NodeViewInterface {
     private static final int ICON_INSETS = 10;
 
     //FIXME: formatting
-    public SettingsBar(Consumer<String> acceptCSS, List<String> allCSS, Consumer<String> acceptLanguage, List<String> allLanguages, String fileBuilderIcon, String helpIcon) {
+    public SettingsBar(Consumer<String> acceptCSS, List<String> allCSS, Consumer<String> acceptLanguage, List<String> allLanguages, String helpIcon) {
         myHBox = new HBox();
         myHBox.setId(CSS_ID);
 
         LanguagePicker myLanguagePicker = new LanguagePicker(allLanguages, acceptLanguage);
         myHBox.getChildren().add(myLanguagePicker.getView());
-        FileBuilderButton myFileBuilderButton = new FileBuilderButton(fileBuilderIcon);
-        myHBox.getChildren().add(myFileBuilderButton.getView());
         HelpButton myHelpButton = new HelpButton(helpIcon);
         myHBox.getChildren().add(myHelpButton.getView());
         StylePicker myStylePicker = new StylePicker(allCSS, acceptCSS);

@@ -53,7 +53,10 @@ public class LobbyConstructor {
         List<List<File>> myLobbyFiles = myLobbyReader.getFileTags();
         this.myWidth = myLobbyReader.getScreenWidth();
         this.myHeight = myLobbyReader.getScreenHeight();
-        return new LobbyView(myLobbyCSS, myLobbyLanguages, myErrorIcon, myErrorCSS, myLobbyInfo, myLobbyFiles);
+
+        //FIXME: changed to magic number to test
+        return new LobbyView(myLobbyCSS, myLobbyLanguages, "standardLobby", myErrorCSS, myLobbyInfo, myLobbyFiles);
+        //return new LobbyView(myLobbyCSS, myLobbyLanguages, myErrorIcon, myErrorCSS, myLobbyInfo, myLobbyFiles);
     }
 
     private boolean lobbyFileIsValid() {

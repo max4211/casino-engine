@@ -1,10 +1,9 @@
 package UI.ExceptionHandling;
 
 import UI.LanguageBundle;
+import UI.LobbyView.Icon;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class ExceptionDisplayer {
 
@@ -12,12 +11,14 @@ public class ExceptionDisplayer {
     private static final String ERROR_CONFIRMATION_KEY = "ErrorConfirmation";
     private LanguageBundle myLanguageBundle;
 
+    private static final String PATH_TO_STYLESHEETS = "styleSheets/exceptions/";
+    private static final String PATH_TO_ICONS = "iconImages/exceptionIcons/";
     private static final String EXCEPTION_SHOWER_ID = "exception-dialogue";
 
     public ExceptionDisplayer(String icon, String cssFile, LanguageBundle languageBundle) {
         myDisplay = new Alert(Alert.AlertType.WARNING);
         myDisplay.getDialogPane().setId(EXCEPTION_SHOWER_ID);
-        setStyleSheet(icon, cssFile);
+        setStyle(icon, cssFile);
         myLanguageBundle = languageBundle;
     }
 
@@ -26,11 +27,10 @@ public class ExceptionDisplayer {
         myDisplay.showAndWait();
     }
 
-    public void setStyleSheet(String icon, String newStyleSheet) {
-        myDisplay.getDialogPane().getStylesheets().add(newStyleSheet);
-        Image newIcon = new Image(icon);
-        ImageView newGraphic = new ImageView(newIcon);
-        myDisplay.getDialogPane().setGraphic(newGraphic);
+    public void setStyle(String icon, String newStyleSheet) {
+        myDisplay.getDialogPane().getStylesheets().add(PATH_TO_STYLESHEETS.concat(newStyleSheet));
+        Icon newIcon = new Icon(PATH_TO_ICONS.concat(icon));
+        myDisplay.getDialogPane().setGraphic(newIcon.getView());
     }
 
     private void updateLanguage() {

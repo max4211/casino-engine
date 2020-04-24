@@ -5,8 +5,6 @@ import UI.WebView.Browser;
 
 public class HelpButton extends Icon {
 
-    private static final int BROWSER_SIZE = 400;
-
     public HelpButton(String helpIconPath) {
         super(helpIconPath);
         myIcon.setOnMouseClicked(e -> {
@@ -17,6 +15,5 @@ public class HelpButton extends Icon {
                //FIXME: throw an error here
             }
         });
-
     }
 }
