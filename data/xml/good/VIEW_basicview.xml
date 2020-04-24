@@ -17,6 +17,6 @@
         <Stylesheet>Coral</Stylesheet>
     </Stylesheets>
     <Errors>
-        <ErrorStyleSheet>fire.css</ErrorStyleSheet>
+        <ErrorStyleSheet>Fire</ErrorStyleSheet>
     </Errors>
 </View>

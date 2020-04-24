@@ -12,7 +12,7 @@
         <Language>English</Language>
         <Language>Spanish</Language>
     </Languages>
-    <ErrorStylesheet>fire.css</ErrorStylesheet>
+    <ErrorStylesheet>Fire</ErrorStylesheet>
     <IconProperties>standardLobby</IconProperties>
     <Bundle>
         <Name>Blackjack</Name>
