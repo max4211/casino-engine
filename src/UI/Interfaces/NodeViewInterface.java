@@ -2,17 +2,8 @@ package UI.Interfaces;
 
 import javafx.scene.Node;
 
-public abstract class TaggedNodeView {
+public interface NodeViewInterface {
 
-    private Node myNode;
+    Node getView();
 
-    public TaggedNodeView() {
-        setID();
-    }
-
-    public abstract Node getView();
-
-    protected void setID() {
-        myNode.setId(myNode.getClass().toString());
-    }
 }
