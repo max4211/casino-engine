@@ -91,8 +91,13 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public void addBet(List<CardTriplet> handInfo, double wager, int playerID, int betID) {
-        getPlayerView(playerID).addBet(handInfo, wager, betID, myLanguageBundle);
+    public void addBet(List<CardTriplet> handInfo, double wager, String classification, int playerID, int betID) {
+        getPlayerView(playerID).addBet(handInfo, wager, classification, betID, myLanguageBundle);
+    }
+
+    @Override
+    public void addBet(double wager, int playerID, int betID) {
+        getPlayerView(playerID).addBet(wager, betID, myLanguageBundle);
     }
 
     @Override
@@ -201,8 +206,8 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myPotView.setPot(newPot);
     }
 
-    public void classifyHand(String classification, int betID) {
-        
+    public void classifyHand(String newClassification, int playerID, int betID) {
+        getPlayerView(playerID).updateClassification(betID, newClassification);
     }
 
     private PlayerView getPlayerView(int playerID) {

@@ -68,7 +68,7 @@ public class GroupController extends Controller {
         for (Player p: this.myTable.getPlayers()) {
             Bet b = new Bet(myAnte);
             p.placeBet(b);
-            this.myGameView.addBet(new ArrayList<>(), myAnte, p.getID(), b.getID());
+            this.myGameView.addBet(myAnte, p.getID(), b.getID());
             this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
     }

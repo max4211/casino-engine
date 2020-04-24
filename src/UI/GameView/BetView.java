@@ -7,13 +7,14 @@ import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.layout.VBox;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BetView implements NodeViewInterface, TaggableInterface {
 
     private VBox myView;
     private HandView myHand;
-    private WagerView myWager;
+    private BetInfo myInfo;
 
     private int myID;
 
@@ -24,9 +25,12 @@ public class BetView implements NodeViewInterface, TaggableInterface {
     private static final int EMPTY = 0;
     private int numberOfCards;
 
+    private static final List<CardTriplet> EMPTY_HAND = new ArrayList<>();
+    private static final String NO_CLASSIFICATION = "";
+
     private Formatter myFormatter;
 
-    public BetView(List<CardTriplet> hand, double wager, int id, LanguageBundle languageBundle) {
+    public BetView(List<CardTriplet> hand, double wager, String classification, int id, LanguageBundle languageBundle) {
         myView = new VBox();
         myFormatter = new Formatter();
         numberOfCards = hand.size();
@@ -38,14 +42,20 @@ public class BetView implements NodeViewInterface, TaggableInterface {
         myFormatter.formatFixedVBox(myView, HEIGHT, initialWidth);
 
         myHand = new HandView(hand);
-        myWager = new WagerView(wager, languageBundle);
+        myInfo = new BetInfo(wager, classification, languageBundle);
 
-        myView.getChildren().addAll(myHand.getView(), myWager.getView());
+        myView.getChildren().addAll(myHand.getView(), myInfo.getView());
     }
 
-    public void updateWager(double amount) {
-        myWager.updateWager(amount);
+    public BetView(double wager, int id, LanguageBundle languageBundle) {
+        this(EMPTY_HAND, wager, NO_CLASSIFICATION, id, languageBundle);
     }
+
+    public void updateWager(double newAmount) {
+        myInfo.updateWager(newAmount);
+    }
+
+    public void updateClassification(String newClassification) {myInfo.updateClassification(newClassification);}
 
     public void addCard(CardTriplet newCard) {
         numberOfCards++;
@@ -74,5 +84,6 @@ public class BetView implements NodeViewInterface, TaggableInterface {
         return myID == ID;
     }
 
-    public void updateLanguage() {myWager.updateLanguage();}
+    public void updateLanguage() {
+        myInfo.updateLanguage();}
 }

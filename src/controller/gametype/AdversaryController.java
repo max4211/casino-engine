@@ -60,7 +60,7 @@ public class AdversaryController extends Controller {
             double max = Math.min(this.myTable.getTableMax(), p.getBankroll());
             double wager = this.myGameView.selectWager(min, max);
             Bet b = this.myTable.placeEntryBet(p.getID(), this.myEntryBet, wager);
-            this.myGameView.addBet(new ArrayList<>(), wager, p.getID(), b.getID());
+            this.myGameView.addBet(wager, p.getID(), b.getID());
             this.myGameView.setBankRoll(p.getBankroll(), p.getID());
         }
     }

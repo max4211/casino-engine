@@ -20,7 +20,9 @@ public interface GameViewInterface {
 
     void hideCard(int playerID, int betID, int cardID);
 
-    void addBet(List<CardTriplet> handInfo, double wager, int playerID, int betID);
+    void addBet(List<CardTriplet> handInfo, double wager, String classification, int playerID, int betID);
+
+    void addBet(double wager, int playerID, int betID);
 
     void removeBet(int playerId, int betId);
 
@@ -48,7 +50,7 @@ public interface GameViewInterface {
 
     void displayText(String s);
 
-    void classifyHand(String classification, int betID);
+    void classifyHand(String classification, int playerID, int betID);
 
     void setLoser(int betID);
 

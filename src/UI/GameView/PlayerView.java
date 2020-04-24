@@ -19,6 +19,8 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
 
     private int myID;
 
+
+
     public PlayerView(String name, int ID, double bankroll, LanguageBundle languageBundle) {
         myView = new HBox();
         myFormatter = new Formatter();
@@ -29,8 +31,15 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
         myView.getChildren().add(myInfo.getView());
     }
 
-    public void addBet(List<CardTriplet> hand, double wager, int betID, LanguageBundle languageBundle) {
-        BetView addedBetView = new BetView(hand, wager, betID, languageBundle);
+    public void addBet(List<CardTriplet> hand, double wager, String classification, int betID, LanguageBundle languageBundle) {
+        displayBetView(new BetView(hand, wager, classification, betID, languageBundle));
+    }
+
+    public void addBet(double wager, int betID, LanguageBundle languageBundle) {
+        displayBetView(new BetView(wager, betID, languageBundle));
+    }
+
+    private void displayBetView(BetView addedBetView) {
         myBets.add(addedBetView);
         myView.getChildren().add(addedBetView.getView());
     }
@@ -77,6 +86,10 @@ public class PlayerView implements NodeViewInterface, TaggableInterface {
 
     public void hideCard(int betID, int cardID) {
         getBet(betID).hideCard(cardID);
+    }
+
+    public void updateClassification(int betID, String newClassification) {
+        getBet(betID).updateClassification(newClassification);
     }
 
     public void updateLanguage() {
