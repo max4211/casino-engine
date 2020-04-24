@@ -3,7 +3,7 @@ package UI.GameView;
 import UI.ExceptionHandling.ExceptionDisplayer;
 import UI.Interfaces.GameCaller;
 import UI.Interfaces.GameViewInterface;
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 import UI.LanguageBundle;
 import UI.Selectors.ActionSelector;
 import UI.Selectors.SelectorType;
@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class GameView implements GameViewInterface, NodeViewInterface {
+public class GameView implements GameViewInterface, TaggedNode {
 
     private static final String PATH_TO_STYLESHEETS = "styleSheets/game/";
     private static final String PATH_TO_ICONS = "iconImages/gameIcons/";

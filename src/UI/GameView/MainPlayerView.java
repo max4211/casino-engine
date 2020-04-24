@@ -1,6 +1,6 @@
 package UI.GameView;
 
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 import UI.Interfaces.TaggableInterface;
 import UI.LanguageBundle;
 import UI.Selectors.SelectorReadyInput;
@@ -9,7 +9,7 @@ import Utility.Formatter;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
-public class MainPlayerView implements NodeViewInterface, TaggableInterface {
+public class MainPlayerView implements TaggedNode, TaggableInterface {
 
     private PlayerView myPlayer;
     private HBox myView;

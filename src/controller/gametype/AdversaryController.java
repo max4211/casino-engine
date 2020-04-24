@@ -96,8 +96,7 @@ public class AdversaryController extends Controller {
                 classifyHand(b);
                 addCardToPlayer(p);
                 this.myGameView.setWager(b.getWager(), p.getID(), b.getID());
-                this.myGameView.setBankRoll(p.getBankroll(), p.getID());
-                this.myGameView.classifyHand(b.getHand().getClassification().getName(), p.getID(), b.getID());
+                this.myGameView.setBankRoll(p.getBankroll(), p.getID());this.myGameView.classifyHand(b.getHand().getClassification().getName(), p.getID(), b.getID());
             } catch (ReflectionException | ActionException e) {
                 this.myGameView.displayException(e);
             }

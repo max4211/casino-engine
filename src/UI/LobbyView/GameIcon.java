@@ -1,6 +1,6 @@
 package UI.LobbyView;
 
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 import UI.LanguageBundle;
 import UI.Validation.AllFilesDisplay;
 import Utility.Formatter;
@@ -13,7 +13,7 @@ import java.io.File;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class GameIcon implements NodeViewInterface {
+public class GameIcon implements TaggedNode {
 
     private VBox myGameIcon;
     private Formatter myFormatter;

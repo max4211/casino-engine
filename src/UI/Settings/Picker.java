@@ -1,13 +1,13 @@
 package UI.Settings;
 
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public abstract class Picker implements NodeViewInterface {
+public abstract class Picker implements TaggedNode {
 
     protected ComboBox<String> myChoices;
     private static final int DEFAULT_INDEX = 0;

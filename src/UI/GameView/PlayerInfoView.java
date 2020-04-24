@@ -1,6 +1,6 @@
 package UI.GameView;
 
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 import UI.LanguageBundle;
 import Utility.Formatter;
 import javafx.geometry.Pos;
@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class PlayerInfoView implements NodeViewInterface {
+public class PlayerInfoView implements TaggedNode {
 
     private VBox myDetailsBox;
     private HBox myNameBox;

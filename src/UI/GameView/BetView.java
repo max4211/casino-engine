@@ -1,7 +1,7 @@
 package UI.GameView;
 
 import UI.Interfaces.TaggableInterface;
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 import UI.LanguageBundle;
 import Utility.CardTriplet;
 import Utility.Formatter;
@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BetView implements NodeViewInterface, TaggableInterface {
+public class BetView implements TaggedNode, TaggableInterface {
 
     private VBox myView;
     private HandView myHand;

@@ -1,6 +1,6 @@
 package UI.Settings;
 
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class SettingsBar implements NodeViewInterface {
+public class SettingsBar implements TaggedNode {
 
     private HBox myHBox;
     private static final String CSS_ID = "settings-bar";

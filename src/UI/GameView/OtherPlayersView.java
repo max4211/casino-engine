@@ -1,6 +1,6 @@
 package UI.GameView;
 
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 import UI.LanguageBundle;
 import Utility.Formatter;
 import javafx.geometry.Pos;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class
 
-OtherPlayersView implements NodeViewInterface {
+OtherPlayersView implements TaggedNode {
 
     private VBox myPlayers;
     private Formatter myFormatter;

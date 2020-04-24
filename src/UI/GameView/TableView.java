@@ -2,9 +2,9 @@ package UI.GameView;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 
-public class TableView implements NodeViewInterface {
+public class TableView implements TaggedNode {
 
     private static final String FOLDER = "tableImages/";
     private ImageView myTable;

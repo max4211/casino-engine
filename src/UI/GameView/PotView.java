@@ -1,12 +1,12 @@
 package UI.GameView;
 
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 import UI.LobbyView.Icon;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class PotView implements NodeViewInterface {
+public class PotView implements TaggedNode {
 
     private VBox myVBox;
     private Label myPotLabel;

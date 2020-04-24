@@ -1,14 +1,14 @@
 package UI.GameView;
 
 import UI.Interfaces.LanguageResponder;
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 import UI.LanguageBundle;
 import Utility.Formatter;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class BetInfo implements NodeViewInterface, LanguageResponder {
+public class BetInfo implements TaggedNode, LanguageResponder {
 
     private VBox myVBox;
     private HBox myWagerBox;

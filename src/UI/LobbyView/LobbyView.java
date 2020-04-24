@@ -1,7 +1,7 @@
 package UI.LobbyView;
 
 import UI.ExceptionHandling.ExceptionDisplayer;
-import UI.Interfaces.NodeViewInterface;
+import UI.Interfaces.TaggedNode;
 import UI.LanguageBundle;
 import UI.Settings.SettingsBar;
 import javafx.geometry.Pos;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class LobbyView implements NodeViewInterface {
+public class LobbyView implements TaggedNode {
 
     VBox myVBox;
     FlowPane myFlowPane;
