@@ -23,6 +23,8 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
 
     private static final int VBOX_SPACING = 8;
 
+    private Stage myStage;
+
     private LanguageBundle myLanguageBundle;
     private static final String LAUNCH_GAME_KEY = "LaunchGame";
     private static final boolean LAUNCH_BUTTON_DISABLE = true;
@@ -58,12 +60,12 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
         updateLanguage();
         myVBox.getChildren().add(myLaunchButton);
 
-        Stage newStage = new Stage();
+        myStage = new Stage();
         Scene filesScene = new Scene(myVBox, WIDTH, HEIGHT);
-        newStage.setScene(filesScene);
-        newStage.setX(ScreenPosition.LEFT.getX() - HALF_WIDTH);
-        newStage.setY(ScreenPosition.LEFT.getY());
-        newStage.show();
+        myStage.setScene(filesScene);
+        myStage.setX(ScreenPosition.LEFT.getX() - HALF_WIDTH);
+        myStage.setY(ScreenPosition.LEFT.getY());
+        myStage.show();
     }
 
     @Override
@@ -75,6 +77,7 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
     public void enableGameButton(GameCaller initializer) {
         myLaunchButton.setDisable(LAUNCH_BUTTON_ENABLE);
         myLaunchButton.setOnAction(e -> {
+            myStage.close();
             initializer.startNewGame();
         });
     }
