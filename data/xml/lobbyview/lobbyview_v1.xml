@@ -19,11 +19,11 @@
         <Type>Standard</Type>
         <Icon>Black_Jack-512.png</Icon>
         <Files>
-            <Deck>data/xml/deck/standard.xml</Deck>
-            <Game>data/xml/game/blackjackGame_v2.xml</Game>
-            <Hands>data/xml/hands/hands.xml</Hands>
-            <Players>data/xml/players/3players.xml</Players>
-            <View>data/xml/view/view.xml</View>
+            <Deck>data/xml/good/DECK_standard.xml</Deck>
+            <Game>data/xml/good/GAME_blackjacksimple.xml</Game>
+            <Hands>data/xml/good/HANDS_blackjack.xml</Hands>
+            <Players>data/xml/good/PLAYERS_three.xml</Players>
+            <View>data/xml/good/VIEW_basicview.xml</View>
         </Files>
     </Bundle>
     <Bundle>
@@ -31,11 +31,11 @@
         <Type>Standard</Type>
         <Icon>poker-cards.png</Icon>
         <Files>
-            <Deck>data/xml/deck/standard.xml</Deck>
-            <Game>data/xml/game/poker.xml</Game>
-            <Hands>data/xml/hands/pokerHands.xml</Hands>
-            <Players>data/xml/players/3players.xml</Players>
-            <View>data/xml/view/view.xml</View>
+            <Deck>data/xml/good/DECK_standard.xml</Deck>
+            <Game>data/xml/good/GAME_pokerfull.xml</Game>
+            <Hands>data/xml/good/HANDS_poker.xml</Hands>
+            <Players>data/xml/good/PLAYERS_three.xml</Players>
+            <View>data/xml/good/VIEW_basicview.xml</View>
         </Files>
     </Bundle>
     <Bundle>
