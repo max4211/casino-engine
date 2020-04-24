@@ -94,7 +94,6 @@ public class AdversaryController extends Controller {
             try {
                 Bet b = p.getNextBet();
                 classifyHand(b);
-                this.myGameView.classifyHand(b.getHand().getClassification().getName(), p.getID(), b.getID());
                 IndividualAction a = this.myFactory.createIndividualAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 a.execute(p, b, this.myTable.getDealCardMethod());
                 addCardToPlayer(p);

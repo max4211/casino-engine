@@ -117,6 +117,7 @@ public abstract class Controller implements ControllerInterface {
         for (Bet b: p.getBets()) {
             for (Card c: b.getHand().getCards()) {
                 this.myGameView.addCardIfAbsent(Generator.createCardTriplet(c), p.getID(), b.getID());
+                this.myCardshow.show(p);
             }
         }
     }
@@ -159,6 +160,8 @@ public abstract class Controller implements ControllerInterface {
         this.myGameView.setWager(b.getWager(), pID, b.getID());
         this.myGameView.setBankRoll(pBankroll, pID);
         this.myGameView.classifyHand(b.getHand().getClassification().getName(), pID, b.getID());
+        if (b.getHand().getOutcome().equals(HandOutcome.LOSS))
+            this.myGameView.setLoser(pID, b.getID());
     }
 
     protected abstract void evaluateBets();
