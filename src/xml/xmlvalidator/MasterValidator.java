@@ -45,19 +45,10 @@ public class MasterValidator {
     private void validateFiles(List<File> fileList) {
         tryFileAdd(fileList);
         while (!(this.myXMLBundle.isComplete())) {
-//            printMissingFiles();
             MultipleXMLChooser chooser = new MultipleXMLChooser();
             tryFileAdd(chooser.getFileList());
         }
-        System.out.println("all files validated, attempting to create game");
         this.myCaller.accept(this::createGame);
-    }
-
-    private void printMissingFiles() {
-        System.out.println("MISSING FILES IN MASTER VALIDATOR: \n");
-        Set<XMLFile> set = this.myXMLBundle.getMissingFiles();
-        for (XMLFile file: set)
-            System.out.printf("%s\n", file.toString());
     }
 
     private void tryFileAdd(List<File> fileList) {

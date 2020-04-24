@@ -31,7 +31,6 @@ public class XMLBundle implements XMLBundleInterface {
     @Override
     public void addFile(File file, XMLFile tag) {
         this.myXMLFiles.put(tag, file);
-        System.out.printf("Successfully added %s file to XMLBundle\n", tag.toString());
     }
 
     @Override

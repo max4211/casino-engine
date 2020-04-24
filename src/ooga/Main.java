@@ -15,8 +15,7 @@ import java.util.Map;
 
 public class Main extends Application {
 
-    private static final String PATH_TO_LOBBY_XML = "data/xml/lobbyview/";
-    private static final String LOBBY_XML_FILE = "lobbyview_v1.xml";
+    private static final String LOBBY_XML_FILE = "data/xml/lobbyview/lobbyview_v3.xml";
     private static final int EXIT_STATUS = 0;
     public static void main(String[] args) {
         launch(args);
@@ -24,17 +23,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        LobbyView myLobbyView;
         try {
-            LobbyReader myLobbyReader = new LobbyReader(PATH_TO_LOBBY_XML + LOBBY_XML_FILE);
-            List<String> myLobbyCSS = myLobbyReader.getLobbyStylesheet();
-            List<String> myLobbyLanguages = myLobbyReader.getLobbyLanguages();
-            String myErrorCSS = myLobbyReader.getErrorStylesheet();
-            String myErrorIcon = myLobbyReader.getErrorIcon();
-            List<Map<String, String>> myLobbyInfo = myLobbyReader.getBundleArguments();
-            List<List<File>> myLobbyFiles = myLobbyReader.getFileTags();
-            myLobbyView = new LobbyView(myLobbyCSS, myLobbyLanguages, myErrorIcon, myErrorCSS, myLobbyInfo, myLobbyFiles);
-            Scene myScene = new Scene(myLobbyView.getView(), myLobbyReader.getScreenWidth(), myLobbyReader.getScreenHeight());
+            LobbyConstructor myLobbyConstructor = new LobbyConstructor(LOBBY_XML_FILE);
+            LobbyView myLobbyView = myLobbyConstructor.getLobbyView();
+            int width = myLobbyConstructor.getWidth();
+            int height = myLobbyConstructor.getHeight();
+            Scene myScene = new Scene(myLobbyView.getView(), width, height);
             primaryStage.setScene(myScene);
             primaryStage.show();
         } catch (IOException | SAXException | ParserConfigurationException e) {
