@@ -52,6 +52,8 @@ public class GroupController extends Controller {
             promptForActions();
         }
         this.myCardshow.showAllCards();
+        evaluateBets();
+        updateWinnersLoser();
         computePayoffs();
         showGoals();
         updateBankrolls();
@@ -113,7 +115,6 @@ public class GroupController extends Controller {
     @Override
     protected void computePayoffs() {
         List<Bet> allBets = createListOfBets();
-        this.myBetEvaluator.evaluateBets(allBets);
         String summary = "";
         for (Player p: this.myTable.getPlayers()) {
             for (Bet b: p.getBets()) {
@@ -135,6 +136,12 @@ public class GroupController extends Controller {
         if (b.getHand().isLoser()) {
             b.setGameActive(false);
         }
+    }
+
+    @Override
+    protected void evaluateBets() {
+        List<Bet> allBets = createListOfBets();
+        this.myBetEvaluator.evaluateBets(allBets);
     }
 
     private List<Bet> createListOfBets() {

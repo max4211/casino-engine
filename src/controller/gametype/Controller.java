@@ -18,6 +18,7 @@ import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.evaluator.bet.BetEvaluator;
 import engine.evaluator.handclassifier.HandClassifier;
+import engine.hand.HandOutcome;
 import engine.player.Player;
 import engine.table.Table;
 import exceptions.ReflectionException;
@@ -135,14 +136,12 @@ public abstract class Controller implements ControllerInterface {
         }
     }
 
-    //TODO add in gameview method to show communal cards
     protected void updateCommunalCards() {
         List<Card> communalCards = this.myTable.getCommunalCards();
         List<CardTriplet> tripletList = Generator.createTripletList(communalCards);
         this.myGameView.renderCommonCards(tripletList);
     }
 
-    //TODO parametrize common card show
     protected void showCommonCards() {
         List<Card> communalCards = this.myTable.getCommunalCards();
         for (Card c: communalCards)
@@ -156,9 +155,30 @@ public abstract class Controller implements ControllerInterface {
         }
     }
 
-    // TODO - implement goal show
+    protected abstract void evaluateBets();
+
     protected void showGoals() {
         this.myGameView.displayText(this.myGoal.evaluate());
+    }
+
+    protected void updateWinnersLoser() {
+        for (Player p: this.myTable.getPlayers()) {
+            for (Bet b: p.getBets()) {
+                HandOutcome outcome = b.getHand().getOutcome();
+                updateVisualOutcome(p.getID(), b.getID(), outcome, p.getName());
+            }
+        }
+    }
+
+    private void updateVisualOutcome(int pID, int bID, HandOutcome outcome, String name) {
+        if (outcome.equals(HandOutcome.WIN)) {
+            this.myGameView.setWinner(pID, bID);
+            System.out.printf("In Controller, setting %s as winner\n", name);
+        } else if (outcome.equals(HandOutcome.LOSS)) {
+            this.myGameView.setLoser(pID, bID);
+            System.out.printf("In Controller, setting %s as loser\n", name);
+        }
+
     }
 
 }
