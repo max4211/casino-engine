@@ -85,5 +85,14 @@ public class BetView implements NodeViewInterface, TaggableInterface {
     }
 
     public void updateLanguage() {
-        myInfo.updateLanguage();}
+        myInfo.updateLanguage();
+    }
+
+    public void setLoser() {
+        myInfo.setLoser();
+    }
+
+    public void setWinner() {
+        myInfo.setWinner();
+    }
 }

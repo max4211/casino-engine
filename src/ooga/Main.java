@@ -5,13 +5,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
-import xml.xmlreader.readers.LobbyReader;
 
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 public class Main extends Application {
 

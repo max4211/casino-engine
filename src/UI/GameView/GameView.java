@@ -191,8 +191,15 @@ public class GameView implements GameViewInterface, NodeViewInterface {
     }
 
     @Override
-    public void setLoser(int betID) {
+    public void setLoser(int playerID, int betID) {
+        System.out.println("d");
+        getPlayerView(playerID).setLoser(betID);
+    }
 
+    @Override
+    public void setWinner(int playeriD, int betID) {
+        System.out.println("e");
+        getPlayerView(playeriD).setWinner(betID);
     }
 
     @Override
@@ -206,6 +213,7 @@ public class GameView implements GameViewInterface, NodeViewInterface {
         myPotView.setPot(newPot);
     }
 
+    @Override
     public void classifyHand(String newClassification, int playerID, int betID) {
         getPlayerView(playerID).updateClassification(betID, newClassification);
     }
