@@ -5,10 +5,6 @@ import engine.hand.PlayerHand;
 
 public class HandEvaluator implements HandEvaluatorInterface {
 
-    public HandEvaluator() {
-
-    }
-
     @Override
     public int compare(PlayerHand playerHand1, PlayerHand playerHand2) {
         if (playerHand1.isLoser() && !playerHand2.isLoser()) {

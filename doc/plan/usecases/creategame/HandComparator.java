@@ -1,9 +1,5 @@
 public class HandComparator implements HandEvaluatorInterface {
 
-    public HandComparator() {
-
-    }
-
     /**
      * Compares hands, returns an integer value of which is greater
      * @param hand1
