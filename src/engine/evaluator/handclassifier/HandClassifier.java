@@ -56,13 +56,8 @@ public class HandClassifier implements HandClassifierInterface {
             HandBundle bundle =  this.myWinningHands.get(rank);
             String s = bundle.getName();
             try {
-                checkAllCombinations(cards, bundle);
-                Hand hand = this.myHandFactory.createHand(bundle, cards);
-                if (hand.evaluate()) {
-                    // TODO - update power
-                    h.classifyHand(new ClassifiedHand(bundle, rank, hand.getPower()));
+                if (checkAllCombinations(cards, bundle, h, rank))
                     return;
-                }
             } catch (ReflectionException e) {
                 System.out.println("could not reflect on winning hand");
             }
@@ -71,8 +66,22 @@ public class HandClassifier implements HandClassifierInterface {
 
     // TODO - try to make best hand out of best cards
     // 7 choose 5 possible hands (21 cases, not too bad)
-    private void checkAllCombinations(List<Card> cards, HandBundle bundle) {
-
+    private boolean checkAllCombinations(List<Card> cards, HandBundle bundle, PlayerHand h, int rank) {
+        Combinations combination = new Combinations(cards, this.myCardsInHand);
+        while (combination.hasNext()) {
+            List<Card> list = combination.next();
+            try {
+                Hand hand = this.myHandFactory.createHand(bundle, list);
+                if (hand.evaluate()) {
+                    // TODO - update power
+                    h.classifyHand(new ClassifiedHand(bundle, rank, hand.getPower()));
+                    return true;
+                }
+            } catch (ReflectionException e) {
+                System.out.println("could not reflect on winning hand");
+            }
+        }
+        return false;
     }
 
 }

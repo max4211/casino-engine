@@ -13,18 +13,24 @@ class CombinationsTest {
     @Test
     void testCombos() {
         List<Card> cards = new ArrayList<Card>(List.of(
+                new Card("hearts", 1),
+                new Card("spades", 2),
+                new Card("diamonds", 3),
                 new Card("hearts", 4),
-                new Card("spades", 8),
-                new Card("diamonds", 12),
-                new Card("hearts", -1),
-                new Card("hearts", 3),
+                new Card("hearts", 5),
                 new Card("spades", 6),
-                new Card("clubs", 9)
+                new Card("clubs", 7)
         ));
         int cardsInHand = 5;
         Combinations combinations = new Combinations(cards, cardsInHand);
         int expected = 21;
         assertEquals(expected, combinations.size());
+        while (combinations.hasNext()) {
+            List<Card> list = combinations.next();
+            System.out.println("SIZE: " + list.size() + " " + list);
+            assertEquals(cardsInHand, list.size());
+        }
+
     }
 
 }

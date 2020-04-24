@@ -11,7 +11,7 @@ import java.util.List;
  * @author Max Smith
  * @author Devesh Agrawal
  */
-public class Combinations implements Iterator {
+public class Combinations implements Iterator<List<Card>> {
 
     private static final int ZERO = 0;
 
@@ -29,17 +29,19 @@ public class Combinations implements Iterator {
         generateCombinations(data, 0, cards.size(), ZERO);
     }
 
+    // TODO - index == this.myCardsInHand - 1 gives repeats but correct sized hands (good enough?)
     private void generateCombinations(List<Card> data, int start, int end, int index) {
         List<Card> list = new ArrayList<>(data);
-        if (index == this.myCardsInHand) {
-            this.myCombinations.add(data);
-            printCombo(data);
+        if (index == this.myCardsInHand || list.size() == this.myCardsInHand) {
+            this.myCombinations.add(list);
+//            printCombo(data);
             return;
         }
 
-        for (int i = start; i < end && end - i + 1 >= this.myCardsInHand - index; i++) {
+        for (int i = start; (i < end) && (end - i + 1 >= this.myCardsInHand - index); i++) {
             list.add(index, this.myCards.get(i));
             generateCombinations(list, i + 1, end, index + 1);
+            list.remove(index);
         }
     }
 
