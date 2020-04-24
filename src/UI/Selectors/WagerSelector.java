@@ -25,7 +25,6 @@ public class WagerSelector {
     private static final String SELECTOR_TEXTINPUT_CSS_ID = "wager--text-input";
 
     private static final String WAGER_INPUT_REGEX = "^[0-9]*\\.?[0-9]*$";
-    private static final Double DEFAULT_WAGER = 0.0;
 
     public WagerSelector(LanguageBundle languageBundle) {
         myLanguageBundle = languageBundle;
@@ -75,7 +74,7 @@ public class WagerSelector {
             return null;
         };
 
-        betAmount.getEditor().setTextFormatter((new TextFormatter<Double>(new DoubleStringConverter(), DEFAULT_WAGER, doubleFilter)));
+        betAmount.getEditor().setTextFormatter((new TextFormatter<Double>(new DoubleStringConverter(), minBet, doubleFilter)));
         return betAmount.showAndWait();
     }
 }

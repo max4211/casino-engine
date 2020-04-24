@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 public class GameView implements GameViewInterface, TaggedNode {
 
     private static final String PATH_TO_STYLESHEETS = "styleSheets/game/";
+    private static final String PATH_TO_ICON_BUNDLE = "iconBundles/gameBundles/";
     private static final String PATH_TO_ICONS = "iconImages/gameIcons/";
 
     private static final String NO_ACTION_INPUT = "";
@@ -78,7 +79,7 @@ public class GameView implements GameViewInterface, TaggedNode {
         myVBox.setPrefWidth(width);
         myVBox.setPrefHeight(height);
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
-        myIconBundle = ResourceBundle.getBundle(iconImages);
+        myIconBundle = ResourceBundle.getBundle(PATH_TO_ICON_BUNDLE.concat(iconImages));
         myBorderPane = new BorderPane();
         myOtherPlayers = new OtherPlayersView();
         myBorderPane.setLeft(myOtherPlayers.getView());
@@ -87,7 +88,7 @@ public class GameView implements GameViewInterface, TaggedNode {
         myExceptionDisplayer = new ExceptionDisplayer(myIconBundle.getString(EXCEPTION_KEY), exceptionCSS, myLanguageBundle);
         myWagerSelector = new WagerSelector(myLanguageBundle);
         myActionSelector = new ActionSelector(myLanguageBundle);
-        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, myIconBundle.getString(INFO_KEY));
+        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, PATH_TO_ICONS.concat(myIconBundle.getString(INFO_KEY)));
 
         myVBox.getChildren().addAll(mySettingsBar.getView(), myBorderPane);
         myVBox.setVgrow(myBorderPane, Priority.ALWAYS);
