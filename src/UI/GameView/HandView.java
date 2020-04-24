@@ -15,13 +15,13 @@ public class HandView implements StylizedNode {
     private Formatter myFormatter = new Formatter();
 
 
-    public HandView(List<CardTriplet> allCards) {
+    public HandView(List<CardTriplet> allCards, String cardImage) {
         myHand = new HBox();
         myFormatter.formatUnfixedCenter(myHand);
         myCards = new ArrayList<>();
 
         for (CardTriplet cardInfo : allCards) {
-            CardView tempCardView = new CardView(cardInfo);
+            CardView tempCardView = new CardView(cardInfo, cardImage);
             myCards.add(tempCardView);
             myHand.getChildren().add(tempCardView.getView());
         }
@@ -49,8 +49,8 @@ public class HandView implements StylizedNode {
      *
      * @param newCard
      */
-    public void addCard(CardTriplet newCard) {
-        CardView addedCardView = new CardView(newCard);
+    public void addCard(CardTriplet newCard, String cardImage) {
+        CardView addedCardView = new CardView(newCard, cardImage);
         myCards.add(addedCardView);
         myHand.getChildren().add(addedCardView.getView());
     }

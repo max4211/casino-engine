@@ -49,6 +49,7 @@ public class GameView implements GameViewInterface, StylizedNode {
     private static final String EXCEPTION_KEY = "Exception";
     private static final String PLAYER_KEY = "Player";
     private static final String POT_KEY = "Pot";
+    private static final String HIDDEN_CARD_KEY = "HiddenCard";
 
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
@@ -79,12 +80,12 @@ public class GameView implements GameViewInterface, StylizedNode {
 
     @Override
     public void addCardIfAbsent(CardTriplet cardInfo, int playerID, int betID) {
-        getPlayerView(playerID).addCardIfAbsent(cardInfo, betID);
+        getPlayerView(playerID).addCardIfAbsent(cardInfo, betID, myIconBundle.getString(HIDDEN_CARD_KEY));
     }
 
     @Override
     public void renderCommonCards(List<CardTriplet> hand) {
-        myCommons = new HandView(hand);
+        myCommons = new HandView(hand, myIconBundle.getString(HIDDEN_CARD_KEY));
         myBorderPane.setCenter(myCommons.getView());
     }
 
@@ -105,7 +106,7 @@ public class GameView implements GameViewInterface, StylizedNode {
 
     @Override
     public void addBet(List<CardTriplet> handInfo, double wager, String classification, int playerID, int betID) {
-        getPlayerView(playerID).addBet(handInfo, wager, classification, betID, myLanguageBundle);
+        getPlayerView(playerID).addBet(handInfo, wager, classification, betID, myLanguageBundle, myIconBundle.getString(HIDDEN_CARD_KEY));
     }
 
     @Override
@@ -146,12 +147,12 @@ public class GameView implements GameViewInterface, StylizedNode {
 
     @Override
     public void addAdversaryCard(CardTriplet cardInfo) {
-        myAdversary.addCard(cardInfo);
+        myAdversary.addCard(cardInfo, myIconBundle.getString(HIDDEN_CARD_KEY));
     }
 
     @Override
     public void renderAdversary(List<CardTriplet> hand) {
-        myAdversary = new HandView(hand);
+        myAdversary = new HandView(hand, myIconBundle.getString(HIDDEN_CARD_KEY));
         myBorderPane.setTop(myAdversary.getView());
     }
 

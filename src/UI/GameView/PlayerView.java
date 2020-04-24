@@ -31,8 +31,8 @@ public class PlayerView implements StylizedNode, TaggableNode {
         myView.getChildren().add(myInfo.getView());
     }
 
-    public void addBet(List<CardTriplet> hand, double wager, String classification, int betID, LanguageBundle languageBundle) {
-        displayBetView(new BetView(hand, wager, classification, betID, languageBundle));
+    public void addBet(List<CardTriplet> hand, double wager, String classification, int betID, LanguageBundle languageBundle, String cardImage) {
+        displayBetView(new BetView(hand, wager, classification, betID, languageBundle, cardImage));
     }
 
     public void addBet(double wager, int betID, LanguageBundle languageBundle) {
@@ -62,8 +62,8 @@ public class PlayerView implements StylizedNode, TaggableNode {
         return myID == ID;
     }
 
-    public void addCardIfAbsent(CardTriplet cardInfo, int betID) {
-        getBet(betID).addCardIfAbsent(cardInfo);
+    public void addCardIfAbsent(CardTriplet cardInfo, int betID, String cardImage) {
+        getBet(betID).addCardIfAbsent(cardInfo, cardImage);
     }
 
     public void updateWager(int betID, double newWager) {getBet(betID).updateWager(newWager);}

@@ -24,34 +24,29 @@ public class CardView implements StylizedNode, TaggableNode {
     private static final double CORNER_RADIUS = 5;
     private static final Formatter myFormatter = new Formatter();
 
-    // TODO: make this data driven!
-    private static final String PATH_TO_CARD_IMAGE = "cardImages/";
-    private static final String DEFAULT_IMAGE = "fancyCardDown.png";
-    private Image cardImage = new Image(PATH_TO_CARD_IMAGE.concat(DEFAULT_IMAGE));
+    private static final String PATH_TO_CARD_IMAGE = "iconImages/gameIcons/";
 
     private static final int FULL_BACKGROUND_FILL = 1;
     private static final boolean FILL_AS_PERCENT = true;
     private static final boolean BACKGROUNDFILL_CONTAIN = false;
     private static final boolean BACKGROUNDFILL_COVER = false;
     private static final BackgroundSize FULL_BACKGROUND_SIZE = new BackgroundSize(FULL_BACKGROUND_FILL, FULL_BACKGROUND_FILL, FILL_AS_PERCENT, FILL_AS_PERCENT, BACKGROUNDFILL_CONTAIN, BACKGROUNDFILL_COVER);
-    private BackgroundImage hiddenBackgroundImage = new BackgroundImage(cardImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, FULL_BACKGROUND_SIZE);
+    private BackgroundImage hiddenBackgroundImage;
 
     // TODO: make this data driven!
     private static final Color showingColor = Color.web("FF6464");
-    private static final String CARD_VIEW_CSS_ID = "card-view";
 
-    public CardView(CardTriplet cardInfo) {
+
+    public CardView(CardTriplet cardInfo, String cardImage) {
         myCard = new VBox();
-        myCard.setId(CARD_VIEW_CSS_ID);
+        StylizedNode.setStyleID(myCard, this.getClass());
         myID = cardInfo.getID();
         myFormatter.formatFixedVBox(myCard, CARD_HEIGHT, CARD_WIDTH);
         createCardNodes(cardInfo.getValue(), cardInfo.getSuit());
+        System.out.println(PATH_TO_CARD_IMAGE.concat(cardImage));
+        Image hiddenCardImage = new Image(PATH_TO_CARD_IMAGE.concat(cardImage));
+        hiddenBackgroundImage = new BackgroundImage(hiddenCardImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, FULL_BACKGROUND_SIZE);
         hideCard();
-    }
-
-    public CardView(CardTriplet cardInfo, String pathToCardImage) {
-        this(cardInfo);
-        System.out.println(hiddenBackgroundImage);
     }
 
     //TODO: way to make this unmodifiable?

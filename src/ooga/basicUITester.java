@@ -1,6 +1,5 @@
 package ooga;
 
-import UI.GameView.CardView;
 import Utility.CardTriplet;
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
@@ -46,28 +45,7 @@ public class basicUITester extends Application {
         allCTs.add(ct3);
         allCTs.add(ct4);
 
-        CardView cv1 = new CardView(ct1);
-        CardView cv2 = new CardView(ct2);
-        CardView cv3 = new CardView(ct3);
-        CardView cv4 = new CardView(ct4);
 
-        p.setCenter(cv1.getView());
-        // p.setCenter(cv2.getView());
-        // p.setCenter(cv3.getView());
-         p.setCenter(cv4.getView());
-
-
-        cv2.showCard();
-
-        cv3.showCard();
-        cv3.hideCard();
-
-        cv4.hideCard();
-        cv4.showCard();
-        cv4.showCard();
-        cv4.hideCard();
-        cv4.hideCard();
-        cv4.showCard();
     }
 
     private void testBets(BorderPane p) {

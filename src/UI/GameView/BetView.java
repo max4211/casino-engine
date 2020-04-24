@@ -27,10 +27,10 @@ public class BetView implements StylizedNode, TaggableNode {
 
     private static final List<CardTriplet> EMPTY_HAND = new ArrayList<>();
     private static final String NO_CLASSIFICATION = "";
-
+    private static final String NO_CARD_IMAGE = "";
     private Formatter myFormatter;
 
-    public BetView(List<CardTriplet> hand, double wager, String classification, int id, LanguageBundle languageBundle) {
+    public BetView(List<CardTriplet> hand, double wager, String classification, int id, LanguageBundle languageBundle, String cardImage) {
         myView = new VBox();
         myFormatter = new Formatter();
         numberOfCards = hand.size();
@@ -41,14 +41,14 @@ public class BetView implements StylizedNode, TaggableNode {
         else initialWidth = CARD_WIDTH * numberOfCards;
         myFormatter.formatFixedVBox(myView, HEIGHT, initialWidth);
 
-        myHand = new HandView(hand);
+        myHand = new HandView(hand, cardImage);
         myInfo = new BetInfo(wager, classification, languageBundle);
 
         myView.getChildren().addAll(myHand.getView(), myInfo.getView());
     }
 
     public BetView(double wager, int id, LanguageBundle languageBundle) {
-        this(EMPTY_HAND, wager, NO_CLASSIFICATION, id, languageBundle);
+        this(EMPTY_HAND, wager, NO_CLASSIFICATION, id, languageBundle, NO_CARD_IMAGE);
     }
 
     public void updateWager(double newAmount) {
@@ -57,14 +57,14 @@ public class BetView implements StylizedNode, TaggableNode {
 
     public void updateClassification(String newClassification) {myInfo.updateClassification(newClassification);}
 
-    public void addCard(CardTriplet newCard) {
+    public void addCard(CardTriplet newCard, String cardImage) {
         numberOfCards++;
         myFormatter.updateVBoxWidth(myView, CARD_WIDTH * numberOfCards);
-        myHand.addCard(newCard);
+        myHand.addCard(newCard, cardImage);
     }
 
-    public void addCardIfAbsent(CardTriplet checkedCard) {
-        if (!myHand.hasCard(checkedCard.getID())) addCard(checkedCard);
+    public void addCardIfAbsent(CardTriplet checkedCard, String cardImage) {
+        if (!myHand.hasCard(checkedCard.getID())) addCard(checkedCard, cardImage);
     }
     
     public void hideCard(int cardID) {
