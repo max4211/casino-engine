@@ -11,7 +11,6 @@ public class XMLChooser {
     private static final String ACCEPTED_XML_EXTENSION = "*.xml";
     private static final String DIRECTORY_TO_XML = System.getProperty("user.dir") + "/data/xml/";
 
-    // TODO - remove duplication (remove above?)
     public static File getGeneralFile(String path) {
         FileChooser result = new FileChooser();
         result.setInitialDirectory(new File(DIRECTORY_TO_XML + path));

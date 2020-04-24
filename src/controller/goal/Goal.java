@@ -1,7 +1,5 @@
 package controller.goal;
 
-import engine.bet.Bet;
-import engine.evaluator.handevaluator.HandEvaluator;
 import engine.player.Player;
 
 import java.util.Collection;

@@ -44,7 +44,12 @@ public class MasterValidator {
         tryFileAdd(fileList);
         while (!(this.myXMLBundle.isComplete())) {
             MultipleXMLChooser chooser = new MultipleXMLChooser();
-            tryFileAdd(chooser.getFileList());
+            try {
+                tryFileAdd(chooser.getFileList());
+            } catch (NullPointerException e) {
+                this.myExceptionShow.accept(e);
+            }
+
         }
         this.myCaller.accept(this::createGame);
     }
