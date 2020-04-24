@@ -2,6 +2,7 @@ package UI.Validation;
 
 import UI.Interfaces.GameCaller;
 import UI.Interfaces.LanguageResponder;
+import UI.Interfaces.StylizedNode;
 import UI.LanguageBundle;
 import Utility.ScreenPosition;
 import javafx.geometry.Pos;
@@ -40,6 +41,7 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
 
     public AllFilesDisplay(LanguageBundle languageBundle, String statusIconBundle, String fileIconProperties) {
         myVBox = new VBox();
+        StylizedNode.setStyleID(myVBox, this.getClass());
         myVBox.setAlignment(Pos.CENTER);
         myVBox.setSpacing(VBOX_SPACING);
         myLanguageBundle = languageBundle;

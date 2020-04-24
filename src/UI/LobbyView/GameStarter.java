@@ -1,6 +1,6 @@
 package UI.LobbyView;
 
-import UI.Interfaces.TaggedNode;
+import UI.Interfaces.StylizedNode;
 import UI.LanguageBundle;
 import UI.Validation.AllFilesDisplay;
 import Utility.Formatter;
@@ -13,9 +13,9 @@ import java.io.File;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class GameIcon implements TaggedNode {
+public class GameStarter implements StylizedNode {
 
-    private VBox myGameIcon;
+    private VBox myGameStarter;
     private Formatter myFormatter;
     private List<File> myFiles;
 
@@ -27,10 +27,11 @@ public class GameIcon implements TaggedNode {
 
     private static final String PATH_TO_ICON = "iconImages/runnableGameIcons/";
 
-    public GameIcon(String imageFile, String gameName, List<File> files, Consumer<Exception> showException) {
-        myGameIcon = new VBox();
+    public GameStarter(String imageFile, String gameName, List<File> files, Consumer<Exception> showException) {
+        myGameStarter = new VBox();
+        StylizedNode.setStyleID(myGameStarter, this.getClass());
         //TODO: move this into formatter
-        myGameIcon.setAlignment(Pos.CENTER);
+        myGameStarter.setAlignment(Pos.CENTER);
         System.out.println(PATH_TO_ICON.concat(imageFile));
         Icon myIconButton = new Icon(PATH_TO_ICON.concat(imageFile));
         tagIcon(myIconButton, gameName);
@@ -39,7 +40,7 @@ public class GameIcon implements TaggedNode {
         myFormatter.formatGameIconView(myIconButton.getView());
 
         this.myFiles = files;
-        this.myGameIcon.setOnMouseClicked(e -> {
+        this.myGameStarter.setOnMouseClicked(e -> {
             // TODO - parametrize display in data
             LanguageBundle testBundle = new LanguageBundle("English");
             String statusBundle= "StandardStatuses";
@@ -51,7 +52,7 @@ public class GameIcon implements TaggedNode {
                     showException);
         });
 
-        myGameIcon.getChildren().addAll(myIconButton.getView(), new Label(gameName));
+        myGameStarter.getChildren().addAll(myIconButton.getView(), new Label(gameName));
     }
 
     private void tagIcon(Icon icon, String name) {
@@ -64,7 +65,7 @@ public class GameIcon implements TaggedNode {
 
     @Override
     public VBox getView() {
-        return myGameIcon;
+        return myGameStarter;
     }
 
     public List<File> getFiles() {

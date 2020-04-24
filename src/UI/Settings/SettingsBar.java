@@ -1,6 +1,6 @@
 package UI.Settings;
 
-import UI.Interfaces.TaggedNode;
+import UI.Interfaces.StylizedNode;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -8,18 +8,16 @@ import javafx.scene.layout.HBox;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class SettingsBar implements TaggedNode {
+public class SettingsBar implements StylizedNode {
 
     private HBox myHBox;
-    private static final String CSS_ID = "settings-bar";
     private static final int ICON_SPACING = 40;
     private static final int ICON_INSETS = 10;
 
     //FIXME: formatting
     public SettingsBar(Consumer<String> acceptCSS, List<String> allCSS, Consumer<String> acceptLanguage, List<String> allLanguages, String helpIcon) {
         myHBox = new HBox();
-        myHBox.setId(CSS_ID);
-
+        StylizedNode.setStyleID(myHBox, this.getClass());
         LanguagePicker myLanguagePicker = new LanguagePicker(allLanguages, acceptLanguage);
         myHBox.getChildren().add(myLanguagePicker.getView());
         HelpButton myHelpButton = new HelpButton(helpIcon);

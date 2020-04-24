@@ -1,14 +1,14 @@
 package UI.GameView;
 
 import UI.Interfaces.LanguageResponder;
-import UI.Interfaces.TaggedNode;
+import UI.Interfaces.StylizedNode;
 import UI.LanguageBundle;
 import Utility.Formatter;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class BetInfo implements TaggedNode, LanguageResponder {
+public class BetInfo implements StylizedNode, LanguageResponder {
 
     private VBox myVBox;
     private HBox myWagerBox;
@@ -37,7 +37,7 @@ public class BetInfo implements TaggedNode, LanguageResponder {
 
     public BetInfo(double wager, String classification, LanguageBundle languageBundle) {
         myVBox = new VBox();
-        myVBox.setId(NEUTRAL_ID);
+        StylizedNode.setStyleID(myVBox, this.getClass());
         myFormatter.formatFixedVBox(myVBox, VIEW_HEIGHT, MIN_VIEW_WIDTH);
         myLanguageBundle = languageBundle;
 

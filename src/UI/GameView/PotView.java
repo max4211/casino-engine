@@ -1,12 +1,12 @@
 package UI.GameView;
 
-import UI.Interfaces.TaggedNode;
+import UI.Interfaces.StylizedNode;
 import UI.LobbyView.Icon;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class PotView implements TaggedNode {
+public class PotView implements StylizedNode {
 
     private VBox myVBox;
     private Label myPotLabel;

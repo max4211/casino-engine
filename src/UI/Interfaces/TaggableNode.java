@@ -1,6 +1,6 @@
 package UI.Interfaces;
 
-public interface TaggableInterface {
+public interface TaggableNode {
 
     public boolean hasSameID(int id);
 

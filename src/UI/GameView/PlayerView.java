@@ -1,7 +1,7 @@
 package UI.GameView;
 
-import UI.Interfaces.TaggedNode;
-import UI.Interfaces.TaggableInterface;
+import UI.Interfaces.StylizedNode;
+import UI.Interfaces.TaggableNode;
 import UI.LanguageBundle;
 import Utility.CardTriplet;
 import Utility.Formatter;
@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerView implements TaggedNode, TaggableInterface {
+public class PlayerView implements StylizedNode, TaggableNode {
 
     private List<BetView> myBets;
     private PlayerInfoView myInfo;

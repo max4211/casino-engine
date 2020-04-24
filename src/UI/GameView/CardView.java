@@ -1,7 +1,7 @@
 package UI.GameView;
 
-import UI.Interfaces.TaggableInterface;
-import UI.Interfaces.TaggedNode;
+import UI.Interfaces.TaggableNode;
+import UI.Interfaces.StylizedNode;
 import Utility.CardTriplet;
 import Utility.Formatter;
 import javafx.scene.control.Label;
@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class CardView implements TaggedNode, TaggableInterface {
+public class CardView implements StylizedNode, TaggableNode {
 
     private VBox myCard;
     private Collection myCardNodes;
