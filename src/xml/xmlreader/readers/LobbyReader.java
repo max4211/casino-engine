@@ -27,7 +27,6 @@ public class LobbyReader implements LobbyReaderInterface  {
 
     private static final String BUNDLE_TAG = "Bundle";
     private static final String NAME_TAG = "Name";
-    private static final String TYPE_TAG = "Type";
     private static final String ICON_TAG = "Icon";
 
     private static final String WIDTH_TAG = "Width";
@@ -103,7 +102,6 @@ public class LobbyReader implements LobbyReaderInterface  {
         Map<String, String> map = new HashMap<>();
         map.put(NAME_TAG, getElementByTag(n, NAME_TAG));
         map.put(ICON_TAG, getElementByTag(n, ICON_TAG));
-        map.put(TYPE_TAG, getElementByTag(n, TYPE_TAG));
 
         return map;
     }

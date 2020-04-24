@@ -31,7 +31,6 @@
                     <xs:complexType>
                         <xs:all>
                             <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
-                            <xs:element name="Type" type="xs:string" minOccurs="1" maxOccurs="1"/>
                             <xs:element name="Icon" type="xs:string" minOccurs="1" maxOccurs="1"/>
                             <xs:element name="Files" minOccurs="0" maxOccurs="1">
                                 <xs:complexType>

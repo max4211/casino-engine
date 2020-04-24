@@ -16,7 +16,6 @@
     <ErrorIcon>exceptionIcon.png</ErrorIcon>
     <Bundle>
         <Name>Blackjack</Name>
-        <Type>Standard</Type>
         <Icon>Black_Jack-512.png</Icon>
         <Files>
             <Deck>data/xml/good/DECK_standard.xml</Deck>
@@ -28,7 +27,6 @@
     </Bundle>
     <Bundle>
         <Name>Poker</Name>
-        <Type>Standard</Type>
         <Icon>poker-cards.png</Icon>
         <Files>
             <Deck>data/xml/good/DECK_standard.xml</Deck>
@@ -40,7 +38,6 @@
     </Bundle>
     <Bundle>
         <Name>Custom Game</Name>
-        <Type>Custom</Type>
         <Icon>mouseIcon.png</Icon>
     </Bundle>
 </Lobby>

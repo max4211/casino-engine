@@ -10,7 +10,7 @@ public class MultipleXMLChooser {
     private List<File> fileList;
     private static final String ACCEPTED_XML_DESCRIPTION = "All XMLs";
     private static final String ACCEPTED_XML_EXTENSION = "*.xml";
-    private static final String DIRECTORY_TO_XML = System.getProperty("user.dir") + "/data/xml/";
+    private static final String DIRECTORY_TO_XML = System.getProperty("user.dir") + "/data/xml/good";
 
     private List<File > myFileList;
 
