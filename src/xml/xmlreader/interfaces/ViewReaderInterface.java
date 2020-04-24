@@ -25,4 +25,16 @@ public interface ViewReaderInterface {
     List<String> getLanguages();
     List<String> getStylesheets();
 
+    /**
+     * Return icon bundle tag
+     * @return
+     */
+    String getIconBundle();
+
+    /**
+     * Reteurn error stylesheet tag
+     * @return
+     */
+    String getErrorStylesheet();
+
 }

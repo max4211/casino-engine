@@ -48,15 +48,13 @@ public class LobbyConstructor {
         List<String> myLobbyCSS = myLobbyReader.getLobbyStylesheet();
         List<String> myLobbyLanguages = myLobbyReader.getLobbyLanguages();
         String myErrorCSS = myLobbyReader.getErrorStylesheet();
-        String myErrorIcon = myLobbyReader.getErrorIcon();
+        String myIconProperties = myLobbyReader.getIconProperties();
         List<Map<String, String>> myLobbyInfo = myLobbyReader.getBundleArguments();
         List<List<File>> myLobbyFiles = myLobbyReader.getFileTags();
         this.myWidth = myLobbyReader.getScreenWidth();
         this.myHeight = myLobbyReader.getScreenHeight();
 
-        //FIXME: changed to magic number to test
-        return new LobbyView(myLobbyCSS, myLobbyLanguages, "standardLobby", myErrorCSS, myLobbyInfo, myLobbyFiles);
-        //return new LobbyView(myLobbyCSS, myLobbyLanguages, myErrorIcon, myErrorCSS, myLobbyInfo, myLobbyFiles);
+        return new LobbyView(myLobbyCSS, myLobbyLanguages, myIconProperties, myErrorCSS, myLobbyInfo, myLobbyFiles);
     }
 
     private boolean lobbyFileIsValid() {

@@ -13,7 +13,7 @@
         <Language>Spanish</Language>
     </Languages>
     <ErrorStylesheet>fire.css</ErrorStylesheet>
-    <ErrorIcon>exceptionIcon.png</ErrorIcon>
+    <IconProperties>standardLobby</IconProperties>
     <Bundle>
         <Name>Blackjack</Name>
         <Icon>Black_Jack-512.png</Icon>

@@ -2,6 +2,7 @@
 <View>
     <Title>Blackjack</Title>
     <Authors>Eric Doppelt and Max Smith</Authors>
+    <IconBundle>standardGame</IconBundle>
     <Dimensions>
         <Width>800</Width>
         <Height>800</Height>
@@ -16,7 +17,6 @@
         <Stylesheet>Coral</Stylesheet>
     </Stylesheets>
     <Errors>
-        <Icon>errorIcon.png</Icon>
-        <StyleSheet>fire.css</StyleSheet>
+        <ErrorStyleSheet>fire.css</ErrorStyleSheet>
     </Errors>
 </View>

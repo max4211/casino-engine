@@ -26,7 +26,7 @@
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="ErrorStylesheet" type="xs:string" minOccurs="1" maxOccurs="1"/>
-                <xs:element name="ErrorIcon" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="IconProperties" type="IconPropertyType" minOccurs="1" maxOccurs="1"/>
                 <xs:element name="Bundle" minOccurs="1" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:all>
@@ -49,4 +49,11 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:simpleType name="IconPropertyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="standardLobby"/>
+        </xs:restriction>
+    </xs:simpleType>
+
 </xs:schema>

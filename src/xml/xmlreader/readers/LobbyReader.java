@@ -23,7 +23,7 @@ public class LobbyReader implements LobbyReaderInterface  {
     private static final String LOBBY_STYLESHEET = "Stylesheet";
     private static final String LANGUAGE_TAG = "Language";
     private static final String ERROR_STYLESHEET = "ErrorStylesheet";
-    private static final String ERROR_ICON = "ErrorIcon";
+    private static final String ICON_PROPERTIES = "IconProperties";
 
     private static final String BUNDLE_TAG = "Bundle";
     private static final String NAME_TAG = "Name";
@@ -72,8 +72,8 @@ public class LobbyReader implements LobbyReaderInterface  {
     }
 
     @Override
-    public String getErrorIcon() {
-        return XMLParseInterface.getSingleTag(myDocument, ERROR_ICON);
+    public String getIconProperties() {
+        return XMLParseInterface.getSingleTag(myDocument, ICON_PROPERTIES);
     }
 
     @Override

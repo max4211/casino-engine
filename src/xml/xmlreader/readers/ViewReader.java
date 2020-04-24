@@ -25,6 +25,9 @@ public class ViewReader implements ViewReaderInterface {
     private static final String TITLE_TAG = "Title";
     private static final String AUTHORS_TAG = "Authors";
 
+    private static final String ICON_BUNDLE = "IconBundle";
+    private static final String ERROR_STYLSHEET = "ErrorStyleSheet";
+
     private static final String LANGUAGE_TAG = "Language";
     private static final String STYLESHEET_TAG = "Stylesheet";
 
@@ -69,6 +72,16 @@ public class ViewReader implements ViewReaderInterface {
     public List<String> getStylesheets() {
         NodeList nodeList = XMLParseInterface.getNodeList(myDocument, STYLESHEET_TAG);
         return parseNodeListForContent(nodeList);
+    }
+
+    @Override
+    public String getIconBundle() {
+        return XMLParseInterface.getSingleTag(myDocument, ICON_BUNDLE);
+    }
+
+    @Override
+    public String getErrorStylesheet() {
+        return XMLParseInterface.getSingleTag(myDocument, ERROR_STYLSHEET);
     }
 
     private List<String> parseNodeListForContent(NodeList nodeList) {
