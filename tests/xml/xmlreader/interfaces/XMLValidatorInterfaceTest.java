@@ -19,4 +19,5 @@ class XMLValidatorInterfaceTest {
         String expected = "Deck";
         assertEquals(expected, result);
     }
+
 }
