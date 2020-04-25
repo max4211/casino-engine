@@ -106,7 +106,7 @@ public class MasterValidator {
     }
 
     private void createGame() {
-        new GameConstructor(this.myXMLBundle.getXMLFiles());
+        new GameConstructor(this.myXMLBundle.getXMLFiles(), this.myExceptionShow);
     }
 
 }
