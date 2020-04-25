@@ -16,7 +16,6 @@ public class Formatter {
     private static final double CARD_HEIGHT = 100;
     private static final int CARD_WIDTH = 70;
     private static final int NO_CARDS = 0;
-    private static final double WAGER_HEIGHT = 20;
 
     private static final int GAME_STARTER_HEIGHT = 150;
     private static final int GAME_STARTER_WIDTH = 75;
@@ -32,6 +31,8 @@ public class Formatter {
 
     private static final int BET_INFO_HEIGHT = 40;
     private static final int MIN_BET_WIDTH = 100;
+
+    private static final int PLAYER_INFO_VIEW_WIDTH = 100;
 
     public void formatFixedVBox(VBox rawVBox, double height, double width) {
         rawVBox.setMinHeight(height);
@@ -98,9 +99,9 @@ public class Formatter {
         rawButton.setPrefHeight(CARD_HEIGHT + BET_INFO_HEIGHT);
     }
 
-    public static void formatAllFilesBox(VBox rawVBox) {
-        rawVBox.setAlignment(Pos.CENTER);
-        rawVBox.setSpacing(FILE_ICON_VERTICAL_SPACING);
+    public static void formatAllFilesBox(VBox allFilesVBox) {
+        allFilesVBox.setAlignment(Pos.CENTER);
+        allFilesVBox.setSpacing(FILE_ICON_VERTICAL_SPACING);
     }
 
     public static void formatAllFilesStage(Stage rawStage) {
@@ -114,6 +115,12 @@ public class Formatter {
         fullDisplayBox.setAlignment(Pos.CENTER);
         iconBox.setAlignment(Pos.CENTER);
         iconBox.setSpacing(FILE_ICON_SPACING);
+    }
+
+    public static void formatPlayerInfoView(VBox playerInfoViewBox) {
+        playerInfoViewBox.setAlignment(Pos.CENTER);
+        playerInfoViewBox.setPrefHeight(CARD_HEIGHT + BET_INFO_HEIGHT);
+        playerInfoViewBox.setPrefWidth(PLAYER_INFO_VIEW_WIDTH);
     }
 
     private void setMaxBounds(Pane rawPane) {

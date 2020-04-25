@@ -1,72 +1,80 @@
 package UI.GameView;
 
+import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
-import UI.Utilities.LanguageBundle;
 import UI.Utilities.Formatter;
-import javafx.geometry.Pos;
+import UI.Utilities.LanguageBundle;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class PlayerInfoView implements StylizedNode {
+public class PlayerInfoView implements StylizedNode, LanguageResponder {
 
     private VBox myDetailsBox;
-    private HBox myNameBox;
-    private HBox myBankBox;
-
-    private Formatter myFormatter;
+    private Label myNameLabel;
+    private Label myBankLabel;
+    private Label myBankValue;
 
     private static final String NAME_KEY = "Name";
     private static final String BANK_KEY = "Bank";
 
-    // TODO: MAKE A UTILITY CLASS WITH THESE VALUES
-    private static final double CARD_HEIGHT = 100;
-    private static final double WAGER_HEIGHT = 40;
-    private static final double VIEW_WIDTH = 100;
-
-    private static final int RESOURCE_TEXT_INDEX = 0;
-    private static final int BANK_NUMBER_INDEX = 1;
-
     private static LanguageBundle myLanguageBundle;
 
-    private static final String PLAYER_INFO_CSS_ID = "player-info";
+    // FOR TESTING
+    private static final String NAME_DESCRIPTION_TEST_ID = "#name-label";
+    private static final String NAME_VALUE_TEST_ID = "#name-value";
+    private static final String BANK_DESCRIPTION_TEST_ID = "#bank-label";
+    private static final String BANK_VALUE_TEST_ID = "#bank-value";
 
-    // TODO: noticing some similarities with WagerView, overlap
     public PlayerInfoView(String name, double bankroll, LanguageBundle languageBundle) {
         myDetailsBox = new VBox();
-        myDetailsBox.setId(PLAYER_INFO_CSS_ID);
-        myFormatter = new Formatter();
-        myFormatter.formatFixedVBox(myDetailsBox, CARD_HEIGHT + WAGER_HEIGHT, VIEW_WIDTH);
+        StylizedNode.setStyleID(myDetailsBox, this.getClass());
+        Formatter.formatPlayerInfoView(myDetailsBox);
         myLanguageBundle = languageBundle;
 
-        myNameBox = createHBox(NAME_KEY, name);
-        myBankBox = createHBox(BANK_KEY, String.valueOf(bankroll));
+        // ONLY FOR TESTING (otherwise add a new label to param)
+        Label nameValueLabel = new Label();
+        nameValueLabel.setId(NAME_VALUE_TEST_ID);
+        
+        instantiateLabels();
+        renderHBox(myNameLabel, NAME_KEY, nameValueLabel, name);
+        renderHBox(myBankLabel, BANK_KEY, myBankValue, String.valueOf(bankroll));
     }
 
-    private HBox createHBox(String bundleKey, String userInput) {
-        HBox returnedHBox = new HBox();
-        returnedHBox.getChildren().add(new Label(myLanguageBundle.getBundle().getString(bundleKey)));
-        Label nameInputLabel = new Label(userInput);
-        returnedHBox.getChildren().add(nameInputLabel);
-        returnedHBox.setAlignment(Pos.CENTER);
-        myDetailsBox.getChildren().add(returnedHBox);
-        return returnedHBox;
-    }
-
+    @Override
     public VBox getView() {
         return myDetailsBox;
     }
 
+    @Override
     public void updateLanguage() {
-        myNameBox.getChildren().remove(RESOURCE_TEXT_INDEX);
-        myNameBox.getChildren().add(RESOURCE_TEXT_INDEX, new Label(myLanguageBundle.getBundle().getString(NAME_KEY)));
-        myBankBox.getChildren().remove(RESOURCE_TEXT_INDEX);
-        myBankBox.getChildren().add(RESOURCE_TEXT_INDEX, new Label(myLanguageBundle.getBundle().getString(BANK_KEY)));
+        myNameLabel.setText(getTranslation(NAME_KEY));
+        myBankLabel.setText(getTranslation(BANK_KEY));
+    }
+
+    private void instantiateLabels() {
+        myNameLabel = new Label();
+        myNameLabel.setId(NAME_DESCRIPTION_TEST_ID);
+        myBankLabel = new Label();
+        myBankLabel.setId(BANK_DESCRIPTION_TEST_ID);
+        myBankValue = new Label();
+        myBankLabel.setId(BANK_VALUE_TEST_ID);
+    }
+
+    private String getTranslation(String key) {
+        return myLanguageBundle.getBundle().getString(key);
+    }
+
+    private void renderHBox(Label descriptiveLabel, String bundleKey, Label valueLabel, String userInput) {
+        HBox returnedHBox = new HBox();
+        descriptiveLabel.setText(getTranslation(bundleKey));
+        valueLabel.setText(userInput);
+        returnedHBox.getChildren().addAll(descriptiveLabel, valueLabel);
+        myDetailsBox.getChildren().add(returnedHBox);
     }
 
     public void updateBankroll(double amount) {
-        if (myBankBox.getChildren().size() == 2) myBankBox.getChildren().remove(BANK_NUMBER_INDEX);
-        myBankBox.getChildren().add(BANK_NUMBER_INDEX, new Label(String.valueOf(amount)));
+        myBankLabel.setText(String.valueOf(amount));
     }
 }
 
