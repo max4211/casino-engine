@@ -40,8 +40,6 @@ public class FileDisplay implements StylizedNode, LanguageResponder {
         createFileTypeLabel(fileType);
         createFileIcons(fileIconName, equalIconName);
         createStatusIcons(statusIconBundleName);
-
-        myFullDisplay.getChildren().add(myFileIcons);
     }
 
     @Override
@@ -57,7 +55,7 @@ public class FileDisplay implements StylizedNode, LanguageResponder {
     public void updateStatusIcon(FileStatus newStatus) {
         String newIconName = myStatusIcons.getString(newStatus.toString());
         String pathToNewIcon = formatStatusIconPath(newIconName);
-        myStatusIcon.setIconImage(pathToNewIcon);
+        myStatusIcon.setImage(pathToNewIcon);
     }
 
     private String formatFileIconPath(String iconName) {
@@ -95,6 +93,7 @@ public class FileDisplay implements StylizedNode, LanguageResponder {
         String statusIconPath = formatStatusIconPath(emptyStatusIconName);
         myStatusIcon = new MutableIcon(statusIconPath);
         myFileIcons.getChildren().add(myStatusIcon.getView());
+        myFullDisplay.getChildren().add(myFileIcons);
     }
 
     private String getFileTypeTranslation() {
