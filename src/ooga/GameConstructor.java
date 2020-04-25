@@ -128,9 +128,9 @@ public class GameConstructor {
         HandEvaluator myHandEvaluator = new HandEvaluator();
         BetEvaluator myBetEvaluator = new BetEvaluator(myHandEvaluator);
 
-        EntryBet myEntryBet = EntryBet.valueOf(gameReader.getEntryBet().toUpperCase());
-        Cardshow myCardShow = Cardshow.valueOf(gameReader.getCardShow().toUpperCase());
-        Goal myGoal = Goal.valueOf(gameReader.getGoal().toUpperCase());
+        String myEntryBet = gameReader.getEntryBet();
+        String myCardShow = gameReader.getCardShow();
+        String myGoal = gameReader.getGoal();
 
         return new ControllerBundle(
                 table, gameView, myEntryBet, myPlayerActions, myDealerAction,

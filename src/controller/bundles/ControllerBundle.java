@@ -22,13 +22,13 @@ public class ControllerBundle implements ControllerBundleInterface {
     private final HandClassifier myHandClassifier;
     private final BetEvaluator myBetEvaluator;
 
-    private final EntryBet myEntryBet;
-    private Cardshow myCardshow;
-    private Goal myGoal;
+    private final String myEntryBet;
+    private String myCardshow;
+    private String myGoal;
 
-    public ControllerBundle(Table table, GameView gameView, EntryBet entryBet, Collection<String> playerActions, List<StringPair> dealerAction,
+    public ControllerBundle(Table table, GameView gameView, String entryBet, Collection<String> playerActions, List<StringPair> dealerAction,
                       HandClassifier handClassifier, BetEvaluator betEvaluator,
-                      Cardshow cardshow, Goal goal) {
+                        String cardshow, String goal) {
         this.myTable = table;
         this.myGameView = gameView;
         this.myEntryBet = entryBet;
@@ -72,17 +72,17 @@ public class ControllerBundle implements ControllerBundleInterface {
     }
 
     @Override
-    public EntryBet getEntryBet() {
+    public String getEntryBet() {
         return this.myEntryBet;
     }
 
     @Override
-    public Cardshow getCardShow() {
+    public String getCardShow() {
         return this.myCardshow;
     }
 
     @Override
-    public Goal getGoal() {
+    public String getGoal() {
         return this.myGoal;
     }
 }

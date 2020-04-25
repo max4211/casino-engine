@@ -27,7 +27,7 @@ public interface TableInterface {
      * @param wager is the wager size for that bet
      * @return bet that was just placed
      */
-    Bet placeEntryBet(int playerHash, EntryBet betType, double wager);
+    Bet placeEntryBet(int playerHash, String betType, double wager);
 
     /**
      * called by controller for dealer to distribute cards to players
