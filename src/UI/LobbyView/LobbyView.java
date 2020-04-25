@@ -5,6 +5,7 @@ import UI.Interfaces.StylizedNode;
 import UI.Settings.SettingsBar;
 import UI.Utilities.Formatter;
 import UI.Utilities.LanguageBundle;
+import Utility.lobbyviewbundle.LobbyViewBundle;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
@@ -37,19 +38,15 @@ public class LobbyView implements StylizedNode {
     private List<GameStarter> myGameStarters;
     private ExceptionDisplayer myExceptionDisplayer;
 
-    public LobbyView(List<String> styleSheets, List<String> languages, String iconProperties, String errorCSS,
-                     List<Map<String, String>> generalInfo, List<List<File>> files,
-                     String filesDisplayIcon, String filesDisplayStatus) {
+//    public LobbyView(List<String> styleSheets, List<String> languages, String iconProperties, String errorCSS,
+//                     List<Map<String, String>> generalInfo, List<List<File>> files,
+//                     String filesDisplayIcon, String filesDisplayStatus) {
+    public LobbyView(LobbyViewBundle bundle) {
+        initVBOX();
+        ResourceBundle myIconResources = initCSS(bundle.getStylesheets(), bundle.getIconProperties());
+        initLanguageBundle(bundle.getLanguages());
+        initExceptionDisplayer(myIconResources, bundle.getErrorCSS());
 
-        myVBox = new VBox();
-        StylizedNode.setStyleID(myVBox, this.getClass());
-        Formatter.formatLobbyView(myVBox);
-
-        myGameStarters = new ArrayList<>();
-        updateCSS(styleSheets.get(DEFAULT_CSS_INDEX));
-        ResourceBundle myIconResources = ResourceBundle.getBundle(PATH_TO_ICON_BUNDLE.concat(iconProperties));
-        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
-        myExceptionDisplayer = new ExceptionDisplayer(myIconResources.getString(ERROR_TAG), errorCSS, myLanguageBundle);
         SettingsBar addedSettings = new SettingsBar(e -> updateCSS(e), styleSheets, e -> updateLanguage(e), languages, PATH_TO_ICON_IMAGE.concat(myIconResources.getString(INFO_TAG)));
         myVBox.getChildren().add(addedSettings.getView());
 
@@ -74,6 +71,26 @@ public class LobbyView implements StylizedNode {
         }
 
         myVBox.getChildren().add(myFlowPane);
+    }
+
+    private void initExceptionDisplayer(ResourceBundle myIconResources, String errorCSS) {
+        myExceptionDisplayer = new ExceptionDisplayer(myIconResources.getString(ERROR_TAG), errorCSS, myLanguageBundle);
+    }
+
+    private void initLanguageBundle(List<String> languages) {
+        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
+    }
+
+    private void initVBOX() {
+        myVBox = new VBox();
+        StylizedNode.setStyleID(myVBox, this.getClass());
+        Formatter.formatLobbyView(myVBox);
+    }
+
+    private ResourceBundle initCSS(List<String> styleSheets, String iconProperties) {
+        myGameStarters = new ArrayList<>();
+        updateCSS(styleSheets.get(DEFAULT_CSS_INDEX));
+        return ResourceBundle.getBundle(PATH_TO_ICON_BUNDLE.concat(iconProperties));
     }
 
     private void updateCSS(String newStyleSheet) {
