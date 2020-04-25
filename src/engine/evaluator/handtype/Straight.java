@@ -20,7 +20,7 @@ public class Straight extends Hand {
         double lastValue = pq.poll().getValue();
         while (!(pq.isEmpty())) {
             double nextValue = pq.poll().getValue();
-            if (!(nextValue - lastValue == difference))
+            if (!(Math.abs(nextValue - lastValue) == difference))
                 return false;
             lastValue = nextValue;
         }
