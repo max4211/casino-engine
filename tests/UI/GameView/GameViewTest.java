@@ -8,13 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import ooga.Main;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.service.query.EmptyNodeQueryException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GameViewTest extends DukeApplicationTest {
 
@@ -51,7 +51,7 @@ class GameViewTest extends DukeApplicationTest {
         assertEquals(wagerPane.getContentText(), "Enter a bet from 5.0 to 100.0 please!");
         myRobot.write("-1");
         myRobot.clickOn(1015, 450);
-        Assertions.assertThrows(EmptyNodeQueryException.class, () -> myRobot.lookup("#wager-view").query());
+        assertThrows(EmptyNodeQueryException.class, () -> myRobot.lookup("#wager-view").query());
     }
 
     // Happy Path :)
