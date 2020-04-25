@@ -14,7 +14,7 @@ class XMLValidatorInterfaceTest {
 
     @Test
     void getMetaTag() throws GeneralXMLException {
-        File file = new File("data/xml/deck/cs308.xml");
+        File file = new File("data/xml/good/DECK_cs308.xml");
         String result = XMLValidatorInterface.getMetaTag(file);
         String expected = "Deck";
         assertEquals(expected, result);

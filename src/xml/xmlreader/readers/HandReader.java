@@ -54,7 +54,11 @@ public class HandReader implements HandReaderInterface {
 
     @Override
     public int getCardsInHand() {
-        return Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, CARDSINHAND_TAG));
+        try {
+            return Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, CARDSINHAND_TAG));
+        } catch (NullPointerException e) {
+            return Integer.MAX_VALUE;
+        }
     }
 
     private List<HandBundle> parseBundle(String handStatusTag) {

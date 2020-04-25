@@ -16,14 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LobbyReaderTest {
 
     private static final String NAME_TAG = "Name";
-    private static final String TYPE_TAG = "Type";
     private static final String ICON_TAG = "Icon";
-
-    private static final String DECK_TAG = "Deck";
-    private static final String GAME_TAG = "Game";
-    private static final String HAND_TAG = "Hands";
-    private static final String PLAYER_TAG = "Players";
-    private static final String VIEW_TAG = "View";
 
     @Test
     void getBundleArguments() throws GeneralXMLException {
@@ -33,7 +26,6 @@ class LobbyReaderTest {
         Map<String, String> bjMap = bundleList.get(0);
         Map<String, String> customMap = bundleList.get(1);
         assertEquals("Blackjack", bjMap.get(NAME_TAG));
-        assertEquals("Standard", bjMap.get(TYPE_TAG));
         assertEquals("Black_Jack-512.png", bjMap.get(ICON_TAG));
     }
 
@@ -43,11 +35,11 @@ class LobbyReaderTest {
         LobbyReader reader = new LobbyReader(filename);
         List<List<File>> bundleList = reader.getFileTags();
         List<File> bjFiles = bundleList.get(0);
-        assertEquals(new File("data/xml/deck/standard.xml"), bjFiles.get(0));
-        assertEquals(new File("data/xml/game/blackjackGame_v2.xml"), bjFiles.get(1));
-        assertEquals(new File("data/xml/hands/hands.xml"), bjFiles.get(2));
-        assertEquals(new File("data/xml/players/3players.xml"), bjFiles.get(3));
-        assertEquals(new File("data/xml/view/view.xml"), bjFiles.get(4));
+        assertEquals(new File("data/xml/good/DECK_standard.xml"), bjFiles.get(0));
+        assertEquals(new File("data/xml/good/GAME_blackjacksimple.xml"), bjFiles.get(1));
+        assertEquals(new File("data/xml/good/HANDS_blackjack.xml"), bjFiles.get(2));
+        assertEquals(new File("data/xml/good/PLAYERS_three.xml"), bjFiles.get(3));
+        assertEquals(new File("data/xml/good/VIEW_basicview.xml"), bjFiles.get(4));
     }
 
     @Test
@@ -56,7 +48,7 @@ class LobbyReaderTest {
         LobbyReader reader = new LobbyReader(filename);
         List<String> result = reader.getLobbyStylesheet();
         List<String> expected = new ArrayList<String>(List.of("" +
-                "Sunrise.css", "Ice.css"));
+                "Sunrise", "Ice"));
         for (int i = 0; i < result.size(); i ++)
             assertEquals(expected.get(i), result.get(i));
     }

@@ -48,7 +48,7 @@ public abstract class Hand implements HandInterface {
     protected class ValueComparator implements Comparator<Card> {
         @Override
         public int compare(Card c1, Card c2) {
-            double diff = c2.getValue() - c1.getValue();
+            double diff = c1.getValue() - c2.getValue();
             if (diff > 0)
                 return 1;
             else if (diff < 0)

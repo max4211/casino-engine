@@ -6,6 +6,8 @@ import java.util.List;
 
 public class SumUnderX extends Hand {
 
+    private static final double DEFAULT_UNDER = 22;
+
     public SumUnderX(List<Card> cards, List<Double> params) {
         super(cards, params);
     }
@@ -16,11 +18,20 @@ public class SumUnderX extends Hand {
         for (Card c: this.myCards) {
             count += c.getValue();
         }
-        return count < this.myParams.get(0);
+        double under = parseUnder();
+        return count < under;
     }
 
     @Override
     public double getPower() {
         return sumCards();
+    }
+
+    private double parseUnder() {
+        try {
+            return this.myParams.get(ZERO);
+        } catch (Exception e) {
+            return DEFAULT_UNDER;
+        }
     }
 }
