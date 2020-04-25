@@ -33,12 +33,10 @@ public class ViewReader implements ViewReaderInterface {
 
     public ViewReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
-//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     public ViewReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
-//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
 

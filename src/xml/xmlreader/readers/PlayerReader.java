@@ -27,12 +27,10 @@ public class PlayerReader implements PlayerReaderInterface {
 
     public PlayerReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
-//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     public PlayerReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
-//        XMLParseInterface.traverseXML(myDocument.getDocumentElement());
     }
 
     @Override
