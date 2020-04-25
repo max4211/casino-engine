@@ -32,27 +32,27 @@ public enum ScreenPosition {
     ScreenPosition(char type) {
         switch(type) {
             case 'l': {
-                x = SCREEN_WIDTH * FARLEFT_WIDTH_MULTIPLIER;
-                y = SCREEN_HEIGHT * FARLEFT_HEIGHT_MULTIPLIER;
+                setXY(FARLEFT_WIDTH_MULTIPLIER, FARLEFT_HEIGHT_MULTIPLIER);
+                break;
             }
             case 'L': {
-                x = SCREEN_WIDTH * LEFT_WIDTH_MULTIPLIER;
-                y = SCREEN_HEIGHT * LEFT_HEIGHT_MULTIPLIER;
+                setXY(LEFT_WIDTH_MULTIPLIER, LEFT_HEIGHT_MULTIPLIER);
                 break;
             }
-
             case 'M': {
-                x = SCREEN_WIDTH * MIDDLE_WIDTH_MULTIPLIER;
-                y = SCREEN_HEIGHT * MIDDLE_HEIGHT_MULTIPLIER;
+                setXY(MIDDLE_WIDTH_MULTIPLIER, MIDDLE_HEIGHT_MULTIPLIER);
                 break;
             }
-
             case 'r': {
-                x = SCREEN_WIDTH * RIGHT_WIDTH_MULTIPLIER;
-                y = SCREEN_HEIGHT * RIGHT_HEIGHT_MULTIPLIER;
+                setXY(RIGHT_WIDTH_MULTIPLIER, RIGHT_HEIGHT_MULTIPLIER);
                 break;
             }
         }
+    }
+
+    private void setXY(double xOfffset, double yOffset) {
+        x = SCREEN_WIDTH * xOfffset;
+        y = SCREEN_HEIGHT * yOffset;
     }
 
     public double getX() {return x;}
