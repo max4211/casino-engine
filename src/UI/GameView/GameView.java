@@ -4,6 +4,7 @@ import UI.ExceptionDisplay.ExceptionDisplayer;
 import UI.Interfaces.GameCaller;
 import UI.Interfaces.GameViewInterface;
 import UI.Interfaces.StylizedNode;
+import UI.Utilities.Formatter;
 import UI.Utilities.LanguageBundle;
 import UI.Selectors.ActionSelector;
 import UI.Selectors.SelectorType;
@@ -31,7 +32,7 @@ public class GameView implements GameViewInterface, StylizedNode {
     private static final String NO_ACTION_INPUT = "";
     private static final double NO_WAGER_INPUT = -1;
 
-    private VBox myVBox;
+    private VBox myGameView;
     private BorderPane myBorderPane;
     private MainPlayer myMainPlayer;
     private OtherPlayers myOtherPlayers;
@@ -42,7 +43,6 @@ public class GameView implements GameViewInterface, StylizedNode {
     private SettingsBar mySettingsBar;
     private LanguageBundle myLanguageBundle;
     private ExceptionDisplayer myExceptionDisplayer;
-    //FIXME: create a general constructor!
     private ActionSelector myActionSelector;
     private WagerSelector myWagerSelector;
     private ResourceBundle myIconBundle;
@@ -58,28 +58,37 @@ public class GameView implements GameViewInterface, StylizedNode {
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
     public GameView(List<String> styleSheets, List<String> languages, String iconImages, String exceptionCSS, double width, double height) {
-        myVBox = new VBox();
-        StylizedNode.setStyleID(myVBox, this.getClass());
-        myVBox.setPrefWidth(width);
-        myVBox.setPrefHeight(height);
-        myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
-        myIconBundle = ResourceBundle.getBundle(PATH_TO_ICON_BUNDLE.concat(iconImages));
+        myGameView = new VBox();
+        StylizedNode.setStyleID(myGameView, this.getClass());
+        Formatter.formatGameView(myGameView, width, height);
+
+        String defaultLanguage = languages.get(DEFAULT_LANGUAGE_INDEX);
+        myLanguageBundle = new LanguageBundle(defaultLanguage);
+
+        String iconBundlePath = formatPathToIconBundles(iconImages);
+        myIconBundle = ResourceBundle.getBundle(iconBundlePath);
+
         myBorderPane = new BorderPane();
         myOtherPlayers = new OtherPlayers();
         myBorderPane.setLeft(myOtherPlayers.getView());
+
         myMainPlayer = new MainPlayer(myLanguageBundle);
         myBorderPane.setBottom(myMainPlayer.getView());
+
         myExceptionDisplayer = new ExceptionDisplayer(myIconBundle.getString(EXCEPTION_KEY), exceptionCSS, myLanguageBundle);
         myWagerSelector = new WagerSelector(myLanguageBundle);
         myActionSelector = new ActionSelector(myLanguageBundle);
-        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, PATH_TO_ICONS.concat(myIconBundle.getString(INFO_KEY)));
 
-        myVBox.getChildren().addAll(mySettingsBar.getView(), myBorderPane);
-        myVBox.setVgrow(myBorderPane, Priority.ALWAYS);
+        String pathToInfoIcon = formatPathToIcons(myIconBundle.getString(INFO_KEY));
+        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, pathToInfoIcon);
+
+        myGameView.getChildren().addAll(mySettingsBar.getView(), myBorderPane);
+        myGameView.setVgrow(myBorderPane, Priority.ALWAYS);
     }
 
+    @Override
     public VBox getView() {
-        return myVBox;
+        return myGameView;
     }
 
     @Override
@@ -165,14 +174,15 @@ public class GameView implements GameViewInterface, StylizedNode {
         myOtherPlayers.addPlayer(name, playerId, bankroll, myLanguageBundle);
     }
 
-    // TODO: fix this to avoid updating BorderPane all the time
     @Override
     public void setMainPlayer(int playerID) {
         if (!myOtherPlayers.hasPlayerView(playerID)) return;
+
         if (myMainPlayer.holdsAPlayer()) {
             myMainPlayer.hideAllClassification();
             myOtherPlayers.addPlayer(myMainPlayer.getMainPlayer());
         }
+
         myMainPlayer.setMainPlayer(myOtherPlayers.getPlayerView(playerID));
         myMainPlayer.showAllClassification();
         myOtherPlayers.removePlayer(playerID);
@@ -216,9 +226,10 @@ public class GameView implements GameViewInterface, StylizedNode {
     }
 
     @Override
-    public void displayText(String s) {
+    public void displayText(String textToDisplay) {
         Alert display = new Alert(Alert.AlertType.INFORMATION);
-        display.setContentText(s);
+        StylizedNode.setStyleID(display.getDialogPane(), display.getClass());
+        display.setContentText(textToDisplay);
         display.showAndWait();
     }
 
@@ -254,8 +265,8 @@ public class GameView implements GameViewInterface, StylizedNode {
     }
 
     private void updateStyleSheet(String newStylesheet) {
-        myVBox.getStylesheets().clear();
-        myVBox.getStylesheets().add(PATH_TO_STYLESHEETS.concat(newStylesheet));
+        myGameView.getStylesheets().clear();
+        myGameView.getStylesheets().add(formatPathToCSS(newStylesheet));
     }
 
     private void updateLanguage(String newLanguage) {
@@ -263,5 +274,17 @@ public class GameView implements GameViewInterface, StylizedNode {
         myMainPlayer.updateLanguage();
         myOtherPlayers.updateLanguage();
         myExceptionDisplayer.updateLanguage();
+    }
+
+    private String formatPathToIconBundles(String iconBundleName) {
+        return PATH_TO_ICON_BUNDLE.concat(iconBundleName);
+    }
+
+    private String formatPathToIcons(String iconName) {
+        return PATH_TO_ICONS.concat(iconName);
+    }
+
+    private String formatPathToCSS(String cssFileName) {
+        return PATH_TO_STYLESHEETS.concat(cssFileName);
     }
 }

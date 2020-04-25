@@ -155,4 +155,9 @@ public class Formatter {
         setMaxBounds(mainPlayerBox);
         mainPlayerBox.setAlignment(Pos.CENTER);
     }
+
+    public static void formatGameView(VBox gameViewBox, double width, double height) {
+        gameViewBox.setPrefWidth(width);
+        gameViewBox.setPrefHeight(height);
+    }
 }
