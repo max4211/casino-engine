@@ -8,6 +8,8 @@ import java.util.function.Supplier;
 
 public class Cashgame extends Goal {
 
+    private static final String HEADER = "CURRENT CASH GAME STANDINGS...";
+
     private static final String STANDINGS = "Standings:";
     private static final String NEWLINE = "\n";
 
@@ -23,6 +25,7 @@ public class Cashgame extends Goal {
 
     private String formatOutput(PriorityQueue<Player> pq) {
         StringBuilder sb = new StringBuilder();
+        sb.append(HEADER+ NEWLINE);
         sb.append(STANDINGS + NEWLINE);
         int count = 1;
         while (!(pq.isEmpty())) {

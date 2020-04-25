@@ -10,8 +10,10 @@ import java.util.function.Supplier;
 
 public class Tournament extends Goal {
 
+    private static final String HEADER = "CURRENT TOURNAMENT STANDINGS...";
+
     private static final int ZERO = 0;
-    private static final String WINNERS = "Winners:";
+    private static final String WINNERS = "Active:";
     private static final String LOSERS = "Losers:";
     private static final String NEWLINE = "\n";
 
@@ -29,6 +31,7 @@ public class Tournament extends Goal {
 
     private String formatOutput(List<Player> myActives, List<Player> myLosers) {
         StringBuilder sb = new StringBuilder();
+        sb.append(HEADER + NEWLINE);
         sb.append(WINNERS + NEWLINE);
         for (int i = 0; i < myActives.size(); i ++)
             sb.append(singleLine(i+1, myActives.get(i).getName(), myActives.get(i).getBankroll()));

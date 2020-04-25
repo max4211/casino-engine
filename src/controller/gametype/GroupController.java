@@ -5,7 +5,6 @@ import actions.group.GroupAction;
 import controller.bundles.ControllerBundle;
 import engine.bet.Bet;
 import engine.dealer.Card;
-import engine.hand.ClassifiedHand;
 import engine.player.Player;
 import engine.pot.Pot;
 import exceptions.ActionException;
@@ -42,7 +41,7 @@ public class GroupController extends Controller {
     public void startGame() {
         promptForEntryBet();
         for (StringPair s: this.myDealerAction) {
-            if (this.myTable.totalActivePlayers() <= 1)
+            if (this.myTable.getTotalActivePlayers() <= 1)
                 return;
             inRoundLoop(s);
         }

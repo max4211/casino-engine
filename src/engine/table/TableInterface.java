@@ -102,4 +102,10 @@ public interface TableInterface {
      * @return
      */
     double getCurrentBet();
+
+    /**
+     * Count toatl number of active players at the table
+     * @return
+     */
+    int getTotalActivePlayers();
 }

@@ -56,7 +56,7 @@ public abstract class Controller implements ControllerInterface {
 
     protected void preClassifyHands() {
         for (Player p: this.myTable.getPlayers()) {
-            for (Bet b: p.getBets()) {
+            for (Bet b: p.getActiveBets()) {
                 classifyHand(b);
                 this.myGameView.classifyHand(b.getHand().getClassification().getName(), p.getID(), b.getID());
             }

@@ -85,7 +85,7 @@ public class Table implements TableInterface {
 
     @Override
     public boolean hasActivePlayers() {
-        return getNextPlayer() != null;
+        return getNextPlayer() != null && getTotalActivePlayers() > 1;
     }
 
     @Override
@@ -179,7 +179,8 @@ public class Table implements TableInterface {
         return null;
     }
 
-    public int totalActivePlayers() {
+    @Override
+    public int getTotalActivePlayers() {
         int count = 0;
         for (Player p: this.myPlayers) {
             for (Bet b: p.getActiveBets())
