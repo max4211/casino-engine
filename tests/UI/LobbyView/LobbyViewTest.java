@@ -1,3 +1,4 @@
+/*
 package UI.LobbyView;
 
 import UI.DukeApplicationTest;
@@ -99,4 +100,4 @@ class LobbyViewTest extends DukeApplicationTest {
         myRobot.clickOn(1110, 195);
         myRobot.clickOn(1140,600);
     }
-}
+}*/

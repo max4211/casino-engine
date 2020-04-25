@@ -1,21 +1,6 @@
 package UI.GameView;
 
-import UI.DukeApplicationTest;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import ooga.Main;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.testfx.api.FxRobot;
-import org.testfx.service.query.EmptyNodeQueryException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
+/*
 @Deprecated
 class GameViewTest extends DukeApplicationTest {
 
@@ -28,7 +13,6 @@ class GameViewTest extends DukeApplicationTest {
         Button myBlackJackGameIcon = myRobot.lookup("#blackJack-icon").query();
         myRobot.clickOn(myBlackJackGameIcon);
     }
-
     // Happy Path :)
     @Test
     public void testGoodWagerInput() {
@@ -71,3 +55,4 @@ class GameViewTest extends DukeApplicationTest {
         myRobot.clickOn(readyButton);
     }
 }
+*/
