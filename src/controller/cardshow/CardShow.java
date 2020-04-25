@@ -34,6 +34,13 @@ public abstract class CardShow implements CardShowInterface {
         }
     }
 
+    protected void hideMyCards(Player p) {
+        for (Bet b: p.getActiveBets()) {
+            for (Card c: b.getHand().getCards())
+                this.myHideCard.hideCard(p.getID(), b.getID(), c.getID());
+        }
+    }
+
     protected void showActiveCards(Player p) {
         hideCards(p);
         for (Bet b: p.getActiveBets()) {

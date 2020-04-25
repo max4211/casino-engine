@@ -12,7 +12,6 @@ public class CardNotFoundException extends RuntimeException {
         this.myCard = c;
     }
 
-    // TODO refactor to properties file response
     @Override
     public String toString() {
         return myError.toString() + MESSAGE + myCard.toString();

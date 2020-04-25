@@ -14,9 +14,8 @@ public abstract class Deck implements DeckInterface {
     public Deck(List<StringPair> cards) {
         this.myBaseCards = new ArrayList<>();
         this.myCurrentCards = new ArrayList<>();
-        for (StringPair p: cards) {
+        for (StringPair p: cards)
             this.myBaseCards.add(new Card(p));
-        }
         this.myCurrentCards = this.myBaseCards;
     }
 
