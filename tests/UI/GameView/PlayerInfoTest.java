@@ -2,7 +2,6 @@ package UI.GameView;
 
 import UI.DukeApplicationTest;
 import UI.Utilities.LanguageBundle;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -13,35 +12,46 @@ import org.testfx.api.FxRobot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PlayerInfoViewTest extends DukeApplicationTest {
+class PlayerInfoTest extends DukeApplicationTest {
 
     // NOTE: THIS IS DEPENDENT ON LANGUAGE BUNDLE, SO IT IS INTEGRATED!
 
     private FxRobot myRobot;
     private LanguageBundle myLanguageBundle;
-    private PlayerInfoView myPlayerInfoView;
+    private PlayerInfo myPlayerInfo;
 
-    private static final String NAME_HBOX_TEST_ID = "#name-label";
-    private static final String BANK_HBOX_TEST_ID = "#bank-value";
+    private static final String TESTING_BLACKJACK_STARTER = "#blackjack-starter";
+    private static final String NAME_DESCRIPTION_TEST_ID = "#name-label";
+    private static final String NAME_VALUE_TEST_ID = "#name-value";
+    private static final String BANK_DESCRIPTION_TEST_ID = "#bank-label";
+    private static final String BANK_VALUE_TEST_ID = "#bank-value";
+
 
     @BeforeEach
     public void setUp() {
         myRobot = new FxRobot();
-        LanguageBundle myBundle = new LanguageBundle("English");
+        myLanguageBundle = new LanguageBundle("English");
     }
 
     // VERY HAPPY PATH :(
     @Test
-    private void testSimplePIV() {
-        PlayerInfoView testPlayerInfoView = new PlayerInfoView("Eric", 1000000, myLanguageBundle);
-        HBox nameBox = myRobot.lookup(NAME_HBOX_TEST_ID).query();
-        HBox bankBox = myRobot.lookup(BANK_HBOX_TEST_ID).query();
+    void testSimplePIV() throws Exception {
+        runBlackJack();
+        Label nameDescriptionLabel = lookup(NAME_DESCRIPTION_TEST_ID).query();
+        Label nameValueLabel = lookup(NAME_VALUE_TEST_ID).query();
+        Label bankDescriptionLabel = lookup(BANK_DESCRIPTION_TEST_ID).query();
+        Label bankValueLabel = lookup(BANK_VALUE_TEST_ID).query();
+
+        assertEquals("Name: ", nameDescriptionLabel.getText());
+        assertEquals("Eric", nameValueLabel.getText());
+        assertEquals("Bank: ", bankDescriptionLabel.getText());
+        assertEquals("100", bankValueLabel);
     }
 
     private void runBlackJack() throws Exception {
         launch(Main.class);
-        Button myBlackJackGameIcon = myRobot.lookup("#blackJack-icon").query();
-        myRobot.clickOn(myBlackJackGameIcon);
+        VBox myGameStarter = myRobot.lookup("#blackJack-icon").query();
+        myRobot.clickOn(myGameStarter);
     }
 
     @Test

@@ -85,10 +85,6 @@ public class Formatter {
         rawHBox.setAlignment(Pos.CENTER);
     }
 
-    public void formatUnfixedLeft(VBox rawVBox) {
-        setMaxBounds(rawVBox);
-        rawVBox.setAlignment(Pos.CENTER_LEFT);
-    }
 
     public void formatUnfixedLeft(HBox rawHBox) {
         setMaxBounds(rawHBox);
@@ -123,7 +119,7 @@ public class Formatter {
         playerInfoViewBox.setPrefWidth(PLAYER_INFO_VIEW_WIDTH);
     }
 
-    private void setMaxBounds(Pane rawPane) {
+    private static void setMaxBounds(Pane rawPane) {
         rawPane.setMaxWidth(Double.MAX_VALUE);
         rawPane.setMaxHeight(Double.MAX_VALUE);
     }
@@ -136,4 +132,27 @@ public class Formatter {
         rawFlowPane.setAlignment(Pos.CENTER);
     }
 
+    public static void formatHandView(HBox handViewBox) {
+        setMaxBounds(handViewBox);
+        handViewBox.setAlignment(Pos.CENTER);
+    }
+
+    public static void formatPot(VBox potBox) {
+        potBox.setAlignment(Pos.CENTER);
+    }
+
+    public static void formatPlayerView(HBox playerViewBox) {
+        setMaxBounds(playerViewBox);
+        playerViewBox.setAlignment(Pos.CENTER_LEFT);
+    }
+
+    public static void formatOtherPlayers(VBox otherPlayersBox) {
+        setMaxBounds(otherPlayersBox);
+        otherPlayersBox.setAlignment(Pos.CENTER_LEFT);
+    }
+
+    public static void formatMainPlayer(HBox mainPlayerBox) {
+        setMaxBounds(mainPlayerBox);
+        mainPlayerBox.setAlignment(Pos.CENTER);
+    }
 }

@@ -6,40 +6,30 @@ import UI.Utilities.LanguageBundle;
 import UI.Selectors.ReadyButton;
 import UI.Selectors.SelectorType;
 import UI.Utilities.Formatter;
-import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
-public class MainPlayerView implements StylizedNode, TaggableNode {
+public class MainPlayer implements StylizedNode, TaggableNode {
 
     private PlayerView myPlayer;
-    private HBox myView;
-    private Formatter myFormatter;
+    private HBox myMainPlayerView;
     private ReadyButton myReadyButton;
 
-    private static final Pos MAIN_PLAYER_ALIGNMENT = Pos.CENTER;
-
-    public MainPlayerView(LanguageBundle languageBundle) {
-        myView = new HBox();
-        myFormatter = new Formatter();
-        myFormatter.formatUnfixedCenter(myView);
+    public MainPlayer(LanguageBundle languageBundle) {
+        myMainPlayerView = new HBox();
+        Formatter.formatMainPlayer(myMainPlayerView);
         myReadyButton = new ReadyButton(languageBundle);
     }
 
     public void setMainPlayer(PlayerView newMainPlayer) {
         myPlayer = newMainPlayer;
-        myPlayer.getView().setAlignment(MAIN_PLAYER_ALIGNMENT);
-        myView.getChildren().add(myPlayer.getView());
-    }
-
-    public void clear() {
-        myView.getChildren().clear();;
-        myPlayer = null;
+        myMainPlayerView.getChildren().add(myPlayer.getView());
     }
 
     public PlayerView getMainPlayer() {
         return myPlayer;
     }
 
+    @Override
     public boolean hasSameID(int playerID) {
         return myPlayer.hasSameID(playerID);
     }
@@ -50,16 +40,15 @@ public class MainPlayerView implements StylizedNode, TaggableNode {
 
     @Override
     public HBox getView() {
-        return myView;
+        return myMainPlayerView;
     }
 
     public void waitUntilReady(SelectorType mySelectionType) {
-        myReadyButton.pauseUntilReady(myView, mySelectionType);
+        myReadyButton.pauseUntilReady(myMainPlayerView, mySelectionType);
     }
 
     public void updateLanguage() {
         if (myPlayer != null) myPlayer.updateLanguage();
-        // myReadyButton.updateLanguage();
     }
 
     public void showAllClassification() {

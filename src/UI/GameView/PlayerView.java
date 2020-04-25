@@ -1,5 +1,6 @@
 package UI.GameView;
 
+import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
 import UI.Interfaces.TaggableNode;
 import UI.Utilities.CardTriplet;
@@ -10,25 +11,37 @@ import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerView implements StylizedNode, TaggableNode {
+public class PlayerView implements StylizedNode, TaggableNode, LanguageResponder {
 
     private List<BetView> myBets;
-    private PlayerInfoView myInfo;
-    private HBox myView;
-    private Formatter myFormatter;
-
+    private PlayerInfo myInfo;
+    private HBox myPlayerView;
     private int myID;
 
-
-
     public PlayerView(String name, int ID, double bankroll, LanguageBundle languageBundle) {
-        myView = new HBox();
-        myFormatter = new Formatter();
-        myFormatter.formatUnfixedLeft(myView);
+        myPlayerView = new HBox();
+        Formatter.formatPlayerView(myPlayerView);
+        StylizedNode.setStyleID(myPlayerView, this.getClass());
         myID = ID;
         myBets = new ArrayList<>();
-        myInfo = new PlayerInfoView(name, bankroll, languageBundle);
-        myView.getChildren().add(myInfo.getView());
+        myInfo = new PlayerInfo(name, bankroll, languageBundle);
+        myPlayerView.getChildren().add(myInfo.getView());
+    }
+
+    @Override
+    public HBox getView() {
+        return myPlayerView;
+    }
+
+    @Override
+    public boolean hasSameID(int ID) {
+        return myID == ID;
+    }
+
+    @Override
+    public void updateLanguage() {
+        myInfo.updateLanguage();
+        for (BetView tempBetView : myBets) tempBetView.updateLanguage();
     }
 
     public void addBet(List<CardTriplet> hand, double wager, String classification, int betID, LanguageBundle languageBundle, String cardImage) {
@@ -41,25 +54,17 @@ public class PlayerView implements StylizedNode, TaggableNode {
 
     private void displayBetView(BetView addedBetView) {
         myBets.add(addedBetView);
-        myView.getChildren().add(addedBetView.getView());
+        myPlayerView.getChildren().add(addedBetView.getView());
     }
 
     public void removeBet(int betID) {
         BetView removedBet = getBet(betID);
         myBets.remove(removedBet);
-        myView.getChildren().remove(removedBet.getView());
+        myPlayerView.getChildren().remove(removedBet.getView());
     }
 
     public void showCard(int betID, int cardID) {
         getBet(betID).showCard(cardID);
-    }
-
-    public HBox getView() {
-        return myView;
-    }
-
-    public boolean hasSameID(int ID) {
-        return myID == ID;
     }
 
     public void addCardIfAbsent(CardTriplet cardInfo, int betID, String cardImage) {
@@ -73,7 +78,7 @@ public class PlayerView implements StylizedNode, TaggableNode {
     }
 
     public void clearBets() {
-        for (BetView deletedBetView : myBets) myView.getChildren().remove(deletedBetView.getView());
+        for (BetView deletedBetView : myBets) myPlayerView.getChildren().remove(deletedBetView.getView());
         myBets.clear();
     }
 
@@ -90,11 +95,6 @@ public class PlayerView implements StylizedNode, TaggableNode {
 
     public void updateClassification(int betID, String newClassification) {
         getBet(betID).updateClassification(newClassification);
-    }
-
-    public void updateLanguage() {
-        myInfo.updateLanguage();
-        for (BetView tempBetView : myBets) tempBetView.updateLanguage();
     }
 
     public void setLoser(int betID) {

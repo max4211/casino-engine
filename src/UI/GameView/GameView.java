@@ -33,8 +33,8 @@ public class GameView implements GameViewInterface, StylizedNode {
 
     private VBox myVBox;
     private BorderPane myBorderPane;
-    private MainPlayerView myMainPlayer;
-    private OtherPlayersView myOtherPlayers;
+    private MainPlayer myMainPlayer;
+    private OtherPlayers myOtherPlayers;
     private HandView myAdversary;
     private HandView myCommons;
     private PotView myPotView;
@@ -65,9 +65,9 @@ public class GameView implements GameViewInterface, StylizedNode {
         myLanguageBundle = new LanguageBundle(languages.get(DEFAULT_LANGUAGE_INDEX));
         myIconBundle = ResourceBundle.getBundle(PATH_TO_ICON_BUNDLE.concat(iconImages));
         myBorderPane = new BorderPane();
-        myOtherPlayers = new OtherPlayersView();
+        myOtherPlayers = new OtherPlayers();
         myBorderPane.setLeft(myOtherPlayers.getView());
-        myMainPlayer = new MainPlayerView(myLanguageBundle);
+        myMainPlayer = new MainPlayer(myLanguageBundle);
         myBorderPane.setBottom(myMainPlayer.getView());
         myExceptionDisplayer = new ExceptionDisplayer(myIconBundle.getString(EXCEPTION_KEY), exceptionCSS, myLanguageBundle);
         myWagerSelector = new WagerSelector(myLanguageBundle);

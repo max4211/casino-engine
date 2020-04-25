@@ -28,6 +28,7 @@ public class BetView implements StylizedNode, TaggableNode, LanguageResponder {
         myBetView = new VBox();
         numberOfCards = hand.size();
         Formatter.formatBetView(myBetView, numberOfCards);
+        StylizedNode.setStyleID(myBetView, this.getClass());
         myID = id;
 
         myHandView = new HandView(hand, cardImage);

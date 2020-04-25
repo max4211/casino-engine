@@ -33,7 +33,7 @@
     -fx-background-color: derive(royalblue, 5%);
 }
 
-#wager-view {
+#PlayerInfo {
     -fx-background-color: derive(royalblue, 30%);
     -fx-background-radius: 5;
 }

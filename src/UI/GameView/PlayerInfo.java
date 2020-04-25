@@ -4,11 +4,12 @@ import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
 import UI.Utilities.Formatter;
 import UI.Utilities.LanguageBundle;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class PlayerInfoView implements StylizedNode, LanguageResponder {
+public class PlayerInfo implements StylizedNode, LanguageResponder {
 
     private VBox myDetailsBox;
     private Label myNameLabel;
@@ -26,7 +27,7 @@ public class PlayerInfoView implements StylizedNode, LanguageResponder {
     private static final String BANK_DESCRIPTION_TEST_ID = "#bank-label";
     private static final String BANK_VALUE_TEST_ID = "#bank-value";
 
-    public PlayerInfoView(String name, double bankroll, LanguageBundle languageBundle) {
+    public PlayerInfo(String name, double bankroll, LanguageBundle languageBundle) {
         myDetailsBox = new VBox();
         StylizedNode.setStyleID(myDetailsBox, this.getClass());
         Formatter.formatPlayerInfoView(myDetailsBox);
@@ -34,8 +35,8 @@ public class PlayerInfoView implements StylizedNode, LanguageResponder {
 
         // ONLY FOR TESTING (otherwise add a new label to param)
         Label nameValueLabel = new Label();
-        nameValueLabel.setId(NAME_VALUE_TEST_ID);
-        
+        //nameValueLabel.setId(NAME_VALUE_TEST_ID);
+
         instantiateLabels();
         renderHBox(myNameLabel, NAME_KEY, nameValueLabel, name);
         renderHBox(myBankLabel, BANK_KEY, myBankValue, String.valueOf(bankroll));
@@ -54,11 +55,11 @@ public class PlayerInfoView implements StylizedNode, LanguageResponder {
 
     private void instantiateLabels() {
         myNameLabel = new Label();
-        myNameLabel.setId(NAME_DESCRIPTION_TEST_ID);
+       // myNameLabel.setId(NAME_DESCRIPTION_TEST_ID);
         myBankLabel = new Label();
-        myBankLabel.setId(BANK_DESCRIPTION_TEST_ID);
+        //myBankLabel.setId(BANK_DESCRIPTION_TEST_ID);
         myBankValue = new Label();
-        myBankLabel.setId(BANK_VALUE_TEST_ID);
+        //myBankLabel.setId(BANK_VALUE_TEST_ID);
     }
 
     private String getTranslation(String key) {
@@ -67,6 +68,7 @@ public class PlayerInfoView implements StylizedNode, LanguageResponder {
 
     private void renderHBox(Label descriptiveLabel, String bundleKey, Label valueLabel, String userInput) {
         HBox returnedHBox = new HBox();
+        returnedHBox.setAlignment(Pos.CENTER);
         descriptiveLabel.setText(getTranslation(bundleKey));
         valueLabel.setText(userInput);
         returnedHBox.getChildren().addAll(descriptiveLabel, valueLabel);
@@ -74,7 +76,7 @@ public class PlayerInfoView implements StylizedNode, LanguageResponder {
     }
 
     public void updateBankroll(double amount) {
-        myBankLabel.setText(String.valueOf(amount));
+        myBankValue.setText(String.valueOf(amount));
     }
 }
 
