@@ -53,6 +53,14 @@ public class BetInfo implements StylizedNode, LanguageResponder {
         myClassifierType.setText(newClassification);
     }
 
+    public void hideClassification() {
+        myBetInfoBox.getChildren().remove(myClassificationBox);
+    }
+
+    public void showClassification() {
+        myBetInfoBox.getChildren().add(myClassificationBox);
+    }
+
     public void updateLanguage() {
         myWagerLabel.setText(getTranslationFor(WAGER_KEY));
         myClassifierLabel.setText(getTranslationFor(HAND_CLASSIFICATION_KEY));
@@ -89,6 +97,5 @@ public class BetInfo implements StylizedNode, LanguageResponder {
     private String getTranslationFor(String key) {
         return myLanguageBundle.getBundle().getString(key);
     }
-
 }
 
