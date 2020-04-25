@@ -42,7 +42,7 @@ public class GroupController extends Controller {
         promptForEntryBet();
         for (StringPair s: this.myDealerAction) {
             if (this.myTable.getTotalActivePlayers() <= 1)
-                return;
+                break;
             inRoundLoop(s);
         }
         postRoundLoop();

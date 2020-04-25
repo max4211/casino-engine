@@ -187,7 +187,8 @@ public abstract class Controller implements ControllerInterface {
         for (Player p: this.myTable.getPlayers()) {
             for (Bet b: p.getBets()) {
                 HandOutcome outcome = b.getHand().getOutcome();
-                updateVisualOutcome(p.getID(), b.getID(), outcome, p.getName());
+                if (!b.getHand().isLoser())
+                    updateVisualOutcome(p.getID(), b.getID(), outcome, p.getName());
             }
         }
     }

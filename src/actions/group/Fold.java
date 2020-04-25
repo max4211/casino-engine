@@ -17,6 +17,7 @@ public class Fold extends GroupAction {
                         WagerSelector selectWager, Consumer<Double> setTableBet, Consumer<Bet> activatePlayers,
                         double tableMin, double tableMax, double currentBet) throws ActionException {
         b.getHand().setLoser(true);
+        b.setRoundActive(false);
         b.setGameActive(false);
     }
 }
