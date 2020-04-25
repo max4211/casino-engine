@@ -199,4 +199,9 @@ public abstract class Controller implements ControllerInterface {
             this.myGameView.setLoser(pID, bID);
     }
 
+    protected void setActingPlayer(Player p) {
+        this.myGameView.setMainPlayer(p.getID());
+        this.myCardshow.show(p);
+    }
+
 }
