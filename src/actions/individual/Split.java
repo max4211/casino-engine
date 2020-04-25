@@ -20,9 +20,7 @@ public class Split extends IndividualAction {
 
     private boolean sameCards(PlayerHand h) {
         if (exactlyTwoCards(h)) {
-            if (h.getCards().get(0).getValue() == h.getCards().get(1).getValue()) {
-                return true;
-            }
+            return h.getCards().get(0).getValue() == h.getCards().get(1).getValue();
         }
         return false;
     }
