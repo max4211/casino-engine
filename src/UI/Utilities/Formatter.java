@@ -12,6 +12,8 @@ public class Formatter {
     private static final double CORNER_RADIUS = 5;
 
     private static final double CARD_HEIGHT = 100;
+    private static final int CARD_WIDTH = 70;
+    private static final int NO_CARDS = 0;
     private static final double WAGER_HEIGHT = 20;
 
     private static final int GAME_STARTER_HEIGHT = 150;
@@ -27,7 +29,7 @@ public class Formatter {
     private static final int FILE_ICON_SPACING = 5;
 
     private static final int BET_INFO_HEIGHT = 40;
-    private static final int MIN_BET_INFO_WIDTH = 106;
+    private static final int MIN_BET_WIDTH = 100;
 
     public void formatFixedVBox(VBox rawVBox, double height, double width) {
         rawVBox.setMinHeight(height);
@@ -39,9 +41,20 @@ public class Formatter {
         rawVBox.setAlignment(Pos.CENTER);
     }
 
+    public static void formatBetView(VBox betViewBox, int numberCards) {
+        if (numberCards == NO_CARDS) betViewBox.setPrefWidth(MIN_BET_WIDTH);
+        else updateBetViewWidth(betViewBox, numberCards);
+        betViewBox.setPrefHeight(CARD_HEIGHT + BET_INFO_HEIGHT);
+        betViewBox.setAlignment(Pos.CENTER);
+    }
+
+    public static void updateBetViewWidth(VBox betViewBox, int numberOfCards) {
+        betViewBox.setPrefWidth(CARD_WIDTH * numberOfCards);
+    }
+
     public static void formatBetInfoBox(VBox betInfoBox) {
         betInfoBox.setPrefHeight(BET_INFO_HEIGHT);
-        betInfoBox.setMinWidth(MIN_BET_INFO_WIDTH);
+        betInfoBox.setMinWidth(MIN_BET_WIDTH);
         betInfoBox.setAlignment(Pos.CENTER);
     }
 
