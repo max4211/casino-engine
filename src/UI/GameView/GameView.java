@@ -24,6 +24,8 @@ import java.util.ResourceBundle;
 
 public class GameView implements GameViewInterface, StylizedNode {
 
+    private static final String WEBSITE_URL = "http://casino308.com/";
+
     private static final String PATH_TO_STYLESHEETS = "styleSheets/game/";
     private static final String PATH_TO_ICON_BUNDLE = "iconBundles/gameBundles/";
     private static final String PATH_TO_ICONS = "iconImages/gameIcons/";
@@ -72,7 +74,8 @@ public class GameView implements GameViewInterface, StylizedNode {
         myExceptionDisplayer = new ExceptionDisplayer(myIconBundle.getString(EXCEPTION_KEY), exceptionCSS, myLanguageBundle);
         myWagerSelector = new WagerSelector(myLanguageBundle);
         myActionSelector = new ActionSelector(myLanguageBundle);
-        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages, PATH_TO_ICONS.concat(myIconBundle.getString(INFO_KEY)));
+        mySettingsBar = new SettingsBar(e -> updateStyleSheet(e), styleSheets, e -> updateLanguage(e), languages,
+                PATH_TO_ICONS.concat(myIconBundle.getString(INFO_KEY)), WEBSITE_URL);
 
         myVBox.getChildren().addAll(mySettingsBar.getView(), myBorderPane);
         myVBox.setVgrow(myBorderPane, Priority.ALWAYS);

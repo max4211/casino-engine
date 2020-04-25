@@ -30,10 +30,10 @@ public interface ControllerBundleInterface {
 
     BetEvaluator getBetEvaluator();
 
-    EntryBet getEntryBet();
+    String getEntryBet();
 
-    Cardshow getCardShow();
+    String getCardShow();
 
-    Goal getGoal();
+    String getGoal();
 
 }

@@ -10,7 +10,7 @@ import controller.cardshow.CardShow;
 import controller.cardshow.CardShowFactory;
 import controller.enums.Cardshow;
 import controller.enums.EntryBet;
-import controller.enums.Goal;
+import controller.goal.Goal;
 import controller.goal.GoalFactory;
 import controller.interfaces.ControllerInterface;
 import controller.interfaces.GarbageCollect;
@@ -36,9 +36,9 @@ public abstract class Controller implements ControllerInterface {
     protected final HandClassifier myHandClassifier;
     protected final BetEvaluator myBetEvaluator;
 
-    protected final EntryBet myEntryBet;
+    protected final String myEntryBet;
     protected CardShow myCardshow;
-    protected controller.goal.Goal myGoal;
+    protected Goal myGoal;
 
     public Controller(ControllerBundle bundle, String actionType) {
         this.myTable = bundle.getTable();
@@ -67,19 +67,19 @@ public abstract class Controller implements ControllerInterface {
 
     protected abstract void postRoundLoop();
 
-    private controller.goal.Goal createGoal(Goal goal) {
+    private controller.goal.Goal createGoal(String goal) {
         try {
             GoalFactory factory = new GoalFactory();
-            return factory.create(goal.toString(), () -> this.myTable.getPlayers());
+            return factory.create(goal, () -> this.myTable.getPlayers());
         } catch (Exception e) {
             throw new ReflectionException();
         }
     }
 
-    private CardShow createCardShow(Cardshow cardShow) {
+    private CardShow createCardShow(String cardShow) {
         try {
             CardShowFactory factory = new CardShowFactory();
-            return factory.create(cardShow.toString(),
+            return factory.create(cardShow,
                     () -> this.myTable.getPlayers(),
                     (pid, bid, cid) -> this.myGameView.showCard(pid, bid, cid),
                     (pid, bid, cid) -> this.myGameView.hideCard(pid, bid, cid),

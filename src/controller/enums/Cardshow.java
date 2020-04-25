@@ -5,7 +5,8 @@ import java.util.function.BiConsumer;
 public enum Cardshow {
 
     ALL("All"),
-    ACTIVE("Active");
+    ACTIVE("Active"),
+    OTHER("Other");
 
     private final String myType;
 

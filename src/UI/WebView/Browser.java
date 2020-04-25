@@ -16,6 +16,12 @@ public class Browser implements BrowserInterface {
     private WebView myWebView;
     private WebEngine myWebEngine;
 
+    public Browser(String webURL) {
+        this.myWebView = new WebView();
+        this.myWebEngine = this.myWebView.getEngine();
+        this.myWebEngine.load(webURL);
+    }
+
     public Browser() {
         this.myWebView = new WebView();
         this.myWebEngine = this.myWebView.getEngine();

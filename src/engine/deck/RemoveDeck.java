@@ -13,8 +13,7 @@ public class RemoveDeck extends Deck {
     @Override
     public Card getCard() {
         int index = (int)(Math.random() * this.myCurrentCards.size());
-        Card c = this.myCurrentCards.get(index);
-        return c;
+        return this.myCurrentCards.get(index);
     }
 
     @Override
