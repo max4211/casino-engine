@@ -32,11 +32,13 @@ import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class GameConstructor {
 
     private static final String CONTROLLER_PATH = "controller.gametype";
     private static final String CONTROLLER_SUFFX = "Controller";
+    private final Consumer<Exception> myExceptionShow;
 
     private final File deckFile;
     private final File gameFile;
@@ -46,7 +48,8 @@ public class GameConstructor {
 
     private static final String TYPE_KEY = "Type";
 
-    public GameConstructor(Map<XMLFileType, File> myFiles) {
+    public GameConstructor(Map<XMLFileType, File> myFiles, Consumer<Exception> exceptionShow) {
+        this.myExceptionShow = exceptionShow;
         deckFile = myFiles.get(XMLFileType.DECK);
         gameFile = myFiles.get(XMLFileType.GAME);
         playerFile = myFiles.get(XMLFileType.PLAYERS);
@@ -55,16 +58,6 @@ public class GameConstructor {
         createGame();
     }
 
-    public GameConstructor(String deck, String game, String player, String hand, String view) {
-        this.deckFile = new File (deck);
-        this.gameFile = new File (game);
-        this.playerFile = new File (player);
-        this.handFile = new File (hand);
-        this.viewFile = new File (view);
-        createGame();
-    }
-
-    // TODO - insert validation from schema before making game
     private void createGame() {
         try {
             GameReader gameReader = new GameReader(gameFile);
@@ -78,8 +71,8 @@ public class GameConstructor {
 
             Controller myController = constructController(gameReader, handReader, myTable, myGameView);
             myController.startGame();
-        } catch (GeneralXMLException e) {
-            System.out.println("sorry, could not create game at this time");
+        } catch (GeneralXMLException | ReflectionException e) {
+            this.myExceptionShow.accept(e);
         }
 
     }
@@ -103,7 +96,7 @@ public class GameConstructor {
         return myTable;
     }
 
-    private Deck createDeck(List<StringPair> deckList, String deckType) {
+    private Deck createDeck(List<StringPair> deckList, String deckType) throws ReflectionException {
         try {
             DeckFactory factory = new DeckFactory();
             return factory.createDeck(deckList, deckType);
@@ -112,7 +105,7 @@ public class GameConstructor {
         }
     }
 
-    private Controller constructController(GameReader gameReader, HandReader handReader, Table table, GameView gameView) {
+    private Controller constructController(GameReader gameReader, HandReader handReader, Table table, GameView gameView) throws ReflectionException {
         Map<String, String> myParams = gameReader.getCompetition();
         String myCompetition = myParams.get(TYPE_KEY);
         ControllerBundle myBundle = createControllerBundle(gameReader, handReader, table, gameView);
@@ -123,10 +116,9 @@ public class GameConstructor {
             Constructor ctor = clazz.getConstructor(ControllerBundle.class, Map.class);
             return (Controller) ctor.newInstance(myBundle, myParams);
         } catch (Exception e) {
-            e.printStackTrace();
+            this.myExceptionShow.accept(new ReflectionException(e));
             throw new ReflectionException(e);
         }
-
     }
 
     private ControllerBundle createControllerBundle(GameReader gameReader, HandReader handReader, Table table, GameView gameView) {
