@@ -80,7 +80,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-<!--    TODO - add validation based on game type-->
     <xs:simpleType name="PlayerActionType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Check"/>

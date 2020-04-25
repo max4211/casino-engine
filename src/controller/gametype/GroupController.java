@@ -95,8 +95,7 @@ public class GroupController extends Controller {
     protected void promptForActions() {
         while (this.myTable.hasActivePlayers()) {
             Player p = this.myTable.getNextPlayer();
-            this.myGameView.setMainPlayer(p.getID());
-            this.myCardshow.show(p);
+            setActingPlayer(p);
             try {
                 GroupAction a = this.myFactory.createGroupAction(this.myGameView.selectAction((ArrayList<String>) this.myPlayerActions));
                 Bet b = p.getNextBet();
