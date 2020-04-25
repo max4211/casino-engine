@@ -132,7 +132,6 @@ public class GroupController extends Controller {
         List<Card> fullHand = new ArrayList<Card>();
         fullHand.addAll(b.getHand().getCards());
         fullHand.addAll(this.myTable.getCommunalCards());
-        // TODO - pass in lambdas to hide bet abilities
         this.myHandClassifier.classifyHand(fullHand, b.getHand());
         if (b.getHand().isLoser())
             b.setGameActive(false);

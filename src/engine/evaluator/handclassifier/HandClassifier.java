@@ -39,13 +39,11 @@ public class HandClassifier implements HandClassifierInterface {
                 Hand hand = this.myHandFactory.createHand(bundle, cards);
                 if (hand.evaluate(this.myCardsInHand)) {
                     h.setLoser(true);
-                    // TODO - classify hand? unnecessary
+                    h.classifyHand(new ClassifiedHand(bundle, Integer.MAX_VALUE, hand.getPower()));
                     return true;
                 }
             } catch (ReflectionException e) {
                 this.myLosingHands.remove(bundle);
-                // TODO - remove hand from list (with schema, will never happen)
-                System.out.println("could not reflect on losing hand");
             }
         }
         return false;
@@ -67,7 +65,6 @@ public class HandClassifier implements HandClassifierInterface {
             try {
                 Hand hand = this.myHandFactory.createHand(bundle, list);
                 if (hand.evaluate(this.myCardsInHand)) {
-                    // TODO - update power
                     h.classifyHand(new ClassifiedHand(bundle, rank, hand.getPower()));
                     return true;
                 }

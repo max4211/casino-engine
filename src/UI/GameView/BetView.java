@@ -18,7 +18,6 @@ public class BetView implements StylizedNode, TaggableNode {
 
     private int myID;
 
-    // TODO: bind to handview
     private static final int CARD_WIDTH = 70;
     private static final int HEIGHT =40;
     private static final int DEFAULT_WIDTH = 112;
