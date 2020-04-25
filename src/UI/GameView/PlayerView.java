@@ -2,9 +2,9 @@ package UI.GameView;
 
 import UI.Interfaces.StylizedNode;
 import UI.Interfaces.TaggableNode;
-import UI.Utilities.LanguageBundle;
 import UI.Utilities.CardTriplet;
 import UI.Utilities.Formatter;
+import UI.Utilities.LanguageBundle;
 import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
@@ -103,5 +103,13 @@ public class PlayerView implements StylizedNode, TaggableNode {
 
     public void setWinner(int betID) {
         getBet(betID).setWinner();
+    }
+
+    public void hideAllClassifications() {
+        for (BetView tempBetView : myBets) tempBetView.hideClassification();
+    }
+
+    public void showAllClassifications() {
+        for (BetView tempBetView : myBets) tempBetView.showClassification();
     }
 }

@@ -1,0 +1,16 @@
+<View>
+    <Title>Blackjack</Title>
+    <Authors>Eric Doppelt and Max Smith</Authors>
+    <IconBundle>standardGame</IconBundle>
+    <Dimensions>
+        <Width></Width>
+        <Height>800</Height>
+    </Dimensions>
+    <Languages>
+        <Language>English</Language>
+        <Language>Spanish</Language>
+    </Languages>
+    <Errors>
+        <ErrorStyleSheet>Fire</ErrorStyleSheet>
+    </Errors>
+</View>

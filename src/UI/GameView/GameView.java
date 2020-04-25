@@ -93,7 +93,7 @@ public class GameView implements GameViewInterface, StylizedNode {
     @Override
     public void renderCommonCards(List<CardTriplet> hand) {
         myCommons = new HandView(hand, myIconBundle.getString(HIDDEN_CARD_KEY));
-        myBorderPane.setCenter(myCommons.getView());
+        myBorderPane.setTop(myCommons.getView());
     }
 
     @Override
@@ -172,8 +172,12 @@ public class GameView implements GameViewInterface, StylizedNode {
     @Override
     public void setMainPlayer(int playerID) {
         if (!myOtherPlayers.hasPlayerView(playerID)) return;
-        if (myMainPlayer.holdsAPlayer()) myOtherPlayers.addPlayer(myMainPlayer.getMainPlayer());
+        if (myMainPlayer.holdsAPlayer()) {
+            myMainPlayer.hideAllClassification();
+            myOtherPlayers.addPlayer(myMainPlayer.getMainPlayer());
+        }
         myMainPlayer.setMainPlayer(myOtherPlayers.getPlayerView(playerID));
+        myMainPlayer.showAllClassification();
         myOtherPlayers.removePlayer(playerID);
     }
 
@@ -263,5 +267,4 @@ public class GameView implements GameViewInterface, StylizedNode {
         myOtherPlayers.updateLanguage();
         myExceptionDisplayer.updateLanguage();
     }
-
 }
