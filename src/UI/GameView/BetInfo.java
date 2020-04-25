@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 public class BetInfo implements StylizedNode, LanguageResponder {
 
-    private VBox myBetInfoBox;
+    private VBox myBetInfo;
     private HBox myClassificationBox;
     private Label myWagerLabel;
     private Label myWagerAmount;
@@ -42,7 +42,7 @@ public class BetInfo implements StylizedNode, LanguageResponder {
 
     @Override
     public VBox getView() {
-        return myBetInfoBox;
+        return myBetInfo;
     }
 
     public void updateWager(double newWager) {
@@ -53,23 +53,31 @@ public class BetInfo implements StylizedNode, LanguageResponder {
         myClassifierType.setText(newClassification);
     }
 
+    public void hideClassification() {
+        myBetInfo.getChildren().remove(myClassificationBox);
+    }
+
+    public void showClassification() {
+        myBetInfo.getChildren().add(myClassificationBox);
+    }
+
     public void updateLanguage() {
         myWagerLabel.setText(getTranslationFor(WAGER_KEY));
         myClassifierLabel.setText(getTranslationFor(HAND_CLASSIFICATION_KEY));
     }
 
     public void setWinner() {
-        myBetInfoBox.setId(WINNER_ID);
+        myBetInfo.setId(WINNER_ID);
     }
 
     public void setLoser() {
-        myBetInfoBox.setId(LOSER_ID);
+        myBetInfo.setId(LOSER_ID);
     }
 
     private void initializeBetInfoBox() {
-        myBetInfoBox = new VBox();
-        Formatter.formatBetInfoBox(myBetInfoBox);
-        StylizedNode.setStyleID(myBetInfoBox, this.getClass());
+        myBetInfo = new VBox();
+        Formatter.formatBetInfoBox(myBetInfo);
+        StylizedNode.setStyleID(myBetInfo, this.getClass());
     }
 
     private void initializeInstanceLabels() {
@@ -83,12 +91,11 @@ public class BetInfo implements StylizedNode, LanguageResponder {
         descriptionLabel.setText(myLanguageBundle.getBundle().getString(descriptiveKey));
         labelBox.getChildren().addAll(descriptionLabel, infoLabel);
         labelBox.setAlignment(Pos.CENTER);
-        myBetInfoBox.getChildren().add(labelBox);
+        myBetInfo.getChildren().add(labelBox);
     }
 
     private String getTranslationFor(String key) {
         return myLanguageBundle.getBundle().getString(key);
     }
-
 }
 

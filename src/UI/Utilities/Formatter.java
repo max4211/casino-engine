@@ -3,15 +3,19 @@ package UI.Utilities;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Formatter {
 
-    private static final double CORNER_RADIUS = 5;
-
     private static final double CARD_HEIGHT = 100;
+    private static final int CARD_WIDTH = 70;
+    private static final int NO_CARDS = 0;
     private static final double WAGER_HEIGHT = 20;
 
     private static final int GAME_STARTER_HEIGHT = 150;
@@ -27,7 +31,7 @@ public class Formatter {
     private static final int FILE_ICON_SPACING = 5;
 
     private static final int BET_INFO_HEIGHT = 40;
-    private static final int MIN_BET_INFO_WIDTH = 106;
+    private static final int MIN_BET_WIDTH = 100;
 
     public void formatFixedVBox(VBox rawVBox, double height, double width) {
         rawVBox.setMinHeight(height);
@@ -39,9 +43,33 @@ public class Formatter {
         rawVBox.setAlignment(Pos.CENTER);
     }
 
+    public static void formatBetView(VBox betViewBox, int numberCards) {
+        if (numberCards == NO_CARDS) betViewBox.setPrefWidth(MIN_BET_WIDTH);
+        else updateBetViewWidth(betViewBox, numberCards);
+        betViewBox.setPrefHeight(CARD_HEIGHT + BET_INFO_HEIGHT);
+        betViewBox.setAlignment(Pos.CENTER);
+    }
+
+    public static void formatShownCardView(VBox shownCardView, Label valueLabel, Label suitLabel) {
+        shownCardView.setPrefHeight(CARD_HEIGHT);
+        shownCardView.setPrefWidth(CARD_WIDTH);
+        shownCardView.setAlignment(Pos.CENTER);
+        valueLabel.setTextAlignment(TextAlignment.CENTER);
+        suitLabel.setTextAlignment(TextAlignment.CENTER);
+    }
+
+    public static void formatHiddenCardView(ImageView hiddenCardView) {
+        hiddenCardView.setFitHeight(CARD_HEIGHT);
+        hiddenCardView.setFitWidth(CARD_WIDTH);
+    }
+
+    public static void updateBetViewWidth(VBox betViewBox, int numberOfCards) {
+        betViewBox.setPrefWidth(CARD_WIDTH * numberOfCards);
+    }
+
     public static void formatBetInfoBox(VBox betInfoBox) {
         betInfoBox.setPrefHeight(BET_INFO_HEIGHT);
-        betInfoBox.setMinWidth(MIN_BET_INFO_WIDTH);
+        betInfoBox.setMinWidth(MIN_BET_WIDTH);
         betInfoBox.setAlignment(Pos.CENTER);
     }
 
@@ -67,7 +95,7 @@ public class Formatter {
     }
 
     public static void formatSelectorButton(Button rawButton) {
-        rawButton.setPrefHeight(CARD_HEIGHT + WAGER_HEIGHT);
+        rawButton.setPrefHeight(CARD_HEIGHT + BET_INFO_HEIGHT);
     }
 
     public static void formatAllFilesBox(VBox rawVBox) {
@@ -101,32 +129,4 @@ public class Formatter {
         rawFlowPane.setAlignment(Pos.CENTER);
     }
 
-    public void formatGrowingHBox(HBox rawHBox, double height, double minWidth) {
-        formatUnfixedCenter(rawHBox);
-        rawHBox.setMinHeight(height);
-        rawHBox.setMaxHeight(height);
-
-        rawHBox.setMinWidth(minWidth);
-    }
-
-    public void updateVBoxWidth(VBox rawVBox, double newWidth) {
-        rawVBox.setMinWidth(newWidth);
-        rawVBox.setMaxWidth(newWidth);
-    }
-
-    public static void formatCenteredAndGrowing(HBox rawHBox) {
-        rawHBox.setAlignment(Pos.CENTER);
-        rawHBox.setMaxWidth(Double.MAX_VALUE);
-        rawHBox.setMinWidth(Double.MAX_VALUE);
-    }
-
-    public static void formatCenteredGrowingLabel(Label label) {
-        label.setAlignment(Pos.CENTER);
-        label.setMaxWidth(Double.MAX_VALUE);
-        label.setMinWidth(Double.MAX_VALUE);
-    }
-
-    public void updateBackground(Pane rawPane, Color newColor) {
-        rawPane.setBackground(new Background(new BackgroundFill(newColor, new CornerRadii(CORNER_RADIUS), null)));
-    }
 }
