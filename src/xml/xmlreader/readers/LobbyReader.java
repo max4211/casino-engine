@@ -126,8 +126,7 @@ public class LobbyReader implements LobbyReaderInterface  {
         for (String tag: tags) {
             try {
                 list.add(new File(getElementByTag(n, tag)));
-            } catch (Exception e) {
-                // TODO - likely file doesn't exist (or parse tag incorrect, validator ensures this is not true)
+            } catch (Exception ignored) {
                 ;
             }
         }

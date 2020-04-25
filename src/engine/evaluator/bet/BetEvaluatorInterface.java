@@ -16,13 +16,6 @@ public interface BetEvaluatorInterface {
     public void evaluateBets(List<Bet> bets);
 
     /**
-     * Updates the wager of a bet given its payout odds, such that bets with large payout odds become worth more value
-     * The wager of the bet is then added to a player's bankroll, so this allows the cashing of the ticket to reflect the payout value
-     * @param bets is a collection of winning bets from a turn to iterate over and update payout odds
-     */
-    public void updateWagers(List<Bet> bets);
-
-    /**
      * Evaluate hands against eachother (assume all are classified
      * @param h1 that have been classified in the same competitive pool
      */

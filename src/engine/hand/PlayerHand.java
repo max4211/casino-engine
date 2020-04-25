@@ -10,7 +10,6 @@ public class PlayerHand implements PlayerHandInterface {
 
     private List<Card> myCards;
     private ClassifiedHand myClassification;
-    // TODO refactor loser state to enumerated type of outcome
     private boolean isLoser = false;
     private HandOutcome myOutcome = HandOutcome.TIE;
 

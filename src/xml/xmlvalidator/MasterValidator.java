@@ -73,9 +73,8 @@ public class MasterValidator {
                         this.myUpdate.updateStatus(tag, FileStatus.INVALID);
                     }
                 }
-            } catch (XMLParseException | CustomEnumException ignored) {
-                // TODO - throw invalid XML file exception
-                ;
+            } catch (XMLParseException | CustomEnumException e) {
+                this.myExceptionShow.accept(e);
             }
         }
     }

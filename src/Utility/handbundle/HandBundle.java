@@ -48,7 +48,6 @@ public class HandBundle implements HandBundleInterface{
         return d;
     }
 
-    // TODO - more robust parameter parsing
     private List<Double> parseParams(String params) {
         List<Double> list = new ArrayList<>();
         try {

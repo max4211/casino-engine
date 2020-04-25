@@ -154,8 +154,6 @@ public class GameConstructor {
         return String.format("%s.%s%s", CONTROLLER_PATH, competition, CONTROLLER_SUFFX);
     }
 
-//    List<String> styleSheets, List<String> languages, String iconImages, String exceptionCSS, double width, double height
-    // TODO - give game view parameters form the XML file
     private GameView constructGameView(ViewReader viewReader) {
         List<String> stylesheets = viewReader.getStylesheets();
         List<String> languages = viewReader.getLanguages();

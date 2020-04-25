@@ -7,7 +7,6 @@
                     <xs:complexType>
                         <xs:all>
                             <xs:element name="Type" type="CompetitionType"/>
-                            <!--    TODO - generalize/restrict one or the other based on game type-->
                             <xs:element name="Ante" minOccurs="0" maxOccurs="1"/>
                             <xs:element name="Minimum" minOccurs="0" maxOccurs="1"/>
                         </xs:all>
