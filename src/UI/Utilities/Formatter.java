@@ -34,16 +34,6 @@ public class Formatter {
 
     private static final int PLAYER_INFO_VIEW_WIDTH = 100;
 
-    public void formatFixedVBox(VBox rawVBox, double height, double width) {
-        rawVBox.setMinHeight(height);
-        rawVBox.setMaxHeight(height);
-
-        rawVBox.setMinWidth(width);
-        rawVBox.setMaxWidth(width);
-
-        rawVBox.setAlignment(Pos.CENTER);
-    }
-
     public static void formatBetView(VBox betViewBox, int numberCards) {
         if (numberCards == NO_CARDS) betViewBox.setPrefWidth(MIN_BET_WIDTH);
         else updateBetViewWidth(betViewBox, numberCards);
@@ -74,25 +64,14 @@ public class Formatter {
         betInfoBox.setAlignment(Pos.CENTER);
     }
 
-    public static void formatGameStarter(VBox rawVBox) {
-        rawVBox.setAlignment(Pos.CENTER);
-        rawVBox.setPrefHeight(GAME_STARTER_HEIGHT);
-        rawVBox.setPrefWidth(GAME_STARTER_WIDTH);
+    public static void formatGameStarter(VBox gameStarterBox) {
+        gameStarterBox.setAlignment(Pos.CENTER);
+        gameStarterBox.setPrefHeight(GAME_STARTER_HEIGHT);
+        gameStarterBox.setPrefWidth(GAME_STARTER_WIDTH);
     }
 
-    public void formatUnfixedCenter(HBox rawHBox) {
-        setMaxBounds(rawHBox);
-        rawHBox.setAlignment(Pos.CENTER);
-    }
-
-
-    public void formatUnfixedLeft(HBox rawHBox) {
-        setMaxBounds(rawHBox);
-        rawHBox.setAlignment(Pos.CENTER_LEFT);
-    }
-
-    public static void formatSelectorButton(Button rawButton) {
-        rawButton.setPrefHeight(CARD_HEIGHT + BET_INFO_HEIGHT);
+    public static void formatSelectorButton(Button selectorButton) {
+        selectorButton.setPrefHeight(CARD_HEIGHT + BET_INFO_HEIGHT);
     }
 
     public static void formatAllFilesBox(VBox allFilesVBox) {
@@ -100,11 +79,11 @@ public class Formatter {
         allFilesVBox.setSpacing(FILE_ICON_VERTICAL_SPACING);
     }
 
-    public static void formatAllFilesStage(Stage rawStage) {
-        rawStage.setWidth(ALL_FILES_WIDTH);
-        rawStage.setHeight(ALL_FILES_HEIGHT);
-        rawStage.setX(ScreenPosition.LEFT.getX() - HALF_ALL_FILES_WIDTH);
-        rawStage.setY(ScreenPosition.LEFT.getY());
+    public static void formatAllFilesStage(Stage filesStage) {
+        filesStage.setWidth(ALL_FILES_WIDTH);
+        filesStage.setHeight(ALL_FILES_HEIGHT);
+        filesStage.setX(ScreenPosition.LEFT.getX() - HALF_ALL_FILES_WIDTH);
+        filesStage.setY(ScreenPosition.LEFT.getY());
     }
 
     public static void formatFileDisplay(VBox fullDisplayBox, HBox iconBox) {
@@ -124,12 +103,12 @@ public class Formatter {
         rawPane.setMaxHeight(Double.MAX_VALUE);
     }
 
-    public static void formatLobbyView(VBox rawVBox) {
-        rawVBox.setSpacing(GAP_BETWEEN_SETTINGS_AND_GAMESTARTERS);
+    public static void formatLobbyView(VBox lobbyBox) {
+        lobbyBox.setSpacing(GAP_BETWEEN_SETTINGS_AND_GAMESTARTERS);
     }
 
-    public static void formatGameStarterFlowPane(FlowPane rawFlowPane) {
-        rawFlowPane.setAlignment(Pos.CENTER);
+    public static void formatGameStarterFlowPane(FlowPane gameStarterFlowPane) {
+        gameStarterFlowPane.setAlignment(Pos.CENTER);
     }
 
     public static void formatHandView(HBox handViewBox) {
