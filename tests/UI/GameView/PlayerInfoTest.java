@@ -5,7 +5,6 @@ import UI.Utilities.LanguageBundle;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import ooga.Main;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
@@ -33,6 +32,9 @@ class PlayerInfoTest extends DukeApplicationTest {
         myLanguageBundle = new LanguageBundle("English");
     }
 
+    private void createPVs() {
+    }
+
     // VERY HAPPY PATH :(
     @Test
     void testSimplePIV() throws Exception {
@@ -49,9 +51,8 @@ class PlayerInfoTest extends DukeApplicationTest {
     }
 
     private void runBlackJack() throws Exception {
-        launch(Main.class);
-        VBox myGameStarter = myRobot.lookup("#blackJack-icon").query();
-        myRobot.clickOn(myGameStarter);
+
+        myRobot.clickOn(725,300);
     }
 
     @Test
