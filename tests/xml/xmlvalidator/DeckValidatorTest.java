@@ -1,6 +1,8 @@
 package xml.xmlvalidator;
 
+import com.sun.java.accessibility.util.Translator;
 import exceptions.ValidatorException;
+import javafx.scene.transform.Translate;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

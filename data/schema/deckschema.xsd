@@ -3,10 +3,10 @@
     <xs:element name="Deck">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Title" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
-                <xs:element name="Authors" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
-                <xs:element name="Quantity" type="xs:int" minOccurs="1" maxOccurs="1"></xs:element>
-                <xs:element name="Type" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="Title" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="Authors" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="Quantity" type="xs:int" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="Type" type="xs:string" minOccurs="1" maxOccurs="1"/>
                 <xs:element name="Card" minOccurs="1" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
