@@ -1,7 +1,7 @@
 package UI.GameView;
 
 import UI.Interfaces.StylizedNode;
-import UI.IconFactories.Icon;
+import UI.Icons.Icon;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;

@@ -1,6 +1,7 @@
 package UI.Validation;
 
-import UI.IconFactories.Icon;
+import UI.Icons.Icon;
+import UI.Icons.MutableIcon;
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
 import UI.Utilities.Formatter;

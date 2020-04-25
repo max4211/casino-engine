@@ -1,7 +1,7 @@
 package UI.LobbyView;
 
-import UI.IconFactories.Icon;
-import UI.IconFactories.IconSize;
+import UI.Icons.Icon;
+import UI.Icons.IconSize;
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
 import UI.Utilities.Formatter;
