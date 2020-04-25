@@ -1,6 +1,7 @@
 package xml.xmlvalidator;
 
 import UI.Interfaces.GameCaller;
+import UI.Utilities.ScreenPosition;
 import UI.Validation.FileStatus;
 import UI.Validation.MultipleXMLChooser;
 import UI.Validation.UpdateFilesDisplayInterface;
@@ -23,6 +24,7 @@ public class MasterValidator {
     private UpdateFilesDisplayInterface myUpdate;
     private Consumer<GameCaller> myCaller;
     private Consumer<Exception> myExceptionShow;
+    private Consumer<Double> mySetX;
 
     /**
      * Lambda to show errors on front end and prompt new files
@@ -31,12 +33,14 @@ public class MasterValidator {
     public MasterValidator(List<File> fileList,
                            UpdateFilesDisplayInterface update,
                            Consumer<GameCaller> caller,
+                           Consumer<Double> setX,
                            Consumer<Exception> showException) {
         this.myXMLBundle = new XMLBundle();
         this.myFactory = new ValidatorFactory();
         this.myUpdate = update;
         this.myCaller = caller;
         this.myExceptionShow = showException;
+        this.mySetX = setX;
         validateFiles(fileList);
     }
 
@@ -44,6 +48,7 @@ public class MasterValidator {
         tryFileAdd(fileList);
         while (!(this.myXMLBundle.isComplete())) {
             MultipleXMLChooser chooser = new MultipleXMLChooser();
+            this.mySetX.accept(ScreenPosition.FARLEFT.getX());
             try {
                 tryFileAdd(chooser.getFileList());
             } catch (NullPointerException e) {
