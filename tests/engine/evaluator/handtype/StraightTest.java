@@ -16,7 +16,7 @@ class StraightTest {
                 new Card("hearts", 1),
                 new Card("hearts", 2),
                 new Card("hearts", 3)));
-        List<Double> params = new ArrayList<>();
+        List<Double> params = new ArrayList<>(List.of(1.));
         Hand hand = new Straight(cards, params);
         boolean expected = true;
         boolean result = hand.evaluate(3);

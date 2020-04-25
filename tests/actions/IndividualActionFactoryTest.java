@@ -16,7 +16,7 @@ class IndividualActionFactoryTest {
     // HAPPY PATH :)
     @Test
     void testCreateAction() {
-        ActionFactory factory = new ActionFactory("Individual");
+        ActionFactory factory = new ActionFactory("individual");
         IndividualAction hitTest = factory.createIndividualAction("Hit");
         IndividualAction stayTest = factory.createIndividualAction("Stay");
         IndividualAction doubleDownTest = factory.createIndividualAction("DoubleDown");
@@ -28,9 +28,8 @@ class IndividualActionFactoryTest {
     // SAD PATH :)
     @Test
     void testInvalidAction() {
-        ActionFactory factory = new ActionFactory("Individual");
+        ActionFactory factory = new ActionFactory("individual");
         Exception e = assertThrows(RuntimeException.class, () -> factory.createIndividualAction(("blah")));
         assertEquals(e.getClass(), ReflectionException.class);
-        // TODO - test exception matches string
     }
 }
