@@ -7,7 +7,7 @@ import actions.individual.IndividualAction;
 import actions.individual.Stay;
 import exceptions.ReflectionException;
 import org.junit.jupiter.api.Test;
-import org.testng.annotations.AfterTest;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
