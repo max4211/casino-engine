@@ -42,6 +42,11 @@
     -fx-background-color: derive(royalblue, 35%);
 }
 
-#card-view {
+#shown-card {
+    -fx-background-color: #ff7b53;
+    -fx-background-radius: 20;
 }
 
+#hidden-card {
+    -fx-background-radius: 20;
+}
