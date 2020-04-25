@@ -3,7 +3,7 @@ package UI.ExceptionDisplay;
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
 import UI.Utilities.LanguageBundle;
-import UI.IconFactories.Icon;
+import UI.Icons.Icon;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 

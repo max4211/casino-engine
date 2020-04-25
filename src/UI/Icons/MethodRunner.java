@@ -1,4 +1,4 @@
-package UI.IconFactories;
+package UI.Icons;
 @FunctionalInterface
 public interface MethodRunner {
 

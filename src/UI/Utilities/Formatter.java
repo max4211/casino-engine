@@ -2,6 +2,7 @@ package UI.Utilities;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -25,6 +26,9 @@ public class Formatter {
 
     private static final int FILE_ICON_SPACING = 5;
 
+    private static final int BET_INFO_HEIGHT = 40;
+    private static final int MIN_BET_INFO_WIDTH = 106;
+
     public void formatFixedVBox(VBox rawVBox, double height, double width) {
         rawVBox.setMinHeight(height);
         rawVBox.setMaxHeight(height);
@@ -33,6 +37,12 @@ public class Formatter {
         rawVBox.setMaxWidth(width);
 
         rawVBox.setAlignment(Pos.CENTER);
+    }
+
+    public static void formatBetInfoBox(VBox betInfoBox) {
+        betInfoBox.setPrefHeight(BET_INFO_HEIGHT);
+        betInfoBox.setMinWidth(MIN_BET_INFO_WIDTH);
+        betInfoBox.setAlignment(Pos.CENTER);
     }
 
     public static void formatGameStarter(VBox rawVBox) {
@@ -102,6 +112,18 @@ public class Formatter {
     public void updateVBoxWidth(VBox rawVBox, double newWidth) {
         rawVBox.setMinWidth(newWidth);
         rawVBox.setMaxWidth(newWidth);
+    }
+
+    public static void formatCenteredAndGrowing(HBox rawHBox) {
+        rawHBox.setAlignment(Pos.CENTER);
+        rawHBox.setMaxWidth(Double.MAX_VALUE);
+        rawHBox.setMinWidth(Double.MAX_VALUE);
+    }
+
+    public static void formatCenteredGrowingLabel(Label label) {
+        label.setAlignment(Pos.CENTER);
+        label.setMaxWidth(Double.MAX_VALUE);
+        label.setMinWidth(Double.MAX_VALUE);
     }
 
     public void updateBackground(Pane rawPane, Color newColor) {

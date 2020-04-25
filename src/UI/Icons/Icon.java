@@ -1,4 +1,4 @@
-package UI.IconFactories;
+package UI.Icons;
 
 import UI.Interfaces.StylizedNode;
 import javafx.scene.image.Image;

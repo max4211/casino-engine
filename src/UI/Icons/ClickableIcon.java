@@ -1,4 +1,4 @@
-package UI.IconFactories;
+package UI.Icons;
 
 public class ClickableIcon extends Icon {
 

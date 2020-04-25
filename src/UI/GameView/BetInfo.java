@@ -2,52 +2,47 @@ package UI.GameView;
 
 import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
-import UI.Utilities.LanguageBundle;
 import UI.Utilities.Formatter;
+import UI.Utilities.LanguageBundle;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class BetInfo implements StylizedNode, LanguageResponder {
 
-    private VBox myVBox;
-    private HBox myWagerBox;
-    private HBox myClassifierBox;
-
-    //TODO: BIND THIS?
-    private static final double VIEW_HEIGHT = 40;
-    private static final double MIN_VIEW_WIDTH = 106;
-
-    private static final Formatter myFormatter = new Formatter();
-
-    //TODO: make a language option that changes this, keeping it static final to draw attention
-    private static final String WAGER_KEY = "Wager";
-    private static final String HAND_CLASSIFICATION_KEY = "HandClassification";
-
-    private static final String NEUTRAL_ID = "neutral-bet-view";
-    private static final String LOSER_ID = "loser-bet-view";
-    private static final String WINNER_ID = "winner-bet-view";
-
+    private VBox myBetInfoBox;
+    private HBox myClassificationBox;
     private Label myWagerLabel;
     private Label myWagerAmount;
     private Label myClassifierLabel;
     private Label myClassifierType;
 
+    private static final String WAGER_KEY = "Wager";
+    private static final String HAND_CLASSIFICATION_KEY = "HandClassification";
+
+    private static final String LOSER_ID = "loser-bet-view";
+    private static final String WINNER_ID = "winner-bet-view";
+
     private LanguageBundle myLanguageBundle;
 
     public BetInfo(double wager, String classification, LanguageBundle languageBundle) {
-        myVBox = new VBox();
-        StylizedNode.setStyleID(myVBox, this.getClass());
-        myFormatter.formatFixedVBox(myVBox, VIEW_HEIGHT, MIN_VIEW_WIDTH);
+        initializeBetInfoBox();
         myLanguageBundle = languageBundle;
-
-        initializeInstanceHBoxes();
         initializeInstanceLabels();
-        createInfoBox(myWagerBox, myWagerLabel, WAGER_KEY, myWagerAmount);
-        createInfoBox(myClassifierBox, myClassifierLabel, HAND_CLASSIFICATION_KEY, myClassifierType);
+
+        HBox wagerBox = new HBox();
+        createInfoBox(wagerBox, myWagerLabel, WAGER_KEY, myWagerAmount);
+        myClassificationBox = new HBox();
+        createInfoBox(myClassificationBox, myClassifierLabel, HAND_CLASSIFICATION_KEY, myClassifierType);
 
         updateWager(wager);
         updateClassification(classification);
+    }
+
+    @Override
+    public VBox getView() {
+        return myBetInfoBox;
     }
 
     public void updateWager(double newWager) {
@@ -59,26 +54,24 @@ public class BetInfo implements StylizedNode, LanguageResponder {
     }
 
     public void updateLanguage() {
-        myWagerLabel.setText(myLanguageBundle.getBundle().getString(WAGER_KEY));
-        myClassifierLabel.setText(myLanguageBundle.getBundle().getString(HAND_CLASSIFICATION_KEY));
+        myWagerLabel.setText(getTranslationFor(WAGER_KEY));
+        myClassifierLabel.setText(getTranslationFor(HAND_CLASSIFICATION_KEY));
     }
 
     public void setWinner() {
-        myVBox.setId(WINNER_ID);
+        myBetInfoBox.setId(WINNER_ID);
     }
 
     public void setLoser() {
-        myVBox.setId(LOSER_ID);
+        myBetInfoBox.setId(LOSER_ID);
     }
 
-    public VBox getView() {
-        return myVBox;
+    private void initializeBetInfoBox() {
+        myBetInfoBox = new VBox();
+        Formatter.formatBetInfoBox(myBetInfoBox);
+        StylizedNode.setStyleID(myBetInfoBox, this.getClass());
     }
 
-    private void initializeInstanceHBoxes() {
-        myWagerBox = new HBox();
-        myClassifierBox = new HBox();
-    }
     private void initializeInstanceLabels() {
         myWagerLabel = new Label();
         myWagerAmount = new Label();
@@ -86,10 +79,16 @@ public class BetInfo implements StylizedNode, LanguageResponder {
         myClassifierType = new Label();
     }
 
-    private void createInfoBox(HBox rawHBox, Label descriptionLabel, String descriptiveKey, Label infoLabel) {
+    private void createInfoBox(HBox labelBox, Label descriptionLabel, String descriptiveKey, Label infoLabel) {
         descriptionLabel.setText(myLanguageBundle.getBundle().getString(descriptiveKey));
-        rawHBox.getChildren().addAll(descriptionLabel, infoLabel);
-        myVBox.getChildren().add(rawHBox);
+        labelBox.getChildren().addAll(descriptionLabel, infoLabel);
+        labelBox.setAlignment(Pos.CENTER);
+        myBetInfoBox.getChildren().add(labelBox);
     }
+
+    private String getTranslationFor(String key) {
+        return myLanguageBundle.getBundle().getString(key);
+    }
+
 }
 

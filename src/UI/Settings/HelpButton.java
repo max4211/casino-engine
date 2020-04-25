@@ -1,6 +1,6 @@
 package UI.Settings;
 
-import UI.IconFactories.Icon;
+import UI.Icons.Icon;
 import UI.WebView.Browser;
 
 public class HelpButton extends Icon {

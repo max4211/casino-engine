@@ -5,6 +5,7 @@ import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
 import UI.Utilities.Formatter;
 import UI.Utilities.LanguageBundle;
+import UI.Utilities.ScreenPosition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -30,6 +31,13 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
     private static final boolean LAUNCH_BUTTON_DISABLE = true;
     private static final boolean LAUNCH_BUTTON_ENABLE = false;
 
+    private static final double ORIGIN = 0;
+
+    public AllFilesDisplay(LanguageBundle languageBundle, String fileIconBundleName, String statusIconBundleName, ScreenPosition screenPosition) {
+        this(languageBundle, fileIconBundleName, statusIconBundleName);
+        myStage.setX(screenPosition.getX());
+    }
+
     public AllFilesDisplay(LanguageBundle languageBundle, String fileIconBundleName, String statusIconBundleName) {
         myFilesBox = new VBox();
         StylizedNode.setStyleID(myFilesBox, this.getClass());
@@ -40,6 +48,11 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
         createLaunchButton();
         updateLanguage();
         renderDisplay();
+    }
+
+    private void initializeFilesBox() {
+        myFilesBox = new VBox();
+        StylizedNode.setStyleID(myFilesBox, this.getClass());
     }
 
     @Override
@@ -60,6 +73,12 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
     public void updateLanguage() {
         for (XMLFileType tempFileType : XMLFileType.values()) myFileDisplays.get(tempFileType).updateLanguage();
         myLaunchButton.setText(myLanguageBundle.getBundle().getString(LAUNCH_GAME_KEY));
+    }
+
+    public void setX(double newX) {
+        if (newX > ORIGIN) {
+            myStage.setX(newX);
+        }
     }
 
     private String formatIconBundlePath(String iconName) {
