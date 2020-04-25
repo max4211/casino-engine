@@ -6,6 +6,7 @@ import engine.dealer.Card;
 import java.util.List;
 
 public class ReplaceDeck extends Deck {
+
     public ReplaceDeck(List<StringPair> cards) {
         super(cards);
     }
@@ -13,9 +14,7 @@ public class ReplaceDeck extends Deck {
     @Override
     public Card getCard() {
         int index = (int)(Math.random() * this.myCurrentCards.size());
-        Card c = this.myCurrentCards.get(index);
-        this.myCurrentCards.remove(index);
-        return c;
+        return this.myCurrentCards.get(index);
     }
 
     @Override

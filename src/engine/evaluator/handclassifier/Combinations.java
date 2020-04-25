@@ -29,7 +29,6 @@ public class Combinations implements Iterator<List<Card>> {
         generateCombinations(data, 0, cards.size(), ZERO);
     }
 
-    // TODO - index == this.myCardsInHand - 1 gives repeats but correct sized hands (good enough?)
     private void generateCombinations(List<Card> data, int start, int end, int index) {
         List<Card> list = new ArrayList<>(data);
         if (index == this.myCardsInHand || list.size() == this.myCardsInHand) {

@@ -69,7 +69,6 @@ public class HandClassifier implements HandClassifierInterface {
                     return true;
                 }
             } catch (ReflectionException e) {
-                System.out.println("could not reflect on winning hand");
                 this.myWinningHands.remove(bundle);
                 return false;
             }

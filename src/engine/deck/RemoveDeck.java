@@ -12,8 +12,12 @@ public class RemoveDeck extends Deck {
 
     @Override
     public Card getCard() {
+        if (this.myCurrentCards.size() <= 1)
+            this.myCurrentCards = this.myBaseCards;
         int index = (int)(Math.random() * this.myCurrentCards.size());
-        return this.myCurrentCards.get(index);
+        Card c = this.myCurrentCards.get(index);
+        this.myCurrentCards.remove(index);
+        return c;
     }
 
     @Override

@@ -59,16 +59,8 @@ public class GameReader implements GameReaderInterface {
 
     @Override
     public List<StringPair> getDealerAction() {
-        List<StringPair> list = new ArrayList<>();
         NodeList dealerActionNodeList = XMLParseInterface.getNodeList(myDocument, DEALERACTION_TAG);
-        for (int index = 0; index < dealerActionNodeList.getLength(); index ++) {
-            Node node = dealerActionNodeList.item(index);
-            Element dealerActionElement = (Element) node;
-            String type = XMLParseInterface.getElement(dealerActionElement, TYPE_TAG);
-            String quantity = XMLParseInterface.getElement(dealerActionElement, QUANTITY_TAG);
-            list.add(new StringPair(type, quantity));
-        }
-        return list;
+        return XMLParseInterface.parseStringPair(dealerActionNodeList, TYPE_TAG, QUANTITY_TAG);
     }
 
     @Override

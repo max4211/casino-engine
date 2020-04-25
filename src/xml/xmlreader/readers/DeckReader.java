@@ -57,16 +57,8 @@ public class DeckReader implements DeckReaderInterface {
     }
 
     private List<StringPair> parseDeck() {
-        List<StringPair> list = new ArrayList<>();
         NodeList cardNodeList = myDocument.getElementsByTagName(CARD_TAG);
-        for (int index = 0; index < cardNodeList.getLength(); index ++) {
-            Node cardNode = cardNodeList.item(index);
-            Element cardElement = (Element) cardNode;
-            String suit = XMLParseInterface.getElement(cardElement, SUIT_TAG);
-            String value = XMLParseInterface.getElement(cardElement, VALUE_TAG);
-            list.add(new StringPair(suit, value));
-        }
-        return list;
+        return XMLParseInterface.parseStringPair(cardNodeList, SUIT_TAG, VALUE_TAG);
     }
 
 }

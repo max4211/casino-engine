@@ -1,5 +1,6 @@
 package xml.xmlreader.interfaces;
 
+import Utility.StringPair;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -49,6 +50,18 @@ public interface XMLParseInterface {
             Element handElement = (Element) handNode;
             String name = handElement.getTextContent();
             list.add(name);
+        }
+        return list;
+    }
+
+    static List<StringPair> parseStringPair(NodeList nodeList, String firstTag, String secondTag) {
+        List<StringPair> list = new ArrayList<>();
+        for (int index = 0; index < nodeList.getLength(); index ++) {
+            Node cardNode = nodeList.item(index);
+            Element cardElement = (Element) cardNode;
+            String suit = XMLParseInterface.getElement(cardElement, firstTag);
+            String value = XMLParseInterface.getElement(cardElement, secondTag);
+            list.add(new StringPair(suit, value));
         }
         return list;
     }
