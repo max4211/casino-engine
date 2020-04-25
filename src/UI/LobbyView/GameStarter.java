@@ -59,6 +59,7 @@ public class GameStarter implements StylizedNode, LanguageResponder {
             new MasterValidator(myFiles,
                     (file, status) -> display.updateStatus(file, status),
                     (initializer) -> display.enableGameButton(initializer),
+                    (newX) -> display.setX(newX),
                     showException);
         });
     }
