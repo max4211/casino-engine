@@ -12,7 +12,7 @@ public interface GarbageCollect {
         for (Player p: players) {
             for (Bet b: p.getActiveBets()) {
                 if (b.getHand().isLoser()) {
-                    removeViewBet.accept(p.getID(), b.getID());
+//                    removeViewBet.accept(p.getID(), b.getID());
                     setLoser.accept(p.getID(), b.getID());
                 }
             }

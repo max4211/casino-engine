@@ -102,7 +102,7 @@ public class Table implements TableInterface {
     public Player getNextPlayer() {
         for (Player p: this.myPlayers) {
             for (Bet b: p.getBets()) {
-                if (b.isRoundActive() && b.isGameActive()) {
+                if (b.isRoundActive() && b.isGameActive() && p.getBankroll() > 0) {
                     return p;
                 }
             }
