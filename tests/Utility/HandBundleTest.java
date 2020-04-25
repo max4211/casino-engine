@@ -16,7 +16,7 @@ class HandBundleTest {
         String name = "SumOverX";
         String params = "21";
         String multiplier = "1.0";
-        String viewName = "";
+        String viewName = "SumOverX";
         HandBundle bundle = new HandBundle(name, params, multiplier, viewName);
         assertEquals(bundle.getName(), name);
         assertEquals(bundle.getParams(), new ArrayList<Double>(List.of(21.)));

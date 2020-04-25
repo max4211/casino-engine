@@ -15,7 +15,7 @@ class ViewReaderTest {
 
     @Test
     void getLanguages() throws GeneralXMLException {
-        ViewReader vr = new ViewReader("data/xml/view/view.xml");
+        ViewReader vr = new ViewReader("data/xml/good/VIEW_basicview.xml");
         List<String> result = vr.getLanguages();
         List<String> expected = new ArrayList<String>(List.of(
             "English", "Spanish"
@@ -26,7 +26,7 @@ class ViewReaderTest {
 
     @Test
     void getStylesheets() throws GeneralXMLException {
-        ViewReader vr = new ViewReader("data/xml/view/view.xml");
+        ViewReader vr = new ViewReader("data/xml/good/VIEW_basicview.xml");
         List<String> result = vr.getStylesheets();
         List<String> expected = new ArrayList<String>(List.of(
                 "Light", "Dark", "Coral"
