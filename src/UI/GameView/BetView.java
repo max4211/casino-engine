@@ -1,5 +1,6 @@
 package UI.GameView;
 
+import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.TaggableNode;
 import UI.Interfaces.StylizedNode;
 import UI.Utilities.LanguageBundle;
@@ -10,88 +11,80 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BetView implements StylizedNode, TaggableNode {
+public class BetView implements StylizedNode, TaggableNode, LanguageResponder {
 
-    private VBox myView;
-    private HandView myHand;
-    private BetInfo myInfo;
+    private VBox myBetView;
+    private HandView myHandView;
+    private BetInfo myBetInfo;
 
     private int myID;
-
-    private static final int CARD_WIDTH = 70;
-    private static final int HEIGHT =40;
-    private static final int DEFAULT_WIDTH = 112;
-    private static final int EMPTY = 0;
     private int numberOfCards;
 
     private static final List<CardTriplet> EMPTY_HAND = new ArrayList<>();
     private static final String NO_CLASSIFICATION = "";
     private static final String NO_CARD_IMAGE = "";
-    private Formatter myFormatter;
 
     public BetView(List<CardTriplet> hand, double wager, String classification, int id, LanguageBundle languageBundle, String cardImage) {
-        myView = new VBox();
-        myFormatter = new Formatter();
+        myBetView = new VBox();
         numberOfCards = hand.size();
+        Formatter.formatBetView(myBetView, numberOfCards);
         myID = id;
 
-        int initialWidth;
-        if (numberOfCards == EMPTY) initialWidth = DEFAULT_WIDTH;
-        else initialWidth = CARD_WIDTH * numberOfCards;
-        myFormatter.formatFixedVBox(myView, HEIGHT, initialWidth);
+        myHandView = new HandView(hand, cardImage);
+        myBetInfo = new BetInfo(wager, classification, languageBundle);
 
-        myHand = new HandView(hand, cardImage);
-        myInfo = new BetInfo(wager, classification, languageBundle);
-
-        myView.getChildren().addAll(myHand.getView(), myInfo.getView());
+        myBetView.getChildren().addAll(myHandView.getView(), myBetInfo.getView());
     }
 
     public BetView(double wager, int id, LanguageBundle languageBundle) {
         this(EMPTY_HAND, wager, NO_CLASSIFICATION, id, languageBundle, NO_CARD_IMAGE);
     }
 
-    public void updateWager(double newAmount) {
-        myInfo.updateWager(newAmount);
-    }
-
-    public void updateClassification(String newClassification) {myInfo.updateClassification(newClassification);}
-
-    public void addCard(CardTriplet newCard, String cardImage) {
-        numberOfCards++;
-        myFormatter.updateVBoxWidth(myView, CARD_WIDTH * numberOfCards);
-        myHand.addCard(newCard, cardImage);
-    }
-
-    public void addCardIfAbsent(CardTriplet checkedCard, String cardImage) {
-        if (!myHand.hasCard(checkedCard.getID())) addCard(checkedCard, cardImage);
-    }
-    
-    public void hideCard(int cardID) {
-        myHand.hideCard(cardID);
-    }
-
-    // TODO: this checks index twice (again in handview): good or bad?
-    public void showCard(int cardID) {
-        myHand.showCard(cardID);
-    }
-
+    @Override
     public VBox getView() {
-        return myView;
+        return myBetView;
     }
 
+    @Override
     public boolean hasSameID(int ID) {
         return myID == ID;
     }
 
+    public void updateWager(double newAmount) {
+        myBetInfo.updateWager(newAmount);
+    }
+
+    public void updateClassification(String newClassification) {
+        myBetInfo.updateClassification(newClassification);
+    }
+
+    public void addCard(CardTriplet newCard, String cardImage) {
+        numberOfCards++;
+        Formatter.updateBetViewWidth(myBetView, numberOfCards);
+        myHandView.addCard(newCard, cardImage);
+    }
+
+    public void addCardIfAbsent(CardTriplet newCard, String cardImage) {
+        if (!myHandView.hasCard(newCard.getID())) addCard(newCard, cardImage);
+    }
+    
+    public void hideCard(int cardID) {
+        myHandView.hideCard(cardID);
+    }
+
+    public void showCard(int cardID) {
+        myHandView.showCard(cardID);
+    }
+
     public void updateLanguage() {
-        myInfo.updateLanguage();
+        myBetInfo.updateLanguage();
     }
 
     public void setLoser() {
-        myInfo.setLoser();
+        myBetInfo.setLoser();
     }
 
     public void setWinner() {
-        myInfo.setWinner();
+        myBetInfo.setWinner();
     }
 }

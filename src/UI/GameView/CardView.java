@@ -1,80 +1,74 @@
 package UI.GameView;
 
-import UI.Interfaces.TaggableNode;
 import UI.Interfaces.StylizedNode;
+import UI.Interfaces.TaggableNode;
 import UI.Utilities.CardTriplet;
 import UI.Utilities.Formatter;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-
-import java.util.ArrayList;
-import java.util.Collection;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class CardView implements StylizedNode, TaggableNode {
 
-    private VBox myCard;
-    private Collection myCardNodes;
+    private Pane myCardView;
+    private VBox myShownCard;
+    private ImageView myHiddenCard;
     private int myID;
 
-    private static final double CARD_HEIGHT = 100;
-    // TODO: bind the width to the BetView, does simple math with it
-    private static final double CARD_WIDTH = 70;
-    private static final double CORNER_RADIUS = 5;
-    private static final Formatter myFormatter = new Formatter();
+    private static final String SHOWN_CSS_ID = "shown-card";
+    private static final String HIDDEN_CSS_ID = "hidden-card";
 
     private static final String PATH_TO_CARD_IMAGE = "iconImages/gameIcons/";
 
-    private static final int FULL_BACKGROUND_FILL = 1;
-    private static final boolean FILL_AS_PERCENT = true;
-    private static final boolean BACKGROUNDFILL_CONTAIN = false;
-    private static final boolean BACKGROUNDFILL_COVER = false;
-    private static final BackgroundSize FULL_BACKGROUND_SIZE = new BackgroundSize(FULL_BACKGROUND_FILL, FULL_BACKGROUND_FILL, FILL_AS_PERCENT, FILL_AS_PERCENT, BACKGROUNDFILL_CONTAIN, BACKGROUNDFILL_COVER);
-    private BackgroundImage hiddenBackgroundImage;
-
-    // TODO: make this data driven!
-    private static final Color showingColor = Color.web("FF6464");
-
-
     public CardView(CardTriplet cardInfo, String cardImage) {
-        myCard = new VBox();
-        StylizedNode.setStyleID(myCard, this.getClass());
+        myCardView = new Pane();
+        StylizedNode.setStyleID(myCardView, this.getClass());
         myID = cardInfo.getID();
-        myFormatter.formatFixedVBox(myCard, CARD_HEIGHT, CARD_WIDTH);
-        createCardNodes(cardInfo.getValue(), cardInfo.getSuit());
-        Image hiddenCardImage = new Image(PATH_TO_CARD_IMAGE.concat(cardImage));
-        hiddenBackgroundImage = new BackgroundImage(hiddenCardImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, FULL_BACKGROUND_SIZE);
+
+        createHiddenCard(cardImage);
+        createShownCard(cardInfo.getValue(), cardInfo.getSuit());
         hideCard();
     }
 
-    //TODO: way to make this unmodifiable?
-    public VBox getView() {
-        return myCard;
+    @Override
+    public Pane getView() {
+        return myCardView;
     }
 
+    @Override
     public boolean hasSameID(int id) { return myID == id;}
 
-    //TODO: could remove duplication here in a refactoring step
     public void hideCard() {
-        updateCardBackground(new Background(hiddenBackgroundImage));
+        myCardView.getChildren().clear();
+        myCardView.getChildren().add(myHiddenCard);
     }
 
     public void showCard() {
-        updateCardBackground(new Background(new BackgroundFill(showingColor, new CornerRadii(CORNER_RADIUS), null)));
-        myCard.getChildren().addAll(myCardNodes);
+        myCardView.getChildren().clear();
+        myCardView.getChildren().add(myShownCard);
     }
 
-    private void updateCardBackground(Background newBackground) {
-        myCard.getChildren().clear();
-        myCard.setBackground(newBackground);
+    private void createHiddenCard(String cardImage) {
+        String pathToCard = getPathToCardImage(cardImage);
+        Image hiddenCardImage = new Image(pathToCard);
+        myHiddenCard = new ImageView(hiddenCardImage);
+        myHiddenCard.setId(HIDDEN_CSS_ID);
+        Formatter.formatHiddenCardView(myHiddenCard);
     }
 
-    private void createCardNodes(double value, String suit) {
-        myCardNodes = new ArrayList();
+    private void createShownCard(double value, String suit) {
+        myShownCard = new VBox();
         Label valueLabel = new Label(String.valueOf(value));
+        myShownCard.getChildren().add(valueLabel);
         Label suitLabel = new Label(suit);
-        myCardNodes.add(valueLabel);
-        myCardNodes.add(suitLabel);
+        myShownCard.getChildren().add(suitLabel);
+        myShownCard.setId(SHOWN_CSS_ID);
+        Formatter.formatShownCardView(myShownCard, valueLabel, suitLabel);
+    }
+
+    private String getPathToCardImage(String cardImageName) {
+        return PATH_TO_CARD_IMAGE.concat(cardImageName);
     }
 }

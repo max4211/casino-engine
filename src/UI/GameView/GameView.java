@@ -90,7 +90,7 @@ public class GameView implements GameViewInterface, StylizedNode {
     @Override
     public void renderCommonCards(List<CardTriplet> hand) {
         myCommons = new HandView(hand, myIconBundle.getString(HIDDEN_CARD_KEY));
-        myBorderPane.setCenter(myCommons.getView());
+        myBorderPane.setTop(myCommons.getView());
     }
 
     @Override

@@ -1,5 +1,6 @@
-package UI.GameView;
+package UI.GameView.ApplicationTesters;
 
+import UI.GameView.GameView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
