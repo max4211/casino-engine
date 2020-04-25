@@ -13,8 +13,8 @@ public class AllFilesTester extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         LanguageBundle testBundle = new LanguageBundle("English");
-        String statusBundle= "StandardStatuses";
-        String iconBundle = "StandardXMLs";
+        String statusBundle= "/StandardXMLProperties/StandardStatuses";
+        String iconBundle = "iconBundles/StandardXMLs";
         AllFilesDisplay allFileDisplay = new AllFilesDisplay(testBundle, statusBundle, iconBundle);
 
         allFileDisplay.updateStatus(XMLFileType.DECK, FileStatus.VALID);

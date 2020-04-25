@@ -22,10 +22,7 @@ public class PlayerInfo implements StylizedNode, LanguageResponder {
     private static LanguageBundle myLanguageBundle;
 
     // FOR TESTING
-    private static final String NAME_DESCRIPTION_TEST_ID = "#name-label";
-    private static final String NAME_VALUE_TEST_ID = "#name-value";
-    private static final String BANK_DESCRIPTION_TEST_ID = "#bank-label";
-    private static final String BANK_VALUE_TEST_ID = "#bank-value";
+
 
     public PlayerInfo(String name, double bankroll, LanguageBundle languageBundle) {
         myDetailsBox = new VBox();
@@ -34,11 +31,9 @@ public class PlayerInfo implements StylizedNode, LanguageResponder {
         myLanguageBundle = languageBundle;
 
         // ONLY FOR TESTING (otherwise add a new label to param)
-        Label nameValueLabel = new Label();
-        //nameValueLabel.setId(NAME_VALUE_TEST_ID);
 
         instantiateLabels();
-        renderHBox(myNameLabel, NAME_KEY, nameValueLabel, name);
+        renderHBox(myNameLabel, NAME_KEY, new Label(), name);
         renderHBox(myBankLabel, BANK_KEY, myBankValue, String.valueOf(bankroll));
     }
 
@@ -55,11 +50,8 @@ public class PlayerInfo implements StylizedNode, LanguageResponder {
 
     private void instantiateLabels() {
         myNameLabel = new Label();
-       // myNameLabel.setId(NAME_DESCRIPTION_TEST_ID);
         myBankLabel = new Label();
-        //myBankLabel.setId(BANK_DESCRIPTION_TEST_ID);
         myBankValue = new Label();
-        //myBankLabel.setId(BANK_VALUE_TEST_ID);
     }
 
     private String getTranslation(String key) {

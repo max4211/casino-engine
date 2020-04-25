@@ -18,7 +18,6 @@ public class WagerSelector {
     private static final String BET_PROMPT_KEY = "BetPrompt";
     private static final CharSequence MIN_STRING = "MIN";
     private static final CharSequence MAX_STRING = "MAX";
-    private static final double NO_WAGER_INPUT = -1;
     private LanguageBundle myLanguageBundle;
 
     private static final String WAGER_INPUT_REGEX = "^[0-9]*\\.?[0-9]*$";

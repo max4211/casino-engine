@@ -1,4 +1,4 @@
-package UI.GameView.ApplicationTesters;
+package UI.GameView;
 
 import UI.GameView.CardView;
 import UI.Utilities.CardTriplet;

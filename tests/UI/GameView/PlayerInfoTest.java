@@ -1,13 +1,12 @@
 package UI.GameView;
 
 import UI.DukeApplicationTest;
-import UI.Utilities.LanguageBundle;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.junit.jupiter.api.BeforeEach;
+import ooga.Main;
 import org.junit.jupiter.api.Test;
-import org.testfx.api.FxRobot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,58 +14,113 @@ class PlayerInfoTest extends DukeApplicationTest {
 
     // NOTE: THIS IS DEPENDENT ON LANGUAGE BUNDLE, SO IT IS INTEGRATED!
 
-    private FxRobot myRobot;
-    private LanguageBundle myLanguageBundle;
-    private PlayerInfo myPlayerInfo;
-
-    private static final String TESTING_BLACKJACK_STARTER = "#blackjack-starter";
-    private static final String NAME_DESCRIPTION_TEST_ID = "#name-label";
-    private static final String NAME_VALUE_TEST_ID = "#name-value";
-    private static final String BANK_DESCRIPTION_TEST_ID = "#bank-label";
-    private static final String BANK_VALUE_TEST_ID = "#bank-value";
-
-
-    @BeforeEach
-    public void setUp() {
-        myRobot = new FxRobot();
-        myLanguageBundle = new LanguageBundle("English");
-    }
-
-    private void createPVs() {
-    }
-
-    // VERY HAPPY PATH :(
+    // HAPPY PATH :)
     @Test
-    void testSimplePIV() throws Exception {
-        runBlackJack();
-        Label nameDescriptionLabel = lookup(NAME_DESCRIPTION_TEST_ID).query();
-        Label nameValueLabel = lookup(NAME_VALUE_TEST_ID).query();
-        Label bankDescriptionLabel = lookup(BANK_DESCRIPTION_TEST_ID).query();
-        Label bankValueLabel = lookup(BANK_VALUE_TEST_ID).query();
+    void testEricThroughMain() throws Exception {
+        launch(Main.class);
+        VBox blackJackStarter = lookup("#LobbyView #GameStarter").query();
+        clickOn(blackJackStarter);
 
-        assertEquals("Name: ", nameDescriptionLabel.getText());
-        assertEquals("Eric", nameValueLabel.getText());
-        assertEquals("Bank: ", bankDescriptionLabel.getText());
-        assertEquals("100", bankValueLabel);
+        Button launchButton = lookup("#AllFilesDisplay #Button").query();
+        clickOn(launchButton);
+
+        VBox PlayerView = lookup("#OtherPlayers #PlayerView #PlayerInfo").query();
+        HBox nameLabels = (HBox) PlayerView.getChildren().get(0);
+        HBox bankLabels = (HBox) PlayerView.getChildren().get(1);
+
+        Label nameDescriptor = (Label) nameLabels.getChildren().get(0);
+        Label nameValue = (Label) nameLabels.getChildren().get(1);
+
+        Label bankDescriptor = (Label) bankLabels.getChildren().get(0);
+        Label bankValue = (Label) bankLabels.getChildren().get(1);
+
+        assertEquals("Name: ", nameDescriptor.getText());
+        assertEquals("Eric", nameValue.getText());
+        assertEquals("Bank: ", bankDescriptor.getText());
+        assertEquals("475.0", bankValue.getText());
     }
 
-    private void runBlackJack() throws Exception {
-
-        myRobot.clickOn(725,300);
-    }
-
+    // HAPPY PATH :)
     @Test
-    public void testLabels() {
-        VBox myInfo = myRobot.lookup("#player-info").query();
-        HBox nameBox = (HBox) myInfo.getChildren().get(0);
-        Label nameLabel = (Label) nameBox.getChildren().get(0);
-        assertEquals("Name: ", nameLabel.getText());
-        Label inputedName = (Label) nameBox.getChildren().get(1);
-        assertEquals("Eric", inputedName.getText());
-        HBox bankBox = (HBox) myInfo.getChildren().get(1);
-        Label bankLabel = (Label)bankBox.getChildren().get(0);
-        assertEquals("Bank: ", bankLabel.getText());
-        Label inputedBank = (Label) bankBox.getChildren().get(1);
-        assertEquals("500.0", inputedBank.getText());
+    void testDoubleFormatting() throws Exception {
+        launch(PlayerInfoTester.class);
+        VBox maxPlayerInfo = lookup("#starting-pane #double-input").query();
+
+        HBox nameLabels = (HBox) maxPlayerInfo.getChildren().get(0);
+        HBox bankLabels = (HBox) maxPlayerInfo.getChildren().get(1);
+
+        Label nameDescriptor = (Label) nameLabels.getChildren().get(0);
+        Label nameValue = (Label) nameLabels.getChildren().get(1);
+
+        Label bankDescriptor = (Label) bankLabels.getChildren().get(0);
+        Label bankValue = (Label) bankLabels.getChildren().get(1);
+
+        assertEquals("Name: ", nameDescriptor.getText());
+        assertEquals("Max", nameValue.getText());
+        assertEquals("Bank: ", bankDescriptor.getText());
+        assertEquals("200.0", bankValue.getText());
+    }
+
+    // SAD PATH :(
+    @Test
+    void testEmptyName() throws Exception {
+        launch(PlayerInfoTester.class);
+        VBox maxPlayerInfo = lookup("#starting-pane #empty-name").query();
+
+        HBox nameLabels = (HBox) maxPlayerInfo.getChildren().get(0);
+        HBox bankLabels = (HBox) maxPlayerInfo.getChildren().get(1);
+
+        Label nameDescriptor = (Label) nameLabels.getChildren().get(0);
+        Label nameValue = (Label) nameLabels.getChildren().get(1);
+
+        Label bankDescriptor = (Label) bankLabels.getChildren().get(0);
+        Label bankValue = (Label) bankLabels.getChildren().get(1);
+
+        assertEquals("Name: ", nameDescriptor.getText());
+        assertEquals("", nameValue.getText());
+        assertEquals("Bank: ", bankDescriptor.getText());
+        assertEquals("150.0", bankValue.getText());
+    }
+
+    // SAD PATH :(
+    @Test
+    void testNegativeBank() throws Exception {
+        launch(PlayerInfoTester.class);
+        VBox maxPlayerInfo = lookup("#starting-pane #negative-bank").query();
+
+        HBox nameLabels = (HBox) maxPlayerInfo.getChildren().get(0);
+        HBox bankLabels = (HBox) maxPlayerInfo.getChildren().get(1);
+
+        Label nameDescriptor = (Label) nameLabels.getChildren().get(0);
+        Label nameValue = (Label) nameLabels.getChildren().get(1);
+
+        Label bankDescriptor = (Label) bankLabels.getChildren().get(0);
+        Label bankValue = (Label) bankLabels.getChildren().get(1);
+
+        assertEquals("Name: ", nameDescriptor.getText());
+        assertEquals("Duvall", nameValue.getText());
+        assertEquals("Bank: ", bankDescriptor.getText());
+        assertEquals("-100.0", bankValue.getText());
+    }
+
+    // HAPPY PATH :)
+    @Test
+    void testLanguageChange() throws Exception {
+        launch(PlayerInfoTester.class);
+        VBox maxPlayerInfo = lookup("#starting-pane #language-change").query();
+
+        HBox nameLabels = (HBox) maxPlayerInfo.getChildren().get(0);
+        HBox bankLabels = (HBox) maxPlayerInfo.getChildren().get(1);
+
+        Label nameDescriptor = (Label) nameLabels.getChildren().get(0);
+        Label nameValue = (Label) nameLabels.getChildren().get(1);
+
+        Label bankDescriptor = (Label) bankLabels.getChildren().get(0);
+        Label bankValue = (Label) bankLabels.getChildren().get(1);
+
+        assertEquals("Nombre: ", nameDescriptor.getText());
+        assertEquals("toSpanish", nameValue.getText());
+        assertEquals("Tarjeta: ", bankDescriptor.getText());
+        assertEquals("0.0", bankValue.getText());
     }
 }

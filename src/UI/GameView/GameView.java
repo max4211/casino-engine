@@ -71,6 +71,7 @@ public class GameView implements GameViewInterface, StylizedNode {
         myIconBundle = ResourceBundle.getBundle(iconBundlePath);
 
         myBorderPane = new BorderPane();
+        StylizedNode.setStyleID(myBorderPane, myBorderPane.getClass());
         myOtherPlayers = new OtherPlayers();
         myBorderPane.setLeft(myOtherPlayers.getView());
 

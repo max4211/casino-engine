@@ -16,6 +16,7 @@ import org.testfx.service.query.EmptyNodeQueryException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Deprecated
 class GameViewTest extends DukeApplicationTest {
 
     private FxRobot myRobot;
@@ -69,19 +70,4 @@ class GameViewTest extends DukeApplicationTest {
         Button readyButton = myRobot.lookup("#ready-button").queryButton();
         myRobot.clickOn(readyButton);
     }
-
-    //TODO: wait for backend to catch up
-    // Happy Path :)
-    // @Test
-   /* public void testSimpleBlackJackHand() {
-        testColorPicking();
-        testGoodWagerInput();
-        testGoodWagerInput();
-        testGoodWagerInput();
-        for (int i = 0; i < 3; i++) {
-            clickReadyforInput();
-            myRobot.clickOn(1000, 440); // OK @ STAY
-        }
-        clickReadyforInput();
-    }*/
 }

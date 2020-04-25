@@ -105,6 +105,7 @@ public class AllFilesDisplay implements AllFilesDisplayInterface, LanguageRespon
 
     private void createLaunchButton() {
         myLaunchButton = new Button();
+        StylizedNode.setStyleID(myLaunchButton, myLaunchButton.getClass());
         myLaunchButton.setDisable(LAUNCH_BUTTON_DISABLE);
         myFilesBox.getChildren().add(myLaunchButton);
     }

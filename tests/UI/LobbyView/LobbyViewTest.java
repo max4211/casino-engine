@@ -13,6 +13,7 @@ import org.testfx.api.FxRobot;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@Deprecated
 class LobbyViewTest extends DukeApplicationTest {
 
     private FxRobot myRobot;
