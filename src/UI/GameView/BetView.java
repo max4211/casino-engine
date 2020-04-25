@@ -87,4 +87,8 @@ public class BetView implements StylizedNode, TaggableNode, LanguageResponder {
     public void setWinner() {
         myBetInfo.setWinner();
     }
+
+    public void hideClassification() {myBetInfo.hideClassification();}
+
+    public void showClassification() {myBetInfo.showClassification();}
 }

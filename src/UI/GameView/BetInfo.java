@@ -38,6 +38,7 @@ public class BetInfo implements StylizedNode, LanguageResponder {
 
         updateWager(wager);
         updateClassification(classification);
+        hideClassification();
     }
 
     @Override
