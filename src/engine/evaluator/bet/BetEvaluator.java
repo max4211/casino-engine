@@ -66,13 +66,6 @@ public class BetEvaluator implements BetEvaluatorInterface {
         }
     }
 
-
-    @Override
-    public void updateWagers(List<Bet> bets) {
-
-    }
-
-    // TODO - algorithm to handle larger groups
     @Override
     public void evaluateHands(PlayerHand h1, PlayerHand h2) {
         int compare = this.myHandEvaluator.compare(h1, h2);

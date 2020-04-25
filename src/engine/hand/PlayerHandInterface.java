@@ -26,7 +26,7 @@ public interface PlayerHandInterface {
 
     /**
      * Called by the Bet to determine what type of hand it holds
-     * @return the classification (String, TODO enum)
+     * @return the classification (String)
      */
     ClassifiedHand getClassification();
 

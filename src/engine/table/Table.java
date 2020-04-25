@@ -14,7 +14,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
 
-// TODO - refactor table into group/adversary?
 public class Table implements TableInterface {
 
     private static final String DEAL_ACTION = "deal";
@@ -54,7 +53,6 @@ public class Table implements TableInterface {
         System.out.println(s);
     }
 
-    // TODO - multiple entry bet types
     @Override
     public Bet placeEntryBet(int playerHash, EntryBet betType, double wager) {
         Player p = findPlayer(playerHash);
@@ -153,7 +151,6 @@ public class Table implements TableInterface {
         return this.myCurrentBet;
     }
 
-    // TODO - slower individual card dealing with animation (Sprint 3 task)
     private void dealIndividualCard(int quantity) {
         for (int i = 1; i <= quantity; i ++) {
             for (Player p: this.myPlayers) {
@@ -173,7 +170,6 @@ public class Table implements TableInterface {
         }
     }
 
-    // TODO - throw error instead of null when can't find player (shouldn't happen)
     private Player findPlayer(int hashCode) {
         for (Player p: this.myPlayers) {
             if (p.getID() == hashCode) {
