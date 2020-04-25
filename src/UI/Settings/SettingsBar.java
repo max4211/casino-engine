@@ -15,12 +15,13 @@ public class SettingsBar implements StylizedNode {
     private static final int ICON_INSETS = 10;
 
     //FIXME: formatting
-    public SettingsBar(Consumer<String> acceptCSS, List<String> allCSS, Consumer<String> acceptLanguage, List<String> allLanguages, String helpIcon) {
+    public SettingsBar(Consumer<String> acceptCSS, List<String> allCSS, Consumer<String> acceptLanguage, List<String> allLanguages,
+                       String helpIcon, String webURL) {
         myHBox = new HBox();
         StylizedNode.setStyleID(myHBox, this.getClass());
         LanguagePicker myLanguagePicker = new LanguagePicker(allLanguages, acceptLanguage);
         myHBox.getChildren().add(myLanguagePicker.getView());
-        HelpButton myHelpButton = new HelpButton(helpIcon);
+        HelpButton myHelpButton = new HelpButton(helpIcon, webURL);
         myHBox.getChildren().add(myHelpButton.getView());
         StylePicker myStylePicker = new StylePicker(allCSS, acceptCSS);
         myHBox.getChildren().add(myStylePicker.getView());

@@ -20,6 +20,8 @@ public class LobbyView implements StylizedNode {
     VBox myVBox;
     FlowPane myFlowPane;
 
+    private static final String WEBSITE_URL = "http://casino308.com/pages/lobby.html";
+
     private static final String PATH_TO_STYLESHEETS = "styleSheets/lobby/";
     private static final String PATH_TO_ICON_BUNDLE = "iconBundles/lobbyBundles/";
     private static final String PATH_TO_ICON_IMAGE = "iconImages/lobbyIcons/";
@@ -77,7 +79,8 @@ public class LobbyView implements StylizedNode {
     private void addSettingsBar(List<String> stylesheets, List<String> languages, ResourceBundle myIconResources) {
         SettingsBar addedSettings = new SettingsBar(
                 e -> updateCSS(e), stylesheets, e -> updateLanguage(e),
-                languages, PATH_TO_ICON_IMAGE.concat(myIconResources.getString(INFO_TAG)));
+                languages, PATH_TO_ICON_IMAGE.concat(myIconResources.getString(INFO_TAG)),
+                WEBSITE_URL);
         myVBox.getChildren().add(addedSettings.getView());
     }
 
