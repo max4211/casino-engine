@@ -1,9 +1,9 @@
 package UI.GameView;
 
+import UI.Interfaces.LanguageResponder;
 import UI.Interfaces.StylizedNode;
-import UI.Utilities.LanguageBundle;
 import UI.Utilities.Formatter;
-import javafx.geometry.Pos;
+import UI.Utilities.LanguageBundle;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -11,31 +11,24 @@ import java.util.List;
 
 public class
 
-OtherPlayersView implements StylizedNode {
+OtherPlayers implements StylizedNode, LanguageResponder {
 
     private VBox myPlayers;
-    private Formatter myFormatter;
     private List<PlayerView>  allPlayers;
 
-    // TODO: move this into formatting
-    private static final Pos OTHER_PLAYERS_ALIGNMENT = Pos.CENTER_LEFT;
-
-
-    public OtherPlayersView() {
+    public OtherPlayers() {
         myPlayers = new VBox();
-        myFormatter = new Formatter();
-        myFormatter.formatUnfixedLeft(myPlayers);
+        Formatter.formatOtherPlayers(myPlayers);
+        StylizedNode.setStyleID(myPlayers, this.getClass());
         allPlayers = new ArrayList<>();
     }
 
-    // TODO: duplication here
     public void addPlayer(String name, int playerID, double bankroll, LanguageBundle languageBundle) {
         PlayerView addedPlayerView = new PlayerView(name, playerID, bankroll, languageBundle);
         addPlayer(addedPlayerView);
     }
 
     public void addPlayer(PlayerView addedPlayer) {
-        addedPlayer.getView().setAlignment(OTHER_PLAYERS_ALIGNMENT);
         myPlayers.getChildren().add(addedPlayer.getView());
         allPlayers.add(addedPlayer);
     }
@@ -47,9 +40,8 @@ OtherPlayersView implements StylizedNode {
     }
 
     public PlayerView getPlayerView(int playerID) {
-        for (PlayerView tempPlayerView : allPlayers) {
+        for (PlayerView tempPlayerView : allPlayers)
             if (tempPlayerView.hasSameID(playerID)) return tempPlayerView;
-            }
         return null;
     }
 
@@ -66,6 +58,7 @@ OtherPlayersView implements StylizedNode {
         return myPlayers;
     }
 
+    @Override
     public void updateLanguage() {
         for (PlayerView tempPlayer : allPlayers) {
             tempPlayer.updateLanguage();

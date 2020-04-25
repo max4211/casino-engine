@@ -35,7 +35,6 @@ public class LobbyView implements StylizedNode {
     private static final int DEFAULT_CSS_INDEX = 0;
     private static final int DEFAULT_LANGUAGE_INDEX = 0;
 
-
     private LanguageBundle myLanguageBundle;
     private List<GameStarter> myGameStarters;
     private ExceptionDisplayer myExceptionDisplayer;
@@ -67,6 +66,8 @@ public class LobbyView implements StylizedNode {
                     filesDisplayStatus);
 
             myFlowPane.getChildren().add(tempGameStarter.getView());
+
+
             myGameStarters.add(tempGameStarter);
         }
     }

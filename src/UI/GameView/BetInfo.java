@@ -32,9 +32,9 @@ public class BetInfo implements StylizedNode, LanguageResponder {
         initializeInstanceLabels();
 
         HBox wagerBox = new HBox();
-        createInfoBox(wagerBox, myWagerLabel, WAGER_KEY, myWagerAmount);
+        renderInfoBox(wagerBox, myWagerLabel, WAGER_KEY, myWagerAmount);
         myClassificationBox = new HBox();
-        createInfoBox(myClassificationBox, myClassifierLabel, HAND_CLASSIFICATION_KEY, myClassifierType);
+        renderInfoBox(myClassificationBox, myClassifierLabel, HAND_CLASSIFICATION_KEY, myClassifierType);
 
         updateWager(wager);
         updateClassification(classification);
@@ -88,7 +88,7 @@ public class BetInfo implements StylizedNode, LanguageResponder {
         myClassifierType = new Label();
     }
 
-    private void createInfoBox(HBox labelBox, Label descriptionLabel, String descriptiveKey, Label infoLabel) {
+    private void renderInfoBox(HBox labelBox, Label descriptionLabel, String descriptiveKey, Label infoLabel) {
         descriptionLabel.setText(myLanguageBundle.getBundle().getString(descriptiveKey));
         labelBox.getChildren().addAll(descriptionLabel, infoLabel);
         labelBox.setAlignment(Pos.CENTER);

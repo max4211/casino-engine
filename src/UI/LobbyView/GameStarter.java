@@ -23,6 +23,8 @@ public class GameStarter implements StylizedNode, LanguageResponder {
     private LanguageBundle myLanguageBundle;
     private final String myGameKey;
 
+    private static final String BLACKJACK_KEY = "Blackjack";
+    private static final String TESTING_BLACKJACK_STARTER = "blackjack-starter";
     private static final IconSize GAME_ICON_SIZE = IconSize.LARGE;
     private static final String PATH_TO_ICON = "iconImages/runnableGameIcons/";
 
@@ -30,8 +32,14 @@ public class GameStarter implements StylizedNode, LanguageResponder {
         myGameBox = new VBox();
         Formatter.formatGameStarter(myGameBox);
         StylizedNode.setStyleID(myGameBox, this.getClass());
-
         myGameKey = gameKey;
+
+
+        // Used FOR PlayerInfo Testing
+        if (gameKey.equals(BLACKJACK_KEY)) {
+            myGameBox.setId(TESTING_BLACKJACK_STARTER);
+        }
+
         myFiles = files;
         myLanguageBundle = languageBundle;
 

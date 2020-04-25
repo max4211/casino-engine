@@ -12,12 +12,11 @@ public class HandView implements StylizedNode {
 
     private HBox myHand;
     private List<CardView> myCards;
-    private Formatter myFormatter = new Formatter();
-
 
     public HandView(List<CardTriplet> allCards, String cardImage) {
         myHand = new HBox();
-        myFormatter.formatUnfixedCenter(myHand);
+        StylizedNode.setStyleID(myHand, this.getClass());
+        Formatter.formatHandView(myHand);
         myCards = new ArrayList<>();
 
         for (CardTriplet cardInfo : allCards) {
@@ -27,28 +26,19 @@ public class HandView implements StylizedNode {
         }
     }
 
-
-    //TODO: copy this? make this unmodifiable...
+    @Override
     public HBox getView() {
         return myHand;
     }
 
-    /**
-     * shows first card of its kind
-     */
     public void showCard(int id) {
         for (CardView tempCard : myCards) {
             if (tempCard.hasSameID(id)) {
                 tempCard.showCard();
-                return;
             }
         }
     }
 
-    /**
-     *
-     * @param newCard
-     */
     public void addCard(CardTriplet newCard, String cardImage) {
         CardView addedCardView = new CardView(newCard, cardImage);
         myCards.add(addedCardView);
@@ -57,11 +47,6 @@ public class HandView implements StylizedNode {
 
     public boolean hasCard(int cardID) {
         return getCard(cardID) != null;
-    }
-
-
-    public void removeCard(int cardID) {
-        myCards.remove(cardID);
     }
 
     public void hideCard(int cardID) {

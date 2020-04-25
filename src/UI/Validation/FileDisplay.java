@@ -37,9 +37,9 @@ public class FileDisplay implements StylizedNode, LanguageResponder {
 
         myLanguageBundle = languageBundle;
 
-        createFileTypeLabel(fileType);
-        createFileIcons(fileIconName, equalIconName);
-        createStatusIcons(statusIconBundleName);
+        renderFileTypeLabel(fileType);
+        renderFileIcons(fileIconName, equalIconName);
+        renderStatusIcons(statusIconBundleName);
     }
 
     @Override
@@ -70,14 +70,14 @@ public class FileDisplay implements StylizedNode, LanguageResponder {
         return PATH_TO_STATUS_ICON_BUNDLE.concat(bundleName);
     }
 
-    private void createFileTypeLabel(XMLFileType fileType) {
+    private void renderFileTypeLabel(XMLFileType fileType) {
         myLanguageKey = fileType.name();
         myFileTypeLabel = new Label(getFileTypeTranslation());
         myFileTypeLabel.setAlignment(Pos.CENTER);
         myFullDisplay.getChildren().add(myFileTypeLabel);
     }
 
-    private void createFileIcons(String fileIconName, String equalIconName) {
+    private void renderFileIcons(String fileIconName, String equalIconName) {
         String fileIconPath = formatFileIconPath(fileIconName);
         Icon myFileIcon = new Icon(fileIconPath);
         String equalIconPath = formatFileIconPath(equalIconName);
@@ -85,7 +85,7 @@ public class FileDisplay implements StylizedNode, LanguageResponder {
         myFileIcons.getChildren().addAll(myFileIcon.getView(), myEqualIcon.getView());
     }
 
-    private void createStatusIcons(String statusIconBundleName) {
+    private void renderStatusIcons(String statusIconBundleName) {
         String statusIconBundlePath = formatStatusBundlePath(statusIconBundleName);
         myStatusIcons = ResourceBundle.getBundle(statusIconBundlePath);
 
