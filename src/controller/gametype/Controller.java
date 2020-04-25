@@ -187,8 +187,7 @@ public abstract class Controller implements ControllerInterface {
         for (Player p: this.myTable.getPlayers()) {
             for (Bet b: p.getBets()) {
                 HandOutcome outcome = b.getHand().getOutcome();
-                if (!b.getHand().isLoser())
-                    updateVisualOutcome(p.getID(), b.getID(), outcome, p.getName());
+                updateVisualOutcome(p.getID(), b.getID(), outcome, p.getName());
             }
         }
     }
@@ -196,8 +195,14 @@ public abstract class Controller implements ControllerInterface {
     private void updateVisualOutcome(int pID, int bID, HandOutcome outcome, String name) {
         if (outcome.equals(HandOutcome.WIN))
             this.myGameView.setWinner(pID, bID);
-        else if (outcome.equals(HandOutcome.LOSS))
-            this.myGameView.setLoser(pID, bID);
+        else if (outcome.equals(HandOutcome.LOSS)) {
+            try {
+                this.myGameView.setLoser(pID, bID);
+            } catch (NullPointerException ignored) {
+                ;
+            }
+        }
+
     }
 
     protected void setActingPlayer(Player p) {
