@@ -61,4 +61,12 @@ public class MainPlayerView implements StylizedNode, TaggableNode {
         if (myPlayer != null) myPlayer.updateLanguage();
         // myReadyButton.updateLanguage();
     }
+
+    public void showAllClassification() {
+        myPlayer.showAllClassifications();
+    }
+
+    public void hideAllClassification() {
+        myPlayer.hideAllClassifications();
+    }
 }

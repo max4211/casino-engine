@@ -169,8 +169,12 @@ public class GameView implements GameViewInterface, StylizedNode {
     @Override
     public void setMainPlayer(int playerID) {
         if (!myOtherPlayers.hasPlayerView(playerID)) return;
-        if (myMainPlayer.holdsAPlayer()) myOtherPlayers.addPlayer(myMainPlayer.getMainPlayer());
+        if (myMainPlayer.holdsAPlayer()) {
+            myMainPlayer.hideAllClassification();
+            myOtherPlayers.addPlayer(myMainPlayer.getMainPlayer());
+        }
         myMainPlayer.setMainPlayer(myOtherPlayers.getPlayerView(playerID));
+        myMainPlayer.showAllClassification();
         myOtherPlayers.removePlayer(playerID);
     }
 
@@ -260,5 +264,4 @@ public class GameView implements GameViewInterface, StylizedNode {
         myOtherPlayers.updateLanguage();
         myExceptionDisplayer.updateLanguage();
     }
-
 }
