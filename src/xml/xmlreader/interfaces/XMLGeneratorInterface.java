@@ -1,5 +1,6 @@
 package xml.xmlreader.interfaces;
 
+import exceptions.GeneralXMLException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -16,12 +17,17 @@ public interface XMLGeneratorInterface {
      * @param file is the file path to create the game
      * @return a Docuemnt that can be read from directly
      */
-    static Document createDocument(File file) throws ParserConfigurationException, IOException, SAXException {
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(file);
-        doc.getDocumentElement().normalize();
-        return doc;
+    static Document createDocument(File file) throws GeneralXMLException{
+        try {
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(file);
+            doc.getDocumentElement().normalize();
+            return doc;
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            throw new GeneralXMLException(e);
+        }
+
     }
 
 }

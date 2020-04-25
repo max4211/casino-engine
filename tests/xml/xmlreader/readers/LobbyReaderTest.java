@@ -1,5 +1,6 @@
 package xml.xmlreader.readers;
 
+import exceptions.GeneralXMLException;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
@@ -25,7 +26,7 @@ class LobbyReaderTest {
     private static final String VIEW_TAG = "View";
 
     @Test
-    void getBundleArguments() throws ParserConfigurationException, SAXException, IOException {
+    void getBundleArguments() throws GeneralXMLException {
         final String filename = "data/xml/lobbyview/lobbyview_v1.xml";
         LobbyReader reader = new LobbyReader(filename);
         List<Map<String, String>> bundleList = reader.getBundleArguments();
@@ -37,7 +38,7 @@ class LobbyReaderTest {
     }
 
     @Test
-    void getFileArguments() throws ParserConfigurationException, SAXException, IOException {
+    void getFileArguments() throws GeneralXMLException {
         final String filename = "data/xml/lobbyview/lobbyview_v1.xml";
         LobbyReader reader = new LobbyReader(filename);
         List<List<File>> bundleList = reader.getFileTags();
@@ -50,7 +51,7 @@ class LobbyReaderTest {
     }
 
     @Test
-    void getLobbyStylesheet() throws ParserConfigurationException, SAXException, IOException {
+    void getLobbyStylesheet() throws GeneralXMLException {
         final String filename = "data/xml/lobbyview/lobbyview_v1.xml";
         LobbyReader reader = new LobbyReader(filename);
         List<String> result = reader.getLobbyStylesheet();
@@ -61,7 +62,7 @@ class LobbyReaderTest {
     }
 
     @Test
-    void getLobbyLanguages() throws ParserConfigurationException, SAXException, IOException {
+    void getLobbyLanguages() throws GeneralXMLException {
         final String filename = "data/xml/lobbyview/lobbyview_v1.xml";
         LobbyReader reader = new LobbyReader(filename);
         List<String> result = reader.getLobbyLanguages();

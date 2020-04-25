@@ -13,7 +13,7 @@ class HandValidatorTest {
     void validate() {
         Validator handValidator = new HandsValidator();
 //        String handPath = "data/xml/hands/standard.xml";
-        String handPath = "data/xml/hands/hands.xml";
+        String handPath = "data/xml/good/HANDS_blackjack.xml";
         File handFile = new File(handPath);
         boolean result = handValidator.validate(handFile);
         boolean expected = true;
@@ -24,7 +24,7 @@ class HandValidatorTest {
     void validateError() {
         Validator handValidator = new HandsValidator();
 //        String handPath = "data/xml/hands/standard.xml";
-        String handPath = "data/xml/hands/bad_hand.xml";
+        String handPath = "data/xml/bad/HANDS_missingentry.xml";
         File handFile = new File(handPath);
         try {
             handValidator.validate(handFile);

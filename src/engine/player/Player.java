@@ -64,8 +64,7 @@ public class Player implements PlayerInterface {
         this.myBankroll -= bet.getWager();
         this.myBets.add(bet);
     }
-
-    // TODO - update bankroll on new bets
+    
     public void updateBankroll(double wager) {
         this.myBankroll -= wager;
     }

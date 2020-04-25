@@ -76,8 +76,8 @@ public class GroupController extends Controller {
         evaluateBets();
         updateWinnersLoser();
         computePayoffs();
-        showGoals();
         updateBankrolls();
+        showGoals();
         showGameViewRestart();
     }
 
@@ -124,14 +124,6 @@ public class GroupController extends Controller {
     @Override
     protected void computePayoffs() {
         List<Bet> allBets = createListOfBets();
-        String summary = "";
-        for (Player p: this.myTable.getPlayers()) {
-            for (Bet b: p.getBets()) {
-                ClassifiedHand ch = b.getHand().getClassification();
-                summary = summary + String.format("%s's hand is a %s (%s)\n", p.getName(), ch.getName(), b.getHand().getOutcome().toString());
-            }
-        }
-        this.myGameView.displayText(summary);
         this.myPot.distributePot(allBets);
     }
 

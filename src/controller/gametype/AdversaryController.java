@@ -59,8 +59,8 @@ public class AdversaryController extends Controller {
         showAllAdversaryCards();
         updateWinnersLoser();
         computePayoffs();
-        showGoals();
         updateBankrolls();
+        showGoals();
         showGameViewRestart();
     }
 
@@ -116,15 +116,7 @@ public class AdversaryController extends Controller {
 
     @Override
     protected void computePayoffs() {
-        StringBuilder summary = new StringBuilder();
         invokeCompetition();
-        for (Player p: this.myTable.getPlayers()) {
-            for (Bet b: p.getBets()) {
-                ClassifiedHand ch = b.getHand().getClassification();
-                summary.append(String.format("%s's hand is a %s (%s)\n", p.getName(), ch.getName(), b.getHand().getOutcome().toString()));
-            }
-        }
-        this.myGameView.displayText(summary.toString());
     }
 
     @Override

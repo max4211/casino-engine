@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Hands>
+    <WinningHand>
+        <Name>XCardSumY</Name>
+        <Parameters>2 21</Parameters>
+        <Multiplier>1.5</Multiplier>
+        <ViewName>Blackjack</ViewName>
+    </WinningHand>
+    <WinningHand>
+        <Multiplier>1.0</Multiplier>
+        <Parameters>22</Parameters>
+        <ViewName>Sum Hand</ViewName>
+    </WinningHand>
+    <LosingHand>
+        <Name>SumOverX</Name>
+        <Parameters>21</Parameters>
+        <ViewName>Bust</ViewName>
+    </LosingHand>
+</Hands>
