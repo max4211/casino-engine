@@ -2,6 +2,7 @@ package UI.Utilities;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -102,6 +103,12 @@ public class Formatter {
     public void updateVBoxWidth(VBox rawVBox, double newWidth) {
         rawVBox.setMinWidth(newWidth);
         rawVBox.setMaxWidth(newWidth);
+    }
+
+    public static void formatCenteredGrowingLabel(Label label) {
+        label.setAlignment(Pos.CENTER);
+        label.setMaxWidth(Double.MAX_VALUE);
+        label.setMinWidth(Double.MAX_VALUE);
     }
 
     public void updateBackground(Pane rawPane, Color newColor) {

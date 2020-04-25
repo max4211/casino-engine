@@ -7,7 +7,6 @@ import UI.Interfaces.StylizedNode;
 import UI.Utilities.Formatter;
 import UI.Utilities.LanguageBundle;
 import UI.Validation.AllFilesDisplay;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import xml.xmlvalidator.MasterValidator;
@@ -18,7 +17,7 @@ import java.util.function.Consumer;
 
 public class GameStarter implements StylizedNode, LanguageResponder {
 
-    private VBox myGameStarter;
+    private VBox myGameBox;
     private List<File> myFiles;
     private Label myGameLabel;
     private LanguageBundle myLanguageBundle;
@@ -27,30 +26,41 @@ public class GameStarter implements StylizedNode, LanguageResponder {
     private static final IconSize GAME_ICON_SIZE = IconSize.LARGE;
     private static final String PATH_TO_ICON = "iconImages/runnableGameIcons/";
 
-    public GameStarter(String imageFile, String gameKey, List<File> files, Consumer<Exception> showException, LanguageBundle languageBundle,
-                       String filesDisplayIcon, String filesDisplayStatus) {
-        myGameStarter = new VBox();
-        Formatter.formatGameStarter(myGameStarter);
-        StylizedNode.setStyleID(myGameStarter, this.getClass());
+    public GameStarter(String imageFile, String gameKey, List<File> files, Consumer<Exception> showException, LanguageBundle languageBundle, String filesIconBundle, String statusIconsBundle) {
+        myGameBox = new VBox();
+        Formatter.formatGameStarter(myGameBox);
+        StylizedNode.setStyleID(myGameBox, this.getClass());
 
+        myGameKey = gameKey;
+        myFiles = files;
+        myLanguageBundle = languageBundle;
+
+        createGameIcon(imageFile);
+        createGameLabel();
+        setClickableGameBox(filesIconBundle, showException, statusIconsBundle);
+    }
+
+    private void createGameIcon(String imageFile) {
         String iconFilePath = formatIconFilePath(imageFile);
         Icon myIconButton = new Icon(iconFilePath, GAME_ICON_SIZE);
+        myGameBox.getChildren().add(myIconButton.getView());
+    }
 
-        myFiles = files;
-        myGameStarter.setOnMouseClicked(e -> {
-            AllFilesDisplay display = new AllFilesDisplay(languageBundle, filesDisplayIcon, filesDisplayStatus);
+    private void createGameLabel() {
+        myGameLabel = new Label();
+        myGameBox.getChildren().add(myGameLabel);
+        updateLanguage();
+    }
+
+    private void setClickableGameBox(String filesIconBundle, Consumer<Exception> showException, String statusIconsBundle) {
+        myGameBox.setOnMouseClicked(e -> {
+            AllFilesDisplay display = new AllFilesDisplay(myLanguageBundle, filesIconBundle, statusIconsBundle);
+
             new MasterValidator(myFiles,
                     (file, status) -> display.updateStatus(file, status),
                     (initializer) -> display.enableGameButton(initializer),
                     showException);
         });
-
-        myLanguageBundle = languageBundle;
-        myGameKey = gameKey;
-        myGameLabel = new Label();
-        myGameLabel.setAlignment(Pos.CENTER);
-        updateLanguage();
-        myGameStarter.getChildren().addAll(myIconButton.getView(), myGameLabel);
     }
 
     private String formatIconFilePath(String iconFileName) {
@@ -59,7 +69,7 @@ public class GameStarter implements StylizedNode, LanguageResponder {
 
     @Override
     public VBox getView() {
-        return myGameStarter;
+        return myGameBox;
     }
 
     public List<File> getFiles() {
@@ -68,6 +78,7 @@ public class GameStarter implements StylizedNode, LanguageResponder {
 
     @Override
     public void updateLanguage() {
-        myGameLabel.setText(myLanguageBundle.getBundle().getString(myGameKey));
+        String translatedGame = myLanguageBundle.getBundle().getString(myGameKey);
+        myGameLabel.setText(translatedGame);
     }
 }

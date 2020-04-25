@@ -6,18 +6,21 @@ import javafx.geometry.Rectangle2D;
 
 public enum ScreenPosition {
 
-    LEFT ('L'),
+    FARLEFT ('L'),
+    LEFT ('l'),
     MIDDLE ('M'),
-    RIGHT ('R');
+    RIGHT ('r');
 
     private final Rectangle2D SCREEN_BOUNDS = Screen.getPrimary().getBounds();
     private final double SCREEN_WIDTH = SCREEN_BOUNDS.getWidth();
     private final double SCREEN_HEIGHT = Screen.getPrimary().getBounds().getHeight();
 
+    private static final double FARLEFT_WIDTH_MULTIPLIER = .2;
     private static final double LEFT_WIDTH_MULTIPLIER = .32;
     private static final double MIDDLE_WIDTH_MULTIPLIER = .5;
     private static final double RIGHT_WIDTH_MULTIPLIER = .68;
 
+    private static final double FARLEFT_HEIGHT_MULTIPLIER = .25;
     private static final double LEFT_HEIGHT_MULTIPLIER = .25;
     private static final double MIDDLE_HEIGHT_MULTIPLIER = .20;
     private static final double RIGHT_HEIGHT_MULTIPLIER = .25;
@@ -28,6 +31,10 @@ public enum ScreenPosition {
 
     ScreenPosition(char type) {
         switch(type) {
+            case 'l': {
+                x = SCREEN_WIDTH * FARLEFT_WIDTH_MULTIPLIER;
+                y = SCREEN_HEIGHT * FARLEFT_HEIGHT_MULTIPLIER;
+            }
             case 'L': {
                 x = SCREEN_WIDTH * LEFT_WIDTH_MULTIPLIER;
                 y = SCREEN_HEIGHT * LEFT_HEIGHT_MULTIPLIER;
@@ -40,7 +47,7 @@ public enum ScreenPosition {
                 break;
             }
 
-            case 'R': {
+            case 'r': {
                 x = SCREEN_WIDTH * RIGHT_WIDTH_MULTIPLIER;
                 y = SCREEN_HEIGHT * RIGHT_HEIGHT_MULTIPLIER;
                 break;
