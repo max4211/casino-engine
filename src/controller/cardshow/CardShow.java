@@ -6,6 +6,7 @@ import engine.dealer.Card;
 import engine.player.Player;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Supplier;
 
 public abstract class CardShow implements CardShowInterface {
@@ -27,27 +28,39 @@ public abstract class CardShow implements CardShowInterface {
         for (Player p: this.myGetPlayers.get()) {
             for (Bet b: p.getActiveBets()) {
                 if (b.isGameActive()) {
-                    for (Card c: b.getHand().getCards())
-                        this.myShowCard.showCard(p.getID(), b.getID(), c.getID());
+                    cardListOperator(
+                            (pID, bID, cID) -> this.myShowCard.showCard(pID, bID, cID),
+                            b.getHand().getCards(), p.getID(), b.getID());
                 }
             }
         }
     }
 
+    private void cardListOperator(CardLoopFunction function, List<Card> cards, int pID, int bID) {
+        for (Card c: cards)
+            function.operate(pID, bID, c.getID());
+    }
+
     protected void hideMyCards(Player p) {
         for (Bet b: p.getActiveBets()) {
-            for (Card c: b.getHand().getCards())
-                this.myHideCard.hideCard(p.getID(), b.getID(), c.getID());
+            cardListOperator(
+                    (pID, bID, cID) -> this.myHideCard.hideCard(pID, bID, cID),
+                    b.getHand().getCards(), p.getID(), b.getID());
         }
     }
 
     protected void showActiveCards(Player p) {
         hideCards(p);
         for (Bet b: p.getActiveBets()) {
-            for (Card c: b.getHand().getCards()) {
-                this.myShowCard.showCard(p.getID(), b.getID(), c.getID());
-            }
+            cardListOperator(
+                    (pID, bID, cID) -> this.myShowCard.showCard(pID, bID, cID),
+                    b.getHand().getCards(), p.getID(), b.getID());
         }
+    }
+
+    private void addAbsentCards(List<Card> cards, int bID, int pID) {
+        for (Card c: cards)
+            this.myAddCard.addCardIfAbsent(Generator.createCardTriplet(c), pID, bID);
     }
 
     protected void hideCards(Player p) {
