@@ -1,4 +1,4 @@
-.dialog-pane {
+#ExceptionDisplayer {
     -fx-background-color: #cd6881;
     -fx-font-family: "American Typewriter";
     -fx-font-size: 20;
@@ -33,3 +33,4 @@
     -fx-text-fill:black;
     -fx-font-weight:bold;
 }
+

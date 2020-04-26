@@ -1,0 +1,13 @@
+#LobbyView {
+    -fx-background-color: #292829;
+    -fx-font-family: "American Typewriter";
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+#SettingsBar {
+    -fx-background-color: derive(#292829, 10%);
+}
