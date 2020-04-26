@@ -15,6 +15,7 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="../pages/overview.html">Overview</a></li>
         <li><a href="../pages/lobby.html">Lobby</a></li>
+        <li><a href="../pages/validator.html">Validator</a></li>
         <li><a href="../pages/gameplay.html">Gameplay</a></li>
     </ul>
 </nav>
@@ -33,7 +34,9 @@
 
 <div class="page-content">
     <h1>View XML Page</h1>
-    <p>Coming soon:</p>
+    <br><p>The View XML file drives the construction of the specific game view. It has two meta tags which encode the game <i>Title</i> and file <i>Authors</i>. Additionally, it encodes the starting dimensions of the screen in the <i>Width</i> and <i>Height</i> tags. </p><br>
+
+    <p>The remaining tags encode information to compose the SettingsBar as well as visual effects internal to the Game. There are <i>Language</i> and <i>Stylesheet</i> tags which fill the ComboBox dropdowns on the top of the screen. Additionally, there is an <i>IconBundle</i> and <i>ErrorStyleSheet</i> which encode visual components of the game. All of these tags which point to specific data files/bundles are validated by enumerated types internal to the view schema.</p><br>
 </div>
 
 </body>

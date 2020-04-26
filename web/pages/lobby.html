@@ -15,6 +15,7 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="../pages/overview.html">Overview</a></li>
         <li><a href="../pages/lobby.html">Lobby</a></li>
+        <li><a href="../pages/validator.html">Validator</a></li>
         <li><a href="../pages/gameplay.html">Gameplay</a></li>
     </ul>
 </nav>
@@ -33,7 +34,11 @@
 
 <div class="page-content">
     <h1>Lobby Page</h1>
-    <p>Coming soon:</p>
+    <br><p>The Lobby presents the user with a <i>View</i> of the games that he can play, as dictated by the LOBBY_XML_FILE instance variable in the <i>Main</i> class. This file encodes the necessary information to construct a home page for our application. It specifies the possible game variations to offer, the languages to offer them in, and the stylization of the lobby itself. It further specifies the width and height of this stage, which is centered in the user’s display.</p><br>
+
+    <p>In the Lobby, one can select a game by clicking on the <i>Game Starter</i> that contains the name and icon of each possible game. Doing so will launch the Validation process, which is defined under the Validator section of this page. This click represents the “loading” of XML files into the game engine, which can then create a <i>Game View</i> once they pass <i>Validation</i>.</p><br>
+
+    <p>Additionally, there is a <i>Settings Bar</i> on top of the <i>Lobby View</i>. This allows the user to change the language of the game and the style. The Info button also links back to this site.</p><br>
 </div>
 
 </body>

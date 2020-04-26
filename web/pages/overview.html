@@ -15,6 +15,7 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="../pages/overview.html">Overview</a></li>
         <li><a href="../pages/lobby.html">Lobby</a></li>
+        <li><a href="../pages/validator.html">Validator</a></li>
         <li><a href="../pages/gameplay.html">Gameplay</a></li>
     </ul>
 </nav>
@@ -33,7 +34,16 @@
 
 <div class="page-content">
     <h1>Overview Page</h1>
-    <p>Coming soon:</p>
+    <br><p>To launch our program, run the <i>Main</i> class, which can be found in the ooga package. In this class, there is a constant String which provides the path to the first XML file. This is a <i>LobbyView</i> file. This XML file type lists a variety of information for the main screen of the game, including “file bundles” that encode preloaded games (such as blackjack or poker). To change the initial lobby, change this instance variable.</p><br>
+
+    <p>Upon runtime, the Lobby will be loaded, which will show the various games to play. A simple mouse click on any of the loaded games will then begin the initialization process for the selected type. Immediately, a new stage should appear on the left, which will list the status of the five icons selected. If all five are valid (indicated by the valid image file given via a resource bundle), then the launch button will be enabled. On click, the game will be rendered.</p><br>
+
+    <p>If the files are <i>not</i> valid, then this button should be disabled. The files that are either empty or invalid will be marked as such, and in doing so, a new <i>Multiple XML Chooser</i> will appear to its right. This will allow the user to continue to select new files until all five are valid. The display will update real time as this process goes on. After they are all marked as valid, the initialization button will be enabled. Upon click, the last phase of the UI will emerge in a new, centered screen.</p><br>
+
+    <p>This GameView will encompass the functionality of a real-life casino game. It will break the gameplay up into individual actions, specified by the user who is the <i>Main Player</i> (located on the bottom of the screen). Whenever an action is prompted, assume it is for this player, whose name and bankroll are attached to the displayed cards. As the game goes on, bankrolls will be updated and cards will be dealt and cleared according to the logic of the XML file.</p><br>
+
+    <p>The top of the GameView and LobbyView also display a Settings Bar, which allows in-game customization from a variety of options. The language can also be changed as well. Lastly, a help Icon can be found, which links to this site, explaining the possible user interactions.</p><br>
+
 </div>
 
 </body>

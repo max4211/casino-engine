@@ -15,6 +15,7 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="../pages/overview.html">Overview</a></li>
         <li><a href="../pages/lobby.html">Lobby</a></li>
+        <li><a href="../pages/validator.html">Validator</a></li>
         <li><a href="../pages/gameplay.html">Gameplay</a></li>
     </ul>
 </nav>
@@ -33,7 +34,11 @@
 
 <div class="page-content">
     <h1>Deck XML Page</h1>
-    <p>A deck xml contains the following elements:</p>
+    <br><p>The deck XML file contains a sequence of <i>Card</i> tags which encompass a <i>Suit</i> and a <i>Value</i>. The <i>Value</i> is always a parseable double and the <i>Suit</i> can be any string. Additionally, there are a few meta tags which provide more information about the file and deck makeup.</p><br>
+
+    <p>Each deck has an (optional) <i>Title</i> and <i>Author</i>. Additionally, there is a <i>Quantity</i> tag which specifies the quantity of the deck in the dealer’s possession (e.g. in many casinos, multiple decks will be used to avoid constant shuffling at larger tables). </p><br>
+
+    <p>There is also a <i>Type</i> tag, which specifies the type of deck. The two options are Remove and Replace. A Remove deck has cards removed as they are dealt out, whereas a Replace deck has cards replaced after each round. More traditional card games are of the Remove format, however to accommodate games such as Roulette and Craps where a “Card” object never truly disappears from gameplay, they must be replaced back in the Deck once selected.</p>
 </div>
 
 </body>

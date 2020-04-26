@@ -15,6 +15,7 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="../pages/overview.html">Overview</a></li>
         <li><a href="../pages/lobby.html">Lobby</a></li>
+        <li><a href="../pages/validator.html">Validator</a></li>
         <li><a href="../pages/gameplay.html">Gameplay</a></li>
     </ul>
 </nav>
@@ -32,8 +33,12 @@
 </aside>
 
 <div class="page-content">
-    <h1>LobbyView XML Page</h1>
-    <p>Coming soon:</p>
+    <h1>LobbyView XML Page</h1><br>
+    <p>The LobbyView XML file contains meta tags for starting Dimensions (<i>Width</i> and <i>Height</i>). Similar to the GameView XML file, it also contains <i>Stylesheets</i> and <i>Languages</i> which drive the creation of the SettingsBar on top. There is also an <i>IconProperties</i> bundle which dictates the icons in the Settings bar, as well as an <i>ErrorStylehseet</i> reference.</p><br>
+
+    <p>The next section contains two tags which drive the IconBundles contained within the Validation view (<i>FilesStatusBundle</i> and <i>FilesIconBundle</i>). These customize the appearance of the validation view and are validated with enumerated types internal to the schema.</p><br>
+
+    <p>The final section contains  a series of <i>Bundle</i> tags which encode information that creates Icons seen in the LobbyView. Each Icon contains a <i>Name</i>, an <i>Icon</i>, and a sequence of <i>Files (Deck, Game, Hands, Players, and View)</i>. All of the icons are validated by enumerated types in the schema, and the file names are validated in the validation view sequence. Each bundle must include a <i>Name</i> and an <i>Icon</i> tag, and then contains an arbitrary number of files. The rest of file selection happens in the Validation loop.</p><br>
 </div>
 
 </body>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CS308 Casino</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" type="image/png" href="img/icon.png">
+</head>
+
+<body>
+<nav class="nav-main">
+    <div class="btn-toggle-nav" onclick="toggleNav()"></div>
+    <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/overview.html">Overview</a></li>
+        <li><a href="../pages/lobby.html">Lobby</a></li>
+        <li><a href="../pages/validator.html">Validator</a></li>
+        <li><a href="../pages/gameplay.html">Gameplay</a></li>
+    </ul>
+</nav>
+
+<aside class="nav-sidebar">
+    <ul>
+        <li><span>XML Files</span></li>
+        <li><a href="../pages/deck.html">Deck</a></li>
+        <li><a href="../pages/game.html">Game</a></li>
+        <li><a href="../pages/hands.html">Hands</a></li>
+        <li><a href="../pages/players.html">Players</a></li>
+        <li><a href="../pages/gameview.html">GameView</a></li>
+        <li><a href="../pages/lobbyview.html">LobbyView</a></li>
+    </ul>
+</aside>
+
+<div class="page-content">
+    <h1>Validator Page</h1>
+    <p>The phase between game selection and game initialization is <i>Validation</i>. This is a <i>mandatory</i> process, and games <i>cannot</i> be loaded without having every file checked. This is crucial to prevent crashes spurred by errors and exceptions.</p><br>
+
+    <p>As such, when a game type is selected in the lobby, a new <i>All Files Display</i> is created which validates each file individually. At initialization, the files preloaded from the Game Type are checked and their statuses are displayed. The icons for the file type, the equality sign, and the status displayed are all data-driven from ResourceBundles. In our project, these can be found in the fileStatuses and fileTypes packages which are in iconBundles.</p><br>
+
+    <p>If any files are deemed invalid, the user will be presented with a <i>Multiple XML File</i> chooser. This will allow the user to select any number of files and then submit them. The validator will accept the first valid file using a descending order, and if none are valid, then it will mark the files as invalid. Any given file exists in one of three enumerated states: <i>Valid, Empty, Invalid.</i></p><br>
+
+    <p>Once all five files are marked as valid, a launch button will become enabled. Upon click, the desired Game View will be rendered. If for any reason, the user wants to leave the validation process and select a new game, the <i>All Files Display</i> can simply be exited out of. </p><br>
+</div>
+
+</body>
+
+<script src="../js/main.js"></script>
+
+</html>

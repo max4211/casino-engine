@@ -15,6 +15,7 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="../pages/overview.html">Overview</a></li>
         <li><a href="../pages/lobby.html">Lobby</a></li>
+        <li><a href="../pages/validator.html">Validator</a></li>
         <li><a href="../pages/gameplay.html">Gameplay</a></li>
     </ul>
 </nav>
@@ -33,7 +34,9 @@
 
 <div class="page-content">
     <h1>Hands XML Page</h1>
-    <p>Coming soon:</p>
+    <br><p>The Hands XML file has two sections - Winning and Losing hands. These hand types have a bundle of tags which include a <i>Name</i> to facilitate reflection, <i>Parameters</i> to maintain the general nature of hands (e.g SumUnderX name with parameter 22), <i>Multiplier</i> for winning hands which modulates payouts, and an optional <i>ViewName</i> so the frontend doesn’t see the more code friendly <i>Name</i> tag. </p><br>
+
+    <p>Furthermore, the validation schema ensures that the <i>Multiplier</i> is a parseable double, and the <i>Name</i> is one that we have created a class for to mitigate the risk of ReflectionExceptions at runtime. The <i>Parameter</i> tag is composed of  space separated doubles. Schema validation was fairly difficult, so protection for flawed <i>Parameters</i> happens in the backend. Defaults are given for any <i>Parameters</i> that cannot be parsed as doubles or that are expected but do not exist.</p><br>
 </div>
 
 </body>

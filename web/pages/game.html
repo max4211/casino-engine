@@ -15,6 +15,7 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="../pages/overview.html">Overview</a></li>
         <li><a href="../pages/lobby.html">Lobby</a></li>
+        <li><a href="../pages/validator.html">Validator</a></li>
         <li><a href="../pages/gameplay.html">Gameplay</a></li>
     </ul>
 </nav>
@@ -33,7 +34,11 @@
 
 <div class="page-content">
     <h1>Game XML Page</h1>
-    <p>Coming soon:</p>
+    <br><p>The Game XML file contains information for the specific game and facilitates creation and parametrization of the Controller object. The first section encodes information regarding the game <i>Type</i>. Right now, we support an <i>Adversary</i> game (where all players go individually against a dealer) and <i>Group</i> games (where all players are competing against each other). This tag facilitates reflection within the ControllerFactory to create the appropriate type of Controller which runs the game logic. Additionally, Competition Types have a required parameter(s). <i>Adversary</i> games require a minimal hand which the dealer will play through, and <i>Group</i> games require an ante. The next two tags encode <i>TableMin</i> and <i>TableMax</i>, which are both parseable doubles and bracket bet sizing. </p><br>
+
+    <p>Next, there is a <i>CardShow</i> status, which dictates how cards are displayed in the view. Currently, there are three types of CardShow, All (all are shown), Active (only acting player is shown), and Other (all cards except active player are shown, aka you have no idea what your cards are).  Then, the final meta tag is a <i>Goal</i> tag, which drives the round to round structure within the game. Currently, support is offered for Tournaments (play until one player left) and CashGames (play indefinitely, goal is the most money). Both <i>CardShow</i> and <i>Goal</i> tags are validated by enumeration in the Game XML schema, and have delegated responsibility with lambdas from the controller.</p><br>
+
+    <p>The final bundle drives the sequence of events within the game. All casino games start with an <i>EntryBet</i> (validated by enumeration, currently Generic and Specific exist). After an initial bet has been placed (you gotta pay to play), there is an alternating series of Dealer and Player actions.</p><br>
 </div>
 
 </body>
