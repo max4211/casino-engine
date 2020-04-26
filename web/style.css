@@ -101,4 +101,6 @@ body {
     z-index: 50;
     position: fixed;
     top: 0;
+
+    overflow: scroll;
 }

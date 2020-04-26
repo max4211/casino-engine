@@ -36,7 +36,17 @@
     <h1>GamePlay Page</h1>
     <br><p>The third stage of playing a card-based game is, well, actually playing the game! This occurs in a <i>Game View</i> object, which is rendered from five different XML files. A specific file is needed for the deck; the winning and losing hands; the game logic; the number of players; and the view itself. All these come from the Lobby and Validation processes. The Game View then translates the data to a GUI that can communicate with the backend and handle user input.</p>
 
-    <br><p>In the Gameplay, there are a variety of components to be considered. The first and most important</p>
+    <br><p>In the Gameplay, there are a variety of components to be considered. The first are the <i>players</i>. These represent the users in the game, and are constructed from a single XML file. Each player has a name, bankroll, and collection of Bets, which individually store cards and a wager. One player can act at a time, and the Game shows the current player whose turn it is by placing them on the bottom of the screen in a <i>Main Player View</i>. The <i>Other Players</i> are displayed on the left side and rotated into the spotlight automatically.
+
+    In many poker games, there are often cards that do not belong to any individual player. These can be common cards or dealer cards, and are rendered in the center of the screen. The dealer is named an <i>Adversary</i> in our game and is represented only with a <i>Hand View</i>. The common cards are likewise represented with just a <i>Hand View</i>. If the game is poker, a <i>Pot View</i> will further be rendered on the right side of the screen. This will show the current amount of money in escrow that will be afforded to the winner of the hand.
+
+    At the end of a turn, the GUI will notify the winners and losers by setting their colors to winning and losing hands. These colors come from a CSS file in data, so it is possible that no change will occur. If this is the case, simply change the CSS file. In general, if there is ever a perceived bug in the UI coloring or formatting, a good method is to change the stylesheet via the chooser in the Settings Bar. These styles affect the spacing and design of the layout.
+
+    When a player is prompted for action, this occurs via Dialogues that are presented and intended to be responded to by the Main Player. There are two dialogues: Wager Selectors and Action Selectors. They simply prompt the user for input regarding an amount to place on a hand, or they prompt the user to select an action on their hand (such as ask for a new card). A player should hit the <i>Ready</i> button that is presented to signify that they are ready to give input. Note that there is error handling embedded in the Dialogue, so entering a non-numeric wager, for example, will be prevented.
+
+    If an exception occurs due to input, a screen will pop up informing the user of the error. These exceptions are likewise stylized from the XML GameView file, where a style sheet is referenced for Errors.
+
+    The Game will run until a Goal is met. As of now, there are tournaments and cash games. Cash games will run forever, and tournaments will run until there is only one winner. If the user wishes to exit before reaching a goal, he can simply exit out of the Game View screen. After doing so, the Lobby View will still be rendered, so a new game can be launched.  </p>
 
 </div>
 
