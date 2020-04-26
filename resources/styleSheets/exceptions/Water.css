@@ -1,0 +1,33 @@
+#ExceptionDisplayer {
+    -fx-background-color: #5c59cd;
+    -fx-font-family: "American Typewriter";
+    -fx-font-size: 20;
+    -fx-text-fill: rgba(48, 0, 255, 0);
+}
+
+#ExceptionDisplayer > .button-bar > .container {
+    -fx-background-color: #96ddff;
+}
+
+#ExceptionDisplayer:header .header-panel {
+    -fx-background-color: #a0ffee;
+}
+
+#ExceptionDisplayer:header .header-panel .label{
+    -fx-text-fill: #2d7f8d;
+    -fx-font-size: 20;
+}
+
+#ExceptionDisplayer .button{
+    -fx-background-color: #3f8aff;
+    -fx-alignment: center;
+    -fx-text-fill: #f6ffed;
+    -fx-effect: dropshadow(three-pass-box, #96ddff, 10.0, 0.0, 0.0, 0.0);
+}
+
+#ExceptionDisplayer .button:hover{
+    -fx-background-color:white;
+    -fx-text-fill:black;
+    -fx-font-weight:bold;
+}
+

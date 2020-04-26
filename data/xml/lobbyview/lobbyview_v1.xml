@@ -15,7 +15,7 @@
         <Language>Spanish</Language>
         <Language>French</Language>
     </Languages>
-    <ErrorStylesheet>Fire</ErrorStylesheet>
+    <ErrorStylesheet>Water</ErrorStylesheet>
     <IconProperties>standardLobby</IconProperties>
     <AllFilesDisplay>
         <FilesStatusBundle>StandardStatuses</FilesStatusBundle>
