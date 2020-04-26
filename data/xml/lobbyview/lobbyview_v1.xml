@@ -7,20 +7,23 @@
     <Stylesheets>
         <Stylesheet>Sunrise</Stylesheet>
         <Stylesheet>Ice</Stylesheet>
+        <Stylesheet>Sunset</Stylesheet>
+        <Stylesheet>Dark</Stylesheet>
     </Stylesheets>
     <Languages>
         <Language>English</Language>
         <Language>Spanish</Language>
+        <Language>French</Language>
     </Languages>
-    <ErrorStylesheet>Fire</ErrorStylesheet>
+    <ErrorStylesheet>Water</ErrorStylesheet>
     <IconProperties>standardLobby</IconProperties>
     <AllFilesDisplay>
         <FilesStatusBundle>StandardStatuses</FilesStatusBundle>
         <FilesIconBundle>StandardXMLs</FilesIconBundle>
     </AllFilesDisplay>
     <Bundle>
-        <Name>Blackjack</Name>
-        <Icon>Black_Jack-512.png</Icon>
+        <Name>BlackJack</Name>
+        <Icon>BlackJack4.png</Icon>
         <Files>
             <Deck>data/xml/good/DECK_standard.xml</Deck>
             <Game>data/xml/good/GAME_blackjacksimple.xml</Game>
@@ -31,7 +34,7 @@
     </Bundle>
     <Bundle>
         <Name>Poker</Name>
-        <Icon>poker-cards.png</Icon>
+        <Icon>Poker8.png</Icon>
         <Files>
             <Deck>data/xml/good/DECK_standard.xml</Deck>
             <Game>data/xml/good/GAME_pokerfull.xml</Game>
@@ -42,6 +45,6 @@
     </Bundle>
     <Bundle>
         <Name>Custom</Name>
-        <Icon>mouseIcon.png</Icon>
+        <Icon>Custom7.png</Icon>
     </Bundle>
 </Lobby>

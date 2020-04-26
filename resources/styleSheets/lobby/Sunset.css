@@ -1,0 +1,8 @@
+#LobbyView {
+    -fx-background-color: linear-gradient(#f0ff91, #f98f39, #ff416d);
+    -fx-font-family: "American Typewriter";
+}
+
+#Icon {
+    -fx-effect: dropshadow( three-pass-box, #fffd8c, 10.0, 0.0, 0.0, 0.0);
+}
