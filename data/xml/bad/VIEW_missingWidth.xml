@@ -1,7 +1,7 @@
 <View>
     <Title>Blackjack</Title>
     <Authors>Eric Doppelt and Max Smith</Authors>
-    <IconBundle>standardGame</IconBundle>
+    <IconBundle>StandardGame</IconBundle>
     <Dimensions>
         <Width></Width>
         <Height>800</Height>

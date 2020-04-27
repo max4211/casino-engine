@@ -2,7 +2,7 @@
 <View>
     <Title>Blackjack</Title>
     <Authors>Eric Doppelt and Max Smith</Authors>
-    <IconBundle>funnyGame</IconBundle>
+    <IconBundle>FunnyGame</IconBundle>
     <Dimensions>
         <Width>500</Width>
         <Height>500</Height>
