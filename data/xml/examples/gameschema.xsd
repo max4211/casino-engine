@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Game">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Competition" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="Type" type="CompetitionType"/>
+                            <xs:element name="Ante" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="Minimum" minOccurs="0" maxOccurs="1"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="TableMin" type="xs:double"/>
+                <xs:element name="TableMax" type="xs:double"/>
+                <xs:element name="CardShow" type="CardShowType"/>
+                <xs:element name="Goal" type="GoalType"/>
+                <xs:element name="Actions">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="EntryBet" type="EntryBetType"/>
+                            <xs:element name="DealerAction" minOccurs="1" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="Type" type="DealerActionType"/>
+                                        <xs:element name="Quantity" type="xs:int"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="PlayerAction" minOccurs="1" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Name" type="PlayerActionType"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="CompetitionType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Group"/>
+            <xs:enumeration value="Solo"/>
+            <xs:enumeration value="Adversary"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CardShowType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Active"/>
+            <xs:enumeration value="All"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="GoalType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Tournament"/>
+            <xs:enumeration value="CashGame"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EntryBetType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Generic"/>
+            <xs:enumeration value="Specific"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DealerActionType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Individual"/>
+            <xs:enumeration value="Communal"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PlayerActionType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Check"/>
+            <xs:enumeration value="Fold"/>
+            <xs:enumeration value="Raise"/>
+            <xs:enumeration value="BetAction"/>
+            <xs:enumeration value="Call"/>
+            <xs:enumeration value="Split"/>
+            <xs:enumeration value="DoubleDown"/>
+            <xs:enumeration value="Stay"/>
+            <xs:enumeration value="Hit"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Lobby">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Dimensions" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="Width" type="xs:double" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="Height" type="xs:double" minOccurs="1" maxOccurs="1"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Stylesheets" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Stylesheet" type="LobbyStylesheetType" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Languages" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Language" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ErrorStylesheet" type="ErrorStylesheetType" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="IconProperties" type="IconPropertyType" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="AllFilesDisplay" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="FilesStatusBundle" type="StatusBundleType" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="FilesIconBundle" type="FilesBundleType" minOccurs="1" maxOccurs="1"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Bundle" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="Icon" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="Files" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element minOccurs="0" maxOccurs="1" name="Deck"/>
+                                        <xs:element minOccurs="0" maxOccurs="1" name="Game"/>
+                                        <xs:element minOccurs="0" maxOccurs="1" name="Hands"/>
+                                        <xs:element minOccurs="0" maxOccurs="1" name="Players"/>
+                                        <xs:element minOccurs="0" maxOccurs="1" name="View"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="IconPropertyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="standardLobby"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="FilesBundleType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="StandardXMLs"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="StatusBundleType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="StandardStatuses"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="LobbyStylesheetType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Dark"/>
+            <xs:enumeration value="Ice"/>
+            <xs:enumeration value="Sunrise"/>
+            <xs:enumeration value="Sunset"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ErrorStylesheetType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Fire"/>
+            <xs:enumeration value="Water"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
