@@ -14,10 +14,10 @@
         <Language>French</Language>
     </Languages>
     <ErrorStylesheet>Water</ErrorStylesheet>
-    <IconProperties>standardLobby</IconProperties>
+    <IconProperties>SecondaryLobby</IconProperties>
     <AllFilesDisplay>
-        <FilesStatusBundle>StandardStatuses</FilesStatusBundle>
-        <FilesIconBundle>StandardXMLs</FilesIconBundle>
+        <FilesStatusBundle>SecondaryStatuses</FilesStatusBundle>
+        <FilesIconBundle>SecondaryXMLs</FilesIconBundle>
     </AllFilesDisplay>
     <Bundle>
         <Name>BlackJack</Name>
