@@ -5,15 +5,12 @@ import engine.dealer.Card;
 import engine.hand.PlayerHand;
 import exceptions.GeneralXMLException;
 import org.junit.jupiter.api.Test;
-import org.xml.sax.SAXException;
 import xml.xmlreader.readers.HandReader;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HandClassifierTest {
 
@@ -26,7 +23,7 @@ class HandClassifierTest {
 
     @Test
     void testBust() throws GeneralXMLException {
-        final String file = "data\\xml\\good\\HANDS_blackjack.xml";
+        final String file = "data/xml/good/HANDS_blackjack.xml";
         HandClassifier myHandClassifier = createClassifier(file);
         PlayerHand playerHand = new PlayerHand();
         List<Card> cards = new ArrayList<Card>(List.of(
@@ -40,7 +37,7 @@ class HandClassifierTest {
 
     @Test
     void testBJ() throws GeneralXMLException {
-        final String file = "data\\xml\\good\\HANDS_blackjack.xml";
+        final String file = "data/xml/good/HANDS_blackjack.xml";
         HandClassifier myHandClassifier = createClassifier(file);
         PlayerHand playerHand = new PlayerHand();
         List<Card> cards = new ArrayList<Card>(List.of(
@@ -57,7 +54,7 @@ class HandClassifierTest {
 
     @Test
     void testSum() throws GeneralXMLException {
-        final String file = "data\\xml\\good\\HANDS_blackjack.xml";
+        final String file = "data/xml/good/HANDS_blackjack.xml";
         HandClassifier myHandClassifier = createClassifier(file);
         PlayerHand playerHand = new PlayerHand();
         List<Card> cards = new ArrayList<Card>(List.of(
@@ -74,7 +71,7 @@ class HandClassifierTest {
 
     @Test
     void testFourOfAKind() throws GeneralXMLException {
-        final String file = "data\\xml\\good\\HANDS_poker.xml";
+        final String file = "data/xml/good/HANDS_poker.xml";
         HandClassifier myHandClassifier = createClassifier(file);
         PlayerHand playerHand = new PlayerHand();
         List<Card> cards = new ArrayList<Card>(List.of(
