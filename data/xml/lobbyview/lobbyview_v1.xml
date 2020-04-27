@@ -49,7 +49,7 @@
         <Files>
             <Deck>data/xml/good/DECK_standard.xml</Deck>
             <Game>data/xml/good/GAME_pokerfull.xml</Game>
-            <Hands>data/xml/good/HANDS_poker.xml</Hands>
+            <Hands>data/xml/file.xml</Hands>
             <View>data/xml/good/VIEW_basicview.xml</View>
         </Files>
     </Bundle>
