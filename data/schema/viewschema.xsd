@@ -45,6 +45,7 @@
             <xs:enumeration value="Pastel"/>
             <xs:enumeration value="Dark"/>
             <xs:enumeration value="Light"/>
+            <xs:enumeration value="Empty"/>
         </xs:restriction>
     </xs:simpleType>
 

@@ -15,6 +15,7 @@
         <Stylesheet>Pastel</Stylesheet>
         <Stylesheet>Light</Stylesheet>
         <Stylesheet>Dark</Stylesheet>
+        <Stylesheet>Empty</Stylesheet>
     </Stylesheets>
     <Errors>
         <ErrorStyleSheet>Water</ErrorStyleSheet>
