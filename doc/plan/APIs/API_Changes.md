@@ -171,8 +171,8 @@ Lastly, there are is one other internal UI methods that is worth mentioning whic
 
 A wrapper object around a ResourceBundle was created, which allows GameView Nodes to have a pointer to the same language file. This was not considered in our original plan, so a new internal Language compoment was added to the UI. This has the following two methods and was added towards the end of sprint two.
 
-a. `public void setLanguage(String language);`
-b. `public ResourceBundle getBundle();`
+	a. public void setLanguage(String language);
+	b. public void setLanguage(String language);
 
 Additionally, objects that hold a LanguageBundle implement the LanguageResponder interface. This has one method call, `void updateLanguage()`, which only tells the Node to translate its text based off of the new Bundle.
 
@@ -190,8 +190,8 @@ Towards the end of the project, Max and I desired to shift the Formatting of eve
 
 This was another new module created in the View. Max and I *did not* anticipate creating XML Validation in our project; however, we later on decided that this was the best way to ensure robust code. As such, the Validation module was created. This allows the Controller to create an `AllFilesDisplay` object which shows the validity of each loaded XML file type. This implements the `AllFilesDisplay` interface which specifies the following, aptly named methods that rely on enumerated types (XMLFileType and FileStatus) and custom functional interfaces. The GameCaller defines a `startNewGame()` method and adds readability to code through the functional interface.
 
-a. `public void updateStatus(XMLFileType type, FileStatus newStatus`
-b. `public void enableGameButton(GameCaller initializer)`
+	a. public void updateStatus(XMLFileType type, FileStatus newStatus);
+	b. public void enableGameButton(GameCaller initializer);
 
 This also has a `setX()` method that was added at the last minute to support custom file choosing, since the file chooser was blocking the All Files Display. This simply allows the Controlller to shift the Display out of its way. There is also an internal class, `FileDisplay` that mirrors this API and encodes the display for just *one* file as opposed to all five.
 
