@@ -23,8 +23,5 @@
         <PlayerAction>
             <Name>DoubleDown</Name>
         </PlayerAction>
-        <PlayerAction>
-            <Name>Split</Name>
-        </PlayerAction>
     </Actions>
 </Game>
