@@ -29,7 +29,7 @@ class ViewReaderTest {
         ViewReader vr = new ViewReader("data/xml/good/VIEW_basicview.xml");
         List<String> result = vr.getStylesheets();
         List<String> expected = new ArrayList<String>(List.of(
-                "Light", "Dark", "Coral"
+                "Pastel", "Light", "Dark"
         ));
         for (int i = 0; i < result.size(); i ++)
             assertEquals(expected.get(i), result.get(i));
