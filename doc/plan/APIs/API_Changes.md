@@ -21,6 +21,10 @@ Example `GroupAction.execute()` method:
                  double tableMin, double tableMax, double currentBet) throws ActionException;
 ```
 
+### Bet Evaluator
+Bet evaluation was appended to include an evaluator on only two PlayerHands to accomodate `Adversary` game types. The change was relatively minor, and was required
+in order to reinforce the simplicity in the Adversary object (it only encapuslates a hand, doesn't need a Bet).
+
 ### XMLParserInterface
 The XMLParserInterface has had a fair amount of changes. In the development of additional games, we realized that many pieces that construct a game are completely independent (e.g. Deck, Players, and Game Sequence). We decided to separate these components into independent files.
 

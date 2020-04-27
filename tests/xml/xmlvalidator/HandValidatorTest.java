@@ -28,7 +28,8 @@ class HandValidatorTest {
         File handFile = new File(handPath);
         try {
             handValidator.validate(handFile);
-        } catch (ValidatorException e) {
+        } catch (Exception e) {
+            assertEquals(e.getClass(), ValidatorException.class);
             System.out.println(e.getMessage());
         }
     }
