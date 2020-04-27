@@ -60,19 +60,22 @@
 
     <xs:simpleType name="IconPropertyType">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="standardLobby"/>
+            <xs:enumeration value="StandardLobby"/>
+            <xs:enumeration value="SecondaryLobby"/>
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="FilesBundleType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="StandardXMLs"/>
+            <xs:enumeration value="SecondaryXMLs"/>
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="StatusBundleType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="StandardStatuses"/>
+            <xs:enumeration value="SecondaryStatuses"/>
         </xs:restriction>
     </xs:simpleType>
 

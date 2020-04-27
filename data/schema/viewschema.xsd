@@ -58,8 +58,8 @@
 
     <xs:simpleType name="GameIconBundleType">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="standardGame"/>
-            <xs:enumeration value="funnyGame"/>
+            <xs:enumeration value="StandardGame"/>
+            <xs:enumeration value="FunnyGame"/>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>
