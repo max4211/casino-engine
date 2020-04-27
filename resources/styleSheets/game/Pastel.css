@@ -1,0 +1,66 @@
+#GameView {
+    -fx-background-color: linear-gradient(#FFDFD3, #D291BC, #E0BBE4);
+    -fx-base: #957DAD;
+    -fx-text-fill: #e18cbd;
+    -fx-font-family: Noteworthy;
+}
+
+#SettingsBar {
+    -fx-background-color: derive(#FFDFD3, 5%);
+}
+
+#PlayerInfo, #ReadyButton, #BetInfo, #winner-bet-view, #loser-bet-view {
+    -fx-border-color: rgba(0, 0, 0, 0.49);
+    -fx-background-radius: 12;
+    -fx-text-fill: #ffd5ef;
+    -fx-border-radius: 12;
+}
+
+#PlayerInfo, #BetInfo {
+    -fx-background-color: derive(#6b92e1, 10%);
+}
+
+#BetView {
+    -fx-spacing: 5;
+}
+
+#ReadyButton {
+    -fx-background-color: #AFD5AA;
+    -fx-text-fill: black;
+}
+
+#ReadyButton:hover {
+    -fx-background-color: derive(#AFD5AA, 30%);
+}
+
+#shown-card, #hidden-card {
+    -fx-border-insets: 0, 0, 10, 0;
+    -fx-background-insets: 0, 0, 10, 0;
+}
+
+#shown-card {
+    -fx-background-color: #ffd3b6;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: #a825ff;
+    -fx-border-width: 4;
+    -fx-border-color: black;
+}
+
+#loser-bet-view {
+    -fx-background-color: #FF9AA2;
+}
+
+#winner-bet-view {
+    -fx-background-color: #B5EAD7;
+}
+
+#PlayerInfo, #ReadyButton {
+    -fx-pref-height: 150;
+    -fx-min-width: 120
+}
+
+#OtherPlayers {
+    -fx-spacing: 5;
+}
+
