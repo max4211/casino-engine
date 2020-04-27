@@ -30,7 +30,8 @@ class DeckValidatorTest {
         File deckFile = new File(deckPath);
         try {
             deckValidator.validate(deckFile);
-        } catch (ValidatorException e) {
+        } catch (Exception e) {
+            assertEquals(e.getClass(), ValidatorException.class);
             System.out.println(e.getMessage());
         }
     }

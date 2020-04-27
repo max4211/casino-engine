@@ -28,8 +28,9 @@ class GameValidatorTest {
         File gameFile = new File(gamePath);
         try {
             boolean result = gameValidator.validate(gameFile);
-        } catch (ValidatorException e) {
-            System.out.print(e.getMessage());
+        } catch (Exception e) {
+            assertEquals(e.getClass(), ValidatorException.class);
+            System.out.println(e.getMessage());
         }
     }
 

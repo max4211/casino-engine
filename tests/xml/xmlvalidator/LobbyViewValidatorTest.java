@@ -28,7 +28,8 @@ class LobbyViewValidatorTest {
         File lobbyViewFile = new File(lobbyViewPath);
         try {
             lobbyViewValidator.validate(lobbyViewFile);
-        } catch (ValidatorException e) {
+        } catch (Exception e) {
+            assertEquals(e.getClass(), ValidatorException.class);
             System.out.println(e.getMessage());
         }
     }
