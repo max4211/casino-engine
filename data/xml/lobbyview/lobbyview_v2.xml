@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Lobby>
     <Dimensions>
-        <Width>400</Width>
-        <Height>500</Height>
+        <Width>1000</Width>
+        <Height>300</Height>
     </Dimensions>
     <Stylesheets>
-        <Stylesheet>Sunrise</Stylesheet>
+        <Stylesheet>Sunset</Stylesheet>
         <Stylesheet>Ice</Stylesheet>
         <Stylesheet>Sunset</Stylesheet>
         <Stylesheet>Dark</Stylesheet>
     </Stylesheets>
     <Languages>
-        <Language>English</Language>
         <Language>Spanish</Language>
         <Language>French</Language>
     </Languages>
@@ -44,13 +43,14 @@
         </Files>
     </Bundle>
     <Bundle>
-        <Name>Missing</Name>
-        <Icon>missing_player.png</Icon>
+        <Name>Funny</Name>
+        <Icon>Poker8.png</Icon>
         <Files>
             <Deck>data/xml/good/DECK_standard.xml</Deck>
             <Game>data/xml/good/GAME_pokerfull.xml</Game>
             <Hands>data/xml/good/HANDS_poker.xml</Hands>
-            <View>data/xml/good/VIEW_basicview.xml</View>
+            <Players>data/xml/good/PLAYERS_three.xml</Players>
+            <View>data/xml/good/VIEW_funnyIcons.xml</View>
         </Files>
     </Bundle>
     <Bundle>

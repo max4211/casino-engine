@@ -42,13 +42,13 @@
                             <xs:element name="Icon" type="xs:string" minOccurs="1" maxOccurs="1"/>
                             <xs:element name="Files" minOccurs="0" maxOccurs="1">
                                 <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="Deck"/>
-                                        <xs:element name="Game"/>
-                                        <xs:element name="Hands"/>
-                                        <xs:element name="Players"/>
-                                        <xs:element name="View"/>
-                                    </xs:sequence>
+                                    <xs:all>
+                                        <xs:element minOccurs="0" maxOccurs="1" name="Deck"/>
+                                        <xs:element minOccurs="0" maxOccurs="1" name="Game"/>
+                                        <xs:element minOccurs="0" maxOccurs="1" name="Hands"/>
+                                        <xs:element minOccurs="0" maxOccurs="1" name="Players"/>
+                                        <xs:element minOccurs="0" maxOccurs="1" name="View"/>
+                                    </xs:all>
                                 </xs:complexType>
                             </xs:element>
                         </xs:all>
