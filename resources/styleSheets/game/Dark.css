@@ -12,10 +12,10 @@
     -fx-background-color: #2a2a2a;
 }
 
-#PlayerInfo, #BetInfo, #winner-bet-view, #loser-bet-view .label {
+#PlayerInfo, #BetInfo, #ReadyB#winner-bet-view, #loser-bet-view .label {
     -fx-text-fill: rgba(185, 137, 255, 0);
     -fx-font-weight: bold;
-    -fx-font-size: 16;
+    -fx-font-size: 14;
 }
 
 
@@ -46,6 +46,10 @@
 
 #winner-bet-view {
     -fx-background-color: rgba(2, 44, 10, 0.81);
+}
+
+#loser-bet-view, #winner-bet-view .label {
+    -fx-text-fill: #ffffff;
 }
 
 #PlayerInfo, #ReadyButton {
