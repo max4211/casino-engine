@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<View>
+    <Title>Blackjack</Title>
+    <Authors>Eric Doppelt and Max Smith</Authors>
+    <IconBundle>funnyGame</IconBundle>
+    <Dimensions>
+        <Width>500</Width>
+        <Height>500</Height>
+    </Dimensions>
+    <Languages>
+        <Language>English</Language>
+        <Language>Spanish</Language>
+        <Language>French</Language>
+    </Languages>
+    <Stylesheets>
+        <Stylesheet>Coral</Stylesheet>
+        <Stylesheet>Dark</Stylesheet>
+        <Stylesheet>Light</Stylesheet>
+    </Stylesheets>
+    <Errors>
+        <ErrorStyleSheet>Water</ErrorStyleSheet>
+    </Errors>
+</View>
