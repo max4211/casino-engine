@@ -12,9 +12,9 @@
         <Language>Spanish</Language>
     </Languages>
     <Stylesheets>
+        <Stylesheet>Pastel</Stylesheet>
         <Stylesheet>Light</Stylesheet>
         <Stylesheet>Dark</Stylesheet>
-        <Stylesheet>Coral</Stylesheet>
     </Stylesheets>
     <Errors>
         <ErrorStyleSheet>Water</ErrorStyleSheet>
