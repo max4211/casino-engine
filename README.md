@@ -104,6 +104,7 @@ Known Bugs:
 * Very specific ways to break file validation (however defaults assumed with try catch so program won't crash)
 * Group game pot is calculated by active wagers. When a player folds, their wager is removed from the pot (should be collected as it is placed)
 * HandClassification at end game in the view does not show up for all players (only the last player to act)
+* Occasional game will not render correctly when actions occur very quickly
 
 Extra credit:
 * Extensive file validation performed via XML Schema

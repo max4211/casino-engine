@@ -6,7 +6,7 @@
     </Competition>
     <TableMin>500</TableMin>
     <TableMax>20000</TableMax>
-    <CardShow>Active</CardShow>
+    <CardShow>Other</CardShow>
     <Goal>Tournament</Goal>
     <Actions>
         <EntryBet>Generic</EntryBet>
