@@ -91,9 +91,9 @@ Features implemented:
 ### Notes/Assumptions
 
 Assumptions or Simplifications:
+* No changes will occur mid game (once you enter a table, those conditions will hold for the duration of gameplay).
 * Aces are either ones or elevens, and cannot exist as both.
 * Poker has a simplified set of hands, but it would easy to extend the others.
-* 
 
 Interesting data files:
 * data/xml/good/VIEW_funnyIcons.XML
@@ -102,6 +102,8 @@ Interesting data files:
 Known Bugs:
 * Multiple games can be rendered; however, only the most recent game can be played. Once an action is selected, the old game will existt visually, but not prompt for action anymore.
 * Very specific ways to break file validation (however defaults assumed with try catch so program won't crash)
+* Group game pot is calculated by active wagers. When a player folds, their wager is removed from the pot (should be collected as it is placed)
+* HandClassification at end game in the view does not show up for all players (only the last player to act)
 
 Extra credit:
 * Extensive file validation performed via XML Schema
