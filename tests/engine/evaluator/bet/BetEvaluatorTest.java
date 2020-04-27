@@ -143,6 +143,4 @@ class BetEvaluatorTest {
         assertEquals(HandOutcome.WIN, playerHand.getOutcome());
     }
 
-
-
 }
