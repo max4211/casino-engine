@@ -39,7 +39,7 @@ public class HandClassifier implements HandClassifierInterface {
                 Hand hand = this.myHandFactory.createHand(bundle, cards);
                 if (hand.evaluate(this.myCardsInHand)) {
                     h.setLoser(true);
-//                    h.classifyHand(new ClassifiedHand(bundle, Integer.MAX_VALUE, hand.getPower()));
+                    h.classifyHand(new ClassifiedHand(bundle, Integer.MAX_VALUE, Integer.MIN_VALUE));
                     return true;
                 }
             } catch (ReflectionException e) {

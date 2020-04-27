@@ -9,6 +9,7 @@ import engine.adversary.Adversary;
 import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.hand.ClassifiedHand;
+import engine.hand.PlayerHand;
 import engine.player.Player;
 import exceptions.ActionException;
 import exceptions.ReflectionException;
@@ -55,10 +56,11 @@ public class AdversaryController extends Controller {
 
     @Override
     protected void postRoundLoop() {
-        evaluateBets();
+        invokeCompetition();
         showAllAdversaryCards();
-        updateWinnersLoser();
+        evaluateBets();
         computePayoffs();
+        updateWinnersLoser();
         updateBankrolls();
         showGoals();
         showGameViewRestart();
@@ -130,10 +132,21 @@ public class AdversaryController extends Controller {
     @Override
     protected void evaluateBets() {
         this.myHandClassifier.classifyHand(this.myAdversary.getHand().getCards(), this.myAdversary.getHand());
+//        handClassifyHelper("Adversary", this.myAdversary.getHand());
         for (Player p: this.myTable.getPlayers()) {
             for (Bet b: p.getBets()) {
+//                handClassifyHelper(p.getName(), b.getHand());
                 this.myBetEvaluator.evaluateHands(b.getHand(), this.myAdversary.getHand());
             }
+        }
+    }
+
+    private void handClassifyHelper(String name, PlayerHand h) {
+        try {
+            ClassifiedHand ch = h.getClassification();
+            System.out.printf("%s's Classified Hand (%s, %s, %s)\n", name, ch.getName(), ch.getRank(), ch.getPower());
+        } catch (Exception e) {
+            System.out.println("could not get a hand classification");
         }
     }
 

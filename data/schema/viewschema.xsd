@@ -42,7 +42,7 @@
 
     <xs:simpleType name="ViewStylesheetType">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="Coral"/>
+            <xs:enumeration value="Pastel"/>
             <xs:enumeration value="Dark"/>
             <xs:enumeration value="Light"/>
         </xs:restriction>

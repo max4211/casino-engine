@@ -9,7 +9,7 @@ import java.util.List;
 public class PlayerHand implements PlayerHandInterface {
 
     private List<Card> myCards;
-    private ClassifiedHand myClassification;
+    private ClassifiedHand myClassification = new ClassifiedHand("Default", Integer.MAX_VALUE, Integer.MIN_VALUE);
     private boolean isLoser = false;
     private HandOutcome myOutcome = HandOutcome.TIE;
 

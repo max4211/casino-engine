@@ -47,7 +47,7 @@ public class Adversary implements AdversaryInterface {
         showMyCards(showCard);
         while (this.wantsCards()) {
             Card c = getCard.get();
-            this.acceptCard(c);
+            this.myPlayerHand.acceptCard(c);
             CardTriplet ct = Generator.createCardTriplet(c);
             addCard.accept(ct);
             showCard.accept(c.getID());
@@ -61,6 +61,6 @@ public class Adversary implements AdversaryInterface {
 
     public boolean wantsCards() {
         int sum = this.handSum();
-        return (sum < this.myMinSum);
+        return (sum <= this.myMinSum);
     }
 }
