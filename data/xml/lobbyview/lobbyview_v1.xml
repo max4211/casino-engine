@@ -44,6 +44,17 @@
         </Files>
     </Bundle>
     <Bundle>
+        <Name>Modular</Name>
+        <Icon>Poker2.png</Icon>
+        <Files>
+            <Deck>data/xml/good/DECK_cs308.xml</Deck>
+            <Game>data/xml/good/GAME_pokerxblackjack.xml</Game>
+            <Hands>data/xml/good/HANDS_blackjack.xml</Hands>
+            <Players>data/xml/good/PLAYERS_breaded.xml</Players>
+            <View>data/xml/good/VIEW_funnyIcons.xml</View>
+        </Files>
+    </Bundle>
+    <Bundle>
         <Name>Missing</Name>
         <Icon>missing_player.png</Icon>
         <Files>
