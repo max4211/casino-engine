@@ -36,7 +36,8 @@ class CashgameTest {
         pc.add(new Player("Zoe", 12012));
         Goal goal = new Cashgame(pc::getPlayers);
         String result = goal.evaluate();
-        String expected = "Standings:\n" +
+        String expected = "CURRENT CASH GAME STANDINGS...\n" +
+                "Standings:\n" +
                 "1. Zoe (12012)\n" +
                 "2. Eric (1000)\n" +
                 "3. Max (500)\n" +

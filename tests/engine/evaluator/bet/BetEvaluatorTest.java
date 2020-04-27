@@ -4,6 +4,7 @@ import engine.bet.Bet;
 import engine.dealer.Card;
 import engine.hand.ClassifiedHand;
 import engine.hand.HandOutcome;
+import engine.hand.PlayerHand;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -124,4 +125,22 @@ class BetEvaluatorTest {
         assertEquals(HandOutcome.TIE, b3.getHand().getOutcome());
         assertEquals(HandOutcome.TIE, b4.getHand().getOutcome());
     }
+
+    @Test
+    void testWinnerLoserBug() {
+        PlayerHand playerHand = new PlayerHand();
+        playerHand.acceptCard(new Card("hearts", 14));
+        playerHand.classifyHand(new ClassifiedHand("Guy", 1, 1));
+
+        PlayerHand adversaryHand = new PlayerHand();
+        adversaryHand.acceptCard(new Card("hearts", 22));
+        adversaryHand.classifyHand(new ClassifiedHand("Guy", 2, 1));
+
+        BetEvaluator myBetEvaluator = new BetEvaluator();
+        myBetEvaluator.evaluateHands(playerHand, adversaryHand);
+
+        assertEquals(HandOutcome.LOSS, adversaryHand.getOutcome());
+        assertEquals(HandOutcome.WIN, playerHand.getOutcome());
+    }
+
 }

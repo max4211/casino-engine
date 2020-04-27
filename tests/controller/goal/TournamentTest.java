@@ -37,7 +37,8 @@ class TournamentTest {
         pc.add(new Player("Zoe", 0));
         Tournament goal = new Tournament(pc::getPlayers);
         String result = goal.evaluate();
-        String expected = "Winners:\n" +
+        String expected = "CURRENT TOURNAMENT STANDINGS...\n" +
+                "Active:\n" +
                 "1. Eric (1000)\n" +
                 "2. Max (500)\n" +
                 "Losers:\n" +
