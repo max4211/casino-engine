@@ -85,7 +85,7 @@ public class Table implements TableInterface {
 
     @Override
     public boolean hasActivePlayers() {
-        return getNextPlayer() != null && getTotalActivePlayers() > 1;
+        return getNextPlayer() != null && getTotalActivePlayers() >= 1;
     }
 
     @Override
