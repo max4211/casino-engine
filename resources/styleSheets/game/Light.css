@@ -2,7 +2,7 @@
     -fx-background-color: linear-gradient(#dacc3b, #e1e492);
     -fx-base: derive(#e1cec9, 10%);
     -fx-font-family: "Baskerville";
-    -fx-font-size: 12;
+    -fx-font-size: 16;
 }
 
 #PlayerInfo, #ReadyButton, #BetInfo, #winner-bet-view, #loser-bet-view {
@@ -14,7 +14,7 @@
 #PlayerInfo, #ReadyButton, #BetInfo, #winner-bet-view, #loser-bet-view .label {
     -fx-text-fill: #3a2a50;
     -fx-font-weight: bold;
-    -fx-font-size: 16;
+    -fx-font-size: 15;
 }
 
 
@@ -51,6 +51,10 @@
     -fx-border-width: 4;
     -fx-border-color: #dabc44;
     -fx-effect: dropshadow(three-pass-box, #fffee8, 10.0, 0.0, 0.0, 0.0);
+}
+
+#shown-card .label {
+    -fx-font-size: 12;
 }
 
 #loser-bet-view {
