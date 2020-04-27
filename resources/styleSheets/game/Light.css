@@ -14,7 +14,7 @@
 #PlayerInfo, #ReadyButton, #BetInfo, #winner-bet-view, #loser-bet-view .label {
     -fx-text-fill: #3a2a50;
     -fx-font-weight: bold;
-    -fx-font-size: 16;
+    -fx-font-size: 12;
 }
 
 
