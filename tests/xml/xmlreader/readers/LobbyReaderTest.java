@@ -26,7 +26,7 @@ class LobbyReaderTest {
         Map<String, String> bjMap = bundleList.get(0);
         Map<String, String> customMap = bundleList.get(1);
         assertEquals("Blackjack", bjMap.get(NAME_TAG));
-        assertEquals("Black_Jack-512.png", bjMap.get(ICON_TAG));
+        assertEquals("BlackJack4.png", bjMap.get(ICON_TAG));
     }
 
     @Test
@@ -43,24 +43,12 @@ class LobbyReaderTest {
     }
 
     @Test
-    void getLobbyStylesheet() throws GeneralXMLException {
-        final String filename = "data/xml/lobbyview/lobbyview_v1.xml";
-        LobbyReader reader = new LobbyReader(filename);
-        List<String> result = reader.getLobbyStylesheet();
-        List<String> expected = new ArrayList<String>(List.of("" +
-                "Sunrise", "Ice"));
-        for (int i = 0; i < result.size(); i ++)
-            assertEquals(expected.get(i), result.get(i));
-    }
-
-    @Test
     void getLobbyLanguages() throws GeneralXMLException {
         final String filename = "data/xml/lobbyview/lobbyview_v1.xml";
         LobbyReader reader = new LobbyReader(filename);
         List<String> result = reader.getLobbyLanguages();
-        List<String> expected = new ArrayList<String>(List.of("" +
-                "English", "Spanish"));
-        for (int i = 0; i < result.size(); i ++)
-            assertEquals(expected.get(i), result.get(i));
+        List<String> expected = new ArrayList<String>(List.of(
+                "English", "Spanish", "French"));
+        assertEquals(expected, result);
     }
 }
