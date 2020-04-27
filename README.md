@@ -19,7 +19,7 @@ Hours Spent: 200 Hours (4 weeks, 50 hours per week, 25 hours per person)
 ### Primary Roles
 Both Max and Eric spent time designing the overall game, with an emphasis on game engine and data as well as touching on the view macro functionality.
 
-Max was the backend developer. He implemented the game engine and handled the design of the game engine, controller and xml generation, parsing, and validation.
+Max was the backend developer. He implemented the game engine and handled the design of the game engine, controller and xml generation, parsing, and validation with regular input from Eric.
 
 Eric was the frontend developer. He implemented the UI and its related classes (GameView, LobbyView, Validation, Settings, Utilities, Icons). He handled the overall design of the View with regular input from Max. Note that Max handled the WebView package and the Help Button functionality.
 
