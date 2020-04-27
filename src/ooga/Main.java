@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private static final String LOBBY_XML_FILE = "data/xml/lobbyview/lobbyview_v1.xml";
+    private static final String LOBBY_XML_FILE = "data/xml/lobbyview/lobbyview_v2.xml";
     private static final int EXIT_STATUS = 0;
     private static final int TWO = 2;
     public static void main(String[] args) {

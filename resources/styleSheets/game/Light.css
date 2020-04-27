@@ -1,28 +1,79 @@
-.root {
-    -fx-base: #f0ff91;
-    -fx-control-inner-background: derive(-fx-base, 35%);
-    -fx-control-inner-background-alt: -fx-control-inner-background;
+#GameView {
+    -fx-background-color: linear-gradient(#dacc3b, #e1e492);
+    -fx-base: derive(#e1cec9, 10%);
+    -fx-font-family: "Baskerville";
+    -fx-font-size: 14;
 }
 
-#settings-bar {
-    -fx-background-color: derive(-fx-base, 10%);
+#PlayerInfo, #ReadyButton, #BetInfo, #winner-bet-view, #loser-bet-view {
+    -fx-border-color: rgba(255, 255, 255, 0.49);
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
 }
 
-#player-info {
-    -fx-background-color: #b0ffe0;
-    -fx-border-width: 1;
-    -fx-border-color: #fffaa5;
+#PlayerInfo, #ReadyButton, #BetInfo, #winner-bet-view, #loser-bet-view .label {
+    -fx-text-fill: #3a2a50;
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
 }
 
-#player-info:hover {
-    -fx-background-color: derive(#b0ffe0, 5%);
+
+#PlayerInfo {
+    -fx-background-color: derive(#e1cec9, 10%);
 }
 
+#BetInfo {
+    -fx-background-color: #bbcfff;
+}
+
+#BetView {
+    -fx-spacing: 5;
+}
+
+#ReadyButton {
+    -fx-background-color: #9fd891;
+}
+
+#ReadyButton:hover {
+    -fx-background-color: derive(#ced5c9, 30%);
+}
+
+#shown-card, #hidden-card {
+    -fx-border-insets: 0, 0, 10, 0;
+    -fx-background-insets: 0, 0, 10, 0;
+}
+
+#shown-card {
+    -fx-background-color: #e6ffbc;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: #123235;
+    -fx-border-width: 4;
+    -fx-border-color: #dabc44;
+    -fx-effect: dropshadow(three-pass-box, #fffee8, 10.0, 0.0, 0.0, 0.0);
+}
 
 #loser-bet-view {
-    -fx-background-color: derive(red, 20%);
+    -fx-background-color: rgba(255, 0, 31, 0.45);
 }
 
 #winner-bet-view {
-    -fx-background-color: derive(green, 20%);
+    -fx-background-color: rgba(8, 234, 44, 0.3);
+}
+
+#PlayerInfo, #ReadyButton {
+    -fx-pref-height: 140;
+    -fx-min-width: 120
+}
+
+#OtherPlayers {
+    -fx-spacing: 8;
+}
+
+#PotView {
+    -fx-min-width: 100;
+}
+
+#PotView .label {
+    -fx-text-fill: #0e0e39;
 }

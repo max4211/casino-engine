@@ -20,7 +20,7 @@
         <FilesIconBundle>SecondaryXMLs</FilesIconBundle>
     </AllFilesDisplay>
     <Bundle>
-        <Name>BlackJack</Name>
+        <Name>Blackjack</Name>
         <Icon>BlackJack4.png</Icon>
         <Files>
             <Deck>data/xml/good/DECK_standard.xml</Deck>
@@ -56,7 +56,7 @@
         <Icon>Custom7.png</Icon>
     </Bundle>
     <Bundle>
-        <Name>BlackJack</Name>
+        <Name>Blackjack</Name>
         <Icon>BlackJack4.png</Icon>
         <Files>
             <Deck>data/xml/good/DECK_standard.xml</Deck>
@@ -92,7 +92,7 @@
         <Icon>Custom7.png</Icon>
     </Bundle>
     <Bundle>
-        <Name>BlackJack</Name>
+        <Name>Blackjack</Name>
         <Icon>BlackJack4.png</Icon>
         <Files>
             <Deck>data/xml/good/DECK_standard.xml</Deck>
