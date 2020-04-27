@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Players>
+    <Player>
+        <Name>Luis</Name>
+        <Bankroll>100000</Bankroll>
+    </Player>
+    <Player>
+        <Name>Meghan</Name>
+        <Bankroll>5000000</Bankroll>
+    </Player>
+    <Player>
+        <Name>Zoe</Name>
+        <Bankroll>800000</Bankroll>
+    </Player>
+</Players>

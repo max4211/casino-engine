@@ -2,10 +2,10 @@
 <Game>
     <Competition>
         <Type>Group</Type>
-        <Ante>10</Ante>
+        <Ante>500</Ante>
     </Competition>
-    <TableMin>5</TableMin>
-    <TableMax>200</TableMax>
+    <TableMin>500</TableMin>
+    <TableMax>20000</TableMax>
     <CardShow>Active</CardShow>
     <Goal>Tournament</Goal>
     <Actions>
