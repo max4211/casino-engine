@@ -11,6 +11,7 @@ import UI.Selectors.SelectorType;
 import UI.Selectors.WagerSelector;
 import UI.Settings.SettingsBar;
 import UI.Utilities.CardTriplet;
+import engine.dealer.Card;
 import exceptions.EmptyActionListException;
 import exceptions.IncompatibleBetRestrictionException;
 import exceptions.InvalidBetException;
@@ -20,6 +21,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -263,6 +265,18 @@ public class GameView implements GameViewInterface, StylizedNode {
     public void classifyHand(String newClassification, int playerID, int betID) {
         getPlayerView(playerID).updateClassification(betID, newClassification);
     }
+
+    @Deprecated @Override
+    public void renderGame(File image) throws UnsupportedOperationException { throw new UnsupportedOperationException(); }
+
+    @Deprecated @Override
+    public void giveCard(BetView b, Card c) throws UnsupportedOperationException {throw new UnsupportedOperationException();}
+
+    @Deprecated @Override
+    public void showCard(BetView b, Card c) throws UnsupportedOperationException {throw new UnsupportedOperationException();}
+
+    @Deprecated @Override
+    public void showCards(BetView b) throws UnsupportedOperationException {throw new UnsupportedOperationException();}
 
     private PlayerView getPlayerView(int playerID) {
         if (myMainPlayer.holdsAPlayer() && myMainPlayer.hasSameID(playerID)) return myMainPlayer.getMainPlayer();
