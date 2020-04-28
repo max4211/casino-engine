@@ -1,7 +1,10 @@
 package UI.Interfaces;
 
+import UI.GameView.BetView;
 import UI.Utilities.CardTriplet;
+import engine.dealer.Card;
 
+import java.io.File;
 import java.util.List;
 
 public interface GameViewInterface {
@@ -60,4 +63,15 @@ public interface GameViewInterface {
 
     void setPot(double newPot);
 
-    }
+    @Deprecated
+    void renderGame(File image) throws UnsupportedOperationException;
+
+    @Deprecated
+    void giveCard(BetView b, Card c) throws UnsupportedOperationException;
+
+    @Deprecated
+    void showCard(BetView b, Card c) throws UnsupportedOperationException;
+
+    @Deprecated
+    void showCards(BetView b) throws UnsupportedOperationException;
+}
