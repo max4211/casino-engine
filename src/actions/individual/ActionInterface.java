@@ -7,6 +7,9 @@ import exceptions.ActionException;
 
 import java.util.function.Supplier;
 
+/**
+ * Interface implemented by all individual actions with all parameters they need to succeed
+ */
 public interface ActionInterface {
 
     /**

@@ -8,6 +8,9 @@ import exceptions.ActionException;
 
 import java.util.function.Supplier;
 
+/**
+ * Splits the players cards into multiple, and matches the wager on each bet
+ */
 public class Split extends IndividualAction {
 
     public Split() {
@@ -29,6 +32,13 @@ public class Split extends IndividualAction {
         return sameCards(h) && exactlyTwoCards(h);
     }
 
+    /**
+     * Duplicates the bet and adds a new bet
+     * @param player is the player who has the bet
+     * @param target bet that the action executes on
+     * @param getCard is a lambda to get a card (may be needed)
+     * throws ActionException when the split is not possible (same cards, more than two)
+     */
     @Override
     public void execute(Player player, Bet target, Supplier<Card> getCard) {
         if (canSplit(target.getHand())) {
