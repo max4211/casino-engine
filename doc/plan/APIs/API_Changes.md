@@ -89,7 +89,7 @@ This was changed to the following three methods:
 	b. void showCard(int playerID, int betID, int cardID);
 	c. void hideCard(int playerID, int betID, int cardID);
 
-This change supported the all-at-once rerendering after user input. The backend now adds every card to a hand without worrying about duplicating a hand. It then calls every card to either show or hide itself. Once again, if a card is already being shown, the call does nothing. This allowed the backend to update everything without worrying about changing existing statuses. Additionally, cards are always added on a individual basis now, only for the reason of simplication in the backend.
+This change supported the all-at-once rerendering after user input. The backend now adds every card to a hand without worrying about duplicating a hand. It then calls every card to either show or hide itself. Once again, if a card is already being shown, the call does nothing. This allowed the backend to update everything without worrying about changing existing statuses. Additionally, cards are always added on a individual basis now, only for the reason of simplication in the backend. Note that the old methods have been marked deprecated and throw exceptions in the interface. This encourages a user to *not* implemenent View objects (such as BetView) in the backend and instead *only* pass the needed information as parameters. This allows the consruction of the View object to be internal to the UI, further promoting View-Controller separation.
 
 3. *Bet Handling*
 
@@ -113,7 +113,7 @@ Instead of individually deleting every card, the UI was modified to create "clea
 
 1. *StyalizedNode Interface*
 
-The `void renderGame(File image);` method was refactored into a `getView()` method which displays the object's view representation. This method is a part of an interface that most classes in the UI now use, adding the implementation as a public method. This method call creates uniformity in all "mutable node" classes. Likewise, since these nodes are mutable, the interface itself has a `static void setStyleID` method, which sets each implementing Node's ID to be its classname. This allows the code to be more data-driven, since each component can be addressed via CSS.
+The `void renderGame(File image);` method was marked deprecated and it now throws an UnsupportedOperationException. This functionality was refactored into a `getView()` method which displays the object's view representation. This method is a part of an interface that most classes in the UI now use, adding the implementation as a public method. This method call creates uniformity in all "mutable node" classes. Likewise, since these nodes are mutable, the interface itself has a `static void setStyleID` method, which sets each implementing Node's ID to be its classname. This allows the code to be more data-driven, since each component can be addressed via CSS. This change was spurred by the growing Validation process. As more XML files were needed to run a game, the files first went through Validation, and the Controller then passed the relevant information from data as Java primitives and Objects instead of a File object.
 
 2. *Player Information*
 
