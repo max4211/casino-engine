@@ -17,6 +17,11 @@ import java.io.File;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * Master validation object, works hand in hand with validator view to assemble complete set of files to construct game
+ * Created after activating icon in lobby view, with consumers to throw exceptions and activate start game button
+ * @author Max Smith
+ */
 public class MasterValidator {
 
     private XMLBundle myXMLBundle;
@@ -27,8 +32,12 @@ public class MasterValidator {
     private Consumer<Double> mySetX;
 
     /**
-     * Lambda to show errors on front end and prompt new files
-     * @param fileList
+     * Construct a master validator object to continue looping until all files have been selected
+     * @param fileList is the list of files to validate (first pass, could be empyt)
+     * @param update a way to update the validatotr interface while maintaining view separation
+     * @param caller is a way to activate game starter button
+     * @param setX set the position of the validator window
+     * @param showException throws exception in view for poor files
      */
     public MasterValidator(List<File> fileList,
                            UpdateFilesDisplayInterface update,

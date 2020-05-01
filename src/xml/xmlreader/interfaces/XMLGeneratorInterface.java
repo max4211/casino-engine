@@ -10,6 +10,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Interface to generate Document for XML files (so don't have to deal with document)
+ * @author Max Smith
+ */
 public interface XMLGeneratorInterface {
 
     /**

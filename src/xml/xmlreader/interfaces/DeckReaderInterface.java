@@ -4,6 +4,10 @@ import Utility.StringPair;
 
 import java.util.List;
 
+/**
+ * Publicly available getters for a DeckReader
+ * @author Max Smith
+ */
 public interface DeckReaderInterface {
 
     /**

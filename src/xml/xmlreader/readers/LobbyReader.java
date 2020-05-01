@@ -17,6 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Xml Reader for lobby files with appropriate getters
+ * @author Max Smith
+ */
 public class LobbyReader implements LobbyReaderInterface  {
 
     private static Document myDocument;
@@ -42,44 +46,82 @@ public class LobbyReader implements LobbyReaderInterface  {
     private static final String FILES_STATUS_BUNDLE = "FilesStatusBundle";
     private static final String FILES_ICON_BUNDLE = "FilesIconBundle";
 
+    /**
+     * Create the reader from string
+     * @param file is the file pointer to make the reader from
+     * @throws GeneralXMLException if the GeneratorInterface cannot parse the file (non xml)
+     */
     public LobbyReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
     }
 
+    /**
+     * Create the reader from string
+     * @param file is the string of path to make the reader from
+     * @throws GeneralXMLException if the GeneratorInterface cannot parse the file (non xml)
+     */
     public LobbyReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
     }
 
+    /**
+     * Get dimensions of the screen
+     * @return screen width
+     */
     @Override
     public int getScreenWidth() {
         return Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, WIDTH_TAG));
     }
 
+    /**
+     * Get dimensions of the screen
+     * @return screen height
+     */
     @Override
     public int getScreenHeight() {
         return Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, HEIGHT_TAG));
     }
 
+    /**
+     * Get meta parameters for lobby
+     * @return stylesheet
+     */
     @Override
     public List<String> getLobbyStylesheet() {
         return XMLParseInterface.getXMLList(myDocument, LOBBY_STYLESHEET);
     }
 
+    /**
+     * Get meta parameters for lobby
+     * @return languages
+     */
     @Override
     public List<String> getLobbyLanguages() {
         return XMLParseInterface.getXMLList(myDocument, LANGUAGE_TAG);
     }
 
+    /**
+     * Get meta parameters for errors
+     * @return error stylesheet
+     */
     @Override
     public String getErrorStylesheet() {
         return XMLParseInterface.getSingleTag(myDocument, ERROR_STYLESHEET);
     }
 
+    /**
+     * Get meta parameters for lobby
+     * @return icon properties
+     */
     @Override
     public String getIconProperties() {
         return XMLParseInterface.getSingleTag(myDocument, ICON_PROPERTIES);
     }
 
+    /**
+     * Get a list of maps for all icon arguments
+     * @return
+     */
     @Override
     public List<Map<String, String>> getBundleArguments() {
         List<Map<String, String>> list = new ArrayList<>();
@@ -91,6 +133,10 @@ public class LobbyReader implements LobbyReaderInterface  {
         return list;
     }
 
+    /**
+     * Get a list of maps for all file arguments
+     * @return maps of files
+     */
     @Override
     public List<List<File>> getFileTags() {
         List<List<File>> list = new ArrayList<>();
@@ -102,11 +148,19 @@ public class LobbyReader implements LobbyReaderInterface  {
         return list;
     }
 
+    /**
+     * Get metadata that drives game starter all files display
+     * @return status of files
+     */
     @Override
     public String getFilesDisplayStatus() {
         return XMLParseInterface.getSingleTag(myDocument, FILES_STATUS_BUNDLE);
     }
 
+    /**
+     * Get metadata that drives game starter all files display
+     * @return icons for files
+     */
     @Override
     public String getFilesDisplayIcon() {
         return XMLParseInterface.getSingleTag(myDocument, FILES_ICON_BUNDLE);

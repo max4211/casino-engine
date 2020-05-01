@@ -5,6 +5,11 @@ import UI.Validation.XMLFileType;
 import java.io.File;
 import java.util.*;
 
+/**
+ * Bundle of XML files that is used by the falidator to ensure that all files have been appropriatelya
+ * assembled to create a game
+ * @author Max Smith
+ */
 public class XMLBundle implements XMLBundleInterface {
 
     private Map<XMLFileType, File> myXMLFiles;

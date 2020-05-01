@@ -9,6 +9,7 @@ import java.util.Map;
 /**
  * Module that translates XML-defined preferences into Java-friendly structures such as Maps and Lists.
  * Also saves preferences of a game including color scheme, XML rules, and number of players.
+ * @author Max Smith
  */
 public interface GameReaderInterface {
 
@@ -54,13 +55,13 @@ public interface GameReaderInterface {
 
     /**
      * Fetch the card showing policy for players
-     * @return
+     * @return card show policy
      */
     String getCardShow();
 
     /**
      * Fetch the goal of the game (per round)
-     * @return
+     * @return goal of game
      */
     String getGoal();
 }

@@ -4,6 +4,9 @@ import Utility.Pair;
 
 import java.util.Collection;
 
+/**
+ * Interface implemented by Player XML reader
+ */
 public interface PlayerReaderInterface {
 
     /**
