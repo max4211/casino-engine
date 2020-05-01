@@ -61,6 +61,7 @@ class ViewValidatorTest {
     }
     
     // SAD PATH :(
+    // Has the tag, no content
     @Test
     void validateNoIconBundle() {
         String viewPath = "data/xml/bad/VIEW_missingIconBundle.xml";

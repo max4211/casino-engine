@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class PlayerInfoTest extends DukeApplicationTest {
 
     // NOTE: THIS IS DEPENDENT ON LANGUAGE BUNDLE, SO IT IS INTEGRATED!
+    // NOTE - BE IN LOBBYVIEW V1 @FUTURE MAX :)
 
     // HAPPY PATH :)
     @Test
