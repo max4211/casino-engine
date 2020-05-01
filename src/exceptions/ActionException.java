@@ -3,6 +3,10 @@ package exceptions;
 import actions.group.GroupAction;
 import actions.individual.IndividualAction;
 
+/**
+ * Exception thrown when an action cannot be created, displayed in view
+ * @author Max Smith
+ */
 public class ActionException extends RuntimeException {
 
     private String myMessage;
