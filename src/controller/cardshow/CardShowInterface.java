@@ -2,6 +2,9 @@ package controller.cardshow;
 
 import engine.player.Player;
 
+/**
+ * Implemented by CardShow object, enables showing cards (polymorhically, overriden implementation in concrete classes)
+ */
 public interface CardShowInterface {
 
     /**
