@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Encapsulates a double representing the current pot
+ * @author Max Smith
  */
 public class Pot implements PotInterface {
 

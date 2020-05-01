@@ -3,6 +3,11 @@ package engine.bet;
 import engine.dealer.Card;
 import engine.hand.PlayerHand;
 
+/**
+ * Publicly available services on a bet object
+ * Most often called internally to actions, sometimes in controller
+ * @author Max Smith
+ */
 public interface BetInterface {
 
     /**

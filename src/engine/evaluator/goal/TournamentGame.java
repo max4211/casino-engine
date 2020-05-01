@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Specific type of goal, play until only one player left
+ * @author Max Smith
  */
 public class TournamentGame extends Goal {
 

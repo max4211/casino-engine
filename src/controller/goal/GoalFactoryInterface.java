@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 /**
  * Interface implemented by goal factory, explicitly defines single purpose, generate Goal obejcts
+ * @author Max Smith
  */
 public interface GoalFactoryInterface {
 

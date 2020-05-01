@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 
 /**
  * Implemented by adversary, shows all publicly available method calls
+ * @author Max Smith
  */
 public interface AdversaryInterface {
 

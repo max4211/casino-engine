@@ -3,6 +3,7 @@ package controller.enums;
 /**
  * Enumerated type for possible goal policies
  * Now depracated due to xml validation process
+ * @author Max Smith
  */
 @Deprecated
 public enum Goal {

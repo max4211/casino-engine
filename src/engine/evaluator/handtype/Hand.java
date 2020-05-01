@@ -8,6 +8,7 @@ import java.util.*;
 
 /**
  * Abstract hand object, follows command design pattern (evaluate)
+ * @author Max Smith
  */
 public abstract class Hand implements HandInterface {
 

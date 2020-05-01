@@ -21,6 +21,7 @@ import java.util.Map;
 /**
  * Adversary controller is a type of game when it is players against the dealer
  * Bets are evaluated strictly against the dealer
+ * @author Max Smith
  */
 public class AdversaryController extends Controller {
 

@@ -11,6 +11,7 @@ import java.util.function.Supplier;
 /**
  * Goal type where you play until there is a single player left
  * Lost players are garbage colected
+ * @author Max Smith
  */
 public class Tournament extends Goal {
 

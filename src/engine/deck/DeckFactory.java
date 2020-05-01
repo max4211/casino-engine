@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Abstract factory to construct decks based on the desired type
+ * @author Max Smith
  */
 public class DeckFactory implements DeckFactoryInterface{
 

@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 /**
  * Implemented by CardShowFactory
  * Single method to create CardShow objects
+ * @author Max Smith
  */
 public interface CardShowFactoryInterface {
 

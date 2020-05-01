@@ -14,6 +14,7 @@ import java.util.*;
  * Hand Classification module leveraged by the controller to continuously classify hands after actions
  * Uses bundles of hands (winners and losers) to classify hands, using reflection, and assign
  * ClassifiedHand object of hands appropriately
+ * @author Max Smith
  */
 public class HandClassifier implements HandClassifierInterface {
 

@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 
 /**
  * A fold action updates the current bet to a loser for the round and deactivates them
+ * @author Max Smith
  */
 public class Fold extends GroupAction {
 

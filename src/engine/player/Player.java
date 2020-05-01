@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Encapsulates a list of bets, name, and bankroll
+ * @author Max Smith
  */
 public class Player implements PlayerInterface {
 

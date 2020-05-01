@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Bundle all parameters into controller construction to simplify the constructor
+ * @author Max Smith
  */
 public class ControllerBundle implements ControllerBundleInterface {
 

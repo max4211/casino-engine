@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 /**
  * Abstract factory to generate goal objects, controller can use polymorphically
  * to monitor high level gameplay and generate splash screens
+ * @author Max Smith
  */
 public class GoalFactory implements GoalFactoryInterface {
 

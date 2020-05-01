@@ -10,6 +10,7 @@ import java.util.PriorityQueue;
  * Needs parameters to determine if hand evalution
  * Default configured if validation breaks
  * Could have straights of every other card
+ * @author Max Smith
  */
 public class Straight extends Hand {
 

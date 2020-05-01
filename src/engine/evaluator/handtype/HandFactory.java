@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * Single purpose, create abstract hand objects for hand classification in
  * the HandClassifier module
+ * @author Max Smith
  */
 public class HandFactory implements HandFactoryInterface {
 

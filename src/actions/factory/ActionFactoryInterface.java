@@ -3,6 +3,10 @@ package actions.factory;
 import actions.group.GroupAction;
 import actions.individual.IndividualAction;
 
+/**
+ * Iimplemented by action factory
+ * @author Max Smith
+ */
 public interface ActionFactoryInterface {
 
     /**

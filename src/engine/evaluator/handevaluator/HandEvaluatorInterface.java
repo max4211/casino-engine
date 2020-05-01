@@ -4,6 +4,7 @@ import engine.hand.PlayerHand;
 
 /**
  * Interface implemented by hand evaluator, single public service to compare two hands
+ * @author Max Smith
  */
 public interface HandEvaluatorInterface {
 

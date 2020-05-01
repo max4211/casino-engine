@@ -13,6 +13,7 @@ import java.util.function.Supplier;
  * Abstract CardShow object facilitates polymorphism with command design pattern
  * Controller just knows it has a CardShow policy (not sure specific implementation)
  * and asks it to show cards at variuos stages with the active player
+ * @author Max Smith
  */
 public abstract class CardShow implements CardShowInterface {
 

@@ -8,6 +8,7 @@ import engine.hand.PlayerHand;
  * Encapsulates a wager and a player hand, as well as tags representing the
  * bets status within the round
  * Linked to a specific player (Players have a bet)
+ * @author Max Smith
  */
 public class Bet implements BetInterface {
 

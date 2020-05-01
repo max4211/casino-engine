@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 
 /**
  * Conrete extension of hand objects
+ * @author Max Smith
  */
 public class Flush extends Hand {
 

@@ -12,6 +12,10 @@ import engine.table.Table;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Series of getters for all values that are constructed inside of controller bundle
+ * @author Max Smith
+ */
 public interface ControllerBundleInterface {
 
     /**

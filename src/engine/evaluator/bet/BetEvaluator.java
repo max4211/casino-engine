@@ -10,6 +10,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
+/**
+ * Bet evaluaotr module, used to evaluate bets at the end of a round
+ * @author Max Smith
+ */
 public class BetEvaluator implements BetEvaluatorInterface {
 
     private final HandEvaluator myHandEvaluator;

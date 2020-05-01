@@ -1,5 +1,9 @@
 package engine.hand;
 
+/**
+ * Shows all publicly available methods inside classified hand object
+ * @author Max Smith
+ */
 public interface ClassifiedHandInterface {
 
     /**

@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 /**
  * A stay action does nothing to the bet, and sends it on to the next player
+ * @author Max Smith
  */
 public class Stay extends IndividualAction {
 

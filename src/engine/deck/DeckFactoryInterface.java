@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Implemented by deck factory, single purpose to rest of applicaiton
  * Generate deck objects from appropriate metadata
+ * @author Max Smith
  */
 public interface DeckFactoryInterface {
 

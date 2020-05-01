@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 
 /**
  * Double down modifies the players bet and accepts another card
+ * @author Max Smith
  */
 public class DoubleDown extends IndividualAction {
 

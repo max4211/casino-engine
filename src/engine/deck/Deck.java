@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Held by dealer, encapsulates collection of cards
+ * @author Max Smith
  */
 public abstract class Deck implements DeckInterface {
 

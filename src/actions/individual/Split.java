@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 
 /**
  * Splits the players cards into multiple, and matches the wager on each bet
+ * @author Max Smith
  */
 public class Split extends IndividualAction {
 

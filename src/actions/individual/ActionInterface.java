@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 
 /**
  * Interface implemented by all individual actions with all parameters they need to succeed
+ * @author Max Smith
  */
 public interface ActionInterface {
 

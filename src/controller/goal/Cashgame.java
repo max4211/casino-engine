@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 /**
  * An endless goal polciy, you play indefinitely, goal is to accumulate lots of money
+ * @author Max Smith
  */
 public class Cashgame extends Goal {
 

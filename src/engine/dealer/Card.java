@@ -6,6 +6,7 @@ import Utility.StringPair;
 /**
  * Encapsulates a suit and a value
  * In all card games, card objects exist and are held by a hand
+ * @author Max Smith
  */
 public class Card implements CardInterface {
 

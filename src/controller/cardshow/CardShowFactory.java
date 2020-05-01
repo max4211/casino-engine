@@ -11,6 +11,7 @@ import java.util.function.Supplier;
 
 /**
  * Factory for cardshow policies with a single purpose, to generate the concrete objects
+ * @author Max Smith
  */
 public class CardShowFactory implements CardShowFactoryInterface{
 

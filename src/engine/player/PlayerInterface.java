@@ -4,6 +4,10 @@ import engine.bet.Bet;
 
 import java.util.List;
 
+/**
+ * Publicly available methods on a player (mostly getters)
+ * @author Max Smith
+ */
 public interface PlayerInterface {
 
     /**

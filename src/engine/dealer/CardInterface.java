@@ -3,6 +3,7 @@ package engine.dealer;
 /**
  * Interface implemented by call card objects with appropriate getters
  * Used for hand classification and card triplet for view generation
+ * @author Max Smith
  */
 public interface CardInterface {
 

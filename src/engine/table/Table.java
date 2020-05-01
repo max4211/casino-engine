@@ -17,6 +17,7 @@ import java.util.function.Supplier;
 /**
  * Encapsulates players, dealer, commmunal cards, and metadata for the table
  * Essentially the "backend", publicly available methods all used by controller
+ * @author Max Smith
  */
 public class Table implements TableInterface {
 

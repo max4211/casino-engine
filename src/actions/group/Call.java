@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 
 /**
  * A call action enables the user to match an already oustanding wager within the table
+ * @author Max Smith
  */
 public class Call extends GroupAction {
 

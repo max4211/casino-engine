@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 
 /**
  * Encapsulates a player hand and a strategy (play to a certain sum is reached)
+ * @author Max Smith
  */
 public class Adversary implements AdversaryInterface {
 

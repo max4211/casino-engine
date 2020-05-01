@@ -4,6 +4,7 @@ import Utility.handbundle.HandBundle;
 
 /**
  * Encapsulates parameters for bet evaluation, assigned in HandEvaluator
+ * @author Max Smith
  */
 public class ClassifiedHand implements ClassifiedHandInterface {
 

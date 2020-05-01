@@ -9,6 +9,7 @@ import java.util.function.BiConsumer;
 /**
  * Static interface to garbage collect hands at the end of a round
  * Leveraged by the contrller
+ * @author Max Smith
  */
 public interface GarbageCollect {
 

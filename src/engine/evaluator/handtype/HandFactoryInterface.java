@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Implemented by hand factory to show single service, creating hands
+ * @author Max Smith
  */
 public interface HandFactoryInterface {
 

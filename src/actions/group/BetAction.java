@@ -10,6 +10,7 @@ import java.util.function.Consumer;
  * A bet action enables the user to select a wager, using various functional interfaces
  * to affect other components inside of the view and the controller without
  * intimate knowledge of the full objects
+ * @author Max Smith
  */
 public class BetAction extends GroupAction {
 

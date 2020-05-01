@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 /**
  * Active card show policy always shows all cards in the game
+ * @author Max Smith
  */
 public class Active extends CardShow {
 

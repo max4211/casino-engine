@@ -2,6 +2,7 @@ package engine.player;
 
 /**
  * Interface for lists of objects (simplified generic list)
+ * @author Max Smith
  */
 public interface ListInterface {
 

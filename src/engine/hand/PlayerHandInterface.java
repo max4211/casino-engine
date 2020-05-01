@@ -4,6 +4,10 @@ import engine.dealer.Card;
 
 import java.util.List;
 
+/**
+ * Publicly available methods on player hand
+ * @author Max Smith
+ */
 public interface PlayerHandInterface {
 
     /**

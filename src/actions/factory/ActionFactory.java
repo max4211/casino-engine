@@ -10,6 +10,7 @@ import java.lang.reflect.Constructor;
  * The action factory us used to create abstract action objects, which all exhibit the
  * command design pattern. Actions are selected through dialogs in the view, then generated
  * using this factory by the controller.
+ * @author Max Smith
  */
 public class ActionFactory implements ActionFactoryInterface {
 

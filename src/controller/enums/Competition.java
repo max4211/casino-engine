@@ -3,6 +3,7 @@ package controller.enums;
 /**
  * Enumerated type for possible Competition policies
  * Now depracated due to xml validation process
+ * @author Max Smith
  */
 @Deprecated
 public enum Competition {

@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 
 /**
  * An abstract goal, used to monitor high level gameplay and generate splash screens for updates
+ * @author Max Smith
  */
 public abstract class Goal implements GoalInterface {
 

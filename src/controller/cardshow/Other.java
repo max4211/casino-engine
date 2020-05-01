@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 /**
  * New (strange) cardshow policy, allows for all cards except your own to be shown within the game
+ * @author Max Smith
  */
 public class Other extends CardShow {
 

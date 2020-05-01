@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Abstract Goal object, implements goal interface for all subclasses
+ * @author Max Smith
  */
 public abstract class Goal implements GoalInterface {
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Specific class of deck which removes cards as you generate tehm
+ * @author Max Smith
  */
 public class RemoveDeck extends Deck {
     public RemoveDeck(List<StringPair> cards) {

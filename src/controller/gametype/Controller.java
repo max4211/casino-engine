@@ -30,6 +30,7 @@ import java.util.List;
  * Abstract controller object, drives the flow within the game
  * and facilitates information exchange between the model and view
  * Uses services of both sides to update model information and get input from the user in the view
+ * @author Max Smith
  */
 public abstract class Controller implements ControllerInterface {
 

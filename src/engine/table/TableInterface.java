@@ -14,6 +14,7 @@ import java.util.function.Supplier;
 /**
  * Interface implemented by Table object
  * Publicly available services to the controller (and funcitonal interfaces to other parts of the game (utilities)
+ * @author Max Smith
  */
 public interface TableInterface {
 

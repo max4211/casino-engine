@@ -7,6 +7,7 @@ import java.util.*;
 @Deprecated
 /**
  * Purported encapsulation of a list of players so the list is not passed around all the time
+ * @author Max Smith
  */
 public class PlayerList implements ListInterface, PlayerListInterface, Iterator {
 

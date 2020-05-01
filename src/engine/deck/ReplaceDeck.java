@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Specific type of deck which replaces cards as they are taken (never removed)
+ * @author Max Smith
  */
 public class ReplaceDeck extends Deck {
 

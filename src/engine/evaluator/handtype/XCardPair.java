@@ -9,6 +9,7 @@ import java.util.Map;
  * Conrete extension of hand objects
  * Needs parameters to determine if it is over a value
  * POssible for arbirary number of card sof a kind (e.g. 2,3, 4, 5, 6, of a kind)
+ * @author Max Smith
  */
 public class XCardPair extends Hand {
 

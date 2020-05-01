@@ -4,6 +4,7 @@ import UI.Utilities.CardTriplet;
 
 /**
  * Functional interface used by CardShow policies
+ * @author Max Smith
  */
 @FunctionalInterface
 public interface AddCardToView {

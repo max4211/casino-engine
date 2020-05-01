@@ -2,6 +2,7 @@ package controller.cardshow;
 
 /**
  * Funcitonal interface to hide the card in the view, without knowledge of the view
+ * @author Max Smith
  */
 @FunctionalInterface
 public interface HideCardInView {

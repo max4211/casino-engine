@@ -2,6 +2,7 @@ package controller.cardshow;
 
 /**
  * Funcitonal interface used simplify nested logic in cardshow policy (lots of for each loops)
+ * @author Max Smith
  */
 @FunctionalInterface
 public interface CardLoopFunction {

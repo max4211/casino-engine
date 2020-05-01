@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Conrete extension of hand objects
  * Needs parameters to determine if it is over a value
+ * @author Max Smith
  */
 public class XCardSumY extends Hand {
 

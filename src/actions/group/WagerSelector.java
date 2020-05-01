@@ -3,6 +3,7 @@ package actions.group;
 /**
  * Functional interface for backend objects to interface with view funcitonality
  * Lambda is passed in for the action to select a wager from the game view
+ * @author Max Smith
  */
 @FunctionalInterface
 public interface WagerSelector {

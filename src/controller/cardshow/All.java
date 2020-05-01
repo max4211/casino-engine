@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 /**
  * Shows all cards all the time in the game
+ * @author Max Smith
  */
 public class All extends CardShow {
     public All(Supplier<Collection<Player>> getPlayers, ShowCardInView showCard, HideCardInView hideCard, AddCardToView addCard) {
@@ -15,7 +16,7 @@ public class All extends CardShow {
 
     /**
      * Naively shows all cards in the game
-     * @param p
+     * @param p current active player
      */
     @Override
     public void show(Player p) {

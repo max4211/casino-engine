@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Conrete extension of hand objects
+ * @author Max Smith
  */
 public class HighCard extends Hand {
 

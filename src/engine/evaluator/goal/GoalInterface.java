@@ -4,6 +4,7 @@ import engine.player.Player;
 
 /**
  * Implemented by all goal objects to evaluate goals
+ * @author Max Smith
  */
 public interface GoalInterface {
 

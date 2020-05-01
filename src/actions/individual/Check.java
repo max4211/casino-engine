@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 /**
  * Check actions set the active status of the player to false, passing action on to the next player
+ * @author Max Smith
  */
 public class Check extends IndividualAction {
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Specific goal type which plays to a specific value (target)
+ * @author Max Smith
  */
 public class TargetGame extends Goal {
 

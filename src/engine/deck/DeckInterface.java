@@ -5,6 +5,7 @@ import engine.dealer.CardNotFoundException;
 
 /**
  * Implemented by all deck objects, provide services to contrlller through table and dealer
+ * @author Max Smith
  */
 public interface DeckInterface {
 

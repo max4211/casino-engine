@@ -5,6 +5,7 @@ import engine.hand.PlayerHand;
 
 /**
  * Effectively a static class which evalutes two hands based on set of criteria
+ * @author Max Smith
  */
 public class HandEvaluator implements HandEvaluatorInterface {
 

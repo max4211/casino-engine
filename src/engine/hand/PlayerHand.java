@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Encapsulates a list of cards, flag for loser, classificationo bject, and HandOutcome
+ * @author Max Smith
  */
 public class PlayerHand implements PlayerHandInterface {
 

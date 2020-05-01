@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 /**
  * Hit action uses the consumer to accept another card from the dealer
+ * @author Max Smith
  */
 public class Hit extends IndividualAction {
 

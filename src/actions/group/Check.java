@@ -7,6 +7,7 @@ import exceptions.ActionException;
 import java.util.function.Consumer;
 /**
  * A check action changes the round active status of the user's bet
+ * @author Max Smith
  */
 public class Check extends GroupAction {
 

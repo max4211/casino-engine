@@ -2,6 +2,7 @@ package controller.cardshow;
 
 /**
  * Functional interface to show cards in the view
+ * @author Max Smith
  */
 @FunctionalInterface
 public interface ShowCardInView {

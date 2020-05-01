@@ -8,6 +8,7 @@ import engine.deck.DeckInterface;
  * Dealers encapsulate a deck (colelction of cards)
  * Two publicly available services
  * Get cards (specific or random) and shuffle the deck (replace with original)
+ * @author Max Smith
  */
 public class Dealer implements DeckInterface {
 

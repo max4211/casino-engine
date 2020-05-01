@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Specific type of goal, play indefinitely
+ * @author Max Smith
  */
 public class CashGame extends Goal {
 

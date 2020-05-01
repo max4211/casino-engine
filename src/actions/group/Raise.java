@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 
 /**
  * A raise action enables the user to select a wager greater than the current outstanding wager
+ * @author Max Smith
  */
 public class Raise extends GroupAction {
 

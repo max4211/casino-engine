@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Additional methods for a player list interface, specific to this implementaiton
+ * @author Max Smith
  */
 public interface PlayerListInterface {
 

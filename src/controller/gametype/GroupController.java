@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Controller for a gruop game play style (evaluated against others in the group
+ * @author Max Smith
+ */
 public class GroupController extends Controller {
 
     private static final String ACTION_TYPE = "group";
