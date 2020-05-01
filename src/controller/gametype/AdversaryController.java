@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Adversary controller is a type of game when it is players against the dealer
+ * Bets are evaluated strictly against the dealer
+ */
 public class AdversaryController extends Controller {
 
     private Adversary myAdversary;
@@ -26,6 +30,11 @@ public class AdversaryController extends Controller {
     private static final String MINIMUM_TAG = "Minimum";
     private double ADVERSARY_MIN;
 
+    /**
+     * Constructor for an adversary game
+     * @param bundle is the bundle of parameters, assigned to protected objects in controller
+     * @param params are the parameters for this specific game type
+     */
     public AdversaryController(ControllerBundle bundle, Map<String, String> params) {
         super(bundle, ACTION_TYPE);
         assignParams(params);
@@ -35,6 +44,9 @@ public class AdversaryController extends Controller {
         this.ADVERSARY_MIN = Double.parseDouble(params.get(MINIMUM_TAG));
     }
 
+    /**
+     * Begins the game, with specific modifications for an adversary game (render adversary)
+     */
     @Override
     public void startGame() {
         promptForEntryBet();

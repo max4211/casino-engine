@@ -1,5 +1,8 @@
 package controller.goal;
 
+/**
+ * Implemented by all goal objects to generate splash screenns
+ */
 public interface GoalInterface {
 
     /**

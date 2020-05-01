@@ -1,5 +1,10 @@
 package controller.enums;
 
+/**
+ * Enumerated type for possible Entrybet policies
+ * Now depracated due to xml validation process
+ */
+@Deprecated
 public enum EntryBet {
 
     GENERIC("Generic"),

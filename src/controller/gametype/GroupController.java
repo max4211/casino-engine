@@ -22,6 +22,11 @@ public class GroupController extends Controller {
     private Pot myPot;
     private double myAnte;
 
+    /**
+     * A card game against other players (group competititon style)
+     * @param bundle is the bundle of parameters for a controller, assigned in superclass, with appropriate getters
+     * @param params are the parameters for this type of game
+     */
     public GroupController(ControllerBundle bundle, Map<String, String> params) {
         super(bundle, ACTION_TYPE);
         assignParams(params);
@@ -37,6 +42,10 @@ public class GroupController extends Controller {
         this.myAnte = Double.parseDouble(params.get(ANTE_TAG));
     }
 
+    /**
+     * Begins the game (from game consgtructo) with group specific logic
+     * Cheecks for all players out in a round, and no adversary render
+     */
     @Override
     public void startGame() {
         promptForEntryBet();
