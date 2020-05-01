@@ -10,6 +10,9 @@ import java.util.List;
  * href:https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
  * @author Max Smith
  * @author Devesh Agrawal
+ *
+ * Service to HandClassifer, generates combinations of all possible cards given a specifci hand size
+ * Implements Iterator to iterate through all possible combinations (hide List of List implementation)
  */
 public class Combinations implements Iterator<List<Card>> {
 
@@ -21,6 +24,11 @@ public class Combinations implements Iterator<List<Card>> {
 
     private int myIndex = 0;
 
+    /**
+     * Construct combinatinos object
+     * @param cards are the cards within the players hand
+     * @param cardsInHand is the max size of the combination
+     */
     public Combinations(List<Card> cards, int cardsInHand) {
         this.myCards = cards;
         this.myCardsInHand = Math.min(cardsInHand, cards.size());
@@ -53,11 +61,19 @@ public class Combinations implements Iterator<List<Card>> {
         System.out.println(sb.toString());
     }
 
+    /**
+     * Verify that the index is less than the size of all combinations
+     * @return that there are more combinations to iterate over
+     */
     @Override
     public boolean hasNext() {
         return myIndex < myCombinations.size();
     }
 
+    /**
+     * Adjust the index for scanning, and return the appropriate list
+     * @return list of cards next in combination
+     */
     @Override
     public List<Card> next() {
         List<Card> list = this.myCombinations.get(this.myIndex);
@@ -65,6 +81,10 @@ public class Combinations implements Iterator<List<Card>> {
         return list;
     }
 
+    /**
+     * Used for debugging combinations, verify the number of combinations (x choose y)
+     * @return the total number of combiations
+     */
     public int size() {
         return this.myCombinations.size();
     }

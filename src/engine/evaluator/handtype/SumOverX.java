@@ -4,6 +4,11 @@ import engine.dealer.Card;
 
 import java.util.List;
 
+/**
+ * Conrete extension of hand objects
+ * Needs parameters to determine if it is over a value
+ * Default configured if validation breaks
+ */
 public class SumOverX extends Hand {
 
     private static final double DEFAULT_VALUE = 21;
@@ -12,6 +17,11 @@ public class SumOverX extends Hand {
         super(cards, params);
     }
 
+    /**
+     * Calculates sum, evalutes how it compares to arguments
+     * @param cardsInHand total cards needed to make a hand
+     * @return true if sumi s over parameter (or default vaule)
+     */
     @Override
     public boolean evaluate(int cardsInHand) {
         int count = 0;
@@ -22,6 +32,10 @@ public class SumOverX extends Hand {
         return count > over;
     }
 
+    /**
+     * Gets power of the hand
+     * @return sum of hand
+     */
     @Override
     public double getPower() {
         return sumCards();

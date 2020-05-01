@@ -8,10 +8,18 @@ import exceptions.ReflectionException;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
+/**
+ * Single purpose, create abstract hand objects for hand classification in
+ * the HandClassifier module
+ */
 public class HandFactory implements HandFactoryInterface {
 
     private static final String HAND_PATH = "engine.evaluator.handtype.";
 
+    /**
+     * Creates a hand according to bundled parameters
+     * @return the appropriate hand as configured by bundle and cards
+     */
     @Override
     public Hand createHand(HandBundle b, List<Card> cards) {
         try {

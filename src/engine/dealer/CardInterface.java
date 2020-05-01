@@ -1,5 +1,9 @@
 package engine.dealer;
 
+/**
+ * Interface implemented by call card objects with appropriate getters
+ * Used for hand classification and card triplet for view generation
+ */
 public interface CardInterface {
 
     /**
@@ -16,7 +20,7 @@ public interface CardInterface {
 
     /**
      * Get hashcode (ID) of card
-     * @return
+     * @return s id of card
      */
     int getID();
 }

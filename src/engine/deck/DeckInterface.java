@@ -3,6 +3,9 @@ package engine.deck;
 import engine.dealer.Card;
 import engine.dealer.CardNotFoundException;
 
+/**
+ * Implemented by all deck objects, provide services to contrlller through table and dealer
+ */
 public interface DeckInterface {
 
     /**

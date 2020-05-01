@@ -7,11 +7,20 @@ import exceptions.ReflectionException;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
+/**
+ * Abstract factory to construct decks based on the desired type
+ */
 public class DeckFactory implements DeckFactoryInterface{
 
     private static final String DECK_PATH = "engine.deck";
     private static final String DECK_SUFFIX = "Deck";
 
+    /**
+     * Create a deck from appropariate metadata
+     * @param deckList are suit, value string pairs
+     * @param deckType type of deck (reflection facilitator)
+     * @return the abstractly casted deck object
+     */
     @Override
     public Deck createDeck(List<StringPair> deckList, String deckType) {
         try {

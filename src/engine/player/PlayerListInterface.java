@@ -3,6 +3,9 @@ package engine.player;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Additional methods for a player list interface, specific to this implementaiton
+ */
 public interface PlayerListInterface {
 
     /**

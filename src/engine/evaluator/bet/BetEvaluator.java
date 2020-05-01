@@ -14,14 +14,23 @@ public class BetEvaluator implements BetEvaluatorInterface {
 
     private final HandEvaluator myHandEvaluator;
 
+    /**
+     * Constructor for a bet evaluator object (either with or without hand evaluator
+     * @param handEvaluator evalutes hands (compared to eachother) in competitive circle
+     */
     public BetEvaluator(HandEvaluator handEvaluator) {
         this.myHandEvaluator = handEvaluator;
     }
-
     public BetEvaluator() {
         this.myHandEvaluator = new HandEvaluator();
     }
 
+    /**
+     * Iterates over all of the bets in the collection parameter and assigns each one a winning or losing value stores in a boolean instance variable
+     * Multiple bets can be winners given the nature of a push
+     * Calls the HandEvaluator compare method often to determine the winner of two hands
+     * @param bets is a collection of all bets to iterate over from a turn to assign winning and losing values
+     */
     @Override
     public void evaluateBets(List<Bet> bets) {
         PriorityQueue<Bet> pq = new PriorityQueue<>(bets.size(), new BetComparator());
@@ -66,6 +75,10 @@ public class BetEvaluator implements BetEvaluatorInterface {
         }
     }
 
+    /**
+     * Evaluate hands against eachother (assume all are classified
+     * @param h1 that have been classified in the same competitive pool
+     */
     @Override
     public void evaluateHands(PlayerHand h1, PlayerHand h2) {
         int compare = this.myHandEvaluator.compare(h1, h2);
