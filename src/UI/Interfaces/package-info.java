@@ -1,4 +1,5 @@
 /**
- * All interfaces used in the program, except MethodRunner which is found in Icons but should be moved into this package.
+ * Relevant interfaces used in the program.
+ * @author Eric Doppelt
  */
 package UI.Interfaces;

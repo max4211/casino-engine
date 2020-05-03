@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 /**
  * Basic class used to test the CardView. This is NOT relevant to any functionality or design in the project. This was only used as a test class prior to using JUnit TestFX.
+ * @author Eric Doppelt
  */
 public class CardViewTester extends Application {
     public static void main(String[] args) {

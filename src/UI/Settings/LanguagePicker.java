@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 /**
  * Subclass of Picker that represents all the language options a user has.
  * Extends picker and simply returns the user's choice in the most basic implementation.
+ * @author Eric Doppelt
  */
 public class LanguagePicker extends Picker {
 

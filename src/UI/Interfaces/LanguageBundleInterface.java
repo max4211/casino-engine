@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 /**
  * Interface implemented by the LanguageBundle class, created by means of design by contract.
  * Simply specifies the methods that are used in the LanguageBundle, which wraps around a ResourceBundle.
+ * @author Eric Doppelt
  */
 public interface LanguageBundleInterface {
 

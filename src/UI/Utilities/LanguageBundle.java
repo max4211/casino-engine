@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 /**
  * Basic class that wraps around a ResourceBundle, allowing multiple classes to reference the same underlying ResourceBundle.
  * This allows an easy way to have all classes within a particular group be automatically synced to the same ResourceBundle.
+ * @author Eric Doppelt
  */
 public class LanguageBundle implements LanguageBundleInterface {
 

@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 /**
  * subclass of Picker that allows a user to select a new CSS Stylesheet.
  * Returns the user's choice with a ".css" formatted onto it, calling the method to apply the formatted stylesheet to the View it is attached to.
+ * @author Eric Doppelt
  */
 public class StylePicker extends Picker {
 
