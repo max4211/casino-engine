@@ -8,6 +8,9 @@ import javafx.application.Application;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * Basic class that can be used to select the Wager Selector. Not relevant to game implementation, design, or functionality.
+ */
 public class WagerSelectorTester extends Application {
     @Override
     public void start(Stage primaryStage) throws IncompatibleBetRestrictionException, InvalidBetException, NoUserInputException {
