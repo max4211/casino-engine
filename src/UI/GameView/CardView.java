@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
  * A shown card displays the value and suit of the card via text.
  * Implements the StylizedNode, returning a Pane containing the card information. The CSS ID iss CardView.
  * Implements the TaggableNode interface and has a hasSameID() method which returns true if the parameter is equal to the Card's tracking ID given at construction.
+ * @author Eric Doppelt
  */
 public class CardView implements StylizedNode, TaggableNode {
 

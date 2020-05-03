@@ -13,6 +13,7 @@ import java.util.List;
  * The Cards are held in a List internally and visually displayed by means of an HBox.
  * This class exists as an instance variable composed into a BetView object.
  * Implements the StylizedNode interface, which allows access to the HBox instance variable myHand that has a CSS ID of HandView.
+ * @author Eric Doppelt
  */
 public class HandView implements StylizedNode {
 

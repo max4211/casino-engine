@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
  * Implements the StylizedNode interface, returning a VBox with the CSS ID PlayerInfo on a getView() method call.
  * Implements the LanguageResponder interface, updating the displayed text to the new language on a method call.
  * This class is used in PlayerView via composition.
+ * @author Eric Doppelt
  */
 public class PlayerInfo implements StylizedNode, LanguageResponder {
 
@@ -31,6 +32,7 @@ public class PlayerInfo implements StylizedNode, LanguageResponder {
     /**
      * Basic constructor that takes in a name, bankroll, and LanguageBundle.
      * LanguageBundle is used for future updateLanguage() calls. Displayed text is shown in the language that the bundle is currently in.
+     * Formatter object is called to format the VBox and set its CSS ID to PlayerInfo.
      * @param name is the name of the player
      * @param bankroll is the bankroll of the player
      * @param languageBundle is the LanguageBundle that the player should accecss whenever there is an updateLanguage() call.

@@ -13,6 +13,7 @@ import java.util.List;
  * Visual representation of all players who are not the Main Player and therefore not currently looking at the screen.
  * Implements the StylizedNode interface, wherein all players are held in a VBox which stores PlayerView objects and is accessed via getView()
  * Implements the LanguageResponder interface, wherein an updateLanguage() call updates the text in all displayed players.
+ * @author Eric Doppelt
  */
 public class OtherPlayers implements StylizedNode, LanguageResponder {
 
@@ -21,7 +22,7 @@ public class OtherPlayers implements StylizedNode, LanguageResponder {
 
     /**
      * General constructor that takes in no parameters. This simply constructs the VBox which has players added to it later on.
-     * Formatter object is called to format the VBox and set its CSS ID to MainPlayer.
+     * Formatter object is called to format the VBox and set its CSS ID to OtherPlayers.
      * The List holding allPlayers currently displayed is initialized to be empty.
      */
     public OtherPlayers() {

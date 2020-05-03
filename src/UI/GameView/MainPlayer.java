@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
  * This combines a PlayerView with a ReadyButton object, allowing the user to give and prompt when they are ready based on information from their PlayerView.
  * Implements the StylizedNode interface, providing access to an HBox with a CSS ID of MainPlayer.
  * Implements the TaggableNode interface, with the implemented method hasSameID() returning true if the PlayerView object has the specified ID.
+ * @author Eric Doppelt
  */
 public class MainPlayer implements StylizedNode, TaggableNode, LanguageResponder {
 

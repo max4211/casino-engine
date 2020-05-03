@@ -18,6 +18,7 @@ import java.util.List;
  * Implements the StylizedNode interface, returning an HBox containing this information with a CSS ID of PlayerView on a getView() method call.
  * Implements the TaggableNode interface, with the method hasSameId() that returns true if the PlayerView has the given tracking ID.
  * Implements the LanguageResponder interface, which updates the text displayed in the PlayerInfo object.
+ * @author Eric Doppelt
  */
 public class PlayerView implements StylizedNode, TaggableNode, LanguageResponder {
 
@@ -30,6 +31,7 @@ public class PlayerView implements StylizedNode, TaggableNode, LanguageResponder
      * Constructor for a PlayerView that takes in a name, ID (for future reference), bankroll, and LanguageBundle.
      * The LanguageBundle passes through the PlayerView and is only given in the PlayerInfo object held via composition.
      * The ID has no connection to the player information or functionality and is only used to make the PlayerView easily identifiable within the GameView class.
+     * Formatter object is called to format the VBox and set its CSS ID to PlayerView.
      * @param name is the name of the player given as a String
      * @param ID is the tracking ID of the player given as an int
      * @param bankroll is the bankroll, or amount of money a player has, given as a double
