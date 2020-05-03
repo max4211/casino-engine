@@ -1,11 +1,13 @@
 package UI.GameView;
 
-import UI.GameView.CardView;
 import UI.Utilities.CardTriplet;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Basic class used to test the CardView. This is NOT relevant to any functionality or design in the project. This was only used as a test class prior to using JUnit TestFX.
+ */
 public class CardViewTester extends Application {
     public static void main(String[] args) {
         launch(args);
