@@ -23,7 +23,7 @@ public class HandView implements StylizedNode {
     /**
      * Constructor that initializes the hand. This converts a list of CardTriplets into an HBox holding CardViews.
      * An empty list can be passed in to represent an empty hand.
-     * Formatter object is called to format the HBox and set its ID to HandView.
+     * Formatter object is called to format the HBox and set its CSS ID to HandView.
      * @param allCards is the cards that are in the hand at construction, represented with CardViews. Cards can be added later on.
      * @param cardImage is the image to show when a card is hidden, assumed to be of a face down card. This is passed straight into the CardView and not stored as state.
      */
