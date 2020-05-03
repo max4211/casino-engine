@@ -58,7 +58,7 @@ public class WagerSelector {
         return inputtedWager;
     }
 
-
+    // Unary Operator Help: https://stackoverflow.com/questions/40472668/numeric-textfield-for-integers-in-javafx-8-with-textformatter-and-or-unaryoperat
     private Optional<String> getWager(double minBet, double maxBet) {
         TextInputDialog betAmount = new TextInputDialog(String.valueOf(minBet));
         StylizedNode.setStyleID(betAmount.getDialogPane(), this.getClass());
