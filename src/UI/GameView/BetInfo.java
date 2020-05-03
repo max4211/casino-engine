@@ -36,6 +36,7 @@ public class BetInfo implements StylizedNode, LanguageResponder {
     /**
      * Constructor that initializes the information of the Bet and creates the VBox representing the view.
      * renderInfoBox() is called twice to create HBoxes wrapping information of classification or wager, both of which are contained the VBox.
+     * Formatter object is called to format the VBox and set its ID to BetInfo.
      * @param wager is a double used to represent the wager of the bet
      * @param classification is the classification of the bet. An emptry string means the bet has not been classified (no cards in it).
      * @param languageBundle is the LanguageBundle that is referenced on language updates, existing as a pointer to a ResourceBundle.

@@ -35,6 +35,7 @@ public class BetView implements StylizedNode, TaggableNode, LanguageResponder {
 
     /**
      * Constructor that initializes the VBox returned on a getView() call and nothing more. This packages together a HandView with a BetInfo object.
+     * Formatter object is called to format the VBox and set its ID to BetView.
      * @param hand is the list of information for all cards given at construction. An empty list implies that there are no cards.
      * @param wager is the amount of the bet placed.
      * @param classification is the classification of the hand at construction. An empty String implies that there are no cards.

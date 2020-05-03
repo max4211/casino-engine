@@ -24,6 +24,7 @@ public class MainPlayer implements StylizedNode, TaggableNode, LanguageResponder
     /**
      * Constructor that simply initializes and formats the HBox and provides a LanguageBundle to the ReadyButton stored as an instance variable.
      * @param languageBundle is the LanguageBundle that is given to the ReadyButton. This is not stored in the MainPlayer itself but only passes through it.
+     * Formatter object is called to format the HBox and set its CSS ID to MainPlayer.
      */
     public MainPlayer(LanguageBundle languageBundle) {
         myMainPlayerView = new HBox();

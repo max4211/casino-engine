@@ -34,6 +34,7 @@ public class CardView implements StylizedNode, TaggableNode {
      * Constructor that initializes a Pane containing all of the information relevant to a single card.
      * The card has two states that are hidden or shown. A hidden card shows an image (assumed to be of a face down card). A shown card displays the suit and value via text.
      * The card is created and set to be hidden at first. It must later be called with a showCard() method to show it.
+     * Formatter object is called to format the Pane and set its ID to CardView.
      * @param cardInfo is the information regarding the single card, containing suit, value, and id.
      * @param cardImage is the image to show if the card is face down (hidden).
      */
