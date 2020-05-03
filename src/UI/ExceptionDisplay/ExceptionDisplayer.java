@@ -56,6 +56,7 @@ public class ExceptionDisplayer implements LanguageResponder {
      * Note that no parameters are passed in since the ResourceBundle is updated elsewhere, and once this method is called, it is assumed that the ResourceBundle it points to has changed.
      * If the LanguageBundle has not changed despite an update call, the display will not change.
      */
+    @Override
     public void updateLanguage() {
         String newButtonMesage = myLanguageBundle.getBundle().getString(ERROR_CONFIRMATION_KEY);
         ButtonType newButtonType = new ButtonType(newButtonMesage);
