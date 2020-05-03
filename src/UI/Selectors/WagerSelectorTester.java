@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 /**
  * Basic class that can be used to select the Wager Selector. Not relevant to game implementation, design, or functionality.
+ * @author Eric Doppelt
  */
 public class WagerSelectorTester extends Application {
     @Override
