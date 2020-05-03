@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
  * Class that creates the functionality of a simple ImageView formatted to an enumerated size and open to extension in subclasses.
  * If no IconSize is given, the default is Normal
  * Implements the StylizedNode interface, returning an ImageView on a getView() call with a CSS ID of Icon.
+ * @author Eric Doppelt
  */
 public class Icon implements StylizedNode {
 

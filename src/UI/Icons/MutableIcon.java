@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
  * Subclass of Icon that allows the image to be changed. This is used primarily to display the status of XML files that are in the validation process and updated often.
  * Icon size is specified by the enumerated type IconSize, with the default size being Normal (side length of 40).
  * Icon image is updated with the single setImage() method.
+ * @author Eric Doppelt
  */
 public class MutableIcon extends Icon {
 

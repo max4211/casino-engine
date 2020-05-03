@@ -3,6 +3,7 @@ package UI.Icons;
 /**
  * Enumerated type used to specify the size of an icon. Two sizes are given with Normal icons being 40 by 40 and Large icons being 120 by 120.
  * It is assumed that all Icons are square. All icons are displayed as Normal, except GameStarters are Large.
+ * @author Eric Doppelt
  */
 public enum IconSize {
     NORMAL (40),

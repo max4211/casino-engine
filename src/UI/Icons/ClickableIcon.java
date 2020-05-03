@@ -3,6 +3,7 @@ package UI.Icons;
 /**
  * Class that represents an Icon which undergoes some type of action on a click. Methods called by Icons take no parameters and return nothing, as specified by the MethodRunner Functional Interface.
  * Icons must be formatted using the IconSize enumerated type for consistency.
+ * @author Eric Doppelt
  */
 public class ClickableIcon extends Icon {
 

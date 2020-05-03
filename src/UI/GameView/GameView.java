@@ -33,6 +33,7 @@ import java.util.ResourceBundle;
  * Contains an ExceptionDisplayer, ActionSelector, and WagerSelector to show exceptions and get input in a user-friendly way via composition.
  * Implements GameViewInterface due to the idea of designing by contract.
  * Implements StylizedNode, where the VBox is returned with a CSS IDD of GameView.
+ * @author Eric Doppelt
  */
 public class GameView implements GameViewInterface, StylizedNode {
 
@@ -216,7 +217,7 @@ public class GameView implements GameViewInterface, StylizedNode {
     }
 
     /**
-     * Clears the adversary, if it exists, by calling the method of clearHands() on the HandView object.
+     * Clears the adversary, if it exists, by calling the method of clearHand() on the HandView object.
      */
     @Override
     public void clearAdversary() {
@@ -273,7 +274,7 @@ public class GameView implements GameViewInterface, StylizedNode {
     }
 
     /**
-     * Adds a player to the game and placed him/her into the OtherPlayers category by calling the method of the same name on the OtherPlayers instance variable.
+     * Adds a player to the game and places him/her into the OtherPlayers category by calling the method of the same name on the OtherPlayers instance variable.
      * @param name is the name of the new player
      * @param playerId is the tracking ID of the new player
      * @param bankroll is the amount of money held by the new player
@@ -304,7 +305,7 @@ public class GameView implements GameViewInterface, StylizedNode {
     /**
      * Prompts the UI to wait for user input via a ReadyButton and then create a dialogue prompting for a bet after doing so.
      * The method does not return until it has a valid bet, but the UI does NOT pause while the Ready Button is waiting.
-     * @param minBet is the mininum bet acceptable given via a double
+     * @param minBet is the minimum bet acceptable given via a double
      * @param maxBet is the maximum bet acceptable given via a double
      * @return a double that is the selected bet, assumed to be given by the Main Player.
      */
@@ -350,7 +351,7 @@ public class GameView implements GameViewInterface, StylizedNode {
     }
 
     /**
-     * Prompts the user with a button that, when clicked, will launch a new game (as in a new round of the game he is playing).
+     * Prompts the user with a button that, when clicked, will launch a new game (as in a new round of the game he/she is playing).
      * @param startNewGame is a GameCaller which is a Functional Interface that defines one method which is assumed to prompt the controller to start a new game.
      */
     @Override
