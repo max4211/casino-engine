@@ -6,6 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * Basic class used to tests the PlayerInfo objects. This is not relevant to the functionality or design of the project. This is only called in the test class for PlayerInfo.
+ */
 public class PlayerInfoTester extends Application {
 
     @Override
