@@ -1,7 +1,7 @@
 package UI.GameView;
 
 import UI.ExceptionDisplay.ExceptionDisplayer;
-import UI.Interfaces.GameCaller;
+import UI.Interfaces.GameLauncher;
 import UI.Interfaces.GameViewInterface;
 import UI.Interfaces.StylizedNode;
 import UI.Utilities.Formatter;
@@ -355,7 +355,7 @@ public class GameView implements GameViewInterface, StylizedNode {
      * @param startNewGame is a GameCaller which is a Functional Interface that defines one method which is assumed to prompt the controller to start a new game.
      */
     @Override
-    public void promptNewGame(GameCaller startNewGame) {
+    public void promptNewGame(GameLauncher startNewGame) {
         myMainPlayer.waitUntilReady(SelectorType.NEWGAME);
         startNewGame.startNewGame();
     }

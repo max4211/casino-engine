@@ -27,6 +27,6 @@ public class AllFilesTester extends Application {
         testBundle.setLanguage("Spanish");
         allFileDisplay.updateLanguage();
 
-        allFileDisplay.enableGameButton(() -> {});
+        allFileDisplay.enableLaunchButton(() -> {});
     }
 }

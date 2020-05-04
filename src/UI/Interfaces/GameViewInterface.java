@@ -160,7 +160,7 @@ public interface GameViewInterface {
      * Prompts the user with a button that, when clicked, will launch a new game (as in a new round of the game he/she is playing).
      * @param startNewGame is a GameCaller which is a Functional Interface that defines one method which is assumed to prompt the controller to start a new game.
      */
-    void promptNewGame(GameCaller startNewGame);
+    void promptNewGame(GameLauncher startNewGame);
 
     /**
      * Creates a dialogue to be displayed to the user that simply shows a String of text given by the backend. This is used to show goal updates at the end of rounds.

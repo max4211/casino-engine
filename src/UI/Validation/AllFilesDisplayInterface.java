@@ -1,6 +1,6 @@
 package UI.Validation;
 
-import UI.Interfaces.GameCaller;
+import UI.Interfaces.GameLauncher;
 
 /**
  * Interface used to encode the AllFilesDisplay by means of Design by Contract.
@@ -22,6 +22,12 @@ public interface AllFilesDisplayInterface {
      * The launch button in the AllFilesDisplay UI is rendered enabled, and its setOnClick() method runs the GameCaller.
      * @param initializer is a GameCaller Functional Interface which allows the AllFilesDisplay to communicate with the Controller and alert it to create a game by means of a lambda.
      */
-    void enableGameButton(GameCaller initializer);
+    void enableLaunchButton(GameLauncher initializer);
 
+    /**
+     * Method which was added for CodeMasterpiece to show that an ability to implement APIs.
+     * Sets the X coordinate of the displayed Stage to the parameter, if it is greater than 0 and less than the width of the Screen.
+     * @param newX is the new X coordinate of the screen.
+     */
+    void setX(double newX);
 }
