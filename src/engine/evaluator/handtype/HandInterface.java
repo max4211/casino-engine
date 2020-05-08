@@ -1,5 +1,9 @@
 package engine.evaluator.handtype;
 
+/**
+ * Impelmented by all hands, evalutes whether or not the hand is truely classified
+ * @author Max Smith
+ */
 public interface HandInterface {
 
     /**

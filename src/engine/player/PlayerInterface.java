@@ -4,29 +4,33 @@ import engine.bet.Bet;
 
 import java.util.List;
 
+/**
+ * Publicly available methods on a player (mostly getters)
+ * @author Max Smith
+ */
 public interface PlayerInterface {
 
     /**
      * get name of current player
-     * @return
+     * @return name of the player
      */
     String getName();
 
     /**
      * get bankroll of current player
-     * @return
+     * @return current bankroll
      */
     double getBankroll();
 
     /**
      * get ID of current player
-     * @return
+     * @return id (hashed at construction0
      */
     int getID();
 
     /**
      * return a list of the players current bets for card distribution
-     * @return
+     * @return all total bets
      */
     List<Bet> getBets();
 
@@ -39,13 +43,13 @@ public interface PlayerInterface {
 
     /**
      * Place a preformatted bet
-     * @param bet
+     * @param bet is placed, added to players list of bets
      */
     void placeBet(Bet bet);
 
     /**
      * Finds next active bet inside of the player
-     * @return
+     * @return next bet in list of bets
      */
     Bet getNextBet();
 

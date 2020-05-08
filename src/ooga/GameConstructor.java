@@ -34,6 +34,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+/**
+ * GIven pointers to set of files (from LobbyView), constructs the game
+ * @author Max Smith
+ */
 public class GameConstructor {
 
     private static final String CONTROLLER_PATH = "controller.gametype";
@@ -48,6 +52,11 @@ public class GameConstructor {
 
     private static final String TYPE_KEY = "Type";
 
+    /**
+     * Given a set of files and exception thrower, create a game
+     * @param myFiles map of xmlfiles to files
+     * @param exceptionShow consumer to throw exceptions in the view
+     */
     public GameConstructor(Map<XMLFileType, File> myFiles, Consumer<Exception> exceptionShow) {
         this.myExceptionShow = exceptionShow;
         deckFile = myFiles.get(XMLFileType.DECK);

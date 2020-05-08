@@ -1,5 +1,10 @@
 package engine.dealer;
 
+/**
+ * Thrown for cards that are not found (requested by user)
+ * Not implemented, but would be used in a game of roulette/craps
+ * @author Max Smith
+ */
 public class CardNotFoundException extends RuntimeException {
 
     private final Error myError;

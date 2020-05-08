@@ -16,6 +16,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * XML reader for hand files with specific getters
+ * @author Max Smith
+ */
 public class HandReader implements HandReaderInterface {
 
     private static Document myDocument;
@@ -33,25 +37,50 @@ public class HandReader implements HandReaderInterface {
     private static final String LOSINGHAND_TAG = "LosingHand";
     private static final String CARDSINHAND_TAG = "CardsInHand";
 
-
+    /**
+     * Create the reader from string
+     * @param file is the file to make the reader from
+     * @throws GeneralXMLException if the GeneratorInterface cannot parse the file (non xml)
+     */
     public HandReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
     }
 
+    /**
+     * Create the reader from string
+     * @param file is the string of path to make the reader from
+     * @throws GeneralXMLException if the GeneratorInterface cannot parse the file (non xml)
+     */
     public HandReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
     }
 
+    /**
+     * Translates the XML tag for Winning Java hands into a List of String objects naming each Hand
+     * The first entry is the best hand (trumps all) and the last entry is the worst hand (can still win, but loses to every entry before it)
+     *
+     * @return a List of HandBundles containing the names of all Hands that can win in a given game
+     */
     @Override
     public List<HandBundle> getWinningHands() {
         return parseBundle(WINNINGHAND_TAG);
     }
 
+    /**
+     * Translates the XML tag for Losing Java jands into naming each Hand
+     * Any Hand that is classified as an entry in this list is automatically removed from the game and Garbage Collected by the Table
+     *
+     * @return a List of HandBundles containing the names of all Hands that can lose in a given game
+     */
     @Override
     public List<HandBundle> getLosingHands() {
         return parseBundle(LOSINGHAND_TAG);
     }
 
+    /**
+     * Parse CardsInHand tag from XML file
+     * @return the appropriate cards in hand tag value
+     */
     @Override
     public int getCardsInHand() {
         try {

@@ -1,5 +1,9 @@
 package engine.player;
 
+/**
+ * Interface for lists of objects (simplified generic list)
+ * @author Max Smith
+ */
 public interface ListInterface {
 
     /**
@@ -16,7 +20,7 @@ public interface ListInterface {
 
     /**
      * Determine the length (total players at the table)
-     * @return
+     * @return length of implemented list
      */
     int length();
 }

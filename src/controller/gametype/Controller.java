@@ -26,6 +26,12 @@ import exceptions.ReflectionException;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Abstract controller object, drives the flow within the game
+ * and facilitates information exchange between the model and view
+ * Uses services of both sides to update model information and get input from the user in the view
+ * @author Max Smith
+ */
 public abstract class Controller implements ControllerInterface {
 
     protected Table myTable;
@@ -40,6 +46,11 @@ public abstract class Controller implements ControllerInterface {
     protected CardShow myCardshow;
     protected Goal myGoal;
 
+    /**
+     * Construct a controller from bundle of parameters and action type
+     * @param bundle is the Contrllerbundle object, has all of controller parameters with appropriate getters
+     * @param actionType is the type of action (for action factory)
+     */
     public Controller(ControllerBundle bundle, String actionType) {
         this.myTable = bundle.getTable();
         this.myGameView = bundle.getGameView();

@@ -7,12 +7,23 @@ import exceptions.ActionException;
 
 import java.util.function.Supplier;
 
+/**
+ * Double down modifies the players bet and accepts another card
+ * @author Max Smith
+ */
 public class DoubleDown extends IndividualAction {
 
     public DoubleDown() {
         super();
     }
 
+    /**
+     * Doubles the players bet and accepts another card (via consumer)
+     * @param player is the player who has the bet
+     * @param target bet that the action executes on
+     * @param getCard is a lambda to get a card (may be needed)
+     * @throws ActionException if the player cannot double down (hardcoded, more than 2 cards in hand)
+     */
     @Override
     public void execute(Player player, Bet target, Supplier<Card> getCard) throws ActionException {
         if (target.getHand().getCards().size() > 2)

@@ -4,6 +4,10 @@ import engine.dealer.Card;
 
 import java.util.List;
 
+/**
+ * Publicly available methods on player hand
+ * @author Max Smith
+ */
 public interface PlayerHandInterface {
 
     /**
@@ -14,7 +18,7 @@ public interface PlayerHandInterface {
 
     /**
      * Called by evaluators and GUI to determine cards inside hand
-     * @return
+     * @return all cards in the hand
      */
     List<Card> getCards();
 
@@ -32,13 +36,13 @@ public interface PlayerHandInterface {
 
     /**
      * Checks if the hand is a loser for garbage collection
-     * @return
+     * @return loser value
      */
     boolean isLoser();
 
     /**
      * toggles loser when a losing hand is encountered
-     * @param state
+     * @param state set the state of losing (always false)
      */
     void setLoser(boolean state);
 

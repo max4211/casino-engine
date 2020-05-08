@@ -22,5 +22,9 @@ public interface HandReaderInterface {
      */
     List<HandBundle> getLosingHands();
 
+    /**
+     * Parse CardsInHand tag from XML file
+     * @return the appropriate cards in hand tag value
+     */
     int getCardsInHand();
 }

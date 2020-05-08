@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Input a Deck file, then open up series of getters to access information internal to the file
+ */
 public class DeckReader implements DeckReaderInterface {
 
     private static Document myDocument;
@@ -28,20 +31,40 @@ public class DeckReader implements DeckReaderInterface {
     private static final String SUIT_TAG = "Suit";
     private static final String VALUE_TAG = "Value";
 
+    /**
+     * Create the reader from a file
+     * @param file is the file to make the reader from
+     * @throws GeneralXMLException if the GeneratorInterface cannot parse the file (non xml)
+     */
     public DeckReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
     }
 
+    /**
+     * Create the reader from string
+     * @param file is the string of path to make the reader from
+     * @throws GeneralXMLException if the GeneratorInterface cannot parse the file (non xml)
+     */
     public DeckReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
     }
 
+    /**
+     * Method that translates the XML Deck tag to a List of Pair objects holding the Suit (String) and Value (Integer) for each Card.
+     * Called in CardDistribution module to assemble the deck.
+     *
+     * @return a List with each Pair entry containing the suit and value of a card in the deck.
+     */
     @Override
     public List<StringPair> getDeck() {
         int quantity = Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, QUANTITY_TAG));
         return copyDeck(parseDeck(), quantity);
     }
 
+    /**
+     * Returns the type of deck, facilitates reflection within the GameConstructor to enable new game types (e.g. Craps/Roulettte)
+     * @return the type of deck
+     */
     @Override
     public String getType() {
         return XMLParseInterface.getSingleTag(myDocument, TYPE_TAG);

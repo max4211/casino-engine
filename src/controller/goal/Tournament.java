@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.function.Supplier;
 
+/**
+ * Goal type where you play until there is a single player left
+ * Lost players are garbage colected
+ * @author Max Smith
+ */
 public class Tournament extends Goal {
 
     private static final String HEADER = "CURRENT TOURNAMENT STANDINGS...";
@@ -21,6 +26,11 @@ public class Tournament extends Goal {
         super(getPlayers);
     }
 
+    /**
+     * Splits the table into winners and losers
+     * and formats output using such division
+     * @return
+     */
     @Override
     public String evaluate() {
         PriorityQueue<Player> pq = sortPlayersByStack();

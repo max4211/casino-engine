@@ -10,6 +10,12 @@ import exceptions.ReflectionException;
 
 import java.util.*;
 
+/**
+ * Hand Classification module leveraged by the controller to continuously classify hands after actions
+ * Uses bundles of hands (winners and losers) to classify hands, using reflection, and assign
+ * ClassifiedHand object of hands appropriately
+ * @author Max Smith
+ */
 public class HandClassifier implements HandClassifierInterface {
 
     private final List<HandBundle> myWinningHands;
@@ -17,6 +23,12 @@ public class HandClassifier implements HandClassifierInterface {
     private final HandFactory myHandFactory;
     private final int myCardsInHand;
 
+    /**
+     * Construct handCalssifier module from winners and losers and parameter for cards in hand
+     * @param winners hand bundle representing winning hands
+     * @param losers hand bundle representing losing hands
+     * @param cardsInHand total cards in hand to evaluate (e.g. 5 in poker)
+     */
     public HandClassifier(List<HandBundle> winners, List<HandBundle> losers, int cardsInHand) {
         this.myWinningHands = winners;
         this.myLosingHands = losers;
@@ -24,6 +36,12 @@ public class HandClassifier implements HandClassifierInterface {
         this.myCardsInHand = cardsInHand;
     }
 
+    /**
+     * Method takes the Hand given to it and classifies it as the winningest hand that it can be based on the winning heirarcy given in the XML.
+     * unclassfiedHand its then determinted classified form in an instance variable in the Hand object.
+     *
+     * @param cards is the Hand to classify and save its classification in itself
+     */
     @Override
     public void classifyHand(List<Card> cards, PlayerHand h) {
         if (checkLosingHand(cards, h))

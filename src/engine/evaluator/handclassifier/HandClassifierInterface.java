@@ -5,6 +5,10 @@ import engine.hand.PlayerHand;
 
 import java.util.List;
 
+/**
+ * Single publicly available service porvided by hand classifier (classify hands)
+ * @author Max Smith
+ */
 public interface HandClassifierInterface {
 
     /**

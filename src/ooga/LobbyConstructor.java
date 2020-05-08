@@ -16,6 +16,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Construct a lobby object, called from main to start the game
+ * @author Max Smith
+ */
 public class LobbyConstructor {
 
     private static final String LOBBY_PATH = "lobbyview";

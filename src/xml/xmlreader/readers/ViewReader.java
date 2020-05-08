@@ -31,52 +31,93 @@ public class ViewReader implements ViewReaderInterface {
     private static final String LANGUAGE_TAG = "Language";
     private static final String STYLESHEET_TAG = "Stylesheet";
 
+    /**
+     * Create the reader from string
+     * @param file is the file pointer to make the reader from
+     * @throws GeneralXMLException if the GeneratorInterface cannot parse the file (non xml)
+     */
     public ViewReader(File file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(file);
     }
 
+    /**
+     * Create the reader from string
+     * @param file is the string of path to make the reader from
+     * @throws GeneralXMLException if the GeneratorInterface cannot parse the file (non xml)
+     */
     public ViewReader(String file) throws GeneralXMLException {
         myDocument = XMLGeneratorInterface.createDocument(new File(file));
     }
 
-
+    /**
+     * Get dimensions of the screen
+     * @return width
+     */
     @Override
     public int getScreenWidth() {
         return Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, WIDTH_TAG));
     }
 
+    /**
+     * Get dimensions of the screen
+     * @return height
+     */
     @Override
     public int getScreenHeight() {
         return Integer.parseInt(XMLParseInterface.getSingleTag(myDocument, HEIGHT_TAG));
     }
 
+    /**
+     * Get string type parameters governing the game
+     * @return game title
+     */
     @Override
     public String getTitle() {
         return XMLParseInterface.getSingleTag(myDocument, TITLE_TAG);
     }
 
+    /**
+     * Get string type parameters governing the game
+     * @return game authors
+     */
     @Override
     public String getAuthors() {
         return XMLParseInterface.getSingleTag(myDocument, AUTHORS_TAG);
     }
 
+    /**
+     * Get game view construct params
+     * @return list of languages
+     */
     @Override
     public List<String> getLanguages() {
         NodeList nodeList = XMLParseInterface.getNodeList(myDocument, LANGUAGE_TAG);
         return parseNodeListForContent(nodeList);
     }
 
+    /**
+     * Get game view construct params
+     * @return list of stylesheets
+     */
     @Override
     public List<String> getStylesheets() {
         NodeList nodeList = XMLParseInterface.getNodeList(myDocument, STYLESHEET_TAG);
         return parseNodeListForContent(nodeList);
     }
 
+    /**
+     * Return icon bundle tag
+     * @return
+     */
     @Override
     public String getIconBundle() {
         return XMLParseInterface.getSingleTag(myDocument, ICON_BUNDLE);
     }
 
+    /**
+     * Reteurn error stylesheet tag
+     * @return
+     */
     @Override
     public String getErrorStylesheet() {
         return XMLParseInterface.getSingleTag(myDocument, ERROR_STYLSHEET);

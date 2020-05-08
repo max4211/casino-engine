@@ -5,6 +5,10 @@ import engine.hand.PlayerHand;
 
 import java.util.List;
 
+/**
+ * Implemented by bet evaluator, offers service to controller to evaluate bets at the end of a round
+ * @author Max Smith
+ */
 public interface BetEvaluatorInterface {
 
     /**

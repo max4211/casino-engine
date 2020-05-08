@@ -1,5 +1,9 @@
 package engine.hand;
 
+/**
+ * Enumerated type assigned in BetEvaluation to determine winners, losers, and ties
+ * @author Max Smith
+ */
 public enum HandOutcome {
 
     WIN("Win"),

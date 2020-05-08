@@ -9,6 +9,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
 
+/**
+ * Abstract CardShow object facilitates polymorphism with command design pattern
+ * Controller just knows it has a CardShow policy (not sure specific implementation)
+ * and asks it to show cards at variuos stages with the active player
+ * @author Max Smith
+ */
 public abstract class CardShow implements CardShowInterface {
 
     private Supplier<Collection<Player>> myGetPlayers;
@@ -16,6 +22,13 @@ public abstract class CardShow implements CardShowInterface {
     private HideCardInView myHideCard;
     private AddCardToView myAddCard;
 
+    /**
+     * Constructor for cardshow policy with various consumers/functional interfaces
+     * @param getPlayers allows the CardShow to get all players from the table without knowledge of the table
+     * @param showCard enables showing card in view without knowledge of vioew
+     * @param hideCard enables hiding card in view without knowledge of view
+     * @param addCard enables aadding card to view without knowledge of view
+     */
     public CardShow(Supplier<Collection<Player>> getPlayers, ShowCardInView showCard, HideCardInView hideCard, AddCardToView addCard) {
         this.myGetPlayers = getPlayers;
         this.myShowCard = showCard;
@@ -23,6 +36,10 @@ public abstract class CardShow implements CardShowInterface {
         this.myAddCard = addCard;
     }
 
+    /**
+     * Method to show all cards - great starting point for most card show policies
+     * who typically modify other cards and/or the specific players c ards
+     */
     @Override
     public void showAllCards() {
         for (Player p: this.myGetPlayers.get()) {

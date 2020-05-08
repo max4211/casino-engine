@@ -6,6 +6,10 @@ import java.util.Collection;
 import java.util.PriorityQueue;
 import java.util.function.Supplier;
 
+/**
+ * An endless goal polciy, you play indefinitely, goal is to accumulate lots of money
+ * @author Max Smith
+ */
 public class Cashgame extends Goal {
 
     private static final String HEADER = "CURRENT CASH GAME STANDINGS...";
@@ -17,6 +21,10 @@ public class Cashgame extends Goal {
         super(getPlayers);
     }
 
+    /**
+     * Overriden implementation of the game
+     * @return a string to populate the splash screen with the current goal
+     */
     @Override
     public String evaluate() {
         PriorityQueue<Player> pq = sortPlayersByStack();

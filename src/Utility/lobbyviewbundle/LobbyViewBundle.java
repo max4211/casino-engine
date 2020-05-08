@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Bundle all lobbyview files together to simplify LobbyView construction
+ */
 public class LobbyViewBundle implements LobbyViewBundleInterface {
 
     private final List<String> myStyleSheets;
@@ -28,41 +31,73 @@ public class LobbyViewBundle implements LobbyViewBundleInterface {
         this.myFilesDisplayStatus = filesDisplayStatus;
     }
 
+    /**
+     * Getters for all data in the lobby view bundle
+     * @return stylesheets in the lobbyview
+     */
     @Override
     public List<String> getStylesheets() {
         return this.myStyleSheets;
     }
 
+    /**
+     * Getters for all data in the lobby view bundle
+     * @return languages in the lobbyview
+     */
     @Override
     public List<String> getLanguages() {
         return this.myLanguages;
     }
 
+    /**
+     * Getters for all data in the lobby view bundle
+     * @return iconPropertes in the lobbyview
+     */
     @Override
     public String getIconProperties() {
         return this.myIconProperties;
     }
 
+    /**
+     * Getters for all data in the lobby view bundle
+     * @return errorCSS in the lobbyview
+     */
     @Override
     public String getErrorCSS() {
         return this.myErrorCSS;
     }
 
+    /**
+     * Getters for all data in the lobby view bundle
+     * @return generalInfo in the lobbyview
+     */
     @Override
     public List<Map<String, String>> getGeneralinfo() {
         return this.myGeneralInfo;
     }
 
+    /**
+     * Getters for all data in the lobby view bundle
+     * @return files in the lobbyview
+     */
     @Override
     public List<List<File>> getFiles() {
         return this.myFiles;
     }
 
+    /**
+     * Getters for all data in the lobby view bundle
+     * @return filesDisplayIcon in the lobbyview
+     */
     @Override
     public String getFilesDisplayIcon() {
         return this.myFilesDisplayIcon;
     }
 
+    /**
+     * Getters for all data in the lobby view bundle
+     * @return filesDisplayStatus in the lobbyview
+     */
     @Override
     public String getFilesDisplayStatus() {
         return this.myFilesDisplayStatus;

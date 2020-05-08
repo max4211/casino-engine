@@ -3,6 +3,10 @@ package Utility.handbundle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Bundle parameters inside of a hand (within XML), used to facilitate refleciton later on
+ * @author Max Smith
+ */
 public class HandBundle implements HandBundleInterface{
 
     private static final int NAME_INDEX = 0;
@@ -59,21 +63,37 @@ public class HandBundle implements HandBundleInterface{
         return list;
     }
 
+    /**
+     * Get name of the hand to facilitate reflection in hand classificioant
+     * @return te name of the hand
+     */
     @Override
     public String getName() {
         return this.myName;
     }
 
+    /**
+     * Get the list of parameters that make up this hand
+     * @return parameters inside of the hand
+     */
     @Override
     public List<Double> getParams() {
         return this.myParams;
     }
 
+    /**
+     * Get the multiplier to help with payoffs
+     * @return multiplier of hand
+     */
     @Override
     public double getMultiplier() {
         return this.myMultiplier;
     }
 
+    /**
+     * Get the name of the hand internally to the view
+     * @return view name (optional0
+     */
     @Override
     public String getViewName() {
         return this.myViewName;

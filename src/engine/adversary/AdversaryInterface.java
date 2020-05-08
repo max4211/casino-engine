@@ -7,17 +7,21 @@ import engine.hand.PlayerHand;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+/**
+ * Implemented by adversary, shows all publicly available method calls
+ * @author Max Smith
+ */
 public interface AdversaryInterface {
 
     /**
      * Fetch the hand internal to the adversary
-     * @return
+     * @return the PlayerHand encapsulated in the adversary
      */
     PlayerHand getHand();
 
     /**
      * Accept cards from the controller
-     * @param c
+     * @param c a specific card (from dealer) to accept
      */
     void acceptCard(Card c);
 
@@ -35,9 +39,9 @@ public interface AdversaryInterface {
 
     /**
      * Gives the adversary method calls it needs to process a hand
-     * @param showCard
-     * @param addCard
-     * @param getCard
+     * @param showCard is a consumer to show card in the view
+     * @param addCard consumer to add card to the view
+     * @param getCard supplier to get card from dealer
      */
     void playHand(Consumer<Integer> showCard, Consumer<CardTriplet> addCard, Supplier<Card> getCard);
 }

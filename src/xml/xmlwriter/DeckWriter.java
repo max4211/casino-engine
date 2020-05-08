@@ -2,6 +2,10 @@ package xml.xmlwriter;
 
 import java.util.List;
 
+/**
+ * Utility to create new decks (print to console for now)
+ * @author Max Smith
+ */
 public class DeckWriter {
 
     private static final List<String> SUITS = List.of("SOLID", "STUPID", "Lambda", "OOGA", "Breakout");

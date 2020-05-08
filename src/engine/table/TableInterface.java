@@ -11,6 +11,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
 
+/**
+ * Interface implemented by Table object
+ * Publicly available services to the controller (and funcitonal interfaces to other parts of the game (utilities)
+ * @author Max Smith
+ */
 public interface TableInterface {
 
     /**
@@ -78,11 +83,17 @@ public interface TableInterface {
      */
     Card giveAdversaryCard();
 
+
+    /**
+     * Gives functional interface within dealer
+     * Dealer only exists in player, gives actions way to get cards without knowledge of dealer
+     * @return supplier from dealer
+     */
     Supplier<Card> getDealCardMethod();
 
     /**
      * Get a list of commmunal cards at the table
-     * @return
+     * @return list of communal cards
      */
     List<Card> getCommunalCards();
 
@@ -93,19 +104,19 @@ public interface TableInterface {
 
     /**
      * Get the current bet value that needs to be set
-     * @param bet
+     * @param bet sets the bet to where others must match to stay in the round
      */
     void setCurrentBet(double bet);
 
     /**
      * Fetch the current bet value that needs to be matched
-     * @return
+     * @return current bet that needs to be matched (after a BetAction0
      */
     double getCurrentBet();
 
     /**
      * Count toatl number of active players at the table
-     * @return
+     * @return total active players at the table
      */
     int getTotalActivePlayers();
 }

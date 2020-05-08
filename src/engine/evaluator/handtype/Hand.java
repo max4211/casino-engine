@@ -6,6 +6,10 @@ import engine.evaluator.handevaluator.HandEvaluator;
 
 import java.util.*;
 
+/**
+ * Abstract hand object, follows command design pattern (evaluate)
+ * @author Max Smith
+ */
 public abstract class Hand implements HandInterface {
 
     protected static final int ZERO = 0;
@@ -17,6 +21,11 @@ public abstract class Hand implements HandInterface {
 
     protected double myPower;
 
+    /**
+     * Construc ta hand object (abstract)
+     * @param cards list of cards in the hand
+     * @param params parameters to the hand
+     */
     public Hand(List<Card> cards, List<Double> params) {
         this.myCards = cards;
         this.myParams = params;

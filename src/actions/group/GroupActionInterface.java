@@ -6,6 +6,11 @@ import exceptions.ActionException;
 
 import java.util.function.Consumer;
 
+/**
+ * Interface implemented by all gruop actions with all parameters they need
+ * within the controller and view to operate
+ * @author Max Smith
+ */
 public interface GroupActionInterface {
 
     /**
