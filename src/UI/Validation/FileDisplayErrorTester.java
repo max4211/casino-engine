@@ -5,6 +5,10 @@ import javafx.application.Application;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * Basic tester used to test the FileDisplayError. This is NOT relevant to the implementation, design, or functionality of the application itself (only testing).
+ * @author Eric Doppelt
+ */
 public class FileDisplayErrorTester extends Application {
 
 

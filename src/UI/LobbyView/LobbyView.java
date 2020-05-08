@@ -15,6 +15,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+/**
+ * Class that represents the Lobby of a game, displaying multiple GameStarters in by means of a FlowPane held in a VBox.
+ * Has a SettingsBar on top of the display (at the first position in the VBox) that allows stylization of CSS and language changes.
+ * Implements StylizedNode, returning the VBox with a CSS ID of LobbyView.
+ * @author Eric Doppelt and Max Smith. Note that Max Smith only handled the LobbyView Bundle implementation.
+ */
 public class LobbyView implements StylizedNode {
 
     VBox myVBox;
@@ -39,6 +45,11 @@ public class LobbyView implements StylizedNode {
     private List<GameStarter> myGameStarters;
     private ExceptionDisplayer myExceptionDisplayer;
 
+    /**
+     * Basic constructor that creates the entire LobbyView, which is then accessible via getView().
+     * @param bundle is a LobbyViewBundle, which encapsulates information regarding the iconBundles to display in the UI, the files to associate with each game starter,
+     *               the CSS options and language options to display, and the CSS style of the exceptions thrown in LobbyView.
+     */
     public LobbyView(LobbyViewBundle bundle) {
         initVBOX();
         ResourceBundle myIconResources = initCSS(bundle.getStylesheets(), bundle.getIconProperties());
@@ -49,6 +60,25 @@ public class LobbyView implements StylizedNode {
         createIcons(bundle.getGeneralinfo(), bundle.getFiles(),
                 bundle.getFilesDisplayIcon(), bundle.getFilesDisplayStatus());
         myVBox.getChildren().add(myFlowPane);
+    }
+
+    /**
+     * Method that changes the underlying ResourceBundle of the LanguageBundle and then tells all classes composed with it to update their displays.
+     * @param newLanguage is the new language, given the a LanguagePicker.
+     */
+    public void updateLanguage(String newLanguage) {
+        myLanguageBundle.setLanguage(newLanguage);
+        for (GameStarter tempGameStarter :myGameStarters) tempGameStarter.updateLanguage();
+        myExceptionDisplayer.updateLanguage();
+    }
+
+    /**
+     * Method that simply returns a Node encompassing the entire LobbyView.
+     * @return a VBox containing a SettingsBar and a FlowPane of all GameStarters.
+     */
+    @Override
+    public VBox getView() {
+        return myVBox;
     }
 
     private void createIcons(List<Map<String, String>> generalinfo, List<List<File>> files, String filesDisplayIcon, String filesDisplayStatus) {
@@ -108,16 +138,5 @@ public class LobbyView implements StylizedNode {
     private void updateCSS(String newStyleSheet) {
         myVBox.getStylesheets().clear();
         myVBox.getStylesheets().add(PATH_TO_STYLESHEETS.concat(newStyleSheet));
-    }
-
-    public void updateLanguage(String newLanguage) {
-        myLanguageBundle.setLanguage(newLanguage);
-        for (GameStarter tempGameStarter :myGameStarters) tempGameStarter.updateLanguage();
-        myExceptionDisplayer.updateLanguage();
-    }
-
-    @Override
-    public VBox getView() {
-        return myVBox;
     }
  }

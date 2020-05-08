@@ -10,6 +10,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Class that represents a single card in the user interface by means of a JavaFX Pane.
+ * The card is toggled between two states, hidden and shown. The view of each state is constructed at initialization, and then calls toggle which state to show at any given time.
+ * A hidden card simply shows an image passed as a parameter (assumed to be of a card face down).
+ * A shown card displays the value and suit of the card via text.
+ * Implements the StylizedNode, returning a Pane containing the card information. The CSS ID iss CardView.
+ * Implements the TaggableNode interface and has a hasSameID() method which returns true if the parameter is equal to the Card's tracking ID given at construction.
+ * @author Eric Doppelt
+ */
 public class CardView implements StylizedNode, TaggableNode {
 
     private Pane myCardView;
@@ -22,6 +31,14 @@ public class CardView implements StylizedNode, TaggableNode {
 
     private static final String PATH_TO_CARD_IMAGE = "iconImages/gameIcons/";
 
+    /**
+     * Constructor that initializes a Pane containing all of the information relevant to a single card.
+     * The card has two states that are hidden or shown. A hidden card shows an image (assumed to be of a face down card). A shown card displays the suit and value via text.
+     * The card is created and set to be hidden at first. It must later be called with a showCard() method to show it.
+     * Formatter object is called to format the Pane and set its CSS ID to CardView.
+     * @param cardInfo is the information regarding the single card, containing suit, value, and id.
+     * @param cardImage is the image to show if the card is face down (hidden).
+     */
     public CardView(CardTriplet cardInfo, String cardImage) {
         myCardView = new Pane();
         StylizedNode.setStyleID(myCardView, this.getClass());
@@ -32,19 +49,34 @@ public class CardView implements StylizedNode, TaggableNode {
         hideCard();
     }
 
+    /**
+     * Specified by the StylizedNode interface, this returns the Pane object that the Card is represented with.
+     * @return a Pane which represents the Card in the user interface.
+     */
     @Override
     public Pane getView() {
         return myCardView;
     }
 
+    /**
+     * Specified by the TaggableNode interface, this returns true if the parameter is equal to the Card's tracking ID.
+     * @param id is the ID to check to see if the CardView holds.
+     * @return true if card holds the tracking ID parameter in its myID instance variable, and false otherwise.
+     */
     @Override
     public boolean hasSameID(int id) { return myID == id;}
 
+    /**
+     * Hides the card from a visual standpoint. This displays the image given at construction in the pane.
+     */
     public void hideCard() {
         myCardView.getChildren().clear();
         myCardView.getChildren().add(myHiddenCard);
     }
 
+    /**
+     * Shows the card from a visual standpoint. This displays the suit and value given at construction via text in the pane.
+     */
     public void showCard() {
         myCardView.getChildren().clear();
         myCardView.getChildren().add(myShownCard);

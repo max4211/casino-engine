@@ -1,6 +1,6 @@
 package xml.xmlvalidator;
 
-import UI.Interfaces.GameCaller;
+import UI.Interfaces.GameLauncher;
 import UI.Utilities.ScreenPosition;
 import UI.Validation.FileStatus;
 import UI.Validation.MultipleXMLChooser;
@@ -27,7 +27,7 @@ public class MasterValidator {
     private XMLBundle myXMLBundle;
     private ValidatorFactory myFactory;
     private UpdateFilesDisplayInterface myUpdate;
-    private Consumer<GameCaller> myCaller;
+    private Consumer<GameLauncher> myCaller;
     private Consumer<Exception> myExceptionShow;
     private Consumer<Double> mySetX;
 
@@ -41,7 +41,7 @@ public class MasterValidator {
      */
     public MasterValidator(List<File> fileList,
                            UpdateFilesDisplayInterface update,
-                           Consumer<GameCaller> caller,
+                           Consumer<GameLauncher> caller,
                            Consumer<Double> setX,
                            Consumer<Exception> showException) {
         this.myXMLBundle = new XMLBundle();

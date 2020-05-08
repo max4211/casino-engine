@@ -4,6 +4,10 @@ import UI.Utilities.LanguageBundle;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * Basic tester used to test the AllFilesDisplay. This is NOT relevant to the implementation, design, or functionality of the application itself (only testing).
+ * @author Eric Doppelt
+ */
 public class AllFilesTester extends Application {
 
     public static void main(String[] args) {
@@ -23,6 +27,6 @@ public class AllFilesTester extends Application {
         testBundle.setLanguage("Spanish");
         allFileDisplay.updateLanguage();
 
-        allFileDisplay.enableGameButton(() -> {});
+        allFileDisplay.enableLaunchButton(() -> {});
     }
 }
