@@ -109,7 +109,7 @@ Known Bugs:
 Extra credit:
 * Extensive file validation performed via XML Schema
     * Enumeration of known files, validating file formats
-* [Website](http://casino308.com/)
+<!-- * [Website](http://casino308.com/) deprecated as of 10/26, fix AWS bucket-->
 
 
 ### Impressions
